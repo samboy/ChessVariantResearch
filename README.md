@@ -1,0 +1,115 @@
+# Chess variant research
+
+This is my attempt to find Chess variants which are balanced while not
+being drawish: Draws are rare, and white does not have a significant
+advantage.
+
+# Capablanca variants
+
+World chapion #3, Capablanca, proposed a 10x8 variant with two extra
+pieces: One that moves like a rook and a bishop, and another that moves
+like a knight and a bishop.  Since there, there have been various
+proposals to change the opening setup of Capablanca.
+
+Here is some of my study of these variants, using Fairy-Stockfish.
+
+## How to look at Capablanca setups in Fairy-Stockfish
+
+It’s actually possible to run commands directly from Fairy-Stockfish’s
+command line.
+
+Let’s look at a variant:
+
+```
+xboard
+variant capablanca
+setboard ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR w KQkq - 0 1
+d
+analyze
+```
+
+First number is plies.  Second number is white’s advantage, in centipawns.
+Third number is elapsed time (centiseconds), fourth number is nodes searched.
+
+As per 
+https://maradns.blogspot.com/2009/10/capablanca-opening-setup-research.html
+here are some other set ups to look at:
+
+```
+setboard ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR w KQkq - 0 1
+setboard rqnbakbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RQNBAKBNCR w KQkq - 0 1
+setboard rqnbckbnar/pppppppppp/10/10/10/10/PPPPPPPPPP/RQNBCKBNAR w KQkq - 0 1
+setboard ranbckbnqr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBCKBNQR w KQkq - 0 1
+setboard rcnbakbnqr/pppppppppp/10/10/10/10/PPPPPPPPPP/RCNBAKBNQR w KQkq - 0 1
+setboard rcnbqkbnar/pppppppppp/10/10/10/10/PPPPPPPPPP/RCNBQKBNAR w KQkq - 0 1
+```
+
+Since Fairy Stockfish is deterministic, playing 1000 games will just
+result in the same game being played 1000 times.  So, we will just perform
+a 30-ply analysis of the above six opening positions.
+
+## Results 
+
+`RQNBAKBNCR` (+8% White, 13% Draws)
+
+```
+30 60 37392 81774242 42 218694 0         e2e4 e7e5 c2c3 h8g6 f2f3 d7d5 (etc.)
+```
+
+`RANBCKBNQR` (+8% White, 10% Draws)
+
+```
+30 71 36180 78484478 44 216923 0         d2d4 h8g6 e2e4 e7e5 d4e5 f7f6 (etc.)
+```
+
+`RCNBAKBNQR` (+16% White, 10% Draws)
+
+```
+30 75 26930 56640413 43 210323 0         e2e4 f7f6 d2d4 e7e5 f2f3 h8g6 (etc.)
+```
+
+`RANBQKBNCR` (+3% White, 12% draws)
+
+```
+30 87 43785 99279922 46 226740 0         d2d4 f7f6 e2e4 e7e5 d4e5 h8g6 (etc.)
+```
+
+`RCNBQKBNAR` (+5% White, 12% draws)
+
+```
+30 87 41632 86329874 47 207362 0         f2f4 f7f5 i1h3 c8d6 e2e4 f5e4 (etc.)
+```
+
+`RQNBCKBNAR` (+8% White, 10% draws)
+
+```
+30 114 30852 67721988 46 219499 0        i1h3 e7e6 e2e4 i8h6 f2f4 c7c6 (etc.)
+```
+
+## My 2009 research
+
+To the right of each setup is the white advantage and draw percentage
+from my 2009 research which used Joker80 (`m` here is the Rook + Knight
+piece):
+
+```
+Setup	        Wins	Losses	Draws	White	Games played
+ranbqkbnmr	46%	43%	12%	+3%	1010
+rmnbqkbnar	47%	42%	12%	+5%	1017
+ranbmkbnqr	49%	41%	10%	+8%	1002
+rqnbakbnmr	48%	40%	13%	+8%	1006
+rqnbmkbnar	50%	38%	11%	+12%	1004
+rmnbakbnqr	53%	37%	10%	+16%	1011
+Numbers may not add up to 100% because of rounding
+```
+
+As a point of comparison, here is what Fairy Stockfish has to say
+about standard western Chess:
+
+`RNBQKBNR`
+
+```
+30 67 22524 58470334 44 259590 0         d2d4 g8f6 c2c4 d7d5 c4d5 c7c6
+```
+
+(Queen's Gambit Declined: Marshall Defense, Tan Gambit)
