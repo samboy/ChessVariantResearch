@@ -143,6 +143,19 @@ setoption name MultiPV value 7
 Then, type in `xboard` and then `variant chess` to get in “xboard” mode
 to play a game of standard FIDE chess.
 
+The `variant chess` command gives us this output:
+
+```
+setup (PNBRQ................Kpnbrq................k) 8x8+0_fairy 
+rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+piece P& fmWfceFifmnD
+piece N& N
+piece B& B
+piece R& R
+piece Q& RB
+piece K& KO2
+```
+
 Then we type in `d` for “display board” and see this:
 
 ```
@@ -171,19 +184,6 @@ Key: 9160F14A6C929FCE
 Checkers: 
 ```
 
-The `variant chess` command give us:
-
-```
-setup (PNBRQ................Kpnbrq................k) 8x8+0_fairy 
-rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-piece P& fmWfceFifmnD
-piece N& N
-piece B& B
-piece R& R
-piece Q& RB
-piece K& KO2
-```
-
 Then `analysis`, and after about an hour we get something like this:
 
 ```
@@ -205,9 +205,9 @@ Then `analysis`, and after about an hour we get something like this:
 ```
 
 The only fields we will look at are the first one (the search depth, in 
-plies), the second one (how strong White’s advantage is, in centipawns; when
-Black is ahead, this is a negative number), and the fields showing the
-move on the right hand side.
+plies), the second one (how strong the current player’s advantage is, in 
+centipawns; when the other player is ahead, this is a negative number),
+and the fields showing the move on the right hand side.
 
 Fairy Stockfish thinks 1. d4 and 1. e4 are White’s strongest moves,
 which is consistent with classical Chess theory.  1. c4 is almost as 
