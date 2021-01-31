@@ -103,6 +103,8 @@ rmnbakbnqr	53%	37%	10%	+16%	1011
 Numbers may not add up to 100% because of rounding
 ```
 
+# Standard western Chess
+
 As a point of comparison, here is what Fairy Stockfish has to say
 about standard western Chess:
 
@@ -113,3 +115,16 @@ about standard western Chess:
 ```
 
 (Queen's Gambit Declined: Marshall Defense, Tan Gambit)
+
+## Looking at multiple possible lines
+
+Do this after starting Fairy Stockfish to look at multiple possible
+lines (to, for example, make an opening book):
+
+```
+setoption name MultiPV value 7
+```
+
+Do this *before* running the `xboard` command (Fairy Stockfish can
+only have MultiPV set when in UCI mode).
+
