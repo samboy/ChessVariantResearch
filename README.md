@@ -118,17 +118,8 @@ about standard western Chess:
 
 ## Looking at multiple possible lines
 
-Do this after starting Fairy Stockfish to look at multiple possible
-lines (to, for example, make an opening book):
-
-```
-setoption name MultiPV value 7
-```
-
-Do this *before* running the `xboard` command (Fairy Stockfish can
-only have MultiPV set when in UCI mode).
-
-Example:
+Let us start up the Fairy-Stockfish program from the command line.
+We should see something like this:
 
 ```
 Fairy-Stockfish 11.2 LB 64 by Fabian Fichter
@@ -139,6 +130,9 @@ Let’s start off by typing this command:
 ```
 setoption name MultiPV value 7
 ```
+
+This instructs Fairy Stockfish to tell us the seven best possible moves
+for any given position.
 
 Then, type in `xboard` and then `variant chess` to get in “xboard” mode
 to play a game of standard FIDE chess.
