@@ -128,3 +128,79 @@ setoption name MultiPV value 7
 Do this *before* running the `xboard` command (Fairy Stockfish can
 only have MultiPV set when in UCI mode).
 
+Example:
+
+```
+Fairy-Stockfish 11.2 LB 64 by Fabian Fichter
+```
+
+We type in `d` for “display board”:
+
+```
+ +---+---+---+---+---+---+---+---+
+ | r | n | b | q | k | b | n | r |8  
+ +---+---+---+---+---+---+---+---+
+ | p | p | p | p | p | p | p | p |7
+ +---+---+---+---+---+---+---+---+
+ |   |   |   |   |   |   |   |   |6
+ +---+---+---+---+---+---+---+---+
+ |   |   |   |   |   |   |   |   |5
+ +---+---+---+---+---+---+---+---+
+ |   |   |   |   |   |   |   |   |4
+ +---+---+---+---+---+---+---+---+
+ |   |   |   |   |   |   |   |   |3
+ +---+---+---+---+---+---+---+---+
+ | P | P | P | P | P | P | P | P |2
+ +---+---+---+---+---+---+---+---+
+ | R | N | B | Q | K | B | N | R |1 *
+ +---+---+---+---+---+---+---+---+
+   a   b   c   d   e   f   g   h
+
+Fen: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+Sfen: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b - 1
+Key: 9160F14A6C929FCE
+Checkers: 
+```
+
+The `variant chess`:
+
+```
+setup (PNBRQ................Kpnbrq................k) 8x8+0_fairy rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+piece P& fmWfceFifmnD
+piece N& N
+piece B& B
+piece R& R
+piece Q& RB
+piece K& KO2
+```
+
+Then `analysis`, and after about an hour we get something like this:
+
+```
+1 110 0 119 1 39666 0	 e2e3
+1 102 0 119 1 39666 0	 e2e4
+1 95 0 119 1 39666 0	 d2d4
+1 79 0 119 1 39666 0	 d2d3
+1 70 0 119 1 39666 0	 b1c3
+1 63 0 119 1 39666 0	 g1f3
+1 25 0 119 1 39666 0	 b2b3
+[Lots of lines removed; following sorted by strength]
+35 44 430940 1299596665 53 301571 0	 d2d4 e7e6 c2c4 d7d5 b1c3 g8f6 (etc.)
+35 44 430940 1299596665 52 301571 0	 e2e4 e7e6 d2d4 d7d5 b1d2 c7c5 (etc.)
+35 40 430940 1299596665 50 301571 0	 c2c4 e7e5 g2g3 d7d5 c4d5 d8d5 (etc.)
+35 36 430940 1299596665 49 301571 0	 a2a3 e7e6 d2d4 c7c5 e2e3 d7d5 (etc.)
+34 29 423382 1276264758 46 301445 0	 e2e3 d7d5 g1f3 e7e6 d2d4 g8f6 (etc.)
+35 29 430940 1299596665 53 301571 0	 g1f3 d7d5 d2d4 g8f6 c2c4 e7e6 (etc.)
+34 24 430940 1299596665 48 301571 0	 c2c3 d7d5 d2d4 g8f6 c1f4 e7e6 (etc.)
+```
+
+The only fields we will look at are the first one (the search depth, in 
+plies), the second one (how strong White’s advantage is, in centipawns; when
+Black is ahead, this is a negative number), and the fields showing the
+move on the right hand side.
+
+Fairy Stockfish thinks 1. d4 and 1. e4 are White’s strongest moves,
+which is consistent with classical Chess theory.  1. c4 is almost as 
+strong.  For some reason, it thinks 1. a3 is string (???), followed by
+e3 (??), Nf3, and c3 (???).
+
