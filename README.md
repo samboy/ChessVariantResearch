@@ -134,6 +134,16 @@ setoption name MultiPV value 7
 This instructs Fairy Stockfish to tell us the seven best possible moves
 for any given position.
 
+We can also, if we have the memory, increase the hash size.  For example,
+since my computer has 32 gigs of memory, we will use 16 gigs for the
+hash table:
+
+```
+setoption name Hash value 16384
+```
+
+Use a smaller number than 16384 if one’s computer has less memory.
+
 Then, type in `xboard` and then `variant chess` to get in “xboard” mode
 to play a game of standard FIDE chess.
 
