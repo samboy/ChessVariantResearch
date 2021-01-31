@@ -162,10 +162,11 @@ Key: 9160F14A6C929FCE
 Checkers: 
 ```
 
-The `variant chess`:
+The `variant chess` command give us:
 
 ```
-setup (PNBRQ................Kpnbrq................k) 8x8+0_fairy rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+setup (PNBRQ................Kpnbrq................k) 8x8+0_fairy 
+rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
 piece P& fmWfceFifmnD
 piece N& N
 piece B& B
