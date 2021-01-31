@@ -202,6 +202,6 @@ move on the right hand side.
 
 Fairy Stockfish thinks 1. d4 and 1. e4 are White’s strongest moves,
 which is consistent with classical Chess theory.  1. c4 is almost as 
-strong.  For some reason, it thinks 1. a3 is string (???), followed by
+strong.  For some reason, it thinks 1. a3 is strong (???), followed by
 e3 (??), Nf3, and c3 (???).
 
