@@ -134,7 +134,16 @@ Example:
 Fairy-Stockfish 11.2 LB 64 by Fabian Fichter
 ```
 
-We type in `d` for “display board”:
+Let’s start off by typing this command:
+
+```
+setoption name MultiPV value 7
+```
+
+Then, type in `xboard` and then `variant chess` to get in “xboard” mode
+to play a game of standard FIDE chess.
+
+Then we type in `d` for “display board” and see this:
 
 ```
  +---+---+---+---+---+---+---+---+
