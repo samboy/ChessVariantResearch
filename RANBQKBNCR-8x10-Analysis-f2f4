@@ -301,3 +301,6 @@ Fen: ranbqkbncr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RANBQKBNCR b KQkq - 0 1
 41 0 2887820 7096782191 67 245748 0	 d7d5 h1g3 c8d6 d2d3 f7f5 c2c4 g7g5 e2e3 e7e6 f4g5 d8g5 i1h3 e8e7 c4c5 d6f7 d3d4 g5h6 h3f2 h8g6 g3f5 e6f5 b1f5 e7e8 c1d3 i8g7 f5g4 g6i5 g4e5 i5g6 e5g4
 41 -35 2887820 7096782191 58 245748 0	 c7c6 i1h3 d7d5 d2d3 d8c7 b1d2 f7f6 e2e4 i8h6 c1e2 h6h3 g2h3 d5e4 d3e4 c8d6 b2b3 b8a6 h1g3 e7e5 f4f5 h7h6 g1e3 h8i6 f1i1 i6h4 e1f2 a8d8 d2c3 g8i6 g3i4 h4f3 e2g1 f3d4 d1i6 j7i6 g1f3 f8i8 i4g3 d4f3 f2f3 h6h5 h3h4 c7b6 e3b6 a7b6
 40 -5 2887820 7096782191 58 245748 0	 e7e5 f4e5
+41 0 3475515 8454496448 67 243258 0	 d7d5 h1g3 c8d6 d2d3 f7f5 c2c4 g7g5 e2e3 e7e6 f4g5 d8g5 i1h3 e8e7 c4c5 d6f7 d3d4 g5h6 h3f2 h8g6 g3f5 e6f5 b1f5 e7e8 c1d3 i8g7 f5g4 g6i5 g4e5 i5g6 e5g4
+41 -35 3475515 8454496448 58 243258 0	 c7c6 i1h3 d7d5 d2d3 d8c7 b1d2 f7f6 e2e4 i8h6 c1e2 h6h3 g2h3 d5e4 d3e4 c8d6 b2b3 b8a6 h1g3 e7e5 f4f5 h7h6 g1e3 h8i6 f1i1 i6h4 e1f2 a8d8 d2c3 g8i6 g3i4 h4f3 e2g1 f3d4 d1i6 j7i6 g1f3 f8i8 i4g3 d4f3 f2f3 h6h5 h3h4 c7b6 e3b6 a7b6
+41 -39 3475515 8454496448 66 243258 0	 e7e5 f4e5 d7d6 e2e4 d6e5 d2d4 h8g6 c1d3 b8d7 h1g3 c8d6 i1h3 d8f6 g3f5 d6f5 d1g4 e5d4 g4f5 d7c6 g1f2 h7h6 b1a3 f6e7 a3c4 f7f6 c4d2 i8h8 f1i1 e7d6 f2g3 g8f7 g3d6 c7d6 d2b4 e8e7 b4c6 b7c6 c2c3 d4c3 e1c3 c6c5 h3g3 g6h4 d3f4 h8i6 f4g6 f7g6 f5g6 i6j4 i2i3 h4j3 i1j1
