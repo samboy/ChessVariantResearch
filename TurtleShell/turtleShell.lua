@@ -96,8 +96,29 @@ function hTurtleShell(x, y)
   return out
 end
 
+-- Make the following part of the "turtle shell"
+-- Two squares, one above the other one
+-- Six triangles around those two squares
+-- Two squares at angles around the upper two squares
+-- Input: top left corner of top square
+function vTurtleShell(x, y)
+  local out = ""
+  out = out .. squareStraight(x,y) .. newline
+  out = out .. squareStraight(x,y + scale) .. newline
+  out = out .. triangleLeft(x,y) .. newline
+  out = out .. triangleRight(x - rad3,y + half) .. newline
+  out = out .. triangleLeft(x,y + scale) .. newline
+  out = out .. triangleRight(x + scale, y) .. newline
+  out = out .. triangleLeft(x + scale + rad3, y + half) .. newline
+  out = out .. triangleRight(x + scale, y + scale) .. newline
+  -- Top angled squares
+  out = out .. squareLeft(x - half - rad3, y - rad3 + half) .. newline
+  out = out .. squareRight(x + scale + half,y - rad3) .. newline
+  return out
+end
 -- Output some of a Turtle shell on standard output
 function try1()
+  -- In SVG, x goes right, y goes down.
   print(svgHeader)
   print(squareStraight(scale,scale))
   print(triangleRight(scale * 2,scale))
@@ -112,8 +133,11 @@ function try1()
   print(triangleRight(scale * 3 + rad3,half))
   print(triangleRight(scale * 3 + rad3,scale + half))
   print(triangleLeft(scale * 3 + rad3 * 2, scale))
-  print(squareLeft(scale * 3 + rad3,scale * 2 + half))
+  print(vTurtleShell(scale * 2 + rad3,scale * 3 + half + 2 * rad3))
   print(hTurtleShell(scale * 3 + rad3 * 2, scale))
+  -- This is how these meta tiles look vertically stacked, going down
+  print(vTurtleShell(scale * 3 + rad3 * 2 + half, scale * 2 + rad3))
+  print(hTurtleShell(scale * 3 + rad3 * 2, scale * 4 + rad3 * 2))
   print(svgFooter)
 end
 
