@@ -136,8 +136,16 @@ function try1()
   print(vTurtleShell(scale * 2 + rad3,scale * 3 + half + 2 * rad3))
   print(hTurtleShell(scale * 3 + rad3 * 2, scale))
   -- This is how these meta tiles look vertically stacked, going down
-  print(vTurtleShell(scale * 3 + rad3 * 2 + half, scale * 2 + rad3))
+  print(vTurtleShell(scale * 3 + rad3 * 2 + half, scale * 2 + rad3)) 
   print(hTurtleShell(scale * 3 + rad3 * 2, scale * 4 + rad3 * 2))
+  -- Here is a vTurtleShell to the right of the above hTurtleShell
+  print(vTurtleShell(scale * 5 + rad3 * 3, scale * 3 + half + rad3 * 2))
+  -- And a hTurtleShell above that one
+  print(hTurtleShell(scale * 4 + half + rad3 * 3, scale * 2 + half + rad3 * 1))
+  -- And move up to another vTurtleShell
+  print(vTurtleShell(scale * 5 + rad3 * 3, half))
+  -- OK, move over and down some
+  print(vTurtleShell(scale * 3 + rad3 * 2 + half, scale * 5 + rad3 * 3))
   print(svgFooter)
 end
 
