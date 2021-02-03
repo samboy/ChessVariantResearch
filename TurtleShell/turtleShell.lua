@@ -76,6 +76,26 @@ function triangleDown(x, y)
          ' l -' .. tostring(scale) .. ',0 Z" />'
 end
 
+-- Make the following part of the "turtle shell":
+-- Three triangles on top (two pointed up, one pointed down)
+-- Two squares in the middle row (next to each other left-right)
+-- Three triangles on bottom (two pointed down, one pointed up)
+-- The shape will be 2 * scale wide, 2 * rad3 + scale high
+-- Input: x and y of top left of left square
+-- Output: String with SVG code
+function hTurtleShell(x, y)
+  local out = ""
+  out = out .. squareStraight(x,y) .. newline
+  out = out .. squareStraight(x + scale, y) .. newline
+  out = out .. triangleUp(x,y) .. newline
+  out = out .. triangleDown(x + half, y - rad3) .. newline
+  out = out .. triangleUp(x + scale, y) .. newline
+  out = out .. triangleDown(x, y + scale) .. newline
+  out = out .. triangleUp(x + half, y + scale + rad3) .. newline
+  out = out .. triangleDown(x + scale, y + scale) .. newline
+  return out
+end
+
 -- Output some of a Turtle shell on standard output
 function try1()
   print(svgHeader)
@@ -88,14 +108,14 @@ function try1()
   print(triangleLeft(scale * 2 + rad3, scale + half))
   print(squareStraight(scale * 2 + rad3,half))
   print(squareStraight(scale * 2 + rad3,scale + half))
-  print(triangleDown(scale * 2 + rad3,2 * scale + half))
-  print(triangleUp(scale + half + rad3,scale * 2 + half + rad3))
-  print(triangleUp(scale * 2 + half + rad3,scale * 2 + half + rad3))
+  print(hTurtleShell(scale + half + rad3,scale * 2 + half + rad3))
   print(triangleRight(scale * 3 + rad3,half))
   print(triangleRight(scale * 3 + rad3,scale + half))
   print(triangleLeft(scale * 3 + rad3 * 2, scale))
   print(squareLeft(scale * 3 + rad3,scale * 2 + half))
+  print(hTurtleShell(scale * 3 + rad3 * 2, scale))
   print(svgFooter)
 end
 
 try1()
+
