@@ -149,5 +149,15 @@ function try1()
   print(svgFooter)
 end
 
+-- This converts the "turtle shell" in to a grid of tile groups, so
+-- we can tile the plain the same way we would tile the plain with
+-- squares
+function turtleShellGridPoint(x, y)
+  type = ((x % 2) + (y % 2)) % 2
+  if type == 0 then
+    return vTurtleShell(scale * (x * 2 + 1) + rad3 * x,0)
+  end
+end
+
 try1()
 
