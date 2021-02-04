@@ -4,12 +4,12 @@
 
 -- Make a "turtle shell" tesselation of the plane in SVG format
 
-scale = 10 -- How long each line will be in the pattern
+scale = 100 -- How long each line will be in the pattern
 rad3 = scale * .5 * (3 ^ .5)
 half = scale / 2
-pathdef = '<path fill="none" stroke="black" '
+pathdef = '<path fill="none" stroke="black" stroke-width="5" '
 newline = "\n"
-svgHeader = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
+svgHeader = '<svg viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">'
 svgFooter = '</svg>'
 
 -- The shapes used for the Turtle shell
@@ -155,9 +155,20 @@ end
 function turtleShellGridPoint(x, y)
   type = ((x % 2) + (y % 2)) % 2
   if type == 0 then
-    return vTurtleShell(scale * (x * 2 + 1) + rad3 * x,0)
+    return vTurtleShell(scale * x + rad3 * x + half * x,
+                        scale * y + rad3 * y + half * y)
+  else 
+    return hTurtleShell(scale * x + rad3 * x + half * (x - 1),
+                        scale * y + rad3 * y + half * (y + 1))
   end
 end
 
-try1()
+print(svgHeader)
+for a = 0,7 do
+  for b = 0,7 do
+    print(turtleShellGridPoint(a,b))
+  end
+end
+print(svgFooter)
+--try1()
 
