@@ -150,7 +150,7 @@ function try1()
 end
 
 -- This converts the "turtle shell" in to a grid of tile groups, so
--- we can tile the plain the same way we would tile the plain with
+-- we can tile the plane the same way we would tile the plane with
 -- squares
 function turtleShellGridPoint(x, y)
   type = ((x % 2) + (y % 2)) % 2
