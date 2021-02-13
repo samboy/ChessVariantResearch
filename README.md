@@ -188,7 +188,7 @@ Key: 9160F14A6C929FCE
 Checkers: 
 ```
 
-Then `analysis`, and after about an hour we get something like this:
+Then `analysis`, and after about a day we get something like this:
 
 ```
 1 110 0 119 1 39666 0	 e2e3
@@ -199,13 +199,13 @@ Then `analysis`, and after about an hour we get something like this:
 1 63 0 119 1 39666 0	 g1f3
 1 25 0 119 1 39666 0	 b2b3
 [Lots of lines removed; following sorted by strength]
-35 44 430940 1299596665 53 301571 0	 d2d4 e7e6 c2c4 d7d5 b1c3 g8f6 (etc.)
-35 44 430940 1299596665 52 301571 0	 e2e4 e7e6 d2d4 d7d5 b1d2 c7c5 (etc.)
-35 40 430940 1299596665 50 301571 0	 c2c4 e7e5 g2g3 d7d5 c4d5 d8d5 (etc.)
-35 36 430940 1299596665 49 301571 0	 a2a3 e7e6 d2d4 c7c5 e2e3 d7d5 (etc.)
-34 29 423382 1276264758 46 301445 0	 e2e3 d7d5 g1f3 e7e6 d2d4 g8f6 (etc.)
-35 29 430940 1299596665 53 301571 0	 g1f3 d7d5 d2d4 g8f6 c2c4 e7e6 (etc.)
-34 24 430940 1299596665 48 301571 0	 c2c3 d7d5 d2d4 g8f6 c1f4 e7e6 (etc.)
+41 48 2757150 8488910265 57 307887 0     d2d4 g8f6 g1f3 d7d5 c2c4 e7e6 (etc.)
+41 36 2757150 8488910265 57 307887 0     g1f3 d7d5 e2e3 g8f6 b2b3 c8f5 (etc.)
+41 33 2757150 8488910265 62 307887 0     c2c4 e7e6 b1c3 g8f6 d2d4 f8b4 (etc.)
+41 33 2757150 8488910265 69 307887 0     e2e3 d7d5 d2d4 g8f6 g1f3 c7c5 (etc.)
+40 33 2363202 7271425238 61 307693 0     e2e4 c7c5 g1f3 e7e6 c2c3 b8c6 (etc.)
+41 28 2757150 8488910265 65 307887 0     g2g3 d7d5 g1f3 c7c5 f1g2 g8f6 (etc.)
+40 28 2757150 8488910265 58 307887 0     c2c3 d7d5 d2d4 g8f6 c1f4 e7e6 (etc.)
 ```
 
 The only fields we will look at are the first one (the search depth, in 
@@ -213,8 +213,7 @@ plies), the second one (how strong the current player’s advantage is, in
 centipawns; when the other player is ahead, this is a negative number),
 and the fields showing the move on the right hand side.
 
-Fairy Stockfish thinks 1. d4 and 1. e4 are White’s strongest moves,
-which is consistent with classical Chess theory.  1. c4 is almost as 
-strong.  For some reason, it thinks 1. a3 is strong (???), followed by
-e3 (??), Nf3, and c3 (???).
-
+Fairy Stockfish thinks 1. d4 then 1. Nf3 are White’s strongest moves,
+which is consistent with classical Chess theory.  However, it considers
+1. e4 somewhat weaker than 1. d4, about as strong as the English (1. c4),
+and thinks 1. e3 is just as strong as 1. e4 (???).  
