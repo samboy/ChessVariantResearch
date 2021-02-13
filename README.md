@@ -214,6 +214,6 @@ centipawns; when the other player is ahead, this is a negative number),
 and the fields showing the move on the right hand side.
 
 Fairy Stockfish thinks 1. d4 then 1. Nf3 are White’s strongest moves,
-which is consistent with classical Chess theory.  However, it considers
-1. e4 somewhat weaker than 1. d4, about as strong as the English (1. c4),
+which is consistent with classical Chess theory.  However, it considers 1.
+e4 somewhat weaker than 1. d4, about as strong as the English (1. c4),
 and thinks 1. e3 is just as strong as 1. e4 (???).  
