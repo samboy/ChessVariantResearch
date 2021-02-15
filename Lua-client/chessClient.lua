@@ -24,7 +24,7 @@ variantFEN = "ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR " ..
              "w KQkq - 0 1"
 -- variantFEN = false -- Use default opening setup for variant
 -- After this many plies are searched, decide on a move to make
-searchPly = 17
+searchPly = 11
 -- Here be dragons below
 
 if searchPly < 7 then print("searchPly too small") os.exit(1) end
@@ -122,13 +122,26 @@ while true do
     end
     if ply == searchPly then
       movevalue[move] = value
-      bestMove = move
-      if value > maxvalue then maxvalue = value end
+      if value > maxvalue then 
+        maxvalue = value 
+        bestMove = move
+      end
     end
     if ply > searchPly and #movelist > 0 then
       local thisValue = -10000000
       local toMove = ""
       local limit = 20
+      game = game .. "("
+      for a = 1, #movelist do
+        local move = movelist[a]
+	game = game .. " " .. move .. " "
+	if movevalue[move] then
+	  game = game .. " " .. tostring(movevalue[move]) .. " "
+	else
+          game = game .. " [no value] "
+	end
+      end
+      game = game .. ") "
       while thisValue < maxvalue - 50 and limit > 0 do
         toMove = movelist[math.random(#movelist)]
 	if movevalue[toMove] ~= nil then
