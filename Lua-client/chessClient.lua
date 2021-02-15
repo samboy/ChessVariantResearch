@@ -24,7 +24,7 @@ variantFEN = "ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR " ..
              "w KQkq - 0 1"
 -- variantFEN = false -- Use default opening setup for variant
 -- After this many plies are searched, decide on a move to make
-searchPly = 11
+searchPly = 21
 -- Here be dragons below
 
 if searchPly < 7 then print("searchPly too small") os.exit(1) end
