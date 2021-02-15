@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while true ; do
+  lunacy chessClient.lua >> log
+  tail -1 log >> results
+done
