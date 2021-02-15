@@ -69,6 +69,7 @@ while not string.match(lineFromEngine,'^Key') do
   lineFromEngine = r:read()
   print(lineFromEngine)
 end
+io.flush()
 w:write("analyze\n")
 w:flush()
 math.randomseed(os.time())
@@ -153,6 +154,7 @@ while true do
       end
       game = game .. toMove .. " "
       print(gamePly, toMove)
+      io.flush()
       gamePly = gamePly + 1
       w:write(toMove .. "\n")
       w:flush()
