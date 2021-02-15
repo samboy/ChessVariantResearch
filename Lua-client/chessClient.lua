@@ -1,5 +1,5 @@
 -- Placed in the public domain 2021 by Sam Trenholme
--- This is a lunacy (Lua + Steve Donovan's popen lib) implementation of
+-- This is a lunacy (Lua + Steve Donovan's spawner lib) implementation of
 -- a simple Chess/Chess variants client
 --
 -- This client is a “randomized” version of Fairy-Stockfish:  It looks
@@ -50,12 +50,12 @@ function rStrSplit(s, splitOn)
   return out
 end
 
-if popen == nil then
-  print("I need Steve Donovan's popen lib to continue!")
+if spawner == nil then
+  print("I need Steve Donovan's spawner lib to continue!")
   os.exit(1)
 end
 
-w,r = popen.popen2(ChessEngine)
+w,r = spawner.popen2(ChessEngine)
 w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
 w:write("xboard\n")
 w:write("variant " .. variantName .. "\n")
