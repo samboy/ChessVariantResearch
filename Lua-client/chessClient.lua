@@ -50,12 +50,12 @@ function rStrSplit(s, splitOn)
   return out
 end
 
-if popen == nil then
-  print("I need Steve Donovan's popen lib to continue!")
+if lpc == nil then
+  print("I need the LPC lib to continue!")
   os.exit(1)
 end
 
-w,r = popen.popen2(ChessEngine)
+pid,w,r = lpc.run(ChessEngine)
 w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
 w:write("xboard\n")
 w:write("variant " .. variantName .. "\n")
