@@ -67,7 +67,6 @@ movevalue = {}
 maxvalue = -100000
 while true do
   lineFromEngine = r:read()
-  print(lineFromEngine) -- DEBUG
   local fields = rStrSplit(lineFromEngine,' ')
   if #fields > 0 and string.match(fields[1],'0%-1') then 
     game = game .. lineFromEngine
@@ -87,6 +86,13 @@ while true do
   if #fields > 0 and string.match(fields[1],'Error') then 
     game = game .. lineFromEngine
     print(game)
+w:write("d\n")
+w:flush()
+lineFromEngine = ""
+while not string.match(lineFromEngine,'^Key') do
+  lineFromEngine = r:read()
+  print(lineFromEngine)
+end
     os.exit(1) -- Ended with Error
   end
   if #fields > 7 then
