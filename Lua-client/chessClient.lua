@@ -12,6 +12,7 @@
 --
 -- See https://github.com/ianfab/Fairy-Stockfish for the Chess engine
 ChessEngine = "fairy-stockfish-largeboard_x86-64"
+ChessEngine = "fairy-stockfish-largeboard_x86-64-bmi2"
 -- This is the number of lines we look at and consider for our next move
 MultiPV = 3
 -- The name of the variant we will look at.  This needs to be a variant
@@ -167,9 +168,21 @@ while true do
       end
       game = game .. toMove .. " "
       print(gamePly, toMove)
+      w:write(toMove .. "\n")
+      w:write("stop\n")
+      w:write("d\n")
+      w:flush()
+      lineFromEngine = ""
+      while not string.match(lineFromEngine,'^Key') do
+        lineFromEngine = r:read()
+        w:write("stop\n")
+        w:flush()
+        print(lineFromEngine)
+      end
+      w:write("analyze\n")
+      w:flush()
       io.flush()
       gamePly = gamePly + 1
-      w:write(toMove .. "\n")
       w:flush()
       lineFromEngine = r:read()
       lineFromEngine = r:read()
