@@ -10,6 +10,11 @@
 -- and available with the name fairy-stockfish-largeboard_x86-64
 -- (if it has another name, change "ChessEngine" below)
 
+-- Evans Gambit Compromised defense.  Well known RNBQKBNR (standard Chess)
+-- line
+EvansCompromised = "e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 b2b4 c5b4 c2c3 " ..
+                   "b4a5 d2d4 e5d4 e1g1 d4c3"
+
 -- params is a table with the "user tunable" parameters
 params = {
   -- See https://github.com/ianfab/Fairy-Stockfish for the Chess engine
@@ -27,7 +32,14 @@ params = {
              "w KQkq - 0 1",
   -- variantFEN = false, -- Use default opening setup for variant
   -- After this many plies are searched, decide on a move to make
-  searchPly = 21
+  searchPly = 21,
+  -- Opening to play.  Format is like this: "f2f4 f7f5", where each move has
+  -- four letters (from, to) or five letters (for pawn promotions: b7b8q)
+  -- King move for castling (e.g. e1g1 with normal RNBQKBNR chess).  Spaces
+  -- between openings
+  -- opening = "f2f4",
+  -- opening = EvansCompromised,
+  opening = false,
 }
 
 -- Here be dragons below
@@ -73,8 +85,16 @@ function rStrSplit(s, splitOn)
   return out
 end
 
+openmove = {}
+thismove = 0
+if type(params["opening"]) == "string" then
+  thismove = 1
+  openmove = rStrSplit(params["opening"]," ")
+end 
+
 if spawner == nil then
   print("I need Steve Donovan's spawner lib to continue!")
+  print("Download Lunacy at https://github.com/samboy/lunacy")
   os.exit(1)
 end
 
@@ -93,6 +113,21 @@ while not string.match(lineFromEngine,'^Key') do
   print(lineFromEngine)
 end
 io.flush()
+
+-- If there is an opening, play it
+while thismove > 0 and thismove <= #openmove do
+  w:write(openmove[thismove] .. "\n")
+  w:write("d\n")
+  w:flush()
+  lineFromEngine = ""
+  while not string.match(lineFromEngine,'^Key') do
+    lineFromEngine = r:read()
+    print(lineFromEngine)
+  end
+  io.flush()
+  thismove = thismove + 1
+end
+   
 w:write("analyze\n")
 w:flush()
 math.randomseed(os.time())
@@ -155,16 +190,17 @@ while true do
       local toMove = ""
       local limit = 20
       game = game .. "("
+      local evals = ""
       for a = 1, #movelist do
         local move = movelist[a]
-	game = game .. " " .. move .. " "
+	evals = evals .. " " .. move .. " "
 	if movevalue[move] then
-	  game = game .. " " .. tostring(movevalue[move]) .. " "
+	  evals = evals .. " " .. tostring(movevalue[move]) .. " "
 	else
-          game = game .. " [no value] "
+          evals = evals .. " [no value] "
 	end
       end
-      game = game .. ") "
+      game = game .. evals .. ") "
       while thisValue < maxvalue - 50 and limit > 0 do
         toMove = movelist[math.random(#movelist)]
 	if movevalue[toMove] ~= nil then
@@ -189,7 +225,7 @@ while true do
         os.exit(1)
       end
       game = game .. toMove .. " "
-      print(gamePly, toMove)
+      print(gamePly, toMove, evals)
       w:write(toMove .. "\n")
       w:write("stop\n")
       w:write("d\n")
