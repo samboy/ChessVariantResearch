@@ -9,26 +9,48 @@
 -- This client requires the Fairy-Stockfish program to be installed
 -- and available with the name fairy-stockfish-largeboard_x86-64
 -- (if it has another name, change "ChessEngine" below)
---
--- See https://github.com/ianfab/Fairy-Stockfish for the Chess engine
-ChessEngine = "fairy-stockfish-largeboard_x86-64"
-ChessEngine = "fairy-stockfish-largeboard_x86-64-bmi2"
--- This is the number of lines we look at and consider for our next move
-MultiPV = 3
--- The name of the variant we will look at.  This needs to be a variant
--- Fairy-Stockfish supports
-variantName = "capablanca"
--- variantName = "chess"
--- The opening setup (or position) we will play from in the game
--- This is an argument given to the Fairy-Stockfish "setboard" command
-variantFEN = "ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR " ..
-             "w KQkq - 0 1"
--- variantFEN = false -- Use default opening setup for variant
--- After this many plies are searched, decide on a move to make
-searchPly = 21
+
+-- params is a table with the "user tunable" parameters
+params = {
+  -- See https://github.com/ianfab/Fairy-Stockfish for the Chess engine
+  -- This is the name of the chess engine, as it appears in one's $PATH
+  ChessEngine = "fairy-stockfish",
+  -- This is the number of lines we look at and consider for our next move
+  MultiPV = 3,
+  -- The name of the variant we will look at.  This needs to be a variant
+  -- Fairy-Stockfish supports
+  variantName = "capablanca",
+  -- variantName = "chess",
+  -- The opening setup (or position) we will play from in the game
+  -- This is an argument given to the Fairy-Stockfish "setboard" command
+  variantFEN = "ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR " ..
+             "w KQkq - 0 1",
+  -- variantFEN = false, -- Use default opening setup for variant
+  -- After this many plies are searched, decide on a move to make
+  searchPly = 21
+}
+
 -- Here be dragons below
 
-if searchPly < 7 then print("searchPly too small") os.exit(1) end
+ChessEngine = params["ChessEngine"]
+MultiPV = tonumber(params["MultiPV"])
+variantName = params["variantName"]
+if type(params["variantFEN"]) == "string" then
+  variantFEN = params["variantFEN"]
+else
+  variantFEN = false
+end
+searchPly = tonumber(searchPly)
+
+-- Sanity for numeric vaues
+if MultiPV < 2 then
+  print("MultiPV too small/not set, using 3")
+  MultiPV = 3
+end
+if searchPly < 7 then 
+  print("searchPly too small/not set, using 21") 
+  searchPly = 21
+end
 
 ----------------------- rStrSplit() -----------------------
 -- This does a simple split for a given string, useful for simple CSV
