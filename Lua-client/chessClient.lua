@@ -40,14 +40,14 @@ if type(params["variantFEN"]) == "string" then
 else
   variantFEN = false
 end
-searchPly = tonumber(searchPly)
+searchPly = tonumber(params["searchPly"])
 
 -- Sanity for numeric vaues
-if MultiPV < 2 then
+if not MultiPV or MultiPV < 2 then
   print("MultiPV too small/not set, using 3")
   MultiPV = 3
 end
-if searchPly < 7 then 
+if not searchPly or searchPly < 7 then 
   print("searchPly too small/not set, using 21") 
   searchPly = 21
 end
