@@ -27,9 +27,13 @@ params = {
   variantName = "capablanca",
   -- variantName = "chess",
   -- The opening setup (or position) we will play from in the game
+  -- Note: This currently only works with 8xN games (8x8, 8x10, 8x12, etc.)
+  variantSetup = "RANBQKBNCR",
+  -- It's also possible to set up any arbitrary FEN, not just a mirrored
+  -- 8x# backrank opening setup
   -- This is an argument given to the Fairy-Stockfish "setboard" command
-  variantFEN = "ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR " ..
-             "w KQkq - 0 1",
+  -- variantFEN = "ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR " ..
+  --          "w KQkq - 0 1",
   -- variantFEN = false, -- Use default opening setup for variant
   -- After this many plies are searched, decide on a move to make
   searchPly = 21,
@@ -37,13 +41,12 @@ params = {
   -- four letters (from, to) or five letters (for pawn promotions: b7b8q)
   -- King move for castling (e.g. e1g1 with normal RNBQKBNR chess).  Spaces
   -- between openings
-  -- opening = "f2f4",
+  opening = "f2f4",
   -- opening = EvansCompromised,
-  opening = false,
+  -- opening = false,
 }
 
 -- Here be dragons below
-
 ChessEngine = params["ChessEngine"]
 MultiPV = tonumber(params["MultiPV"])
 variantName = params["variantName"]
@@ -52,6 +55,31 @@ if type(params["variantFEN"]) == "string" then
 else
   variantFEN = false
 end
+
+-- If they specify a variantSetup (e.g. RNBQKBNR or RANBQKBNCR), convert
+-- that in to the appropriate 8x# FEN string
+if type(params["variantSetup"]) == "string" then
+  local setup = params["variantSetup"]
+  -- Black's pieces
+  variantFEN = setup:lower() .. "/"
+  -- Black's pawns
+  for a = 1,#setup do
+    variantFEN = variantFEN .. "p"
+  end
+  -- The 4-row blank area between setups
+  -- This code currently only works with 8x# setups
+  for a = 1, 4 do
+    variantFEN = variantFEN .. "/" .. tostring(#setup)
+  end
+  variantFEN = variantFEN .. "/"
+  -- White's pawns
+  for a = 1,#setup do
+    variantFEN = variantFEN .. "P"
+  end
+  variantFEN = variantFEN .. "/" .. setup:upper() .. " w KQkq - 0 1"
+end
+
+-- How many ply do we look ahead per move
 searchPly = tonumber(params["searchPly"])
 
 -- Sanity for numeric vaues
@@ -132,6 +160,18 @@ w:write("analyze\n")
 w:flush()
 math.randomseed(os.time())
 game = ""
+-- Note setup, if specified as VariantSetup
+if type(params["variantSetup"]) == "string" then
+  game = game .. "(Setup: " .. params["variantSetup"] .. ") "
+end
+-- Note opening, if any
+if openmove and type(openmove) == "table" then
+  game = game .. "(Opening) "
+  for a = 1, #openmove do
+    game = game .. openmove[a] .. " "
+  end
+end
+
 gamePly = 1
 movelist = {}
 movevalue = {}
