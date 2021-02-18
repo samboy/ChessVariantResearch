@@ -41,9 +41,9 @@ params = {
   -- four letters (from, to) or five letters (for pawn promotions: b7b8q)
   -- King move for castling (e.g. e1g1 with normal RNBQKBNR chess).  Spaces
   -- between openings
-  opening = "f2f4",
+  -- opening = "f2f4",
   -- opening = EvansCompromised,
-  -- opening = false,
+  opening = false,
 }
 
 -- Here be dragons below
