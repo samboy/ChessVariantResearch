@@ -1,0 +1,134 @@
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O dxc3 8.Qb3 Qf6 9.e5 Qf5 10.Nxc3 Nge7 11.Ba3 Ng6 12.Nd5 Ngxe5 13.Nxe5 Qxe5 14.f4 Qh5 15.Qe3+ Kd8 16.Be7+ Ke8 17.f5 Qg4 18.Nf6+ gxf6 19.Bxf6+ Kf8 20.Qh6+ Kg8 21.Rf4 Bb6+ 22.Kh1 Qg5 23.Qxg5+ Kf8 24.Qg7+ Ke8 25.Qxh8# 1-0
+[Event "Evans Compromised series"]
+[Site "COVID-19 lockdown"]
+[Date "2021.01.05"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions level 2"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 Qf6 9. e5 Nxe5 10. Re1 Ne7 11. Rxe5 d5 12. Bg5 dxc4 13. Qa4+ Bd7 14. Qxa5
+c2 15. Nc3 Qxe5 (15... Qg6 $2 16. Rxe7+ Kf8 (16... Kd8 17. Rxf7+ Kc8 18. Rxd7
+Kxd7 19. Ne5+) 17. Rxd7)  (15... Qd6 16. Bxe7 Qc6 (16... Qd3 $2 17. Bd6+ Be6
+18. Qxc7) 17. Nd4 Qg6 18. Qc5 Be6 19. Nd5 f6 20. Bxf6 c1=Q+ 21. Rxc1 Kf7 22.
+Qxc7+ Bd7 23. Qxd7+ Kf8 24. Ne6+ Kg8 25. Ne7+ Kf7 26. Nxg6+ Kg8 27. Qxg7#)  (
+15... Qc6 16. Rxe7+ Kd8 17. Ne5 Qd6 18. Nxf7+) 16. Nxe5 b6 17. Qb4 f6 18. Re1
+c1=Q 19. Rxc1 fxg5 20. Qxc4 O-O-O 21. Ne4 c5 { (forced mate)} 22. Nxc5 b5 23.
+Qf7 Bc6 24. Nxc6 Rd1+ 25. Rxd1 Kc7 26. Qxe7+ Kb6 27. Qxa7+ Kxc6 28. Nd7 Re8 29.
+Qb6# 1-0
+
+[Event "Evans Gambit compromised"]
+[Site "COVID-19 lockdown"]
+[Date "2021.01.05"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions level 1"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 Qf6 9. e5 Nxe5 10. Re1 d6 11. Qa4+ b5 12. Qxb5+ Kf8 13. Nxe5 c2 $4 14. Ng6+
+fxg6 15. Qe8# 1-0
+
+[Event "Compromised defense study"]
+[Site "COVID-19 lockdown"]
+[Date "2021.01.05"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions level 3"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 Qe7 9. Nxc3 Nf6 10. Nd5 Qxe4 11. Bb2 Nxd5 12. Bxd5 Qg6 13. Rae1+ Bxe1 14.
+Rxe1+ Kf8 15. Qe3 f6 16. Bxc6 Qf7 17. Bd5 Qe6 18. Bxe6 dxe6 19. Ng5 fxg5 20.
+Qe5 Rg8 21. Qxc7 Ke8 22. Ba3 Bd7 23. Rxe6+ Bxe6 24. Qe7# 1-0
+
+[Event "Compromised defense study"]
+[Site "COVID-19 lockdown"]
+[Date "2021.01.06"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions Level 4"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 c2 $6 9. Bxf7+ Ke7 10. e5 $1 cxb1=Q 11. Rxb1 Kf8 12. Bxg8 Rxg8 13. Ng5 Nxe5
+14. Nxh7+ Ke7 15. Bg5+ Kd6 16. Rfd1+ Bd2 17. Rxd2+ Nd3 18. Rxd3+ Ke5 19. Qd5#
+1-0
+
+[Event "Evans Gambit Compromised"]
+[Site "?"]
+[Date "2021.01.10"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions (MW-1)"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 Qf6 9. e5 Nxe5 10. Re1 d6 11. Qa4+ b5 12. Bxb5+ c6 13. Bxc6+ Bd7 14. Nxe5
+Bxc6 15. Qxc6+ Ke7 16. Ng6+ Kd8 17. Re8# 1-0
+
+[Event "Evans Gambit Compromised"]
+[Site "?"]
+[Date "2021.01.10"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions (MW-2)"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 Qf6 9. e5 Nxe5 10. Re1 Ne7 11. Rxe5 c5 12. Bg5 Qxe5 13. Bxf7+ Kd8 14. Nxe5
+d6 15. Qd5 Kc7 16. Bxe7 Bf5 17. Qxd6+ Kc8 18. Qxc5+ Bc7 19. Bd6 Bxb1 20. Qxc7#
+1-0
+
+[Event "Evans Gambit Compromised"]
+[Site "?"]
+[Date "2021.01.11"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions (MW-3)"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 h6 9. Bxf7+ Kf8 10. Nxc3 Bxc3 11. Bxg8 Rxg8 12. Qxc3 g5 13. Re1 d6 14. e5
+Bf5 15. exd6 cxd6 16. Ba3 Rg7 17. Rad1 Rg6 18. Qh8+ Kf7 19. Qh7+ Kf8 20. Ne5
+Nxe5 21. Rxe5 Bc2 22. Re3 g4 23. Qh8+ Kf7 24. Qh7+ Kf8 25. Rd2 Bf5 26. Re5 Bb1
+27. Rde2 Bd3 28. Re7 Bc4 29. Bc1 Qxe7 30. Rxe7 Rg5 31. Bxg5 hxg5 32. Qg7# 1-0
+
+[Event "Evans Gambit Compromised"]
+[Site "?"]
+[Date "2021.01.11"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions (MW-4)"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 Nf6 9. Bxf7+ Kf8 10. Bc4 Nxe4 11. Re1 d5 12. Bxd5 Nd6 13. Bg5 Qd7 14. Nxc3
+h6 15. Nh4 g6 16. Bf6 Qg4 17. Nb5 Bxe1 18. Rxe1 Rh7 19. Nxd6 cxd6 {(White to
+move and mate)} 20. Qa3 Rd7 21. Qf3 Ne5 22. Qxg4 g5 23. Ng6+ Nxg6 24. Qe6 Nf4
+25. Qg8# 1-0
+
+[Event "Compromised defense series"]
+[Site "?"]
+[Date "2021.01.15"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Zillions (MW level 5)"]
+[Result "1-0"]
+[ECO "C52"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O dxc3 8.
+Qb3 Nf6 9. Bxf7+ Kf8 10. Bc4 Nxe4 11. Re1 Nc5 12. Ba3 d6 13. Bxc5 dxc5 14. Nxc3
+h6 15. Rad1 Qf6 16. Ne4 Qg6 17. Nh4 Qh7 {(White can now force mate)} 18. Nxc5
+Bxe1 19. Qf3+ Bf5 20. Nxf5 Ne5 21. Ne6+ Kf7 22. Nxc7+ Nxc4 23. Nd6+ Ke7 24.
+Qf7+ Kd8 25. Ne6# 1-0
+
