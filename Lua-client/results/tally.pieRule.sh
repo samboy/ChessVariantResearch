@@ -14,4 +14,5 @@ for(a in white){print a " +"white[a]}
 for(a in black){print a " -"black[a]}
 for(a in draw) {print a " ="draw[a]}
 for(a in score) {print a " result: " (score[a] / total[a]) * 100 "%"}
+for(a in draw) {print a " draws: " (draw[a] / total[a]) * 100 "%"}
 }' | sort
