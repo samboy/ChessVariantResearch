@@ -271,6 +271,22 @@ while true do
       lineFromEngine = ""
       while not string.match(lineFromEngine,'^Key') do
         lineFromEngine = r:read()
+        local fields = rStrSplit(lineFromEngine,' ')
+        if #fields > 0 and string.match(fields[1],'0%-1') then 
+          game = game .. lineFromEngine
+          print(game)
+          os.exit(0)
+        end
+        if #fields > 0 and string.match(fields[1],'1%-0') then 
+          game = game .. lineFromEngine
+          print(game)
+          os.exit(0)
+        end
+        if #fields > 0 and string.match(fields[1],'1%/2%-1%/2') then 
+          game = game .. lineFromEngine
+          print(game)
+          os.exit(0)
+        end
         w:write("stop\n")
         w:flush()
         print(lineFromEngine)
