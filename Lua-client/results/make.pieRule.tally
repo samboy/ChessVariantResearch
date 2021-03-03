@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cat RNBQKBNR-pieRule | ./tally.pieRule.sh | grep result | awk '
+	{print $NF " " $0}' | sort -n | awk '{print $2 " " $NF}'
