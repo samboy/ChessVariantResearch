@@ -1,0 +1,93 @@
+(define dmpawn
+		to		
+		(do-drown-friends)
+		(go to)	; where we started this macro
+		(if (in-zone? promotion-zone) 
+			(add MegaPawn)
+		 else 
+			add
+		)
+)
+
+(define mpawnm (	$1 (verify not-friend?) (dmpawn)))
+
+
+(define mpawnr
+	(	(verify (in-zone? across-river-zone))
+		$1 (verify not-friend?) (drown-n-add-nosuicide)
+	)
+)
+
+(variant (title "Simpler Megapawn Congo")
+
+	(piece
+		(name MegaPawn)
+		(help "MegaPawn: Zebra + Elephant + Giraffe")
+		(description "A MegaPawn combines the power of a Zebra, Elephant\
+		        and Giraffe.  In other words, it may move or capture to any\
+			space one or two squares away.")
+		(image White "images\Congo\WhiteSuperPawn.bmp"
+			Black "images\Congo\BlackSuperPawn.bmp")
+		(moves
+			(zebra-leap n ne)
+			(zebra-leap n nw)
+			(zebra-leap s se)
+			(zebra-leap s sw)
+			(zebra-leap e ne)
+			(zebra-leap e se)
+			(zebra-leap w nw)
+			(zebra-leap w sw)
+			(zebra-leap n n)
+			(zebra-leap ne ne)
+			(zebra-leap nw nw)
+			(zebra-leap e e)
+			(zebra-leap w w)
+			(zebra-leap s s)
+			(zebra-leap sw sw)
+			(zebra-leap se se)
+			(shift n)
+			(shift e)
+			(shift s)
+			(shift w)
+			(shift nw)
+			(shift ne)
+			(shift sw)
+			(shift se)
+		)
+	)
+
+	(piece
+		(name mPawn)
+		(help "mPawn: moves and captures forward and diagonally, can promote on 7th row")
+		(description "A mPawn can move and capture straight ahead or diagonally one 
+			square. If it is across the river, it may also move or capture sideways.
+			If a mPawn reaches the far rank it promotes, changing into a MegaPawn.\
+			A Pawn doesn't leap other pieces.")
+		(image White "images\Congo\WhitePawn.bmp" 
+			Black "images\Congo\BlackPawn.bmp")
+		(moves
+			(mpawnm nw)
+			(mpawnm n)
+			(mpawnm ne)
+			(mpawnr w)
+			(mpawnr e)
+		)
+	)
+
+	(board-setup
+		(White
+			(mPawn A3 C3 D2 E3 G3)
+			(Elephant A1 G1)
+			(Crocodile C1 E1)
+			(Zebra B1 F1)
+			(Lion D1)
+		)
+		(Black
+			(mPawn A5 C5 D6 E5 G5)
+			(Elephant A7 G7)
+			(Crocodile C7 E7)
+			(Zebra B7 F7)
+			(Lion D7)
+		)
+	)
+)

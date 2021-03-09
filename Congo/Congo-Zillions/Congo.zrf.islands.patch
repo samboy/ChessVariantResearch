@@ -1,0 +1,83 @@
+--- Congo.zrf.orig	2003-11-30 13:20:00.000000000 -0800
++++ Congo.zrf	2021-03-09 12:48:04.301897700 -0800
+@@ -17,13 +17,13 @@
+ 		(go from)
+ 		; check if the piece is suicidal (started in the river)
+ ;			; don't set suicidal-piece when the moving piece is a croc (they don't drown)
+-;			(set-flag suicidal-piece (and (in-zone? river-zone) (not-piece? Crocodile)))
+-			(set-flag suicidal-piece (in-zone? river-zone))
++;			(set-flag suicidal-piece (and (in-zone? death-zone) (not-piece? Crocodile)))
++			(set-flag suicidal-piece (in-zone? death-zone))
+ 		; we now simply drown all non-croc friends; 
+ 		(do-drown-friends)
+ 		; finally see if the moving piece will drown
+ 		(go to)	; where we started this macro
+-		(if (and (flag? suicidal-piece) (in-zone? river-zone)) 
++		(if (and (flag? suicidal-piece) (in-zone? death-zone)) 
+ 			capture
+ 		)
+ 		add
+@@ -61,9 +61,9 @@
+ 		; check if the piece is suicidal (started in the river)
+ 			(if last-to?	; so, it's the next partial jump
+ 				; the Monkey ceases to be suicidal when he leaves the river during multiple jump
+-				(set-flag suicidal-monkey (and suicidal? (in-zone? river-zone)))
++				(set-flag suicidal-monkey (and suicidal? (in-zone? death-zone)))
+ 			 else
+-				(set-flag suicidal-monkey (in-zone? river-zone))
++				(set-flag suicidal-monkey (in-zone? death-zone))
+ 			)
+ 			; now suicidal-piece is true if the Monkey never left the river and there's no continuation
+ 			(set-flag suicidal-piece (and (flag? suicidal-monkey) (not-flag? next-jump-found)))
+@@ -74,7 +74,7 @@
+ 		(do-drown-friends)
+ 		; finally see if the moving piece will drown
+ 		(go to)	; where we started this macro
+-		(if (and (flag? suicidal-piece) (in-zone? river-zone)) 
++		(if (and (flag? suicidal-piece) (in-zone? death-zone)) 
+ 			capture
+ 			add
+ 		 else
+@@ -82,27 +82,14 @@
+ 		)
+ )
+ 
+-(define do-drown-friends-SLOW
++(define do-drown-friends	
+ 		; the moving piece will be gone from its starting position when the capture
+ 		; is actually executed, so we don't have to check that ourselves
+-		A4
+-		(set-flag continue-check true)
+-		(while (flag? continue-check)
+-			(if (and (not-piece? Crocodile) friend?) capture)
+-			(if (on-board? e) e else (set-flag continue-check false))
+-		)
+-)
+-
+-(define do-drown-friends	; this makes the search some 20% faster than do-drown-friends-SLOW!
+-		; the moving piece will be gone from its starting position when the capture
+-		; is actually executed, so we don't have to check that ourselves
+-		A4
+-		(while (on-board? e)
++		C4
++		(while (in-zone? death-zone)
+ 			(if (and (not-piece? Crocodile) friend?) capture)
+ 			e
+ 		)
+-		; one more for G4
+-		(if (and (not-piece? Crocodile) friend?) capture)
+ )
+ 
+ (define shift	($1 (verify not-friend?) (drown-n-add)) )
+@@ -297,6 +284,11 @@
+ 		(players White Black)
+ 		(positions	A4 B4 C4 D4 E4 F4 G4)
+ 	)
++        (zone
++                (name death-zone)
++                (players White Black)
++                (positions      C4 D4 E4)
++        )
+ 	(zone
+ 		(name promotion-zone)
+ 		(players White)
