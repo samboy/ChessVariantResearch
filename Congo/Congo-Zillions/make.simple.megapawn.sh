@@ -15,4 +15,3 @@ mv Congo.zrf congo-megapawn.zrf
 
 cd ..
 mv Congo congo-megapawn
-tar cvzf congo-megapawn.tar.gz congo-megapawn
