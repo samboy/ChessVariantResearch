@@ -1,0 +1,145 @@
+Zillions Save Game File Version 0.02 CC
+RulesFile=C:\Users\Sam\Documents\DesertIsland\Expand\ZillionsDesertIsland\Select.zrf
+VariantName=Chess
+1. Pawn d2 - d4
+1. Pawn d7 - d5
+2. Bishop c1 - f4
+2. Bishop c8 - f5
+3. Knight b1 - c3
+3. Knight b8 - c6
+4. Pawn e2 - e3
+4. Knight g8 - f6
+5. Knight g1 - f3
+5. Knight c6 - b4
+6. Rook a1 - c1 @ c1 0 0
+6. Knight f6 - e4
+7. Knight c3 - b5
+7. Knight b4 - a6
+8. Knight f3 - d2
+8. Pawn c7 - c6
+9. Knight d2 x e4
+9. Pawn d5 x e4
+10. Knight b5 - c3
+10. Queen d8 - a5
+11. Pawn f2 - f3
+11. Pawn e7 - e6
+12. Pawn f3 x e4
+12. Bishop f5 x e4
+13. King e1 - f2 @ f2 0 0
+13. Bishop e4 - g6
+14. Pawn h2 - h4
+14. Pawn h7 - h5
+15. Bishop f1 - c4
+15. Queen a5 - b4
+16. Bishop c4 - b3
+16. King e8 - c8 Rook a8 - d8 @ d8 0 0 @ c8 0 0
+17. Rook c1 - a1 @ a1 0 0
+17. Bishop f8 - d6
+18. Queen d1 - f3
+18. Bishop d6 x f4
+19. Queen f3 x f4
+19. Bishop g6 x c2
+20. King f2 - e1 @ e1 0 0
+20. Bishop c2 x b3
+21. Pawn a2 x b3
+21. Queen b4 x b3
+22. Queen f4 - f2
+22. Knight a6 - b4
+23. King e1 - f1 @ f1 0 0
+23. Knight b4 - d3
+24. Queen f2 - d2
+24. Queen b3 x b2
+25. Queen d2 x b2
+25. Knight d3 x b2
+26. Rook a1 x a7 @ a7 0 0
+26. King c8 - b8 @ b8 0 0
+27. Rook a7 - a2 @ a2 0 0
+27. Knight b2 - c4
+28. King f1 - e2 @ e2 0 0
+28. Pawn e6 - e5
+29. Pawn d4 x e5
+29. Knight c4 x e5
+30. Rook h1 - f1 @ f1 0 0
+30. Rook h8 - h6 @ h6 0 0
+31. Rook f1 - f5 @ f5 0 0
+31. Pawn f7 - f6
+32. Rook a2 - a1 @ a1 0 0
+32. Rook h6 - g6 @ g6 0 0
+33. Rook a1 - g1 @ g1 0 0
+33. Knight e5 - c4
+34. Rook f5 - c5 @ c5 0 0
+34. Pawn b7 - b5
+35. Knight c3 x b5
+35. Rook d8 - d2 @ d2 0 0
+36. King e2 - e1 @ e1 0 0
+36. Pawn c6 x b5
+37. Rook c5 x c4 @ c4 0 0
+37. Rook d2 - d3 @ d3 0 0
+38. Rook c4 - e4 @ e4 0 0
+38. Rook g6 - g4 @ g4 0 0
+39. Rook e4 x g4 @ g4 0 0
+39. Pawn h5 x g4
+40. King e1 - e2 @ e2 0 0
+40. Rook d3 - d5 @ d5 0 0
+41. Rook g1 - c1 @ c1 0 0
+41. King b8 - b7 @ b7 0 0
+42. Pawn g2 - g3
+42. Pawn g7 - g6
+43. Rook c1 - b1 @ b1 0 0
+43. Pawn f6 - f5
+44. Rook b1 - b4 @ b4 0 0
+44. King b7 - b6 @ b6 0 0
+45. Rook b4 - f4 @ f4 0 0
+45. Rook d5 - c5 @ c5 0 0
+46. Rook f4 - d4 @ d4 0 0
+46. King b6 - c7 @ c7 0 0
+47. Rook d4 - b4 @ b4 0 0
+47. King c7 - c6 @ c6 0 0
+48. King e2 - d2 @ d2 0 0
+48. Rook c5 - d5 @ d5 0 0
+49. King d2 - c2 @ c2 0 0
+49. Rook d5 - d7 @ d7 0 0
+50. Rook b4 - b3 @ b3 0 0
+50. Rook d7 - a7 @ a7 0 0
+51. Rook b3 - c3 @ c3 0 0
+51. King c6 - b6 @ b6 0 0
+52. Rook c3 - c8 @ c8 0 0
+52. Rook a7 - e7 @ e7 0 0
+53. King c2 - d3 @ d3 0 0
+53. Rook e7 - d7 @ d7 0 0
+54. King d3 - c3 @ c3 0 0
+54. Rook d7 - c7 @ c7 0 0
+55. Rook c8 x c7 @ c7 0 0
+55. King b6 x c7 @ c7 0 0
+56. King c3 - b3 @ b3 0 0
+56. King c7 - c6 @ c6 0 0
+57. King b3 - b4 @ b4 0 0
+57. King c6 - b6 @ b6 0 0
+58. King b4 - b3 @ b3 0 0
+58. King b6 - c5 @ c5 0 0
+59. King b3 - c3 @ c3 0 0
+59. Pawn b5 - b4
+60. King c3 - b3 @ b3 0 0
+60. King c5 - b5 @ b5 0 0
+61. King b3 - b2 @ b2 0 0
+61. King b5 - c4 @ c4 0 0
+62. King b2 - c2 @ c2 0 0
+62. Pawn b4 - b3
+63. King c2 - d2 @ d2 0 0
+63. King c4 - b4 @ b4 0 0
+64. King d2 - c1 @ c1 0 0
+64. King b4 - c3 @ c3 0 0
+65. King c1 - b1 @ b1 0 0
+65. Pawn b3 - b2
+66. Pawn e3 - e4
+66. Pawn f5 x e4
+67. Pawn h4 - h5
+67. Pawn g6 x h5
+68. King b1 - a2 @ a2 0 0
+68. King c3 - c2 @ c2 0 0
+69. King a2 - a3 @ a3 0 0
+69. Pawn b2 - b1 = Queen
+70. King a3 - a4 @ a4 0 0
+70. Queen b1 - b6
+71. King a4 - a3 @ a3 0 0
+71. Queen b6 - b3

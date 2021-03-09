@@ -1,0 +1,206 @@
+Zillions Save Game File Version 0.02 CC
+RulesFile=C:\Users\Sam\Documents\DesertIsland\Expand\ZillionsDesertIsland\Select.zrf
+VariantName=Chess
+1. Pawn d2 - d4
+1. Pawn d7 - d5
+2. Bishop c1 - f4
+2. Bishop c8 - f5
+3. Knight b1 - c3
+3. Knight g8 - f6
+4. Knight g1 - f3
+4. Knight b8 - c6
+5. Pawn e2 - e3
+5. Knight c6 - b4
+6. Bishop f1 - d3
+6. Knight b4 x d3
+7. Pawn c2 x d3
+7. Pawn c7 - c6
+8. Queen d1 - b3
+8. Queen d8 - b6
+9. King e1 - e2 @ e2 0 0
+9. Pawn e7 - e6
+10. Pawn h2 - h3
+10. Pawn h7 - h5
+11. Pawn h3 - h4
+11. Queen b6 x b3
+12. Pawn a2 x b3
+12. Bishop f8 - b4
+13. King e2 - d2 @ d2 0 0
+13. Knight f6 - g4
+14. Rook h1 - f1 @ f1 0 0
+14. Pawn a7 - a5
+15. King d2 - c2 @ c2 0 0
+15. Knight g4 - f6
+16. Knight f3 - e5
+16. Pawn c6 - c5
+17. King c2 - d2 @ d2 0 0
+17. Pawn c5 x d4
+18. Pawn e3 x d4
+18. Rook a8 - c8 @ c8 0 0
+19. Pawn f2 - f3
+19. King e8 - e7 @ e7 0 0
+20. Rook a1 - a4 @ a4 0 0
+20. Pawn b7 - b6
+21. Rook a4 - a1 @ a1 0 0
+21. Rook h8 - e8 @ e8 0 0
+22. Rook f1 - c1 @ c1 0 0
+22. Bishop b4 - d6
+23. Knight c3 - b5
+23. Bishop d6 - b8
+24. Bishop f4 - g5
+24. Rook e8 - g8 @ g8 0 0
+25. Knight e5 - c6
+25. King e7 - e8 @ e8 0 0
+26. Knight c6 x b8
+26. Rook c8 x b8 @ b8 0 0
+27. Bishop g5 - f4
+27. Rook b8 - d8 @ d8 0 0
+28. Bishop f4 - c7
+28. Pawn g7 - g5
+29. Bishop c7 x d8
+29. King e8 x d8 @ d8 0 0
+30. Pawn h4 x g5
+30. Rook g8 x g5 @ g5 0 0
+31. Rook c1 - g1 @ g1 0 0
+31. King d8 - e7 @ e7 0 0
+32. Pawn g2 - g3
+32. Rook g5 - g8 @ g8 0 0
+33. Rook a1 - c1 @ c1 0 0
+33. Knight f6 - d7
+34. Rook c1 - c6 @ c6 0 0
+34. Bishop f5 - h3
+35. King d2 - e2 @ e2 0 0
+35. Rook g8 - g6 @ g6 0 0
+36. Knight b5 - a7
+36. Pawn e6 - e5
+37. Rook c6 x g6 @ g6 0 0
+37. Pawn f7 x g6
+38. Rook g1 - h1 @ h1 0 0
+38. Bishop h3 - f5
+39. Rook h1 - c1 @ c1 0 0
+39. Pawn e5 x d4
+40. Knight a7 - c6
+40. King e7 - f6 @ f6 0 0
+41. Knight c6 x d4
+41. Knight d7 - c5
+42. Rook c1 - d1 @ d1 0 0
+42. Bishop f5 - d7
+43. King e2 - e3 @ e3 0 0
+43. Bishop d7 - e6
+44. Rook d1 - c1 @ c1 0 0
+44. Bishop e6 - d7
+45. Pawn f3 - f4
+45. Bishop d7 - f5
+46. Knight d4 x f5
+46. King f6 x f5 @ f5 0 0
+47. Rook c1 - c3 @ c3 0 0
+47. Pawn g6 - g5
+48. Pawn f4 x g5
+48. King f5 x g5 @ g5 0 0
+49. King e3 - d4 @ d4 0 0
+49. Pawn a5 - a4
+50. Pawn b3 x a4
+50. Knight c5 x a4
+51. Rook c3 - b3 @ b3 0 0
+51. King g5 - f5 @ f5 0 0
+52. King d4 x d5 @ d5 0 0
+52. Knight a4 - c5
+53. Rook b3 x b6 @ b6 0 0
+53. Knight c5 x d3
+54. King d5 - d4 @ d4 0 0
+54. Knight d3 - f2
+55. Rook b6 - h6 @ h6 0 0
+55. King f5 - g4 @ g4 0 0
+56. Rook h6 - g6 @ g6 0 0
+56. King g4 - f5 @ f5 0 0
+57. Rook g6 - a6 @ a6 0 0
+57. Knight f2 - h1
+58. King d4 - e3 @ e3 0 0
+58. Knight h1 x g3
+59. King e3 - f3 @ f3 0 0
+59. Knight g3 - f1
+60. Rook a6 - a5 @ a5 0 0
+60. King f5 - g6 @ g6 0 0
+61. King f3 - f4 @ f4 0 0
+61. Knight f1 - d2
+62. Rook a5 - g5 @ g5 0 0
+62. King g6 - h6 @ h6 0 0
+63. Rook g5 - c5 @ c5 0 0
+63. King h6 - g6 @ g6 0 0
+64. Rook c5 - c6 @ c6 0 0
+64. King g6 - g7 @ g7 0 0
+65. King f4 - g5 @ g5 0 0
+65. Knight d2 - f3
+66. King g5 x h5 @ h5 0 0
+66. Knight f3 - e5
+67. Rook c6 - b6 @ b6 0 0
+67. King g7 - f7 @ f7 0 0
+68. King h5 - g5 @ g5 0 0
+68. King f7 - e7 @ e7 0 0
+69. Rook b6 - b4 @ b4 0 0
+69. King e7 - e6 @ e6 0 0
+70. Rook b4 - a4 @ a4 0 0
+70. King e6 - d5 @ d5 0 0
+71. Rook a4 - a5 @ a5 0 0
+71. King d5 - e4 @ e4 0 0
+72. Rook a5 - a8 @ a8 0 0
+72. King e4 - d5 @ d5 0 0
+73. King g5 - f5 @ f5 0 0
+73. Knight e5 - d3
+74. Pawn b2 - b3
+74. King d5 - d4 @ d4 0 0
+75. Rook a8 - c8 @ c8 0 0
+75. King d4 - e3 @ e3 0 0
+76. Rook c8 - c4 @ c4 0 0
+76. King e3 - e2 @ e2 0 0
+77. Pawn b3 - b4
+77. Knight d3 - e1
+78. Pawn b4 - b5
+78. Knight e1 - g2
+79. Pawn b5 - b6
+79. Knight g2 - e3
+80. King f5 - g5 @ g5 0 0
+80. Knight e3 x c4
+81. Pawn b6 - b7
+81. King e2 - d2 @ d2 0 0
+82. Pawn b7 - b8 = Queen
+82. King d2 - e3 @ e3 0 0
+83. Queen b8 - f4
+83. King e3 - d3 @ d3 0 0
+84. King g5 - f5 @ f5 0 0
+84. Knight c4 - e3
+85. King f5 - e5 @ e5 0 0
+85. Knight e3 - c4
+86. King e5 - d5 @ d5 0 0
+86. Knight c4 - e3
+87. King d5 - d6 @ d6 0 0
+87. Knight e3 - c4
+88. King d6 - c5 @ c5 0 0
+88. Knight c4 - e3
+89. Queen f4 - f3
+89. King d3 - d2 @ d2 0 0
+90. King c5 - d4 @ d4 0 0
+90. Knight e3 - c2
+91. King d4 - d5 @ d5 0 0
+91. Knight c2 - e3
+92. King d5 - e4 @ e4 0 0
+92. Knight e3 - d1
+93. Queen f3 - d3
+93. King d2 - c1 @ c1 0 0
+94. King e4 - e5 @ e5 0 0
+94. Knight d1 - b2
+95. Queen d3 - c3
+95. King c1 - b1 @ b1 0 0
+96. King e5 - d4 @ d4 0 0
+96. Knight b2 - d1
+97. Queen c3 - d2
+97. Knight d1 - b2
+98. King d4 - c3 @ c3 0 0
+98. Knight b2 - a4
+99. King c3 - b3 @ b3 0 0
+99. Knight a4 - c5
+100. King b3 - a3 @ a3 0 0
+100. Knight c5 - d3
+101. Queen d2 - c3
+101. Knight d3 - f4
+102. Queen c3 - b2
