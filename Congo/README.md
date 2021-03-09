@@ -12,7 +12,7 @@ Here are the results playing regular Chess with the same engine:
 * Game 4: Black win
 * Game 5: Black win
 
-# Results
+# Stock Congo 
 
 We had Zillions be at difficulty level 7, and had it play 5 games of
 Stock Congo.  Here are the results:
@@ -25,6 +25,8 @@ Stock Congo.  Here are the results:
 * Game 3: Draw
 * Game 4: Black win
 * Game 5: White win
+
+# Congo with Islands
 
 Now, let’s make a Congo variant where all of the rules are the same,
 except squares A4, B4, F4, and G4 all have islands in the middle of 
@@ -43,7 +45,8 @@ So, making the river safer on the sides, if anything, appears to
 make the game *more* drawish.  Either that, or Zillions just doesn’t
 know how to utilize the islands properly.
 
-As an aside, let’s have a different opening, with only elephants,
+# Simpler Setup
+Let’s have a different opening, with only elephants,
 zebras, and crocs:
 
 ```
@@ -75,6 +78,8 @@ And, with Zillions, it’s less drawish:
 * Game 4: White win
 * Game 5: Draw
 
+# Crowded Congo
+
 Another opening setup, “Crowded Congo”:
 
 ```
@@ -103,6 +108,43 @@ may capture multiple pieces.  Captures are never compulsory.
 
 So, even with a more crowded setup, we still have a high draw rate.
 
+# Mega Pawn Congo
+
+Let’s make the pawns “mPawns”
+
+* On the player’s side of the river, the pawns can move like a Chess
+  pawn + Berolina pawn (move and capture n, nw, and ne)
+* After crossing the river, the pawns move like Chess Pawn + Berolina
+  pawn + move and capture one space sideways (n/nw/ne/w/e).  The
+  pawns may not move backwards
+* Once hitting the final rank, the pawns become very powerful megapawns:
+  The pawns can move or capture to any space within two squares.  Unless
+  one is recaptured right away, the enemy Lion will soon be captured.
+
+The megapawns allow games to be resolved more quickly.
+
+Since the pawns are more powerful, we have fewer of them:
+
+```
+EZCLCZE
+---P---
+P-P-P-P
+++~~~++
+p-p-p-p
+---p---
+ezclcze
+```
+
+7-ply games:
+
+* Game 1: Black win
+* Game 2: Draw
+* Game 3: White win
+* Game 4: White win
+* Game 5: Black win
+
+Fewer draws.  The pawns in stock Congo look to be too weak.
+
 # Three minute Zillions games
 
 Since even at 7-ply Zillions can not do basic endgame mates, I
@@ -110,4 +152,8 @@ have increased the skill level to the highest Zillions can do: 3
 mintues per move on my i7-7600U CPU.  This means we are 12 ply deep
 at the end of the search, hopefully deep enough to not completely
 butcher the opening and endgame.
+
+In the stock Congo game, White won after about 80 moves.
+
+
 
