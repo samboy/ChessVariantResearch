@@ -2,6 +2,16 @@ In the game of [Congo](https://en.wikipedia.org/wiki/Congo_(chess_variant)),
 what is the draw percentage.  Can we reduce draws by making it so one
 can only drown in C4/D4/E4?
 
+# The control condition: Regular Chess
+
+Here are the results playing regular Chess with the same engine:
+
+* Game 1: White win
+* Game 2: White win
+* Game 3: Black win
+* Game 4: Black win
+* Game 5: Black win
+
 # Results
 
 We had Zillions be at difficulty level 7, and had it play 5 games of
@@ -64,4 +74,40 @@ And, with Zillions, it’s less drawish:
 * Game 3: Draw
 * Game 4: White win
 * Game 5: Draw
+
+Another opening setup, “Crowded Congo”:
+
+```
+EZCLCZE
+G--P--G
+P-PMP-P
+++~~~++
+p-pmp-p
+g--p--g
+ezclcze
+```
+
+Here, the `G` is a giraffe: Moves (but does not capture) like a non-royal
+king.  It leaps two squares (Alfil + Dabbaba) to either move or capture.
+
+The `M` is a monkey: Moves (but does not capture) like a non-royal king.
+Jumps like a checker to capture: It jumps precisely two squares (again,
+like Alfil + Dabbaba) and captures the piece it jumps over.  A monkey
+may capture multiple pieces.  Captures are never compulsory.
+
+* Game 1: Black win
+* Game 2: White win
+* Game 3: White win
+* Game 4: Draw
+* Game 5: Draw
+
+So, even with a more crowded setup, we still have a high draw rate.
+
+# Three minute Zillions games
+
+Since even at 7-ply Zillions can not do basic endgame mates, I
+have increased the skill level to the highest Zillions can do: 3
+mintues per move on my i7-7600U CPU.  This means we are 12 ply deep
+at the end of the search, hopefully deep enough to not completely
+butcher the opening and endgame.
 
