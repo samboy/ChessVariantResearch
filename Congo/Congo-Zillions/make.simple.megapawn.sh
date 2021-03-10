@@ -6,6 +6,7 @@
 unzip congo.zip
 cd Congo
 head -562 Congo.zrf > foo
+cp Congo.zrf Congo.save
 mv foo Congo.zrf
 
 # Make A4/B4/F4/G4 "islands" where one does not drown
@@ -15,6 +16,7 @@ patch < ../Congo.zrf.islands.patch
 cat ../megapawn.txt >> Congo.zrf
 
 mv Congo.zrf congo-megapawn.zrf
+mv Congo.save Congo.zrf
 
 cd ..
 mv Congo congo-megapawn
