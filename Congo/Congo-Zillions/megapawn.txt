@@ -21,6 +21,7 @@
 (variant (title "Simpler Megapawn Congo")
 
 	(loss-condition (White Black) repetition)
+	(loss-condition (White Black) (captured Lion) )
 	(piece
 		(name MegaPawn)
 		(help "MegaPawn: Zebra + Elephant + Giraffe")
