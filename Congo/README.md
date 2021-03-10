@@ -96,7 +96,11 @@ Movement is with standard Algebraic.  Piece names are:
 * `Z` Zebra
 * `C` Crocodile
 * `L` Lion
-* `MP` Megapawn (“M” is a monkey in standard Congo; “G“ is a giraffe)
+* `MP` or `Q` Megapawn (“M” is a monkey in standard Congo; “G“ is a giraffe)
+
+We allow `Q` to represent a megapawn so that ASCII boards can have the 
+megapawn on them.  `Q` was chosen because, in normal Chess, pawns 
+usually promote to a Queen, so `Q` represents a promoted pawn.
 
 In order to make life easier for computers, if two pieces can move to a
 given square, we specify the file (or row, if necessary), even if only
