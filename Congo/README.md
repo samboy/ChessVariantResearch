@@ -72,6 +72,250 @@ any pieces (the terrain).
 * `#` Lion den.  Each Lion must stay in their 9-square den.
 * `-` Empty square.
 
+## Notation
+
+Notation is algebraic.  The square on the lower left corner is A1; the one
+on the upper right hand corner is G7.  Here is an empty board with notation
+and terrain:
+
+```
+7 -A7- -B7- #C7# #D7# #E7# -F7- -G7-
+6 -A6- -B6- #C6# #D6# #E6# -F6- -G6-
+5 -A5- -B5- #C5# #D5# #E5# -F5- -G5-
+4 +A4+ +B4+ ~C4~ ~D4~ ~E4~ ~F4~ ~G4~
+3 -A3- -B3- #C3# #D3# #E3# -F3- -G3-
+2 -A2- -B2- #C2# #D2# #E2# -F2- -G2-
+1 -A1- -B1- #C1# #D1# #E1# -F1- -G1-
+   A    B    C    D    E    F    G
+```
+
+Movement is with standard Algebraic.  Piece names are:
+
+* `P` Pawn
+* `E` Elephant
+* `Z` Zebra
+* `C` Crocodile
+* `L` Lion
+* `MP` Megapawn (“M” is a monkey in standard Congo; “G“ is a giraffe)
+
+In order to make life easier for computers, if two pieces can move to a
+given square, we specify the file (or row, if necessary), even if only
+one move does not hang the Lion.  For example (upper case is Black,
+lower case is white):
+
+```
+7 --##L--
+6 --EE#--
+5 --###--
+4 ++~~~++
+3 --###--
+2 --e#e--
+1 --##l--
+  ABCDEFG
+```
+
+Here, E-D4 can be either E-CD4 or E-ED4.  Even though E-ED4 causes Black
+to immediately take White’s Lion, it *is* a legal move in Congo, so we
+have to specify the move as being E-CD4, which results in the following
+position:
+
+```
+7 --##L--
+6 --EE#--
+5 --###--
+4 ++~~~++
+3 --###--
+2 --#ee--
+1 --##l--
+  ABCDEFG
+```
+
+The piece does not have to be specified for pawn moves, unless more than
+one pawn can move to a given square (more common in Congo than in Chess).
+The `-` indicates a move in notation; `:` indicates a capture.  Placing
+`#` after a move indicates that the opponent’s lion has been captured,
+winning the game.
+
+River captures are indicated by, after the move made, the river capture
+is indicated by `,:` then the square where a piece drowned in the river.
+
+## Example game
+
+Here is an example game:
+
+```
+7 EZCLCZE 
+6 --#P#-- 
+5 P-P#P-P 
+4 ++~~~++ 
+3 p-p#p-p 
+2 --#p#-- 
+1 ezclcze 
+  ABCDEFG
+```
+Starting position
+
+1. D3 D5
+2. C-F2 Z-D6
+3. Z-D2 C-F6
+4. E-A2 C-B6
+5. Z-B3 P-AB4
+
+Since two pawns could move to B4, we have to specify which pawn moved there.
+
+```
+7 EZ-L--E 
+6 -C#Z#C- 
+5 --PPP-P 
+4 +P~~~++ 
+3 pzppp-p 
+2 e-###c- 
+1 -zcl--e 
+  ABCDEFG
+```
+
+6. P:AB4 P:B4
+7. P:B4 C:B4
+8. E-B2 Z-C5
+9. C-C2 C-B5
+10. Z-C3 C-C6
+11. E-E1 E-E7
+12. E-B4 Z:B3
+13. C:B3 E:A5
+14. E:E2 E:E6
+15. E-A4 
+
+```
+7 --#L#-- 
+6 --CZEC- 
+5 E-#PP-P 
+4 e+~~~++ 
+3 -czpp-p 
+2 --##ec- 
+1 --#l#-- 
+  ABCDEFG
+```
+
+15. ... E-C5
+16. E-B4 C-B7
+17. C-B2 E-EC6
+18. E-C2 C-F5
+19. Z-A4 E-A5
+20. Z-C3 P-DD4
+21. P:ED4 Z-E4
+
+```
+7 -C#L#-- 
+6 --E##-- 
+5 E-##PCP 
+4 +e~pN++ 
+3 -czp#-p 
+2 -ce##c- 
+1 --#l#-- 
+  ABCDEFG
+```
+
+Black wins back the pawn because the E4 pawn will now drown in the river.
+
+22. C-F3,:D4 Z-C5
+23. E-D2 E-D6
+24. C-E2 P-GF4
+25. C-F2 P:G3
+26. C:G3 E4
+27. P:E4 Z:E4
+28. Z:E4 C:E4
+
+```
+7 -C#L#-- 
+6 --#E#-- 
+5 E-###-- 
+4 +e~~C++ 
+3 --###-c 
+2 -c#e#-- 
+1 --#l#-- 
+  ABCDEFG
+```
+
+29. E-B3 E-D5
+30. E-E2 C-D4
+
+Crocodiles do not drown in the river.
+
+31. C-F2 E-AC5
+32. E-E3 C-B6
+33. L-D2 L-D6
+34. E-BC3 E:C3
+35. C:C3 C:C3
+36. E:C3 E-D4
+37. L-E1 E-D2
+
+```
+7 --###-- 
+6 -C#L#-- 
+5 --###-- 
+4 ++~~~++ 
+3 --e##-- 
+2 --#E#c- 
+1 --##l-- 
+  ABCDEFG
+```
+
+L:D2?? can not be done because Black would then win the game with L:D2.
+Black’s L:D2 is allowed because of the special rule that, if two lions 
+face each other on the same file without any pieces in between them, 
+one lion can capture the other lion.
+
+38. C-F4 E-D1
+39. L-E2 E-D2
+40. L-E3 E-F2
+41. C-E5 L-D7
+42. C-E6 L-C6
+43. L-D3
+
+```
+7 --###-- 
+6 -CL#c-- 
+5 --###-- 
+4 ++~~~++ 
+3 --el#-- 
+2 --###E- 
+1 --###-- 
+  ABCDEFG
+```
+
+At this point, Black’s lion can not escape capture after C-D6 (Black can
+not reply with L:D6 because then White can then play L:D6 winning the game).
+However, Black can slow down capture by checking White’s king.  Since
+Simple Megapawn Congo does not allow repetition, this delaying tactic
+is ultimately futile.
+
+43. ... E-F3 
+44. L-D2 E-F2 
+45. L-D1 E-F1 
+46. L-D2 E-D1
+
+E-F2 could not be played because that position has already been seen.
+
+47. L:D1 C-B4
+48. C-D6 L:D6
+
+```
+7 --###-- 
+6 --#L#-- 
+5 --###-- 
+4 +C~~~++ 
+3 --e##-- 
+2 --###-- 
+1 --#l#-- 
+  ABCDEFG
+```
+
+Here, the two lions are on the D file with nothing between them.
+
+49. L:D6#
+
+White takes Black’s lion and wins.
+
 ## Playing with a chess set
 
 Simple Megapawn Congo can be played with a standard Chess set:
