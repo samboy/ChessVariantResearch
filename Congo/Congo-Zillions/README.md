@@ -7,9 +7,10 @@ needs to be installed to run this shell script.
 
 Changes from stock Congo:
 
-* A1/B1 and F1/G1 have islands: One will not drown on these squares.
+* In congo-islands.zrf, A1/B1 and F1/G1 have islands: One will not drown 
+  on these squares.
 
-If one selects the variant, the following changes are also done:
+If one selects the first variant, the following changes are also done:
 
 * The pawns are now “mPawns”: Once after the river, they can *not* go
   backwards, but can more or capture one square forwards or sideways.
@@ -20,4 +21,7 @@ If one selects the variant, the following changes are also done:
 
 * The opening setup has been changed to one which is more like Chinese
   Chess and which can be played using an ordinary Chess board and pieces.
+
+* Like Chinese chess, repititon is now a loss, not a draw (this eliminates
+  most draws)
 

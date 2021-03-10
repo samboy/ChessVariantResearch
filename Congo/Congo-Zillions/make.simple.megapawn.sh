@@ -17,7 +17,7 @@ patch < ../Congo.zrf.islands.patch
 cat ../megapawn.txt >> Congo.zrf
 cat ../megapawn.txt >> Congo-noislands.zrf
 
-mv Congo.zrf congo-megapawn.zrf
+mv Congo.zrf congo-islands.zrf
 mv Congo.save Congo.zrf
 
 cd ..
