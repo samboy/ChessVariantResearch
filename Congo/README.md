@@ -1,6 +1,69 @@
 In the game of [Congo](https://en.wikipedia.org/wiki/Congo_(chess_variant)),
-what is the draw percentage.  Can we reduce draws by making it so one
-can only drown in C4/D4/E4?
+there have been [complaints](https://www.chessvariants.com/index/listcomments.php?order=DESC&itemid=Congo) 
+that the game is too drawish.
+
+Indeed, the game inventors are open to Congo variants that are less
+drawish.
+
+That in mind, I have made a less drawish version of Congo which
+has less passive play, by using some of the same lessons learned
+by the inventors of Chinese Chess:
+
+* Repetition is a loss, not a draw
+
+* Have fewer pawns so the armies can engage each other better
+
+* Have the pawn move sideways on the other side of the river
+
+And, in addition, a lesson learned by the inventors of ordinary Chess:
+
+* Have the pawn promote to a powerful piece
+
+In addition, the variant I use can be played with ordinary Chess pieces
+and Chess board (by reducing the types of pieces) and the rules
+are easier to learn.
+
+# The opening setup
+
+```
+EZCLCZE
+---P---
+P-P-P-P
+++~~~++
+p-p-p-p
+---p---
+ezclcze
+```
+
+# The pieces and terrain
+
+* `e` Elephant: Wazir + Dabbaba.  It can slide one square or leap two
+  squares like a rook (when moving two squares, it jumps over other pieces)
+* `z` Zebra: Knight
+* `c` Crocodile: Non-royal king + special Rook move: It can move like a 
+  Rook towards the river (but not jumping over other pieces).  Once in
+  the river, it can move like a rook left and right (again, without
+  jumping).  It never drowns in the river.
+* `l` Lion: Royal piece.  Moves like a King in chess, however: a) It
+  can not move out of the 3x3 “palace” (C1-E3 for White, C5-E7 for Black)
+  b) It can not directly face the other lion with no pieces between it 
+  and the other lion without being captured.
+* `p` Pawn: More powerful than the Chess pawn.  It can either move or
+  capture straight forward or diagonally forward (like a combined Chess
+  pawn and Berolina pawn).  Once it crosses the river, it can also move
+  or capture sideways one square.  If it reaches the final rank, it gets
+  promoted to the very powerful Megapawn.
+* Megapawn: Knight + non-royal King + Alfil + Dabbaba.  It can slide or
+  leap to any space within two squares.
+* `~` The river (deep part).  If any piece remains in the river for more
+  than one turn, it drowns and is removed from play.  The Crocodile has
+  extra mobility in the river.
+* `+` The river (island).  This piece is on the river, but since there is
+  an island present, it may stay in the square with no risk of drowning.
+
+# Results
+
+Initial Zillions testing shows almost no draws.
 
 # The control condition: Regular Chess
 
@@ -27,6 +90,8 @@ Stock Congo.  Here are the results:
 * Game 5: White win
 
 # Congo with Islands
+
+In this trial, repetition was a draw.
 
 Now, let’s make a Congo variant where all of the rules are the same,
 except squares A4, B4, F4, and G4 all have islands in the middle of 
