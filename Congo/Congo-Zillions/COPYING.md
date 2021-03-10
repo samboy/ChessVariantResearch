@@ -11,8 +11,9 @@ This is the SHA-256 sum of the congo.zip file as it existed at https://zillions-
 The files `Congo.zrf.islands.patch`, `megapawn.txt`, `README.md`, and 
 `make.simple.megapawn.sh` are public domain.  
 
-As per Lewis Galoob Toys, Inc. v. Nintendo of America, Inc., one is allowed
-to make modifications of copyrighted works for their own use.
+Christian Freeling [has this to say](https://www.chessvariants.com/index/listcomments.php?order=DESC&itemid=Congo) about making modifications to Congo:
+
+>Go right ahead [and implement ideas to make Congo less drawish], it's my son's game and neither of us has given it a whole lot of attention lately. Chess variants are arbitrary anyway
 
 This file may be redistributed, either with or without modification, 
 as long as it states that congo.zip has a SHA-256 sum of
