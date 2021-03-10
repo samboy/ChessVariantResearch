@@ -94,14 +94,14 @@
 	(board-setup
 		(White
 			(mPawn A3 C3 D2 E3 G3)
-			(Elephante A1 G1)
+			(Elephant A1 G1)
 			(Crocodile C1 E1)
 			(Zebra B1 F1)
 			(Lion D1)
 		)
 		(Black
 			(mPawn A5 C5 D6 E5 G5)
-			(Elephante A7 G7)
+			(Elephant A7 G7)
 			(Crocodile C7 E7)
 			(Zebra B7 F7)
 			(Lion D7)
