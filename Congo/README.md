@@ -143,7 +143,7 @@ Here are the results playing regular Chess with the same engine:
 * Game 4: Black win
 * Game 5: Black win
 
-# S#tock Congo 
+## Stock Congo 
 
 We had Zillions be at difficulty level 7, and had it play 5 games of
 Stock Congo.  Here are the results:
@@ -178,7 +178,7 @@ So, making the river safer on the sides, if anything, appears to
 make the game *more* drawish.  Either that, or Zillions just doesn’t
 know how to utilize the islands properly.
 
-# Simpler Setup
+## Simpler Setup
 Let’s have a different opening, with only elephants,
 zebras, and crocs:
 
@@ -292,5 +292,4 @@ In the stock Congo game, White won after about 80 moves.
 
 Experimentation showed that repetition-is-draw Simple Megapawn Congo
 had too many draws.  A losing side could too easily force a draw
-in a losing position with perpetual check.  This is why repetition now
-loses.
+with perpetual check.  This is why repetition now loses.
