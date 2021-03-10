@@ -97,6 +97,7 @@ Movement is with standard Algebraic.  Piece names are:
 * `C` Crocodile
 * `L` Lion
 * `MP` or `Q` Megapawn (“M” is a monkey in standard Congo; “G“ is a giraffe)
+* `R` River.  While not a piece _per se_, the river can capture pieces
 
 We allow `Q` to represent a megapawn so that ASCII boards can have the 
 megapawn on them.  `Q` was chosen because, in normal Chess, pawns 
@@ -141,7 +142,7 @@ The `-` indicates a move in notation; `:` indicates a capture.  Placing
 winning the game.
 
 River captures are indicated by, after the move made, the river capture
-is indicated by `,:` then the square where a piece drowned in the river.
+is indicated by `,R:` then the square where a piece drowned in the river.
 
 ## Example game
 
@@ -221,7 +222,7 @@ Since two pawns could move to B4, we have to specify which pawn moved there.
 
 Black wins back the pawn because the D4 pawn will now drown in the river.
 
-22. C-F3,:D4 Z-C5
+22. C-F3,R:D4 Z-C5
 23. E-D2 E-D6
 24. C-E2 P-GF4
 25. C-F2 P:G3
