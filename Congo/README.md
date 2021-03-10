@@ -219,7 +219,7 @@ Since two pawns could move to B4, we have to specify which pawn moved there.
   ABCDEFG
 ```
 
-Black wins back the pawn because the E4 pawn will now drown in the river.
+Black wins back the pawn because the D4 pawn will now drown in the river.
 
 22. C-F3,:D4 Z-C5
 23. E-D2 E-D6
