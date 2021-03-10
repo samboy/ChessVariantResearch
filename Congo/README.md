@@ -55,11 +55,12 @@ ezclcze
   promoted to the very powerful Megapawn.
 * Megapawn: Knight + non-royal King + Alfil + Dabbaba.  It can slide or
   leap to any space within two squares.
-* `~` The river (deep part).  If any piece remains in the river for more
-  than one turn, it drowns and is removed from play.  The Crocodile has
-  extra mobility in the river.
-* `+` The river (island).  This piece is on the river, but since there is
-  an island present, it may stay in the square with no risk of drowning.
+* `~` The river (deep part).  If a non-Crocodile piece remains in the river 
+  for more than one turn, it drowns and is removed from play.  The 
+  Crocodile does not drown and has extra mobility in the river.
+* `+` The river (island).  These squares are in the river, but since there 
+  is an island present, pieces may stay in the square with no risk of 
+  drowning.
 
 # Results
 
