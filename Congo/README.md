@@ -321,6 +321,32 @@ Here, the two lions are on the D file with nothing between them.
 
 White takes Black’s lion and wins.
 
+## A simple endgame position
+
+```
+7 --L##-- 
+6 --###-- 
+5 --###-- 
+4 ++~~~++ 
+3 --###-- 
+2 --###-- 
+1 --#l#-- 
+  ABCDEFG
+```
+
+Here, because of the no repetition rule, the game is a win for White.
+
+1. L-D2 L-C6
+2. L-D1! L-C5
+
+Black could not play L-C7 because that would repeat the initial position,
+losing the game.
+
+3. L-D5 L:D5#
+
+Black could not play L-C6 because that would had repeated the position
+at the end of move 1.
+
 ## Playing with a chess set
 
 Simple Megapawn Congo can be played with a standard Chess set:
