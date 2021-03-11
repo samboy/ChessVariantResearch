@@ -21,7 +21,7 @@ MunzioRiot1 = "e2e4 e7e5 f2f4 e5f4 g1f3 g7g5 f1c4 g5g4 e1g1 g4f3 d1f3 " ..
              "d8f6 d2d3 f8h6 b1c3 " 
 -- Ne7 (g8d7) looks to be Black's best reply, but if Black plays Nc6? we 
 -- may get this
-MunzioRiot2 = MunzioRiot1 .. "b8c6 c3d5 f6d6 f3h5 g8e7 d5c7 d6e7 c4f7 " ..
+MunzioRiot2 = MunzioRiot1 .. "b8c6 c3d5 f6d6 f3h5 g8e7 d5c7 d6c7 c4f7 " ..
              "e8d8 h5h6 " 
              
 -- params is a table with the "user tunable" parameters
