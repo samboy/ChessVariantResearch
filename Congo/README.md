@@ -6,7 +6,7 @@ Indeed, the game inventors are open to Congo variants that are less
 drawish.
 
 That in mind, I have made a less drawish version of Congo which
-has less passive play, by using some of the same lessons learned
+has more active play, by using some of the same lessons learned
 by the inventors of Chinese Chess:
 
 * Repetition is a loss, not a draw
@@ -303,8 +303,8 @@ is ultimately futile.
 
 E-F2 could not be played because that position has already been seen.
 If E-F2 were played on move 46, the move would look like E-F2/44 and
-the game would be over, since the position was already seen on move 
-number 44.
+the game would be over, Black losing, since the position was already 
+seen on move number 44.
 
 47. L:D1 C-B4
 48. C-D6 L:D6
