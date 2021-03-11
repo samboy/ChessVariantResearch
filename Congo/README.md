@@ -143,8 +143,8 @@ winning the game.  If a game is won because a previous position has
 been repeated, the move will have a `/` after it, followed by the 
 move number where the same position has already been seen.
 
-River captures are indicated by, after the move made, the river capture
-is indicated by `,R:` then the square where a piece drowned in the river.
+River captures are indicated by, after the move made, `,R:` then the
+square where a piece drowned in the river.
 
 ## Example game
 
