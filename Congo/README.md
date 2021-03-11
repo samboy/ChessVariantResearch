@@ -342,10 +342,12 @@ Here, because of the no repetition rule, the game is a win for White.
 Black could not play L-C7 because that would repeat the initial position,
 losing the game.
 
-3. L-D5 L:D5#
+3. L-D2 L-D5 
 
 Black could not play L-C6 because that would had repeated the position
 at the end of move 1.
+
+4. L:D5#
 
 ## Playing with a chess set
 
