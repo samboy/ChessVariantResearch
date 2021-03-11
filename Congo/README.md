@@ -338,6 +338,54 @@ print out a board to play on, using either smaller pieces, by using a
 large sheet printer readily available at office printing stores, or 
 even using a custom printed vinyl board.
 
+## How the games feel
+
+In normal Chess, checkmate of the king is a common threat in the midgame.  
+In Simple Megapawn Congo, promotion of a pawn to a megapawn is a prominent
+midgame threat.
+
+In the endgame, pawns have usually been all exchanged off of the board.
+One player usually has enough of a material edge to force capture of the
+opponent’s lion.  The other player can often times delay things by
+a series of lion capture threats.  These delaying threats are stopped
+by the no repetition rule, at which point the player in the lead can
+capture the other lion.
+
+Draws are impossible in Simple Megapawn Congo because of the no
+repetition rule.  
+
+## Depth of Simple Megapawn Congo
+
+Because of the smaller board, while quite deep, Simple Megapawn Congo
+probably is not as deep as regular Chess.  A 9x9 or 11x11 Simple Megapawn
+Congo variant (which restores the Giraffe then Monkey) would probably be
+as deep or possibly deeper than regular Chess.
+
+Here, depth is defined as follows:
+
+* Take two players.  Player #2 is a little more skilled than player #1. 
+  Indeed, he can defeat player #1 in two out of three games they play
+  together.  This corresponds to have 100 score difference in the Elo
+  rating system which Chess has traditionally used.
+* Likewise, when player #2 plays player #3, player #2 loses two out of
+  three games against player #3.
+* We continue this two thirds win/lose ratio with player #3 vs. player #4,
+  player #4 vs. player #5, and so on.
+* Eventually, the players will be strong enough that all games are a forced
+  win (probably for White, but there’s a possibility that Simple Megapawn
+  Congo is a _zugzwang_ where Black always wins; Black seems to win more
+  in Zillions-vs-Zillions games, but Zillions really isn’t strong enough
+  to determine how the game would be played at Grandmaster level).
+* The number of levels of players before pefect play is the depth of the
+  game.
+* In regular Chess, the difference between a player which makes random
+  legal moves (player #1) and the strongest computers is about 3000 Elo
+  points, or, to use the scale here, a near-perfect player would be 
+  player #31 in this scale, giving Chess a depth of around 30.
+* The depth of Simple Megapawn Congo is unknown, but may be in the range
+  of 20-25 (i.e. a random player would have an Elo of 500 and a computer
+  playing perfectly would have a Elo between 2500 and 3000).
+
 # Zillions file notes
 
 Out of respect for the congo.zip copyright, the .zip is here unchanged.
