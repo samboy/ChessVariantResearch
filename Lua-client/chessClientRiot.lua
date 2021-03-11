@@ -14,7 +14,7 @@
 -- line
 EvansCompromised = "e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 b2b4 c5b4 c2c3 " ..
                    "b4a5 d2d4 e5d4 e1g1 d4c3"
--- We aren’t play this here.  Instead, let’s look at the Munzio gambit
+-- We aren’t playing that here.  Instead, let’s look at the Munzio gambit
 
 -- I would play the Munzio with the Black pieces
 MunzioRiot1 = "e2e4 e7e5 f2f4 e5f4 g1f3 g7g5 f1c4 g5g4 e1g1 g4f3 d1f3 " ..
