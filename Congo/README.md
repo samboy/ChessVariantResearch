@@ -352,7 +352,12 @@ by the no repetition rule, at which point the player in the lead can
 capture the other lion.
 
 Draws are impossible in Simple Megapawn Congo because of the no
-repetition rule.  
+repetition rule.  However, sometimes the games will come down to,
+say, a zebra-and-lion vs. zebra-and-lion game where one player prevails
+by forcing the other player to either repeat a position or lose their
+lion.  Having a lion on the middle file usually prevails in these
+endgames, and keeping track of already played positions is key
+to winning.
 
 ## Depth of Simple Megapawn Congo
 
