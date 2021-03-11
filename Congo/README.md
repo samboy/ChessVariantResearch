@@ -72,6 +72,26 @@ any pieces (the terrain).
 * `#` Lion den.  Each Lion must stay in their 9-square den.
 * `-` Empty square.
 
+## Drowning in the river
+
+The drowning rule is as follows:
+
+* After a player has moved, any piece owned by the player (except the 
+  crocodile), which was in the deep part of the river on the last turn 
+  (i.e. on C4, D4, or E4) and is in the deep part of the river this
+  turn is removed from play.  
+* “wading” in the deep river does not keep a piece alive: A non-crocodile 
+  piece can move in the deep river, but if they were in the deep river 
+  last turn are are in the deep river this turn, they will be removed 
+  from play after moving.
+* A non-crocodile piece which was in the deep part of the river last
+  turn may move to capture another piece in the deep river this turn, but 
+  will be removed from play after capturing the piece.
+* Any piece which was in the deep part of the river on the previous
+  turn but is _not_ in the deep river this turn is still in play.
+* Moving to an island is the same as moving to any non-river square
+  for all pieces except the crocodile.
+
 ## Notation
 
 Notation is algebraic.  The square on the lower left corner is A1; the one
