@@ -139,7 +139,9 @@ The piece does not have to be specified for pawn moves, unless more than
 one pawn can move to a given square (more common in Congo than in Chess).
 The `-` indicates a move in notation; `:` indicates a capture.  Placing
 `#` after a move indicates that the opponent’s lion has been captured,
-winning the game.
+winning the game.  If a game is won because a previous position has
+been repeated, the move will have a `/` after it, followed by the 
+move number where the same position has already been seen.
 
 River captures are indicated by, after the move made, the river capture
 is indicated by `,R:` then the square where a piece drowned in the river.
@@ -300,6 +302,9 @@ is ultimately futile.
 46. L-D2 E-D1
 
 E-F2 could not be played because that position has already been seen.
+If E-F2 were played on move 46, the move would look like E-F2/44 and
+the game would be over, since the position was already seen on move 
+number 44.
 
 47. L:D1 C-B4
 48. C-D6 L:D6
