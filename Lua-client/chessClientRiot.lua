@@ -2,10 +2,6 @@
 -- This is a lunacy (Lua + Steve Donovan's spawner lib) implementation of
 -- a simple Chess/Chess variants client
 --
--- This particular client is tuned to make good games from the Compromised
--- Defense line of the Evans Gambit.  It even has a tweak to make Stockfish
--- follow the opening books more often than Stockfish wants to (see below)
---
 -- This client is a “randomized” version of Fairy-Stockfish:  It looks
 -- at the top MultiPV number of moves (default: 3), and chooses one within
 -- 50 centipawns of what it thinks is the best move at random.
@@ -18,6 +14,7 @@
 -- line
 EvansCompromised = "e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 b2b4 c5b4 c2c3 " ..
                    "b4a5 d2d4 e5d4 e1g1 d4c3"
+-- We aren’t play this here.  Instead, let’s look at the Munzio gambit
 
 -- I would play the Munzio with the Black pieces
 MunzioRiot1 = "e2e4 e7e5 f2f4 e5f4 g1f3 g7g5 f1c4 g5g4 e1g1 g4f3 d1f3 " ..
@@ -59,9 +56,9 @@ params = {
   -- opening = false,
 }
 
--- After 8. Qb3 Qf6 Stockfish prefers 9. Bg5 over the standard 9. e5
--- That in mind, let's force it to play 8. Qb3 Qf6 9. e5 15% of the time
-StockfishBug = " d1b3 d8f6 e4e5"
+-- OK, half of the time, we let the engine decide Black’s 8th move.
+-- the other half, we see what happens when Black plays 8. ... Nc6
+StockfishBug = " d1b3 d8f6 e4e5" -- Ignore this
 math.randomseed(os.time())
 if math.random() > .5 then
   params["opening"] = MunzioRiot1 
