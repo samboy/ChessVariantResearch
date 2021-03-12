@@ -92,6 +92,18 @@ The drowning rule is as follows:
 * Moving to an island is the same as moving to any non-river square
   for all pieces except the crocodile.
 
+## The opening
+
+The first move not done on the D (middle) file has to be done on White’s
+right hand side; i.e. one can not move a piece on White’s left hand
+side (the A/B/C files) without having moved a piece on White’s right
+hand side (the E/F/G files).
+
+Note that the Zillions file does not enforce this rule; there
+is a Lua script which will correct Zillions saved files where a
+piece on White’s left hand side incorrectly moves before a piece on 
+White’s right hand side.
+
 ## Notation
 
 Notation is algebraic.  The square on the lower left corner is A1; the one

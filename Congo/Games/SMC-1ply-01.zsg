@@ -1,78 +1,78 @@
 Zillions Save Game File Version 0.02 CC
 RulesFile=congo-islands.zrf
 VariantName=Simpler Megapawn Congo
-1. Elephant A1 - A2
-1. Elephant A7 - A6
-2. Elephant A2 - C2
-2. Crocodile C7 - B6
-3. Crocodile C1 - B2
-3. Elephant G7 - G6
-4. mPawn C3 - C4
-4. Elephant A6 - C6
-5. mPawn C4 x C5 x C4
-5. Zebra B7 x C5
-6. Zebra B1 - C3
-6. Crocodile E7 - F6
-7. Zebra C3 - A2
-7. mPawn G5 - F4
-8. mPawn E3 x F4
-8. mPawn E5 x F4
-9. mPawn G3 x F4
-9. Crocodile F6 x F4
-10. mPawn D2 - E3
-10. Crocodile F4 - E5
-11. Zebra A2 - C3
-11. Zebra F7 - G5
-12. Crocodile B2 - A2
-12. Zebra G5 - E6
-13. mPawn A3 - A4
-13. mPawn A5 x A4
-14. Zebra C3 x A4
-14. Crocodile B6 - B4
-15. Zebra A4 x C5
-15. Elephant C6 x C5
-16. Crocodile E1 - F2
-16. Elephant G6 - G4
-17. Elephant G1 - G3
-17. Elephant G4 x G3
-18. Crocodile F2 x G3
+1. Elephant G1 - G2
+1. Elephant G7 - G6
+2. Elephant G2 - E2
+2. Crocodile E7 - F6
+3. Crocodile E1 - F2
+3. Elephant A7 - A6
+4. mPawn E3 - E4
+4. Elephant G6 - E6
+5. mPawn E4 x E5 x E4
+5. Zebra F7 x E5
+6. Zebra F1 - E3
+6. Crocodile C7 - B6
+7. Zebra E3 - G2
+7. mPawn A5 - B4
+8. mPawn C3 x B4
+8. mPawn C5 x B4
+9. mPawn A3 x B4
+9. Crocodile B6 x B4
+10. mPawn D2 - C3
+10. Crocodile B4 - C5
+11. Zebra G2 - E3
+11. Zebra B7 - A5
+12. Crocodile F2 - G2
+12. Zebra A5 - C6
+13. mPawn G3 - G4
+13. mPawn G5 x G4
+14. Zebra E3 x G4
+14. Crocodile F6 - F4
+15. Zebra G4 x E5
+15. Elephant E6 x E5
+16. Crocodile C1 - B2
+16. Elephant A6 - A4
+17. Elephant A1 - A3
+17. Elephant A4 x A3
+18. Crocodile B2 x A3
 18. mPawn D6 - D5
-19. Elephant C2 - B2
-19. Crocodile B4 - C4
-20. Crocodile A2 - B3
-20. Crocodile C4 x B3
-21. Elephant B2 x B3
+19. Elephant E2 - F2
+19. Crocodile F4 - E4
+20. Crocodile G2 - F3
+20. Crocodile E4 x F3
+21. Elephant F2 x F3
 21. mPawn D5 - D4
-22. mPawn E3 - F4
-22. Crocodile E5 - D6 x D4
-23. Crocodile G3 - G4
-23. Zebra E6 - D4
-24. Elephant B3 - D3
-24. Zebra D4 - C6 x D4
-25. mPawn F4 - G5
-25. Zebra C6 - E5
-26. Crocodile G4 - F5
-26. Zebra E5 x D3
-27. mPawn G5 - G6
-27. Zebra D3 - B2
-28. Lion D1 - C2
-28. Elephant C5 - C4
-29. Lion C2 - D2
-29. Elephant C4 - C2 x C4
-30. Lion D2 x C2
-30. Zebra B2 - D3
-31. Lion C2 x D3
+22. mPawn C3 - B4
+22. Crocodile C5 - D6 x D4
+23. Crocodile A3 - A4
+23. Zebra C6 - D4
+24. Elephant F3 - D3
+24. Zebra D4 - E6 x D4
+25. mPawn B4 - A5
+25. Zebra E6 - C5
+26. Crocodile A4 - B5
+26. Zebra C5 x D3
+27. mPawn A5 - A6
+27. Zebra D3 - F2
+28. Lion D1 - E2
+28. Elephant E5 - E4
+29. Lion E2 - D2
+29. Elephant E4 - E2 x E4
+30. Lion D2 x E2
+30. Zebra F2 - D3
+31. Lion E2 x D3
 31. Crocodile D6 - D4
 32. Lion D3 - D2
 32. Crocodile D4 - D3
 33. Lion D2 - D1
 33. Crocodile D3 - D2
-34. Zebra F1 x D2
+34. Zebra B1 x D2
 34. Lion D7 - D6
-35. mPawn G6 - G7 = MegaPawn
+35. mPawn A6 - A7 = MegaPawn
 35. Lion D6 - D7
-36. MegaPawn G7 - F6
-36. Lion D7 - C6
-37. MegaPawn F6 - E6
-37. Lion C6 - C5
-38. MegaPawn E6 x C5
+36. MegaPawn A7 - B6
+36. Lion D7 - E6
+37. MegaPawn B6 - C6
+37. Lion E6 - E5
+38. MegaPawn C6 x E5
