@@ -82,7 +82,7 @@ The drowning rule is as follows:
   turn is removed from play.  
 * “wading” in the deep river does not keep a piece alive: A non-crocodile 
   piece can move in the deep river, but if they were in the deep river 
-  last turn are are in the deep river this turn, they will be removed 
+  last turn and are in the deep river this turn, they will be removed 
   from play after moving.
 * A non-crocodile piece which was in the deep part of the river last
   turn may move to capture another piece in the deep river this turn, but 
