@@ -97,7 +97,7 @@ The drowning rule is as follows:
 The first move not done on the D (middle) file has to be done on White’s
 right hand side; i.e. one can not move a piece on White’s left hand
 side (the A/B/C files) without having moved a piece on White’s right
-hand side (the E/F/G files).
+hand side (the E/F/G files) first.
 
 Note that the Zillions file does not enforce this rule; there
 is a Lua script which will correct Zillions saved files where a
@@ -195,8 +195,8 @@ Here is an example game:
 Starting position
 
 1. D3 D5
-2. C-F2 Z-D6
-3. Z-D2 C-F6
+2. C-F2 Z-FD6
+3. Z-FD2 C-F6
 4. E-A2 C-B6
 5. Z-B3 P-AB4
 
