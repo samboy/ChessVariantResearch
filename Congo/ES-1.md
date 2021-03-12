@@ -198,6 +198,16 @@ move number where the same position has already been seen.
 River captures are indicated by, after the move made, `,R:` then the
 square where a piece drowned in the river.
 
+## Value of the pieces
+
+Zillions of Games estimates the value of the pieces as follows:
+
+* Pawn: 1.0
+* Zebra: 1.5
+* Elephant: 1.8
+* Crocodile: 2.5
+* Megapawn: 4.5
+
 ## A simple endgame position
 
 ```
@@ -242,6 +252,15 @@ keeping a note of terrain squares either mentally or with checkers, or
 print out a board to play on, using either smaller pieces, by using a 
 large sheet printer readily available at office printing stores, or 
 even using a custom printed vinyl board.
+
+## Game play
+
+Elephante Savanna is very tactical; the pieces very quickly engage with
+each other and games start off with pawn battles on the wings of the 
+board.  There are many traps in the opening.
+
+Since Elephante Savanna has a strong “no repetition” rule, draws are
+impossible and each game will have a winner.
 
 ## Depth of Elephante Savanna
 
