@@ -88,7 +88,8 @@ The drowning rule is as follows:
   turn may move to capture another piece in the deep river this turn, but 
   will be removed from play after capturing the piece.
 * Any piece which was in the deep part of the river on the previous
-  turn but is _not_ in the deep river this turn is still in play.
+  turn but is _not_ in the deep river this turn is still in play (as
+  long as they do not get captured by an enemy piece).
 * Moving to an island is the same as moving to any non-river square
   for all pieces except the crocodile.
 
