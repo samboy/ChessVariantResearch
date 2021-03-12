@@ -95,9 +95,24 @@ The drowning rule is as follows:
 ## The opening
 
 The first move not done on the D (middle) file has to be done on White’s
-right hand side; i.e. one can not move a piece on White’s left hand
-side (the A/B/C files) without having moved a piece on White’s right
-hand side (the E/F/G files) first.
+right hand side; i.e. one can not move a piece from or to White’s left
+hand side (the A/B/C files) without having moved a piece on White’s
+right hand side (the E/F/G files) first.  Once either player has moved
+a piece on White’s right hand side, either player can move any piece
+on the board.
+
+For example, C-B2 can not be White’s opening move; White would have to
+play the equivalent move C-F2 instead.  Once White plays C-F2, Black is
+free to play C-B6 or any other legal move.  Likewise, if white opens D3,
+Black may not play C-B6, since D3 is a move made on the center file,
+but would have to play the equivalent C-F6 move instead.  Once Black
+plays C-F6, White can play any legal move on either side of the board.
+
+L-C2 is not a legal first move for White; L-E2 would have to be played
+instead.
+
+The reason for this rule is to prevent “mirror image” openings; any
+given opening will have the same left-to-right orientation.
 
 Note that the Zillions file does not enforce this rule; there
 is a Lua script which will correct Zillions saved files where a
