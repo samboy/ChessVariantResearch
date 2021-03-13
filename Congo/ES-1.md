@@ -204,7 +204,7 @@ Zillions of Games estimates the value of the pieces as follows:
 
 * Pawn: 1.0
 * Zebra: 1.5
-* Elephant: 1.8
+* Elephante: 1.8
 * Crocodile: 2.5
 * Megapawn: 4.5
 
