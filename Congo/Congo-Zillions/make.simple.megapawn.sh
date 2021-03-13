@@ -5,6 +5,7 @@
 #rm -fr Congo congo-megapawn
 unzip congo.zip
 cd Congo
+cp ../Islands.BMP Images/Congo/
 head -562 Congo.zrf > foo
 cp Congo.zrf Congo.save
 mv foo Congo.zrf

@@ -1,5 +1,5 @@
---- Congo.zrf.orig	2003-11-30 13:20:00.000000000 -0800
-+++ Congo.zrf	2021-03-09 12:48:04.301897700 -0800
+--- Congo.zrf.orig	2021-03-12 20:39:48.300425600 -0800
++++ Congo.zrf	2021-03-12 20:40:19.744282900 -0800
 @@ -17,13 +17,13 @@
  		(go from)
  		; check if the piece is suicidal (started in the river)
@@ -69,6 +69,15 @@
  )
  
  (define shift	($1 (verify not-friend?) (drown-n-add)) )
+@@ -264,7 +251,7 @@
+ 
+ 
+ (define Board-Definitions
+-	(image "images\Congo\CongoBoard.bmp")
++	(image "images\Congo\Islands.BMP" "images\Congo\CongoBoard.bmp")
+ 	(grid
+ 		(start-rectangle 11 6 43 38)
+ 		(dimensions
 @@ -297,6 +284,11 @@
  		(players White Black)
  		(positions	A4 B4 C4 D4 E4 F4 G4)
