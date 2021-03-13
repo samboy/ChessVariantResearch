@@ -1,4 +1,4 @@
-# Elephant Savanna (Try #2)
+# Elephante Savanna 
 
 In the game of [Congo](https://en.wikipedia.org/wiki/Congo_(chess_variant)),
 there have been [complaints](https://www.chessvariants.com/index/listcomments.php?order=DESC&itemid=Congo) 
