@@ -198,6 +198,47 @@ move number where the same position has already been seen.
 River captures are indicated by, after the move made, `,R:` then the
 square where a piece drowned in the river.
 
+## Other opening setups
+
+### Elephante Backwater
+
+```
+ZCELECZ
+PPPPPPP
+--###--
+++~~~++
+--###--
+ppppppp
+zcelecz
+```
+
+### Elephante Backyard
+
+```
+EZCLCZE
+PPPPPPP
+--###--
+++~~~++
+--###--
+ppppppp
+ezclcze
+```
+
+### Elephante Backmix
+
+```
+EZCLECZ
+PPPPPPP
+--###--
+++~~~++
+--###--
+ppppppp
+ezclecz
+```
+
+Since this opening is asymmetrical, players may make their first 
+non-center move on either side of the board.
+
 ## Value of the pieces
 
 Zillions of Games estimates the value of the pieces as follows:
