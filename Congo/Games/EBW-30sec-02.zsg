@@ -1,0 +1,81 @@
+Zillions Save Game File Version 0.02 CC
+RulesFile=congo-islands.zrf
+VariantName=Elephante Backwater
+1. mPawn C2 - B3
+1. Zebra G7 - F5
+2. Zebra G1 - F3
+2. mPawn C6 - B5
+3. mPawn F2 - G3
+3. mPawn G6 - G5
+4. mPawn D2 - E3
+4. mPawn E6 - E5
+5. mPawn E2 - D3
+5. mPawn D6 - D5
+6. Elephante E1 - E2
+6. Elephante C7 x C1
+7. Crocodile B1 x C1
+7. Zebra A7 - C6
+8. Zebra A1 - C2
+8. mPawn B6 - C5
+9. mPawn B2 - C3
+9. mPawn A6 - A5
+10. Crocodile C1 - B2
+10. mPawn A5 - B4
+11. mPawn B3 x B4
+11. mPawn C5 x B4
+12. mPawn C3 x B4
+12. Zebra C6 x B4
+13. Zebra C2 x B4
+13. mPawn B5 x B4
+14. mPawn A2 - B3
+14. mPawn E5 - D4
+15. mPawn E3 x D4
+15. mPawn B4 x B3
+16. Crocodile B2 x B3 x D4
+16. Elephante E7 - E3
+17. Lion D1 - D2
+17. Elephante E3 x G3
+18. mPawn G2 x G3
+18. Zebra F5 x G3
+19. Crocodile F1 - F2
+19. Zebra G3 x E2
+20. Crocodile F2 x E2
+20. mPawn G5 - F4
+21. Zebra F3 - E1
+21. Crocodile F7 - G6
+22. mPawn D3 - E4
+22. mPawn F4 - E3
+23. Crocodile E2 x E3 x E4
+23. Crocodile G6 - G4
+24. Zebra E1 - C2
+24. Lion D7 - D6
+25. Crocodile E3 - F2
+25. Crocodile B7 - C6
+26. Crocodile F2 - E2
+26. mPawn F6 - F5
+27. Crocodile B3 - C3
+27. Crocodile C6 - C5
+28. Zebra C2 - E3
+28. Crocodile G4 - F4
+29. Zebra E3 - G2
+29. Crocodile F4 - G4
+30. Crocodile E2 - F1
+30. Crocodile C5 - C4
+31. Crocodile C3 x C4
+31. Crocodile G4 x C4
+32. Crocodile F1 - E2
+32. Crocodile C4 - C3
+33. Lion D2 - D1
+33. Crocodile C3 - C2
+34. Lion D1 x C2
+34. mPawn D5 - C4
+35. Crocodile E2 - D2
+35. mPawn C4 - B3 x C4
+36. Lion C2 - D1
+36. mPawn B3 - B2
+37. Lion D1 - E2
+37. mPawn B2 - B1 = MegaPawn
+38. Crocodile D2 - D4
+38. MegaPawn B1 - C1
+39. Crocodile D4 - E5
+39. MegaPawn C1 x E2
