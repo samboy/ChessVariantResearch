@@ -224,6 +224,18 @@ ppppppp
 ezclcze
 ```
 
+### Elephante Backcountry
+
+```
+CENLNEC
+PPPPPPP
+--###--
+++~~~++
+--###--
+ppppppp
+cenlnec
+```
+
 ### Elephante Backmix
 
 ```
