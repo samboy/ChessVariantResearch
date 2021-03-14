@@ -212,6 +212,22 @@ ppppppp
 zcelecz
 ```
 
+This is a slight variation of the original Congo setup with the giraffe
+replaced by a second zebra, and the monkey replaced by a second crocodile.
+It also has islands (to protect against drowning) on the A, B, F, and G 
+files of the river, and a “no repetition” rule (a player who repeats a 
+previous position in the game loses) to eliminate draws.
+
+Unlike Congo, this can be played with an ordinary Chess set (but, right
+now, as I type this, House of Staunton/USCF Sales is selling some 10
+different tournament sized fairy Chess pieces, and finding animal dolls
+to play Congo proper is easy).
+
+Having Zillions play against itself shows that white may have an edge
+at lower levels of play, but black can find equalization or even winning
+strategies at higher levels of play.  On my i7-7600U laptop, it takes 
+30 seconds per move before black does well.
+
 ### Elephante Backyard
 
 ```
