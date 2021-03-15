@@ -12,6 +12,9 @@
 
 -- Evans Gambit Compromised defense.  Well known RNBQKBNR (standard Chess)
 -- line
+EvansCompromised = "e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 b2b4 c5b4 c2c3 " ..
+                   "b4a5 d2d4 e5d4 e1g1 d4c3"
+
 -- params is a table with the "user tunable" parameters
 params = {
   -- See https://github.com/ianfab/Fairy-Stockfish for the Chess engine
@@ -38,9 +41,27 @@ params = {
   -- four letters (from, to) or five letters (for pawn promotions: b7b8q)
   -- King move for castling (e.g. e1g1 with normal RNBQKBNR chess).  Spaces
   -- between openings
-  opening = false,
+  opening = "e2e4",
+  -- opening = EvansCompromised,
+  -- opening = false,
 }
 
+-- Fairy-stockfish, with Modern Carrera, incorrectly think h1g3 is a
+-- good first move, but Black does really well against that opening.
+-- 40-ply analysis shows that d4/e4/f4 look to be White’s best first
+-- moves
+math.randomseed(os.time())
+local choice = math.random(1,3)
+if choice == 1 then
+  params["opening"] = "d2d4"
+elseif choice == 2 then
+  params["opening"] = "e2e4"
+elseif choice == 3 then
+  params["opening"] = "f2f4"
+else
+  params["opening"] = nil
+end
+ 
 -- Here be dragons below
 ChessEngine = params["ChessEngine"]
 MultiPV = tonumber(params["MultiPV"])
@@ -153,7 +174,6 @@ end
    
 w:write("analyze\n")
 w:flush()
-math.randomseed(os.time())
 game = ""
 -- Note setup, if specified as VariantSetup
 if type(params["variantSetup"]) == "string" then
