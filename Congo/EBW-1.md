@@ -389,8 +389,10 @@ pieces:
   squares straight or diagonally backwards.
 * Elephant (without an e at the end).  Wazir + Dabbaba.  Moves one or
   two squares like a rook, and can leap two squares.
-* Rook.  Moves like a rook in Chess; can drown in the deep part of the
-  river.
+* Rook.  Moves like a rook in Chess.
+
+All pieces except the crocodile (and lion, which can not enter the river)
+can drown in the river if not on an island.
 
 The Pawn has the same image as the mPawn.  The Superpawn has the same image
 as the Megapawn.  The Elephant and rook have the same image as the Elephante.
