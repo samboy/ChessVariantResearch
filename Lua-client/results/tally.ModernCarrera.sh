@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Tally the results based on White's first move.  + is White win, - is Black
+# win, = is draw
+
+awk '{a=$(NF-1);opening = $4;
+if(a ~ /White/){white[opening]++ ; score[opening]++}
+if(a ~ /Black/){black[opening]++}
+if(a ~ /1\/2/){draw[opening]++ ; score[opening] += 0.5 }
+total[opening]++
+}
+END {
+for(a in white){print a " +"white[a]}
+for(a in black){print a " -"black[a]}
+for(a in draw) {print a " ="draw[a]}
+for(a in score) {print a " result: " (score[a] / total[a]) * 100 "%"}
+for(a in draw) {print a " draws: " (draw[a] / total[a]) * 100 "%"}
+}' | sort
