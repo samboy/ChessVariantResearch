@@ -311,7 +311,7 @@ at the end of move 1.
 
 ## Playing with a chess set
 
-Elephante Savanna can be played with a standard Chess set:
+Elephante Backwater can be played with a standard Chess set:
 
 * Use rooks for the Elephantes
 * Use knights for the Zebras
@@ -328,18 +328,14 @@ even using a custom printed vinyl board.
 
 ## Game play
 
-Elephante Savanna is very tactical; the pieces very quickly engage with
-each other and games start off with pawn battles on the wings of the 
-board.  There are many traps in the opening.
-
-Since Elephante Savanna has a strong “no repetition” rule, draws are
+Since Elephante Backwater has a strong “no repetition” rule, draws are
 impossible and each game will have a winner.
 
-## Depth of Elephante Savanna
+## Depth of Elephante Backwater
 
-Because of the smaller board, while quite deep, Elephante Savanna
+Because of the smaller board, while quite deep, Elephante Backwater
 probably is not as deep as regular Chess.  A 9x9 or 11x11 Elephante
-Savanna variant (which restores the Giraffe then Monkey) would probably be
+Backwater variant (which restores the Giraffe then Monkey) would probably be
 as deep or possibly deeper than regular Chess.
 
 Here, depth is defined as follows:
@@ -363,7 +359,7 @@ Here, depth is defined as follows:
   legal moves (player #1) and the strongest computers is about 3000 Elo
   points, or, to use the scale here, a near-perfect player would be 
   player #31 in this scale, giving Chess a depth of around 30.
-* The depth of Elephante Savanna is unknown, but may be in the range
+* The depth of Elephante Backwater is unknown, but may be in the range
   of 20-25 (i.e. a random player would have an Elo of 500 and a computer
   playing perfectly would have a Elo between 2500 and 3000).
 
@@ -374,9 +370,8 @@ In order to make the Zillions file which can play this proposed
 Congo variant, one will need to have a *NIX like system with the
 `unzip` and `patch` commands to make the actual Zillions file.
 
-The islands are present but invisible on the map.  There is also
-the original Congo .zrf file, as well as a file with all of the
-variants but no islands in the river.
+There is also the original Congo .zrf file, as well as a file with all 
+of the variants but no islands in the river.
 
 The Zillions file has, in addition to the above pieces, the following
 pieces:
@@ -392,13 +387,15 @@ pieces:
 * Superpawn.  Moves like Pawn, but can also move or capture one square
   sideways.  It may do a non-capture, non-jumping retreat one or two
   squares straight or diagonally backwards.
-* Elephant (with an e at the end).  Wazir + Dabbaba.  Moves one or
+* Elephant (without an e at the end).  Wazir + Dabbaba.  Moves one or
   two squares like a rook, and can leap two squares.
+* Rook.  Moves like a rook in Chess; can drown in the deep part of the
+  river.
 
 The Pawn has the same image as the mPawn.  The Superpawn has the same image
-as the Megapawn.  The Elephante has the same image as the Elephant.  It
-is expected that one will not have Pawns and mPawns on the same board, nor
-have Elephants and Elephantes on the same board.
+as the Megapawn.  The Elephant and rook have the same image as the Elephante.
+It is expected that one will not have Pawns and mPawns on the same board, nor
+have Elephants, Elephantes, and rooks on the same board.
 
 # Results
 
