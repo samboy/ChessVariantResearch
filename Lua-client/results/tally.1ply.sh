@@ -3,7 +3,9 @@
 # Tally the results based on White's first move.  + is White win, - is Black
 # win, = is draw
 
-awk '{a=$(NF-1);opening = $4;
+perl -pe 's/\([^)]*\)//g' | awk '{a=$(NF-1);
+# opening = $1 " " $2
+opening = $1 
 if(a ~ /White/){white[opening]++ ; score[opening]++}
 if(a ~ /Black/){black[opening]++ ; score[opening] += 0}
 if(a ~ /1\/2/){draw[opening]++ ; score[opening] += 0.5 }
