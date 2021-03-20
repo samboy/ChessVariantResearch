@@ -5,7 +5,7 @@
 
 awk '{a=$(NF-1);
 if(a ~ /White/){white[$2]++ ; score[$2]++}
-if(a ~ /Black/){black[$2]++}
+if(a ~ /Black/){black[$2]++ ; score[$2] += 0}
 if(a ~ /1\/2/){draw[$2]++ ; score[$2] += 0.5 }
 total[$2]++
 }
