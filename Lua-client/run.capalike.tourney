@@ -2,23 +2,27 @@
 
 # Capa setups.  R_NB_KBN_R, RNB__K_BNR, and RBN__K_NBR with, for _, all
 # six ACQ permutations: ACQ, AQC, CAQ, CQA, QAC, QCA
+
+# Note that many of these names have only been proposed over at
+# http://maradns.blogspot.com/search/label/Chess%20variants and
+# do not have any known real-world play
 SETUPS=""
 
 # R_NB_KBN_R
-SETUPS=$SETUPS" RANBCKBNQR"
+SETUPS=$SETUPS" RANBCKBNQR" # Randy
 SETUPS=$SETUPS" RANBQKBNCR" # Carrera
-SETUPS=$SETUPS" RCNBAKBNQR"
+SETUPS=$SETUPS" RCNBAKBNQR" # Notetaker
 SETUPS=$SETUPS" RCNBQKBNAR" # Murray-Carrera
 SETUPS=$SETUPS" RQNBAKBNCR" # Schoolbook
-SETUPS=$SETUPS" RQNBCKBNAR"
+SETUPS=$SETUPS" RQNBCKBNAR" 
 
 # RNB__K_BNR
 SETUPS=$SETUPS" RNBACKQBNR" # Embassy (mirrored)
-SETUPS=$SETUPS" RNBAQKCBNR"
-SETUPS=$SETUPS" RNBCAKQBNR"
-SETUPS=$SETUPS" RNBCQKABNR"
-SETUPS=$SETUPS" RNBQAKCBNR"
-SETUPS=$SETUPS" RNBQCKABNR"
+SETUPS=$SETUPS" RNBAQKCBNR" 
+SETUPS=$SETUPS" RNBCAKQBNR" # Consulate
+SETUPS=$SETUPS" RNBCQKABNR" # Bird 
+SETUPS=$SETUPS" RNBQAKCBNR" # Teutonic
+SETUPS=$SETUPS" RNBQCKABNR" # Gothic
 
 # RBN__K_NBR
 SETUPS=$SETUPS" RBNACKQNBR" 
