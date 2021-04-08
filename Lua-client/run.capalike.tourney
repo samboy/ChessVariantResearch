@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Capa setups.  R_NB_KBN_R, RNB__K_BNR, and RBN__K_NBR with, for _, all
+# six ACQ permutations: ACQ, AQC, CAQ, CQA, QAC, QCA
+SETUPS=""
+
+# R_NB_KBN_R
+SETUPS=$SETUPS" RANBCKBNQR"
+SETUPS=$SETUPS" RANBQKBNCR" # Carrera
+SETUPS=$SETUPS" RCNBAKBNQR"
+SETUPS=$SETUPS" RCNBQKBNAR" # Murray-Carrera
+SETUPS=$SETUPS" RQNBAKBNCR" # Schoolbook
+SETUPS=$SETUPS" RQNBCKBNAR"
+
+# RNB__K_BNR
+SETUPS=$SETUPS" RNBACKQBNR" # Embassy (mirrored)
+SETUPS=$SETUPS" RNBAQKCBNR"
+SETUPS=$SETUPS" RNBCAKQBNR"
+SETUPS=$SETUPS" RNBCQKABNR"
+SETUPS=$SETUPS" RNBQAKCBNR"
+SETUPS=$SETUPS" RNBQCKABNR"
+
+# RBN__K_NBR
+SETUPS=$SETUPS" RBNACKQNBR" 
+SETUPS=$SETUPS" RBNAQKCNBR"
+SETUPS=$SETUPS" RBNCAKQNBR"
+SETUPS=$SETUPS" RBNCQKANBR" # Univers 
+SETUPS=$SETUPS" RBNQAKCNBR"
+SETUPS=$SETUPS" RBNQCKANBR"
+
+touch log
+touch results.current
+while true ; do
+  for setup in $SETUPS ; do
+    echo SETUP $setup >> log
+    lunacy chessClientCapas.lua $setup >> log
+    tail -1 log >> results.current
+  done
+done
