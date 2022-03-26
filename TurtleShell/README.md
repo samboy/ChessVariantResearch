@@ -48,7 +48,7 @@ number of promoted pawns allowed on the board.
 In this image, white pawns may promote in the yellow cells, and black
 pawns may promote in the red cells.
 
-![Turtle shell promotion zone](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-lancePaths.png)
+![Turtle shell promotion zone](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-promotionZone.png)
 
 # End zones
 
