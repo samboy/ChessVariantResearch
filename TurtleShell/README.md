@@ -204,5 +204,17 @@ Some notes about this game:
 # Copyright
 
 I dedicate the rules of this game and all graphics and code illustrating
-this game to the public domain.
+this game to the public domain.  All content in the .pdf file except 
+the fonts is public domain.
 
+# Note on fonts in the .doc file
+
+The .doc file needs fonts from the following location to display 
+correctly:
+
+https://github.com/samboy/CaulixtlaFonts/blob/main/DesktopFonts/Caulixtla009Serif.zip	
+
+https://github.com/samboy/CaulixtlaFonts/blob/main/DesktopFonts/Caulixtla009Sans.zip	
+
+These fonts are *not* public domain, but they are open content OFL
+licensed fonts.
