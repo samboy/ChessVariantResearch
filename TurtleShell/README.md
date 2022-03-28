@@ -147,12 +147,12 @@ their king across the board.
 # Repetition of move
 
 If making a move which recreates a position previously played in this
-game, with the same player having the move as the previous position, the
-attacking player must stop the loop. An attacking player is defined as
-the player who, for all board positions in the loop, when the attacker
-has the move, more capture threats (including check) are on the board
-regardless of the color of the piece making the capture threat. This
-is calculated by adding together all possible capture moves for each
+game, with the same player having the move as the previous position,
+the attacking player must stop the loop. An attacking player is defined
+as the player who, for all board positions in the loop, just after the
+attacker has moved, more capture threats (including check) are on the
+board regardless of the color of the piece making the capture threat. 
+This is calculated by adding together all possible capture moves for each
 unique board position in the loop per player. In case this sum is the
 same for both players, the player who gives check more often (i.e. has
 more king capture threats, where a double check is 2 threats) in the
