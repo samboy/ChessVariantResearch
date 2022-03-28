@@ -230,9 +230,9 @@ Some notes about this game:
   the loop is looked at precisely once: 22. 1 attack (Qh7xe7) 2 attacks
   (Qh7xe7; Qf3xh1) 23. 1 attack (Qh7xe7) 2 attacks (Qh7xe7; Qg4xg1)
   and the loop repeats on move 24 so we look no further. For both moves
-  (4 plies) in the loop, the board has more threats when Black has the
-  move (4 total across the loop: 2 attacks both times Black has the move)
-  than when White has the move (2 total across the loop: 1 attack each
+  (4 plies) in the loop, the board has more threats when Black has 
+  moved (4 total across the loop: 2 attacks both times Black has the move)
+  than when White has moved (2 total across the loop: 1 attack each
   time White has the move), so Black is the one who needs to break the
   loop if this Chess game had Turtle Shell repetition rules.
 
