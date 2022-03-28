@@ -79,6 +79,11 @@ blocked by a piece of the same color.  If there is an enemy piece on the
 rook’s path, the rook may capture that piece, but the rook may not
 continue moving after capturing.
 
+A rook must make an entire single move along the same row or file. For
+example, a rook on D0 may move to D3 (which is on the same file) but
+may *not* move to E3, because moving to E3 is only possible from D0 if
+the rook changes the file they are on during the move.
+
 ![Turtle shell rook](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-rook.png)
 
 # The guard
@@ -141,12 +146,27 @@ their king across the board.
 
 # Repetition of move
 
-It is not allowed to make a move which recreates a position previously
-played in this game.  This is called, in Go, a “Ko” rule.  When playing
-with a computer, the computer would enforce this rule.  When playing on
-a physical board, the rule would be more subjectively enforced: Someone
-appearing to repeat the same move would be asked to make another move
-or forfeit the game.
+If making a move which recreates a position previously played in this
+game, with the same player having the move as the previous position, the
+attacking player must stop the loop. An attacking player is defined as
+the player who, for all board positions in the loop, when the attacker
+has the move, more capture threats (including check) are on the board
+regardless of the color of the piece making the capture threat. This
+is calculated by adding together all possible capture moves for each
+unique board position in the loop per player. In case this sum is the
+same for both players, the player who gives check more often (i.e. has
+more king capture threats, where a double check is 2 threats) in the
+loop of moves is the player who must make a different move to break the
+loop. In case the sum of possible captures is the same for both players
+during the loop, and both players give the same total number of checks
+(0 or more) in the loop, the player whose move starts the loop must make
+a different move to break the loop.
+
+This is a modified “Ko” rule. When playing with a computer, the
+computer would enforce this rule. When playing on a physical board, the
+rule would be more subjectively enforced: Someone appearing to attack
+an opponents piece resulting in a repeat of a previous position would
+be asked to stop the attack by making another move or forfeit the game.
 
 # Objective
 
@@ -196,10 +216,26 @@ Some notes about this game:
   (vertical mover); a piece which combines a rook and knight (a cardinal
   or marshall, if you will); and a piece which combines the guard and 
   knight.
-* A combination of the Ko rule and the end zone win rule eliminates
+* A combination of the Ko rule and the end zone win rule reduces
   draws.  Because of the geometry of the board, one king can not block
   the other king from reaching the end zone (there is no opposition
   in Turtle Shell Chess).
+* The “stop an attack if it causes repetition” rule is a simplification 
+  of similar rules in Xiangqi (Chinese chess). For an example of this in a
+  real world game, let’s look at Fischer-Tal Leipzig 1960. Here, after
+  21... Qg4+ by Tal, the game was drawn because of 22. Kh1 Qf3+ 23. Kg1
+  Qg4+ 24. Kh1 Qf3+ and so on. Using Turtle Shell rules, since the loop
+  begins at 22. Kh1 and repeats with 24. Kh1, we look at the number of
+  possible capturing moves at each stage in the loop, where each ply in
+  the loop is looked at precisely once: 22. 1 attack (Qh7xe7) 2 attacks
+  (Qh7xe7; Qf3xh1) 23. 1 attack (Qh7xe7) 2 attacks (Qh7xe7; Qg4xg1)
+  and the loop repeats on move 24 so we look no further. For both moves
+  (4 plies) in the loop, the board has more threats when Black has the
+  move (4 total across the loop: 2 attacks both times Black has the move)
+  than when White has the move (2 total across the loop: 1 attack each
+  time White has the move), so Black is the one who needs to break the
+  loop if this Chess game had Turtle Shell repetition rules.
+
 
 # Copyright
 
