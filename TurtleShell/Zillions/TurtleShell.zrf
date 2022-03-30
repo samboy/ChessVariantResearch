@@ -4,12 +4,20 @@
  (players white)
  (board (image "images\TurtleShell.bmp")
         (positions 
-	(B9 68 50 118 100)
+	(B9 67 50 117 100)
 	(C9 111 27 161 77)
 	(D9 153 4 203 54)
+	(E8 185 20 235 70)
+	(E9 217 4 267 54)
+	(F9 260 27 310 77)
+	(G9 303 50 353 100)
 	)
-	(links e (B9 C9) (C9 D9))
-	(links w (C9 B9) (D9 C9))
+	(links e 
+	  (B9 C9) (C9 D9) (D9 E8) (E8 E9) (E9 F9) (F9 G9)
+	) ; e
+	(links w 
+	  (C9 B9) (D9 C9) (E8 D9) (E9 E8) (F9 E9) (G9 F9)
+	) ; w
  )
  (board-setup (white (rook B9)))
 
