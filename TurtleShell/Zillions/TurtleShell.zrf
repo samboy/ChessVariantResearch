@@ -4,18 +4,19 @@
  (players white)
  (board (image "images\TurtleShell.bmp")
         (positions 
-	(B9 70 50 120 100)
-	(C9 110 25 160 75)
+	(B9 68 50 118 100)
+	(C9 111 27 161 77)
+	(D9 153 4 203 54)
 	)
-	(links e (B9 C9))
-	(links w (C9 B9))
+	(links e (B9 C9) (C9 D9))
+	(links w (C9 B9) (D9 C9))
  )
  (board-setup (white (rook B9)))
 
  (piece (name rook) (image white "images\rookw.bmp")
   (moves
-   (e (if empty? add))
-   (w (if empty? add))
+   (e (while empty? add e))
+   (w (while empty? add w))
   )
  ) ; rook
 
