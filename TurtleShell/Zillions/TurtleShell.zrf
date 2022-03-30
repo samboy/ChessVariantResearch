@@ -19,22 +19,34 @@
 	(F8 235 70 285 120)
 	(G8 253 100 303 150)
 	(G7 303 100 353 150)
+	;
+	(C7 135 133 185 183)
+	(D7 185 133 235 183)
+	(F7 235 133 285 183)
 	)
 	(links e 
 	  (B9 C9) (C9 D9) (D9 E8) (E8 E9) (E9 F9) (F9 G9)
 	  (B7 B8) (B8 C8) (C8 D8) (D8 F8) (F8 G8) (G8 G7)
 	) ; e
+	(links ep
+	  (B7 B8) (B8 C7) (C7 D7) (D7 F7) (F7 G8) (G8 G7)
+	) ; ep
 	(links w 
 	  (C9 B9) (D9 C9) (E8 D9) (E9 E8) (F9 E9) (G9 F9)
 	  (B8 B7) (C8 B8) (D8 C8) (F8 D8) (G8 F8) (G7 G8)
 	) ; w
+	(links wp
+          (B8 B7) (C7 B8) (D7 C7) (F7 D7) (G8 F7) (G7 G8)
+	) ; wp
  )
  (board-setup (white (rook B9)))
 
  (piece (name rook) (image white "images\rookw.bmp")
   (moves
    (e (while empty? add e))
+   (ep (while empty? add ep))
    (w (while empty? add w))
+   (wp (while empty? add wp))
   )
  ) ; rook
 
