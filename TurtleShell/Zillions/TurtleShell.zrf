@@ -3,10 +3,22 @@
  (title "TurtleShell")
  (players white)
  (board (image "images\TurtleShell.bmp")
-        (positions (B9 70 50 120 100))
+        (positions 
+	(B9 70 50 120 100)
+	(C9 110 25 160 75)
+	)
+	(links e (B9 C9))
+	(links w (C9 B9))
  )
  (board-setup (white (rook B9)))
- (piece (name rook) (image white "images\rookw.bmp"))
+
+ (piece (name rook) (image white "images\rookw.bmp")
+  (moves
+   (e (if empty? add))
+   (w (if empty? add))
+  )
+ ) ; rook
+
  (loss-condition (white) (checkmated rook))
  (turn-order white)
 )
