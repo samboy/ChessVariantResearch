@@ -45,6 +45,8 @@
 	;
 	(A4 36 283 86 333)
 	(C4 86 283 136 333)
+	(F4 285 283 335 333)
+	(H4 335 283 385 333)
         )
 	(links e 
 	  (B9 C9) (C9 D9) (D9 E8) (E8 E9) (E9 F9) (F9 G9)
@@ -54,7 +56,7 @@
 	) ; e
 	(links ep
 	  (B7 B8) (B8 C7) (C7 D7) (D7 F7) (F7 G8) (G8 G7)
-	  (A4 C4) (C4 B5) (B5 D5) (D5 E5) (E5 G5) 
+	  (A4 C4) (C4 B5) (B5 D5) (D5 E5) (E5 G5) (G5 F4) (F4 H4)
 	) ; ep
 	(links w 
 	  (C9 B9) (D9 C9) (E8 D9) (E9 E8) (F9 E9) (G9 F9)
@@ -64,7 +66,7 @@
 	) ; w
 	(links wp
           (B8 B7) (C7 B8) (D7 C7) (F7 D7) (G8 F7) (G7 G8)
-	  (C4 A4) (B5 C4) (D5 B5) (E5 D5) (G5 E5)
+	  (C4 A4) (B5 C4) (D5 B5) (E5 D5) (G5 E5) (F4 G5) (H4 F4)
 	) ; wp
  )
  (board-setup (white (rook B9)))
