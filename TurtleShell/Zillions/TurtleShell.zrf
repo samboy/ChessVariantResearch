@@ -1,0 +1,12 @@
+; Given to the public domain in 2022 by Sam Trenholme
+(game
+ (title "TurtleShell")
+ (players white)
+ (board (image "images\TurtleShell.bmp")
+        (positions (B9 70 50 120 100))
+ )
+ (board-setup (white (rook B9)))
+ (piece (name rook) (image white "images\rookw.bmp"))
+ (loss-condition (white) (checkmated rook))
+ (turn-order white)
+)
