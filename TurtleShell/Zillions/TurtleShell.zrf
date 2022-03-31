@@ -148,14 +148,29 @@
 		  (B5 C6) (G5 F6) (C5 B6) (F5 G6) (C6 B8) (F6 G8)
 		  (C7 C8) (F7 F8) (B8 C9) (G8 F9) (C8 D9) (F8 E9)
         ) ; k1
-	; k2 Northeast for straight squares and all triangles
-	(links k2 (B0 B2) (D0 D1) (E0 F1) (B1 C3) (B2 D2) (G2 G3)
-	          (B3 C4) (D3 E5) (E2 E5) (E3 G5) (G3 H4)
-		  (A4 C5) (C4 D5) (B5 D6) (D5 E7) (E5 F6) (G5 H5) (F5 H6)
+	; k2 Northeast for all
+	(links k2 (B0 B2) (D0 D1) (E0 F1) (E1 F1) 
+	          (B1 C3) (B2 D2) (C1 D2) (D1 F2) (F1 G1) (G2 G3)
+	          (A3 C4) (B3 C4) (D3 E5) (E2 E5) (E3 G5) (G3 H4)
+		  (A4 C5) (C4 D5) (B5 D6) (D5 E7) (E5 F6) (G5 H5) 
+		  (F4 H5) (F5 H6) (A5 B6) (C5 D6)
 		  (A6 B7) (B6 B8) (D6 D7) (E7 F7) (E6 F7)
 		  (B7 C9) (B8 D8) (C7 D8) (D7 F8) (F7 G7) (G8 G9)
 		  (C8 E8) (D8 E9) (F8 G9)
+		  ; Tilted squares
+		  (C6 D7) (F6 G7) (C3 D5) (F3 H4) (C0 D1) (F0 G1)
 	) ; k2
+	; k3 East or southeast for all:
+	; NE for down triangles, E for slanted squares, E for up triangles,
+	; E for down triangles, SE for sideways triangles, 
+	; NEE for straight squares
+	(links k3 (B0 C1) (C0 E1) (D0 E0) (E1 F0)
+	          (B1 C1) (B2 D1) (C1 E1) (D1 G2) (F1 G0) (G2 G0)
+		  (C2 D1) (D2 F3) (F2 G1)
+		  (A3 C3) (B3 C2) (C3 E2) (D3 E3) (E2 F3) (E3 F4) (F3 H3)
+		  (A4 B5) (C4 D3) (B5 D3) (D5 E6) (E5 F5) (G5 H4) (F4 H3)
+		  (A5 C6) ; HERE
+	) ; k3           
  )
  (board-setup (white (rook B9)))
 
@@ -174,7 +189,9 @@
 
  (piece (name knight) (image white "images\wknight.bmp")
   (moves (k1 (verify not-friend?) add) 
-         (k2 (verify not-friend?) add))
+         (k2 (verify not-friend?) add)
+         (k3 (verify not-friend?) add)
+  ) ; Working on knight moves
  ) ; knight
 
  (loss-condition (white) (checkmated rook))
