@@ -163,14 +163,14 @@
 
  (piece (name rook) (image white "images\rookw.bmp")
   (moves
-   (e (while empty? add e) (verify not-friend?) add))
-   (ep (while empty? add ep) (verify not-friend?) add))
-   (w (while empty? add w) (verify not-friend?) add))
-   (wp (while empty? add wp) (verify not-friend?) add))
-   (n (while empty? add n) (verify not-friend?) add))
-   (np (while empty? add np) (verify not-friend?) add))
-   (s (while empty? add s) (verify not-friend?) add))
-   (sp (while empty? add sp) (verify not-friend?) add))
+   (e (while empty? add e) (verify not-friend?) add)
+   (ep (while empty? add ep) (verify not-friend?) add)
+   (w (while empty? add w) (verify not-friend?) add)
+   (wp (while empty? add wp) (verify not-friend?) add)
+   (n (while empty? add n) (verify not-friend?) add)
+   (np (while empty? add np) (verify not-friend?) add)
+   (s (while empty? add s) (verify not-friend?) add)
+   (sp (while empty? add sp) (verify not-friend?) add)
   )
  ) ; rook
 
