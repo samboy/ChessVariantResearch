@@ -141,9 +141,16 @@
 	  (E1 E0) (D1 E1) (D2 D1) (E2 D2) (E3 E2) (E5 E3) (E6 E5)
 	          (E7 E6) (D7 E7) (D8 D7) (E8 D8) (E9 E8)
 	) ; sp
-	; Knight paths.  We start at just past noon, and move clockwise
-	; We start at the top left, left-to-right top-to-bottom, as
-	; per the rows defined for Turtle Shell
+	; Knight paths.  We start at just past noon (for things like F8-E9, 
+	; a line from the center of the originating polygon connects to 
+	; the point in the center of the destination polygon; for G8-F9,
+	; the point in the middle of F9 is to the right of the point in the
+	; middle of G8: F9 is .5 + ((3 ^ .5)/2) or 1.35 or so wide, so
+	; its halfway point is just under .7 over, while G8's halfway
+	; point is only .5 over), and move 
+	; clockwise
+	; Cells: We start at the top left, left-to-right top-to-bottom, 
+	; as per the rows defined for Turtle Shell
 	; Each cell gets is own line
 	(links k 
 	  ;
@@ -155,6 +162,17 @@
 	  (F9 G7) (F9 G8) (F9 D8) (F9 E8)
 	  (G9 G8) (G9 F8)
           ;
+	  (B7 C9) (B7 C8) (B7 C7) (B7 C6) (B7 A6)
+	  (B8 C9) (B8 D8) (B8 D7) (B7 C6) (B8 C6) (B8 B9)
+	  (C8 D9) (C8 E8) (C8 D7) (C8 C7) (C8 B7) (C8 B9)
+	  (D8 E9) (D8 F9) (D8 G8) (D8 F7) (D8 C7) (D8 B8) (D8 C9) (D8 D9)
+          (F8 G9) (F8 G7) (F8 F7) (F8 D7) (F8 E8) (F8 E9)
+	  (G8 F9) (G8 G9) (G8 G6) (G8 F6) (G8 D7) (G8 D8)
+	  (G7 H6) (G7 F6) (G7 F7) (G7 F8) (G7 F9)
+	  ;
+	  (C7 D8) (C7 E7) (C7 D6) (C7 B6) (C7 B7) (C7 C8)
+	  (D7 F8) (D7 G8) (D7 F6) (D7 E6) (D7 D6) (D7 C6) (D7 B8) (D7 C8)
+	  (F7 G7) (F7 G6) (F7 E6) (F7 E7) (F7 D8) (F7 F8)
 	  ;
 	  (C6 B8) (C6 D7) (C6 E7) (C6 D5) (C6 B5) (C6 A5) (C6 A6) (C6 B8)
         ) ; k
