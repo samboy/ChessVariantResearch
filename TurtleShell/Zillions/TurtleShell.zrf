@@ -80,6 +80,14 @@
 	(F0 260 475 310 525)
 	(G0 303 452 353 502)
         )
+	(zone (name promotion) (players white) 
+	 (positions B9 C9 D9 E8 E9 F9 G9 B7 B8 C8 D8 F9 G8 G7
+	            C7 D7 F7 B6 C6 D6 E7 E6 F6 G6)) ; white promotion zone
+	(zone (name promotion) (players black) 
+	 (positions B3 C3 D3 E2 E3 F3 G3 B1 B2 C2 D2 F2 G2 G1
+	            C1 D1 F1 B0 C0 D0 E1 E0 F0 G0)) ; black promotion zone
+	(zone (name endzone) (players white) (positions B9 C9 D9 E8 E9 F9 G9))
+	(zone (name endzone) (players black) (positions B0 C0 D0 E1 E0 F0 G0))
 	; Rook/Guard/King paths
 	(links e 
 	  (B9 C9) (C9 D9) (D9 E8) (E8 E9) (E9 F9) (F9 G9)
@@ -205,8 +213,13 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  (board-setup (white (rook B0 G0)
                      (knight C0 F0)
 		     (guard D0 E0)
-		     (king E1))
-	      (black (king E8))
+		     (king E1)
+		     (wpawn B1 B2 C2 D2 F2 G2 G1))
+	      (black (rook B9 G9)
+	             (knight C9 F9)
+		     (guard D9 E9)
+		     (king E8)
+		     (bpawn B7 B8 C7 D7 F7 G8 G7))
  ) ; board-setup
 
  (piece (name rook) 
@@ -258,7 +271,27 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
   (k7 (verify not-friend?) add)
   (k8 (verify not-friend?) add))
  ) ; knight
+ 
+ (piece (name wpawn)
+  (image white "images\pawnw.bmp" black "images\pawnb.bmp")
+  (moves (n (verify not-friend?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (n (verify (in-zone? endzone)) (add rook))
+         (np (verify not-friend?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook))) 
+	 (np (verify (in-zone? endzone)) (add rook))) ; moves
+ ) ; wpawn
+ (piece (name bpawn)
+  (image white "images\pawnw.bmp" black "images\pawnb.bmp")
+  (moves (s (verify not-friend?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (s (verify (in-zone? endzone)) (add rook))
+         (sp (verify not-friend?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook))) 
+	 (sp (verify (in-zone? endzone)) (add rook))) ; moves
+ ) ; bpawn
 
  (loss-condition (white black) (checkmated king))
+ (win-condition (white black) (absolute-config king (endzone)))
  (turn-order white black)
 )
