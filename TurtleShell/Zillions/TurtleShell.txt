@@ -1,0 +1,18 @@
+This is a Zillions of Games implementation of Turtle Shell Chess, a
+Chess variant that is played on a tessellation called the “33344-33434 
+tiling.”  Full rules for this variant are in the file TurtleShell.pdf.
+
+Note that the Zillions implementation does not correctly implement
+Turtle Shell Chess's "No chasing" rules; instead, a repetition is
+a loss for the person who repeats a given position for the third
+time.
+
+All content here is public domain:
+
+* The chess piece images are derived from 19th century works.  Because
+  of the age of these works, any content in them is now public domain.
+* I donate all of my work herein to the public domain, including the
+  board image and rules.
+* The Zillions file was made from scratch and is an original work 
+  which I also donate to the public domain.
+
