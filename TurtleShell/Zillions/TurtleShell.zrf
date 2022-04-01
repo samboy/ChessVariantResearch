@@ -1,7 +1,7 @@
 ; Given to the public domain in 2022 by Sam Trenholme
 (game
  (title "TurtleShell")
- (players white)
+ (players white black)
  (board (image "images\TurtleShell.bmp")
         (positions 
 	; Top to bottom, left to right
@@ -202,9 +202,15 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 ; having knightriders is left as an exercise for the reader
 
  )
- (board-setup (white (rook B9)))
+ (board-setup (white (rook B0 G0)
+                     (knight C0 F0)
+		     (guard D0 E0)
+		     (king E1))
+	      (black (king E8))
+ ) ; board-setup
 
- (piece (name rook) (image white "images\rookw.bmp")
+ (piece (name rook) 
+  (image white "images\rookw.bmp" black "images\rookb.bmp")
   (moves
    (e (while empty? add e) (verify not-friend?) add)
    (ep (while empty? add ep) (verify not-friend?) add)
@@ -217,7 +223,32 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
   )
  ) ; rook
 
- (piece (name knight) (image white "images\wknight.bmp")
+ (piece (name guard)
+  (image white "images\queenw.bmp" black "images\queenb.bmp")
+  (moves (e (verify not-friend?) add)
+  (ep (verify not-friend?) add)
+  (w (verify not-friend?) add)
+  (wp (verify not-friend?) add)
+  (n (verify not-friend?) add)
+  (np (verify not-friend?) add)
+  (s (verify not-friend?) add)
+  (sp (verify not-friend?) add))
+ ) ; guard
+
+ (piece (name king)
+  (image white "images\kingw.bmp" black "images\kingb.bmp")
+  (moves (e (verify not-friend?) add)
+  (ep (verify not-friend?) add)
+  (w (verify not-friend?) add)
+  (wp (verify not-friend?) add)
+  (n (verify not-friend?) add)
+  (np (verify not-friend?) add)
+  (s (verify not-friend?) add)
+  (sp (verify not-friend?) add))
+ ) ; guard
+   
+ (piece (name knight) 
+  (image white "images\wknight.bmp" black "images\bknight.bmp")
   (moves (k1 (verify not-friend?) add)
   (k2 (verify not-friend?) add)
   (k3 (verify not-friend?) add)
@@ -228,6 +259,6 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
   (k8 (verify not-friend?) add))
  ) ; knight
 
- (loss-condition (white) (checkmated rook))
- (turn-order white)
+ (loss-condition (white black) (checkmated king))
+ (turn-order white black)
 )
