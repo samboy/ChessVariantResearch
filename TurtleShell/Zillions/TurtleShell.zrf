@@ -342,3 +342,10 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 		     (bpawn B7 B8 C7 D7 F7 G8 G7))
  ) ; board-setup
 ) ; variant
+
+(variant 
+ (title "Empty board")
+ (board-setup (white (king E1))
+	      (black (king E8))
+ ) ; board-setup
+) ; variant
