@@ -1,6 +1,7 @@
 ; Given to the public domain in 2022 by Sam Trenholme
 (game
  (title "TurtleShell")
+ (description "Chess on a 33344-33434 tiling")
  (players white black)
  (board (image "images\TurtleShell.bmp")
         (positions 
@@ -222,6 +223,7 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  ) ; board-setup
 
  (piece (name rook) 
+  (help "Moves any number of cells along a row or file")
   (image white "images\rookw.bmp" black "images\rookb.bmp")
   (moves
    (e (while empty? add e) (verify not-friend?) add)
@@ -236,6 +238,7 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  ) ; rook
 
  (piece (name guard)
+  (help "Moves one cell which shares an edge with its current cell")
   (image white "images\queenw.bmp" black "images\queenb.bmp")
   (moves (e (verify not-friend?) add)
   (ep (verify not-friend?) add)
@@ -248,6 +251,7 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  ) ; guard
 
  (piece (name king)
+  (help "Moves one cell like guard; royal")
   (image white "images\kingw.bmp" black "images\kingb.bmp")
   (moves (e (verify not-friend?) add)
   (ep (verify not-friend?) add)
@@ -261,6 +265,7 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
    
  (piece (name knight) 
   (image white "images\wknight.bmp" black "images\bknight.bmp")
+  (help "Moves one cell it shares corner but not edge with")
   (moves (k1 (verify not-friend?) add)
   (k2 (verify not-friend?) add)
   (k3 (verify not-friend?) add)
@@ -273,6 +278,7 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  
  (piece (name cardinal) 
   (image white "images\WMarshal.bmp" black "images\BMarshal.bmp")
+  (help "Moves like rook or knight")
   (moves
    (e (while empty? add e) (verify not-friend?) add)
    (ep (while empty? add ep) (verify not-friend?) add)
@@ -294,6 +300,7 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  ) ; cardinal (rook + knight)
 
  (piece (name wpawn)
+  (help "Moves one cell forward; promotes to rook")
   (image white "images\pawnw.bmp" black "images\pawnb.bmp")
   (moves (n (verify not-friend?) (verify (not-in-zone? endzone)) add
 	 (if (in-zone? promotion) (add rook)))
@@ -303,6 +310,7 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 	 (np (verify (in-zone? endzone)) (add rook))) ; moves
  ) ; wpawn
  (piece (name bpawn)
+  (help "Moves one cell forward; promotes to rook")
   (image white "images\pawnw.bmp" black "images\pawnb.bmp")
   (moves (s (verify not-friend?) (verify (not-in-zone? endzone)) add
 	 (if (in-zone? promotion) (add rook)))
