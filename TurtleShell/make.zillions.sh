@@ -23,6 +23,7 @@ mkdir $DIR/images
 cp Zillions/images/*bmp $DIR/images
 cp Zillions/TurtleShell.zrf $DIR
 cp Zillions/TurtleShell.txt $DIR
+cp TurtleShellRules*pdf $DIR
 echo Version $VERSION >> $DIR/TurtleShell.txt
 echo \; Version $VERSION >> $DIR/TurtleShell.zrf
 unix2dos $DIR/TurtleShell.txt
