@@ -350,4 +350,4 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 	      (black (king E8))
  ) ; board-setup
 ) ; variant
-; Version 2022-04-02-0102
+; This is version 1.03 over at zillions-of-games.com
