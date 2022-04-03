@@ -2,6 +2,14 @@ This is a Zillions of Games implementation of Turtle Shell Chess, a
 Chess variant that is played on a tessellation called the “33344-33434 
 tiling.”  Full rules for this variant are in the file TurtleShell.pdf.
 
+To play, go to https://zillions-of-games.com/, download and install
+the program, then, as needed, make a donation to get the unlock key; 
+there is no set price so the donation amount is based on one's income
+and what one can reasonably afford to spend.
+
+Zillions runs well in Windows 10, and is playable in x86 Linux with 
+Wine.
+
 Note that the Zillions implementation does not correctly implement
 Turtle Shell Chess's "No chasing" rules; instead, a repetition is
 a loss for the person who repeats a given position for the third
@@ -16,3 +24,9 @@ All content here is public domain:
 * The Zillions file was made from scratch and is an original work 
   which I also donate to the public domain.
 
+Source files used to make this Zillions game can be seen at this
+location:
+
+https://github.com/samboy/ChessVariantResearch
+
+Version 1.05
