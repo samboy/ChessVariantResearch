@@ -2,6 +2,7 @@
 (game
  (title "TurtleShell")
  (description "Chess on a 33344-33434 tiling")
+ (history "Based on an idea originally made in 1994.  Finally implemented in 2021 (board graphics) and 2022 (game rules).  Version 1.06 released April 2022.")
  (players white black)
  (board (image "images\TurtleShellChess\TurtleShell.bmp")
         (positions 
