@@ -3,7 +3,7 @@
  (title "TurtleShell")
  (description "Chess on a 33344-33434 tiling")
  (players white black)
- (board (image "images\TurtleShell.bmp")
+ (board (image "images\TurtleShellChess\TurtleShell.bmp")
         (positions 
 	; Black endzone
 	(B9 77 60 107 90)
@@ -224,7 +224,8 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 
  (piece (name rook) 
   (help "Moves any number of cells along a row or file")
-  (image white "images\rookw.bmp" black "images\rookb.bmp")
+  (image white "images\TurtleShellChess\rookw.bmp" 
+         black "images\TurtleShellChess\rookb.bmp")
   (moves
    (e (while empty? add e) (verify not-friend?) add)
    (ep (while empty? add ep) (verify not-friend?) add)
@@ -239,7 +240,8 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 
  (piece (name guard)
   (help "Moves one cell which shares an edge with its current cell")
-  (image white "images\queenw.bmp" black "images\queenb.bmp")
+  (image white "images\TurtleShellChess\queenw.bmp" 
+         black "images\TurtleShellChess\queenb.bmp")
   (moves (e (verify not-friend?) add)
   (ep (verify not-friend?) add)
   (w (verify not-friend?) add)
@@ -252,7 +254,8 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 
  (piece (name king)
   (help "Moves one cell like guard; royal")
-  (image white "images\kingw.bmp" black "images\kingb.bmp")
+  (image white "images\TurtleShellChess\kingw.bmp" 
+         black "images\TurtleShellChess\kingb.bmp")
   (moves (e (verify not-friend?) add)
   (ep (verify not-friend?) add)
   (w (verify not-friend?) add)
@@ -264,7 +267,8 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  ) ; guard
    
  (piece (name knight) 
-  (image white "images\wknight.bmp" black "images\bknight.bmp")
+  (image white "images\TurtleShellChess\wknight.bmp" 
+         black "images\TurtleShellChess\bknight.bmp")
   (help "Moves one cell it shares corner but not edge with")
   (moves (k1 (verify not-friend?) add)
   (k2 (verify not-friend?) add)
@@ -277,7 +281,8 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  ) ; knight
  
  (piece (name cardinal) 
-  (image white "images\WMarshal.bmp" black "images\BMarshal.bmp")
+  (image white "images\TurtleShellChess\WMarshal.bmp" 
+         black "images\TurtleShellChess\BMarshal.bmp")
   (help "Moves like rook or knight")
   (moves
    (e (while empty? add e) (verify not-friend?) add)
@@ -301,7 +306,8 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 
  (piece (name wpawn)
   (help "Moves one cell forward; promotes to rook")
-  (image white "images\pawnw.bmp" black "images\pawnb.bmp")
+  (image white "images\TurtleShellChess\pawnw.bmp" 
+         black "images\TurtleShellChess\pawnb.bmp")
   (moves (n (verify not-friend?) (verify (not-in-zone? endzone)) add
 	 (if (in-zone? promotion) (add rook)))
 	 (n (verify (in-zone? endzone)) (add rook))
@@ -311,7 +317,8 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
  ) ; wpawn
  (piece (name bpawn)
   (help "Moves one cell forward; promotes to rook")
-  (image white "images\pawnw.bmp" black "images\pawnb.bmp")
+  (image white "images\TurtleShellChess\pawnw.bmp" 
+         black "images\TurtleShellChess\pawnb.bmp")
   (moves (s (verify not-friend?) (verify (not-in-zone? endzone)) add
 	 (if (in-zone? promotion) (add rook)))
 	 (s (verify (in-zone? endzone)) (add rook))
@@ -350,4 +357,4 @@ D5)  (F3 D2)  (B2 C3) (C2 B3) (D2 B2)  (F2 E3) (G2 D2) (C1 C2) (D1 C0)
 	      (black (king E8))
  ) ; board-setup
 ) ; variant
-; This is version 1.05 over at zillions-of-games.com
+; This is version 1.06 over at zillions-of-games.com

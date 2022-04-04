@@ -20,10 +20,11 @@ VERSION=$( date +%Y-%m-%d-%H%M )
 DIR=$HOME/tmp/$$/TurtleShellZillions-$VERSION
 mkdir $DIR
 mkdir $DIR/images
-cp Zillions/images/*bmp $DIR/images
+mkdir $DIR/images/TurtleShellChess/
+cp Zillions/images/TurtleShellChess/*bmp $DIR/images/TurtleShellChess/
 cp Zillions/TurtleShell.zrf $DIR
-cp Zillions/TurtleShell.txt $DIR
-cp TurtleShellRules*pdf $DIR
+cp Zillions/TurtleShell.txt $DIR/ReadMe.txt
+cp TurtleShellRules*pdf $DIR/TurtleShell.pdf
 echo Version $VERSION >> $DIR/TurtleShell.txt
 echo \; Version $VERSION >> $DIR/TurtleShell.zrf
 unix2dos $DIR/TurtleShell.txt
