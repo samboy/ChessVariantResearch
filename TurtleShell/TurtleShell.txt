@@ -1,0 +1,252 @@
+Turtle Shell Chess
+
+Version 1.02 2022-04-02
+
+Introduction
+
+Since 1994, I have wanted to create a playable Chess variant using this
+particular tessellation, a tiling that the Wikpedia calls a 33344-33434
+tiling.
+
+When I was trying to come up with a Chess variant with this tiling back
+then, my then roommate said my board looked like a “Turtle Shell”,
+which is why this variant is called “Turtle Shell Chess”.
+
+It took me 28 years, but I have finally formalized the rules for “Turtle
+Shell Chess”.
+
+The board
+
+This Chess variant is played on a board using a tiling which combines
+squares and triangles. Pieces are placed and moved inside of the squares
+and triangles. The places where pieces may go are called cells; there
+are 64 cells in Turtle Shell Chess.
+
+Naming the cells
+
+A modified form of algebraic notation is using to give each cell on the
+board a unique designation.
+
+See the file TurtleShell.png for the names of the cells.
+
+Rows
+
+The board has 10 rows in it. Because of the nature of the tiling, some
+cells are in more than one row. Rooks can move left and right along rows.
+
+Rows include:
+
+B9-C9-D9-E8-E9-F9-G9
+B7-B8-C8-D8-F8-G8-G7
+B7-B8-C7-D7-F7-G8-G7 (note some overlap with the previous row)
+A6-B6-C6-D6-E7-E6-F6-G6-H6
+A5-C5-B5-D5-E5-G5-F5-H5
+A4-C4-B5-D5-E5-G5-F4-H4 (again, some overlap)
+A3-B3-C3-D3-E2-E3-F3-G3
+etc.
+
+Files
+
+The board has six files. As with rows, some cells are in more than one
+file. Rooks can move up and down files, and pawns can move as well as
+capture one square towards the opponent’s endzone on a given file.
+
+Files are:
+
+B0-B1-B3-A3-A4-A5-A6-B6-B7-B9
+C0-C1-B2-C2-C3-C4-B5-C5-C6-C7-B8-C8-C9
+D0-E1-D2-D2-E2-D3-D5-D6-E7-D7-D8-E8-D9
+E0-E1-D2-D2-E2-E3-E5-E6-E7-D7-D8-E8-E9 (this is the only overlap)
+F0-F1-G2-F2-F3-F4-G5-F5-G6-F7-G8-F8-F9
+G0-G1-G3-H3-H4-H5-H6-G6-G7-G9
+
+Promotion zones
+
+Any pawn placed in the opponent’s promotion zone may be promoted to a
+rook. A pawn not in the opponent’s endzone is not required to promote;
+promotion is mandatory once in the endzone. There is no limit on the
+number of promoted pawns allowed on the board.
+
+Promotion zones are, for white, light yellow, and, for black, light
+red (peach) in the included TurtleShell.png diagram.
+
+End zones
+
+Any pawn placed in the opponent’s end zone is required to promote to a
+rook. If a player is able to place his king in the opponent’s end zone,
+they immediately win the game.
+
+End zones are, for white, tan, and for red, darker red in the
+TurtleShell.png diagram.
+
+Movement and capture
+
+Each piece is Turtle shell chess has a given movement to it. If a piece
+moves to a square occupied by an opponent’s piece, the opponent’s
+piece in question is removed from the board; this is called capture.
+
+The rook
+
+A rook may move any number of cells along a row or file until it is
+blocked by a piece of the same color. If there is an enemy piece on the
+rook’s path, the rook may capture that piece, but the rook may not
+continue moving after capturing.
+
+A rook must make an entire single move along the same row or file. For
+example, a rook on D0 may move to D3 (which is on the same file) but
+may not move to E3, because moving to E3 is only possible from D0 if
+the rook changes the file they are on during the move.
+
+The guard
+
+The guard may move or capture to any cell it shares an edge with. If a
+cell is a triangle, a guard may move or capture to any of the up to three
+adjacent cells. If the cell is a square, a guard may move or capture to
+any of the up to four adjacent cells.  
+
+The knight
+
+A knight in Turtle Shell Chess may move or capture to any cell that it
+shares a corner with, as long as the cell in question does not share an
+edge with the cell the knight is in.
+
+A knight, if in a triangle cell, may move to up to six different
+cells. If in a square cell, a knight might be able to move to up to
+eight different cells.
+
+The pawn
+
+A pawn has the same move and capture: It may move one cell forward
+towards the opponent’s endzone along a file. If a pawn ends its move in
+the opponent’s promotion zone, it may, at the player’s discretion,
+promote in to a rook immediately after ending its move in the promotion
+zone. If a pawn ends its move in the opponent’s end zone, it must
+promote in to a rook immediately after ending its move.
+
+For example, if the white player moves a pawn from C5 to C6, they may
+make the pawn on C6 a rook on the same turn the pawn moved from C5 to C6.
+
+A pawn must have moved on the same turn when it is promoted.
+
+A white pawn on the E2 triangle cell may move or capture to either the
+D3 cell or the E3 cell. A black pawn on the E7 triangle cell may move
+or capture to either the D6 cell or E6 cell. Otherwise, each pawn may
+only move to the cell immediately in front of it on the same file.
+
+The king
+
+A king moves as a guard. If the opponent threatens to capture the king,
+the king is said to be in check and must make a move to stop the threat
+of capture. If it is not possible to stop the check (by either capturing
+the piece giving check, interposing a piece between a rook giving check
+and the king, or moving the king to a square not under threat of opponent
+capture), the king is under checkmate and the player giving checkmate
+has won the game.
+
+If a king ends its turn on a square in the opponent’s end zone without
+being in check, the game is immediately won for the person who moved
+their king across the board.
+
+Repetition of move
+
+If making a move which recreates a position previously played in this
+game, with the same player having the move as the previous position,
+the attacking player must stop the loop. An attacking player is defined
+as the player who, for all board positions in the loop, just after the
+attacker has moved, more capture threats (including check) are on the
+board regardless of the color of the piece making the capture threat. This
+is calculated by adding together all possible capture moves for each
+unique board position in the loop per player. In case this sum is the
+same for both players, the player who gives check more often (i.e. has
+more king capture threats, where a double check is 2 threats) in the
+loop of moves is the player who must make a different move to break the
+loop. In case the sum of possible captures is the same for both players
+during the loop, and both players give the same total number of checks
+(0 or more) in the loop, the player whose move starts the loop must make
+a different move to break the loop.
+
+This is a modified “Ko” rule. When playing with a computer, the
+computer would enforce this rule. When playing on a physical board, the
+rule would be more subjectively enforced: Someone appearing to attack
+an opponents piece resulting in a repeat of a previous position would
+be asked to stop the attack by making another move or forfeit the game.
+
+Objective
+
+The object of the game is to checkmate the opponent’s king, or to place
+one’s own king on a square in the opponent’s end zone without the
+king being in check. Stalemate is losing for the player giving stalemate.
+
+Setup
+
+In the initial setup, each side has seven pawns, two rooks, two knights,
+two guards, and one king.
+
+Notes
+
+Some notes about this game:
+
+While a number of hexagonal chess variants have been invented, chess
+variants using other tilings are relatively rare. One such variant is
+Rhombic chess by Tony Paletta. Other variants are the variants by Dekle
+(Triangular chess, Tri-chess, Masonic chess, Trishogi, Masonic shogi,
+etc.)
+
+The knight is more like the ferz piece, but it is called the “Knight”
+here because that is a more familiar name, because “fers” means
+“queen” in Russian, and because the piece has more mobility with this
+tiling (6-8 squares instead of the four a ferz has on a square board).
+
+I have, in the last 28 years of speculating about this variant, considered
+pieces with circular moves. One issue with circular moves is that chess
+doesn’t have circular moves, so they might not be very intuitive for
+chess players, and because they can make the C3, C6, F3, and F6 cells
+too powerful.
+
+It’s possible to play Go with this board: One Go variant would be played
+inside the cells, where each piece would have three or four liberties
+(unless on the edge or next to another piece), depending on whether
+the cell was a square or triangle. It would also be possible to play Go
+on the corners of the cells; here each piece would normally have five
+liberties. In both cases, a larger board would be closer to 19x19 Go.
+
+There are 360 possible starting positions if we shuffle the pieces along
+the back row.
+
+Playing with Shogi style drops is also a rule I considered while inventing
+this variant. This is an optional rule, but not an official rule (so
+it can be played with normal chess pieces; just place a checker or coin
+under promoted pawns).
+
+Other possible optional pieces include: a piece which moves forwards or
+backwards like a rook, but otherwise like a guard, akin to Chu Shogi’s
+shugyo (vertical mover); a piece which combines a rook and knight (a
+cardinal or marshal, if you will; I would place them on D1 and D8);
+and a piece which combines the guard and knight.
+
+A combination of the modified Ko rule and the end zone win rule greatly
+reduces (if not eliminates) draws. Because of the geometry of the board,
+one king can not block the other king from reaching the end zone (there
+is no opposition in Turtle Shell Chess).
+
+The “stop an attack if it causes repetition” rule is a simplification
+of similar rules in Xiangqi (Chinese chess). For an example of this
+in a real world game, let’s look at Fischer-Tal Leipzig 1960. Here,
+after 21... Qg4+ by Tal, the game was drawn because of 22. Kh1 Qf3+
+23. Kg1 Qg4+ 24. Kh1 Qf3+ and so on. Using Turtle Shell rules, since the
+loop begins at 22. Kh1 and repeats with 24. Kh1, we look at the number
+of possible capturing moves at each stage in the loop, where each ply
+in the loop is looked at precisely once: 22. 1 attack (Qh7xe7) 2 attacks
+(Qh7xe7; Qf3xh1) 23. 1 attack (Qh7xe7) 2 attacks (Qh7xe7; Qg4xg1) and the
+loop repeats on move 24 so we look no further. For both moves (4 plies)
+in the loop, the board has more threats when Black has moved (4 total
+across the loop: 2 attacks both times Black has moved) than when White
+has moved (2 total across the loop: 1 attack each time White has moved),
+so Black is the one who needs to break the loop if this 1960 Chess game
+had Turtle Shell repetition rules.
+
+Copyright 
+
+I dedicate the rules of this game and all graphics and code
+illustrating this game to the public domain.
+
