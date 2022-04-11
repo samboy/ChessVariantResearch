@@ -1,4 +1,16 @@
-Each setup is the opening for an 8x10 chess variant game; C is Rook + Knight, and A is Bishop + Knight.
+This is a table showing the porportion of White wins, Black wins, and
+draws for various possible Capablanca Chess opening setups.  In this
+table, the line shows the back row opening setup: RNBQK are the same 
+as in English language Chess algebraic notation.  C is Rook + Knight, 
+and A is Bishop + Knight.
+
+Around a dozen games with Fairy Stockfish playing at a very high 
+level (21 ply search per move) were played for each variant; some 
+randomization of moves was done via 3-way “MultiPV” evaluation 
+and randomly choosing a move within half a pawn in value compared to
+the best move.
+
+The results:
 
 |Opening setup|White Wins|Black Wins|Draws|
 |:-|:-|:-|:-|
@@ -20,3 +32,6 @@ Each setup is the opening for an 8x10 chess variant game; C is Rook + Knight, an
 |RBNACKQNBR|0.4|0.2|0.4|
 |RANBQKBNCR (Carrera)|0.636364|0.181818|0.181818|
 |RCNBQKBNAR (Murray-Carrera)|0.636364|0.0909091|0.272727|
+
+The raw score for all played games is available in the file
+`Capa-tourney-results` in the directory `Lua-client/results`.
