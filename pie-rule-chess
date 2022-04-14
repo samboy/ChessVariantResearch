@@ -1,3 +1,36 @@
+Lichess Masters database:
+
+move white/draw/black (win)
+
+1. Na3 43/36/21
+2. h4 37/28/35
+3. g3 36/39/25
+4. d4 34/43/23
+5. Nf3 34/43/23
+6. c4 34/43/23
+7. e4 33/42/25
+8. b3 33/26/30
+9. e3 33/28/39
+10. Nh3 32/40/28
+11. c3 31/34/34
+12. d3 31/34/35
+13. a3 30/40/31
+14. Nc3 30/38/32
+15. f4 29/36/35
+16. h3 29/29/43
+17. g4 29/23/49
+18. f3 27/18/55
+19. a4 25/50/25
+20. b4 25/43/32
+
+Stockfish 14+ NNUE 49 ply:
+
+1. e4 +0.3 White
+2. Nf3 +0.2 White
+3. d4 +0.2 White
+4. g3 +0.1 White
+5. c4 +0.1 White
+
 Stockfish 11 28 ply:
 
 Negative means black advantage, positive white advantage, 1 point
