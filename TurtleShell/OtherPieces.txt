@@ -9,13 +9,18 @@ Some other pieces besides the pieces in official Turtle Shell Chess:
   a knight on triangle tiles.
 * Double move guard: Moves like a guard, but twice in one turn.  Slightly
   more powerful than a knight.
+* Semi-Cardinal: Moves like a rook when on a triangle tile.  Moves like
+  a knight when on a sqaure tile.
 * Limited Cardinal (Archibishop, perhaps): Moves like a rook or, when
-  on triangle tiles, like a knight.
+  on triangle tiles, like a rook or knight.
 * Sideways pawns: Allow pawns to move one square sideways without 
   capturing.  Probably makes it a completely new game, just as
   sideways pawns in normal western chess make for a very different
   game.
 
 Note that there really isn’t a “diagonal” because each vertex (corner,
-if you will) touches five tiles, so we don’t have a Bishop.
+if you will) touches five tiles, so we don’t have a Bishop.  On the
+other hand, with both triangles and squares, we can have hybrid pieces,
+and we can also have circle movers without needing a huge board the way
+a Betza Rose does.
 
