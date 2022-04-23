@@ -1,0 +1,21 @@
+Some other pieces besides the pieces in official Turtle Shell Chess:
+
+* Horizontal Circle rider.  Fairly powerful when combined with
+  a vertical rook.  See 64-square-1-circle3.png and 64-square-1-circle4.png
+  for the paths in a horizontal circle.  Akin to Betza’s rose.
+* Vertical circle rider.  Like the horizontal mover, but moves in the
+  circles shown in 64-square-1-circle1.png and 64-square-1-circle2.png
+* Hybrid knight/guard: Moves like a guard on square tiles; moves like
+  a knight on triangle tiles.
+* Double move guard: Moves like a guard, but twice in one turn.  Slightly
+  more powerful than a knight.
+* Limited Cardinal (Archibishop, perhaps): Moves like a rook or, when
+  on triangle tiles, like a knight.
+* Sideways pawns: Allow pawns to move one square sideways without 
+  capturing.  Probably makes it a completely new game, just as
+  sideways pawns in normal western chess make for a very different
+  game.
+
+Note that there really isn’t a “diagonal” because each vertex (corner,
+if you will) touches five tiles, so we don’t have a Bishop.
+
