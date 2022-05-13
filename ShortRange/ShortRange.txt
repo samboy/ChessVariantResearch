@@ -48,7 +48,7 @@ but not all squares on the chess board.
 
 With Bishops, the piece can only hit squares of a given checker color.  
 There are other possible forms of a piece which moves in the 5x5 square
-around it being colorbound:
+around it being colorbound.  This is an incomplete list:
 
 * A piece can only hit squares of a given color on the board
 * A piece can only hit every other row on the board
@@ -77,8 +77,6 @@ O O - - -
 - - X - -
 O - - - -
 - - - - -
-
-This is a piece which can only move n-nw or w-sw.  
 
 The masks so far are:
 
@@ -233,9 +231,21 @@ Pinwheel 1:
 15 -- -- -- --
 -- -- -- 23 --
 
+Pinwheel 2:
+
+-- -- -- 04 --
+06 -- -- -- --
+-- -- XX -- --
+-- -- -- -- 19
+-- 21 -- -- --
+
+There’s others, but I don’t think I will find all of the possible 
+colobound pieces.
+
 == Semi-pinwheel, not colorbound ==
 
-Let’s look at an interesting non-colorbound piece:
+While looking for colorbound pieces, I found an interesting 
+non-colorbound piece:
 
 O - - - -
 - - - - O
@@ -244,15 +254,57 @@ O - - - -
 - - - O -
 
 Here is the number of moves to get to a given square on an 8x8 board,
-starting at “0”
+starting at “0”.  We will use hex numbers (“A” is 10, etc.):
 
-2 - - - - - - -
-- - - - - - - -
-- - 1 - - - - -
-- - - - - - 1 -
-- - - - 0 - - -
-- - 1 - - - - -
-- - - - - 1 - -
-- - - - - - - -
+2 D B 9 7 5 3 E
+A 8 6 4 2 D B 9
+5 3 1 C A 8 6 4
+2 B 9 7 5 3 1 C
+A 6 4 2 0 B 9 7
+5 3 1 A 8 6 4 2
+2 B 7 5 3 1 C A
+8 6 4 2 B 9 7 5
 
+== Superset of known non-colorbound pieces ==
+
+If the goal is to just find a lot, if not all, non-colorbound
+pieces in a 5x5 grid, that’s far easier to do.  Let’s just look
+at three non-colorbound atoms:
+
+Wazir:
+
+-- -- -- -- --
+-- -- 08 -- --
+-- 12 XX 13 --
+-- -- 17 -- --
+-- -- -- -- --
+
+0b000000010001100010000000
+0x11880
+
+Crab:
+
+-- 02 -- 04 --
+-- -- -- -- --
+-- -- XX -- --
+15 -- -- -- 19
+-- -- -- -- --
+
+0b000001000100000000001010
+0x4400a
+
+Y:
+
+-- -- -- -- --
+-- 07 -- 09 --
+-- -- XX -- --
+-- -- 17 -- --
+-- -- -- -- --
+
+0b000000010000000101000000
+0x10140
+
+Note that 90 degree rotations of the Crab and Y will also be 
+non-colorbound, but we will not look at those, nor will we look
+at stuff like the semi-pinwheel discussed above.
 

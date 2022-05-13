@@ -4,13 +4,16 @@
 
 // Count the number of squares a piece can move to (count the number
 // of 1 bits in a number)
-int countMoves(int_fast32_t piece) {
-	int count;
+int countMoves(int_fast32_t piece, int max) {
+	int count = 0;
 	while(piece != 0) {
 		if(piece & 1) {
 			count++;
 		}
 		piece >>= 1;
+	}
+	if(count > max) {
+		count = max;
 	}
 	return count;
 }
@@ -38,27 +41,28 @@ void showPiece(int_fast32_t piece) {
 int main() {
 	int_fast32_t a;
 	int_fast32_t count = 0;
+	int_fast32_t moves[32];
+	int_fast64_t grandTotal = 0;
+	for(a = 0 ; a < 32 ; a++) {
+		moves[a] = 0;
+	}
 	for(a = 0 ; a <= 0xffffff ; a++) {
-		// Make sure the piece can hit any square on the board
-		// There are seven limitations
-		if((a | 0xaaa555) != 0xaaa555 && // Bishop colorbound 
-		   (a | 0xf83c1f) != 0xf83c1f && // Every other row bound
-		   (a | 0xad66b5) != 0xad66b5 && // Every other file bound
-		   (a | 0x3fff) != 0x3fff && // No backwards move
-		   (a | 0xfffc00) != 0xfffc00 && // No forwards move
-		   (a | 0xe7339c) != 0xe7339c && // No left move
-		   (a | 0x39cce7) != 0x39cce7 && // No right move
-		   (a | 0x8cdff) != 0x8cdff && // No SE move
-		   (a | 0xffb310) != 0xffb310 && // No NW move
-		   (a | 0x8633df) != 0x8633df && // No SW move
-		   (a | 0xfbcc61) != 0xfbcc61 && // No NE move
-		   (a | 0x924249) != 0x924249 && // 3-way A
-		   (a | 0x4c8132) != 0x4c8132    // 3-way B
-		) {
+		if((a & 0x10140) == 0x10140 || // Y
+		   (a & 0x4400a) == 0x4400a || // Crab
+		   (a & 0x11880) == 0x11880 // Wazir
+		   ) {
 		   	count++;
+			moves[countMoves(a,30)]++;
 			//showPiece(a); puts("");
 		}
 	}
 	//showPiece(0x54422a); // Knight
-	printf("%d possible non-colorbound pieces\n",count);
+	printf("%d known non-colorbound pieces\n",count);
+	for(a = 0; a <= 28; a++) {
+		grandTotal += (1 << a) * moves[a];
+		if(moves[a] > 0) {
+			printf("%6d pieces with %d moves\n",moves[a],a);
+		}
+	}
+	printf("With riders, %d possible non-colorbound pieces\n",grandTotal);
 }
