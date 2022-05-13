@@ -57,34 +57,28 @@ around it being colorbound:
 * A piece can not move forwards
 * A piece can not move left
 * A piece can not move right
+* Missing NW, NE, SW, or SE movement
+* 3-way “staircase” colorbound
+* “Pinwheels” are 5-way colorbound
 * Some others I have not discovered yet
 * Some combination of the above limitations
 
-To determine whether a piece is one of the above seven types of
-colorbound piece, we take the binary representation of the piece,
-run a binary (bitwise) or against it and a given mask, and see if
-the resulting number has the same value as the mask.  If it does,
-then the piece is colorbound in the given manner.
+To determine whether a piece is one of the above types of colorbound
+piece, we take the binary representation of the piece, run a binary
+(bitwise) or against it and a given mask, and see if the resulting
+number has the same value as the mask.  If it does, then the piece is
+colorbound in the given manner.
 
 Even if a piece passes all of the above tests, it may still
 be colorbound.  Let’s look at one such example:
 
-- - - O -
-- - - - -
+O O - - -
+- - - - O
 - - X - -
 O - - - -
 - - - - -
 
-This is a piece which can only move n-nw or w-sw.  While this piece
-is not colorbound in any of the ways described in the masks, it is 
-still colorbound in a 3-way staircase pattern:
-
-1 2 3 1 2 3
-3 1 2 3 1 2
-2 3 1 2 3 1
-1 2 3 1 2 3
-3 1 2 3 1 2
-etc.
+This is a piece which can only move n-nw or w-sw.  
 
 The masks so far are:
 
@@ -230,3 +224,35 @@ No NE move:
 
 0b010011001000000100110010
 0x4c8132
+
+Pinwheel 1:
+
+-- 02 -- -- --
+-- -- -- -- 10
+-- -- XX -- --
+15 -- -- -- --
+-- -- -- 23 --
+
+== Semi-pinwheel, not colorbound ==
+
+Let’s look at an interesting non-colorbound piece:
+
+O - - - -
+- - - - O
+- - X - -
+O - - - -
+- - - O -
+
+Here is the number of moves to get to a given square on an 8x8 board,
+starting at “0”
+
+2 - - - - - - -
+- - - - - - - -
+- - 1 - - - - -
+- - - - - - 1 -
+- - - - 0 - - -
+- - 1 - - - - -
+- - - - - 1 - -
+- - - - - - - -
+
+
