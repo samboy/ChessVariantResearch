@@ -57,6 +57,7 @@ around it being colorbound:
 * A piece can not move forwards
 * A piece can not move left
 * A piece can not move right
+* Some others I have not discovered yet
 * Some combination of the above limitations
 
 To determine whether a piece is one of the above seven types of
@@ -65,7 +66,27 @@ run a binary (bitwise) or against it and a given mask, and see if
 the resulting number has the same value as the mask.  If it does,
 then the piece is colorbound in the given manner.
 
-The masks are:
+Even if a piece passes all of the above tests, it may still
+be colorbound.  Let’s look at one such example:
+
+- - - O -
+- - - - -
+- - X - -
+O - - - -
+- - - - -
+
+This is a piece which can only move n-nw or w-sw.  While this piece
+is not colorbound in any of the ways described in the masks, it is 
+still colorbound in a 3-way staircase pattern:
+
+1 2 3 1 2 3
+3 1 2 3 1 2
+2 3 1 2 3 1
+1 2 3 1 2 3
+3 1 2 3 1 2
+etc.
+
+The masks so far are:
 
 Checker color (bishop) restriction:
 
