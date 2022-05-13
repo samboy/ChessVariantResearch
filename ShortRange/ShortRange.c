@@ -2,6 +2,20 @@
 #include <stdint.h>
 #include <stdio.h>
 
+// Count the number of squares a piece can move to (count the number
+// of 1 bits in a number)
+int countMoves(int_fast32_t piece) {
+	int count;
+	while(piece != 0) {
+		if(piece & 1) {
+			count++;
+		}
+		piece >>= 1;
+	}
+	return count;
+}
+
+// Show on standard output the moves of the piece as an ASCII diagram
 void showPiece(int_fast32_t piece) {
 	int a;
 	for(a=0;a<25;a++) {
@@ -33,7 +47,14 @@ int main() {
 		   (a | 0x3fff) != 0x3fff && // No backwards move
 		   (a | 0xfffc00) != 0xfffc00 && // No forwards move
 		   (a | 0xe7339c) != 0xe7339c && // No left move
-		   (a | 0x39cce7) != 0x39cce7) { // No right move
+		   (a | 0x39cce7) != 0x39cce7 && // No right move
+		   (a | 0x8cdff) != 0x8cdff && // No SE move
+		   (a | 0xffb310) != 0xffb310 && // No NW move
+		   (a | 0x8633df) != 0x8633df && // No SW move
+		   (a | 0xfbcc61) != 0xfbcc61 && // No NE move
+		   (a | 0x924249) != 0x924249 && // 3-way A
+		   (a | 0x4c8132) != 0x4c8132    // 3-way B
+		) {
 		   	count++;
 			showPiece(a); puts("");
 		}
