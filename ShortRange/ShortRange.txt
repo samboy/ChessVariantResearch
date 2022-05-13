@@ -1,0 +1,125 @@
+== A binary representation ==
+
+Let’s look at all possible pieces where a piece can go within two
+sqaures in a square board chess variant.  The grid will be this:
+
+- - - - -
+- - - - -
+- - X - -
+- - - - -
+- - - - -
+
+A knight, for example, is this:
+
+- O - O -
+O - - - O
+- - X - -
+O - - - O
+- O - O -
+
+There are 24 possible squares a piece can go to.  Lets give them numbers:
+
+01 02 03 04 05
+06 07 08 09 10
+11 12 -- 13 14
+15 16 17 18 19
+20 21 22 23 24
+
+So, a knight would be 02,04,06,10,16,19,21,23
+
+Let’s make that a 24-bit binary number.  01 is the least significant
+digit, 02 is the second least significant digit, 03 the third least
+significant digit, and so on.  A knight would look like this in
+Python syntax for binary literals:
+
+0b010101000100001000101010
+
+Or, in hex:
+
+0x54422a
+
+Now that we can convert short-range pieces in to a 24-bit binary
+number, let’s look at a limitation many of these pieces have.
+
+== Colorbound ==
+
+A bishop in standard chess is *Colorbound*: It can only reach some,
+but not all squares on the chess board.
+
+With Bishops, the piece can only hit squares of a given checker color.  
+There are other possible forms of a piece which moves in the 5x5 square
+around it being colorbound:
+
+* A piece can only hit squares of a given color on the board
+* A piece can only hit every other row on the board
+* A piece can only hit every other file on the board
+* A piece can not move backwards
+* A piece can not move forwards
+* A piece can not move left
+* A piece can not move right
+* Some combination of the above limitations
+
+To determine whether a piece is one of the above seven types of
+colorbound piece, we take the binary representation of the piece,
+run a binary (bitwise) or against it and a given mask, and see if
+the resulting number has the same value as the mask.  If it does,
+then the piece is colorbound in the given manner.
+
+The masks are:
+
+Checker color (bishop) restriction:
+
+01 -- 03 -- 05
+-- 07 -- 09 --
+11 -- XX -- 14
+-- 16 -- 18 --
+20 -- 22 -- 24
+
+Every other row:
+
+01 02 03 04 05
+-- -- -- -- --
+11 12 XX 13 14
+-- -- -- -- --
+20 21 22 23 24
+
+Every other file:
+
+01 -- 03 -- 05
+06 -- 08 -- 10
+11 -- XX -- 14
+15 -- 17 -- 19
+20 -- 22 -- 24
+
+No backwards move:
+
+01 02 03 04 05
+06 07 08 09 10
+11 12 XX 13 14
+-- -- -- -- --
+-- -- -- -- --
+
+No forward move:
+
+-- -- -- -- --
+-- -- -- -- --
+11 12 XX 13 14
+15 16 17 18 19
+20 21 22 23 24
+
+No left move:
+
+-- -- 03 04 05
+-- -- 08 09 10
+-- -- XX 13 14
+-- -- 17 18 19
+-- -- 22 23 24
+
+No right move:
+
+01 02 03 -- --
+06 07 08 -- --
+11 12 XX -- --
+15 16 17 -- --
+20 21 22 -- --
+
