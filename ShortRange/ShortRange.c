@@ -56,9 +56,9 @@ int main() {
 		   (a | 0x4c8132) != 0x4c8132    // 3-way B
 		) {
 		   	count++;
-			showPiece(a); puts("");
+			//showPiece(a); puts("");
 		}
 	}
-	showPiece(0x54422a); // Knight
-	printf("%d non-colorbound pieces\n",count);
+	//showPiece(0x54422a); // Knight
+	printf("%d possible non-colorbound pieces\n",count);
 }
