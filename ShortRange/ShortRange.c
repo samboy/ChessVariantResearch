@@ -161,25 +161,28 @@ int main() {
 		moves[a] = 0;
 	}
 	for(a = 0 ; a <= 0xffffff ; a++) {
-		if((a & 0x10140) == 0x10140 || // Y
-		   (a & 0x4400a) == 0x4400a || // Crab
-		   (a & 0x11880) == 0x11880 // Wazir
-		   ) {
+		if(a % 100000 == 0) {
+			printf("Calculating, %d of %d done\n",a,0xffffff);
+			fflush(stdout);
+		}
+		if(countReachable8x8(a,0) == 64) {
 		   	count++;
 			moves[countMoves(a,30)]++;
-			//showPiece(a); puts("");
 		}
 	}
 	//showPiece(0x54422a); // Knight
-	countReachable8x8(0x54422a,1); // Show knight moves
-	puts("");countReachable8x8(0x404201,1); // semi-pinwheel fairy piece
-	puts("");
-	printf("%d known non-colorbound pieces\n",count);
+	//countReachable8x8(0x54422a,1); // Show knight moves
+	//puts("");countReachable8x8(0x404201,1); // semi-pinwheel fairy piece
+	//puts("");
+	printf("%d total within 2 squares non-colorbound pieces\n",count);
 	for(a = 0; a <= 28; a++) {
 		grandTotal += (1 << a) * moves[a];
 		if(moves[a] > 0) {
-			printf("%6d pieces with %d moves\n",moves[a],a);
+			printf("%7d pieces with %d moves\n",moves[a],a);
+			//printf("t += 2 ** %d * %d\n",a,moves[a]);
 		}
 	}
-	printf("With riders, %d possible non-colorbound pieces\n",grandTotal);
+	// We need to correctly print 282,232,643,280 here
+	printf("With riders, %U total possible non-colorbound pieces\n",
+		grandTotal);
 }

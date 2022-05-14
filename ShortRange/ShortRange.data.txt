@@ -1,0 +1,24 @@
+16452080 total within 2 squares non-colorbound pieces
+    104 pieces with 3 moves
+   2513 pieces with 4 moves
+  20368 pieces with 5 moves
+  92218 pieces with 6 moves
+ 285796 pieces with 7 moves
+ 669556 pieces with 8 moves
+1251284 pieces with 9 moves
+1923680 pieces with 10 moves
+2476572 pieces with 11 moves
+2696337 pieces with 12 moves
+2493820 pieces with 13 moves
+1960770 pieces with 14 moves
+1307440 pieces with 15 moves
+ 735467 pieces with 16 moves
+ 346104 pieces with 17 moves
+ 134596 pieces with 18 moves
+  42504 pieces with 19 moves
+  10626 pieces with 20 moves
+   2024 pieces with 21 moves
+    276 pieces with 22 moves
+     24 pieces with 23 moves
+      1 pieces with 24 moves
+With riders, 282232643280 total possible within 2 square non-colorbound pieces
