@@ -1,3 +1,96 @@
+== The number of non-colorbound short range leapers ==
+
+Let’s look at all of the possible short range leapers on a
+square board.  Let’s look at pieces which can leap, at most, two
+squares away.  One possible leaper is the knight:
+
+- O - O -
+O - - - O
+- - X - -
+O - - - O
+- O - O -
+
+Other leapers also exist.  We include pieces like a piece which
+moves like a king (mann or commoner):
+
+- - - - -
+- O O O -
+- O X O -
+- O O O -
+- - - - -
+
+Given this, how many non-colorbound leapers do we have?  We know
+that we have 2^24 total possible pieces (24 possible squares to
+move to), but some of them are colorbound, i.e. a given piece
+can not reach every square on the board.  
+
+Let’s look at the historical form of the Queen, the Ferz, which
+exists in Shatranj and some modern regional chess variants including
+Senterej, Makruk, Sittuyin, and Asean chess:
+
+- - - - -
+- O - O -
+- - X - -
+- O - O -
+- - - - -
+
+The piece moves like the modern bishop, but only one square.  Like
+this bishop, this piece is colorbound; it can only reach 32 of the
+64 squares on an 8x8 chess board.
+
+Point being, some pieces are colorbound (there are other forms
+where a piece can not reach all 64 possible squares, such as the
+pawn, discussed in more detail below).  How many?
+
+Of the 16,777,215 pieces that exist, only 325,135 are in any form
+colorbound.  Some 16,452,080 pieces are not colorbound.  In more
+detail:
+
+All pieces here have all their leaps within 2 squares
+16,452,080 total non-colorbound pieces
+2,944 total bishop-like colorbound pieces
+      104 pieces with 3 moves
+    2,513 pieces with 4 moves
+   20,368 pieces with 5 moves
+   92,218 pieces with 6 moves
+  285,796 pieces with 7 moves
+  669,556 pieces with 8 moves
+1,251,284 pieces with 9 moves
+1,923,680 pieces with 10 moves
+2,476,572 pieces with 11 moves
+2,696,337 pieces with 12 moves
+2,493,820 pieces with 13 moves
+1,960,770 pieces with 14 moves
+1,307,440 pieces with 15 moves
+  735,467 pieces with 16 moves
+  346,104 pieces with 17 moves
+  134,596 pieces with 18 moves
+   42,504 pieces with 19 moves
+   10,626 pieces with 20 moves
+    2,024 pieces with 21 moves
+      276 pieces with 22 moves
+       24 pieces with 23 moves
+        1 pieces with 24 moves
+With riders, 282,232,643,280 total possible non-colorbound pieces
+
+The last line adds riders to the above count.  I described the
+historical ferz above (Russian still uses the word “Ferz” for
+the Queen, but the piece now has the modern move); we can also
+have a “ferz-rider” where, after moving one square, if the following
+square in the same direction is empty or occupied by an enemy piece,
+we can move again.  This process continues as long as the square
+is empty (the move stops when capturing an enemy piece).
+
+A “ferz-rider” is today’s bishop piece.  Other riders exist: The
+knight-rider is a well-known fairy piece, and the queen can be
+thought of as a king-move-rider.
+
+We can also imagine a piece which, say, moves like a bishop forwards
+but a ferz backwards.  This is possible to do with all of the 
+16,277,215 leapers that move within two squares.  If we only
+count non-colorbound pieces, we have some 282,232,643,280 different
+possible combinations of leapers and riders.
+
 == A binary representation ==
 
 Let’s look at all possible pieces where a piece can go within two
