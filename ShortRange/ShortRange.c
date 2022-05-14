@@ -154,7 +154,7 @@ void showPiece(int_fast32_t piece) {
 
 int main() {
 	int_fast32_t a;
-	int_fast32_t count = 0;
+	int_fast32_t count = 0, bishopLikeCount = 0;
 	int_fast32_t moves[32];
 	int_fast64_t grandTotal = 0;
 	for(a = 0 ; a < 32 ; a++) {
@@ -169,12 +169,19 @@ int main() {
 		   	count++;
 			moves[countMoves(a,30)]++;
 		}
+		if((a & 0x555aaa) == 0) { // Bishop-like colorbound
+			if(countReachable8x8(a,0) == 32) {
+				bishopLikeCount++;
+			}
+		}
 	}
 	//showPiece(0x54422a); // Knight
 	//countReachable8x8(0x54422a,1); // Show knight moves
 	//puts("");countReachable8x8(0x404201,1); // semi-pinwheel fairy piece
 	//puts("");
-	printf("%d total within 2 squares non-colorbound pieces\n",count);
+	printf("All pieces here have all their leaps within 2 squares\n");
+	printf("%d total non-colorbound pieces\n",count);
+	printf("%d total bishop-like colorbound pieces\n",bishopLikeCount);
 	for(a = 0; a <= 28; a++) {
 		grandTotal += (1 << a) * moves[a];
 		if(moves[a] > 0) {
