@@ -1,6 +1,7 @@
 // Public domain 2022 by Sam Trenholme
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 // Move a piece once
 void moveTo(int_fast8_t *board, int moveTo, int square) {
@@ -152,11 +153,22 @@ void showPiece(int_fast32_t piece) {
 	}
 }
 
-int main() {
+int main(int argc, char **argv) {
 	int_fast32_t a;
 	int_fast32_t count = 0, bishopLikeCount = 0;
 	int_fast32_t moves[32];
 	int_fast64_t grandTotal = 0;
+	// Numeric first argument: Show the moves for the numeric
+	// piece in question
+	// e.g. `./ShortRange 5521962` will show the knight moves, then
+	// show many squares from e4 it takes to reach a given square
+	if(argc == 2 && *(argv[1]) >= '1' && *(argv[1]) <= '9') {
+		int lookAt = atoi(argv[1]);
+		showPiece(lookAt);
+		puts("");
+		countReachable8x8(lookAt,1);
+		return 0;
+	}
 	for(a = 0 ; a < 32 ; a++) {
 		moves[a] = 0;
 	}

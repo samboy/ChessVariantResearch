@@ -131,6 +131,10 @@ Or, in hex:
 
 0x54422a
 
+In decimal:
+
+5521962
+
 Now that we can convert short-range pieces in to a 24-bit binary
 number, let’s look at a limitation many of these pieces have.
 
@@ -368,6 +372,7 @@ Using the above notation for a piece:
 
 0b010000000100001000000001
 0x404201
+4211201
 
 == Superset of known non-colorbound pieces ==
 
@@ -385,6 +390,7 @@ Wazir:
 
 0b000000010001100010000000
 0x11880
+71808
 
 Crab:
 
@@ -396,6 +402,7 @@ Crab:
 
 0b000001000100000000001010
 0x4400a
+278538
 
 Y:
 
@@ -407,6 +414,7 @@ Y:
 
 0b000000010000000101000000
 0x10140
+65856
 
 Note that 90 degree rotations of the Crab and Y will also be 
 non-colorbound, but we will not look at those, nor will we look
