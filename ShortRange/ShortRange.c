@@ -2,6 +2,81 @@
 #include <stdint.h>
 #include <stdio.h>
 
+// Move a piece once
+void moveTo(int_fast8_t *board, int moveTo, int square) {
+	if(board[moveTo] < 0) {
+		board[moveTo] = board[square] + 1;
+	}
+}
+
+// Given an 8x8 board, and piece to move, and a square on
+// said board, move the piece on the board
+void movePieceOnBoard(int_fast32_t piece, int_fast8_t *board, int square) {
+	// Do nothing if a piece hasn’t moved to this square next
+	if(board[square] < 0) {
+		return;
+	}
+	// Top row (north 2 squares)
+	if((piece & 0x01) != 0 && square % 8 >= 2 && square > 15) { 
+		moveTo(board,square-18,square); // nw then nw	
+	}
+	if((piece & 0x02) != 0 && square % 8 >= 1 && square > 15) {
+		moveTo(board,square-17,square); // n then nw (Knight move)
+	}
+	if((piece & 0x04) != 0 && square > 15) {
+		moveTo(board,square-16,square); // n then n
+	}
+	if((piece & 0x08) != 0 && square % 8 < 7 && square > 15) {
+		moveTo(board,square-15,square); // n then ne (Knight move)
+	}
+	if((piece & 0x10) != 0 && square % 8 < 6 && square > 15) {
+		moveTo(board,square-14,square); // ne then ne
+	}
+	// Second row (north 1 square)
+	if((piece & 0x20) != 0 && square % 8 >= 2 && square > 7) {
+		moveTo(board,square-10,square); // w then nw (Knight move)
+	}
+	if((piece & 0x40) != 0 && square % 8 >= 1 && square > 7) {
+		moveTo(board,square-9,square); // nw
+	}
+	if((piece & 0x80) != 0 && square > 7) {
+		moveTo(board,square-8,square); // n
+	}
+	if((piece & 0x100) != 0 && square % 8 < 7 && square > 7) {
+		moveTo(board,square-7,square); // ne
+	}
+	if((piece & 0x200) != 0 && square % 8 < 6 && square > 7) {
+		moveTo(board,square-6,square); // e then ne (Knight move)
+	}
+	// Third row (left or right, no vertical move)
+	// CODE HERE
+}
+
+// This determines if a given piece is colorbound on an 8x8 square.
+// It does this by placing the piece on e4, then moving the piece
+// around until it no longer can move to an unvisited square.
+// If all of the squares are covered, the piece is not colorbound
+// Input: the piece, in the form described in ShortRange.txt (24-bit int)
+//        Whether to show the piece’s moves on standard output
+// Output: The number of squares this piece covers (1-64)
+int countReachable8x8(int_fast32_t piece, int showBoard) {
+	int_fast8_t board[64];
+	int square, movesMade = 0;
+	// Board is left to right, top to bottom. board[0] is a8;
+	// board[36] is e4; and board[63] is h1
+	for(square = 0; square < 64; square++) {
+		board[square] = -1; // Not visited yet
+	}
+	board[36] = 0; // Start moves from e4
+	for(movesMade = 0; movesMade < 64; movesMade++) {
+		for(square = 0; square < 64; square++) {
+			if(board[square] == movesMade) {
+				movePieceOnBoard(piece, board, square);
+			}
+		}
+	}
+}
+
 // Count the number of squares a piece can move to (count the number
 // of 1 bits in a number)
 int countMoves(int_fast32_t piece, int max) {
