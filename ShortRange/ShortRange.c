@@ -81,7 +81,7 @@ void movePieceOnBoard(int_fast32_t piece, int_fast8_t *board, int square) {
 // Output: The number of squares this piece covers (1-64)
 int countReachable8x8(int_fast32_t piece, int showBoard) {
 	int_fast8_t board[64];
-	int square, movesMade = 0, reachable = 0;
+	int square, movesMade = 0, reachable = 0, done = 0;
 	// Board is left to right, top to bottom. board[0] is a8;
 	// board[36] is e4; and board[63] is h1
 	for(square = 0; square < 64; square++) {
@@ -89,10 +89,17 @@ int countReachable8x8(int_fast32_t piece, int showBoard) {
 	}
 	board[36] = 0; // Start moves from e4
 	for(movesMade = 0; movesMade < 36; movesMade++) {
+		done = 1;
 		for(square = 0; square < 64; square++) {
+			if(board[square] == -1) {
+				done = 0;
+			}
 			if(board[square] == movesMade) {
 				movePieceOnBoard(piece, board, square);
 			}
+		}
+		if(done == 1) {
+			break;
 		}
 	}
 	for(square = 0; square < 64; square++) {
