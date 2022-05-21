@@ -158,9 +158,9 @@ END{for(a in k){print "(links k" a-1 " " k[a] ")";print""}}' | fmt #
 (G1 F3) (G1 H3) (G1 F0) (NULL)  (G1 F1) (G1 F2) 
 
 # Row 9
-(C1 D2) (C1 E1) (C1 D0) (C1 B0) (C1 B1) (C1 C2)
-(D1 F2) (D1 G2) (D1 F0) (D1 E0) (D1 D0) (D1 C0) (D1 B2) (D1 C2)
-(F1 G1) (F1 G0) (F1 E0) (F1 E1) (F1 D2) (F1 F2)
+(C1 B1) (C1 D2) (C1 B0) (C1 D0) (C1 E1) (C1 C2)
+(D1 C2) (D1 F2) (D1 D0) (D1 E0) (D1 G2) (D1 F0) (D1 C0) (D1 B2) 
+(F1 D2) (F1 G1) (F1 E0) (F1 G0) (F1 E1) (F1 F2)
 
 # Row 10
 (B0 B2) (B0 C1)
