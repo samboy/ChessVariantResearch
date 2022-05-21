@@ -377,4 +377,4 @@
 	      (black (king E8))
  ) ; board-setup
 ) ; variant
-; This is version 1.06 over at zillions-of-games.com
+; This is currently not at zillions-of-games.com
