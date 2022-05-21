@@ -91,13 +91,13 @@ END{for(a in k){print "(links k" a-1 " " k[a] ")";print""}}' | fmt #
 (NULL)  (NULL)  (G9 G8) (NULL)  (G9 F8)
 
 # Row 2
-(B7 C9) (B7 C8) (B7 C7) (B7 C6) (B7 A6)
-(B8 C9) (B8 D8) (B8 D7) (B8 C6) (B8 B6) (B8 B9)
-(C8 D9) (C8 E8) (C8 D7) (C8 C7) (C8 B7) (C8 B9)
-(D8 E9) (D8 F9) (D8 G8) (D8 F7) (D8 C7) (D8 B8) (D8 C9) (D8 D9)
-(F8 G9) (F8 G7) (F8 F7) (F8 D7) (F8 E8) (F8 E9)
-(G8 F9) (G8 G9) (G8 G6) (G8 F6) (G8 D7) (G8 D8)
-(G7 H6) (G7 F6) (G7 F7) (G7 F8) (G7 F9)
+(NULL)  (B7 C9) (NULL)  (B7 C6) (B7 C8) (B7 C7) (B7 A6)
+(B8 B9) (B8 D8) (B8 B6) (B8 D7) (B8 C9) (B8 C6) 
+(C8 B9) (C8 D9) (C8 B7) (C8 D7) (C8 E8) (C8 C7) 
+(D8 D9) (D8 E9) (D8 C7) (D8 F7) (D8 F9) (D8 G8) (D8 B8) (D8 C9)
+(F8 E8) (F8 G9) (F8 D7) (F8 G7) (F8 F7) (F8 E9)
+(G8 D8) (G8 G9) (G8 D7) (G8 G6) (G8 F9) (G8 F6) 
+(G7 F9) (NULL)  (G7 F6) (NULL)  (G7 H6) (G7 F7) (G7 F8) 
 
 # Row 3
 (C7 D8) (C7 E7) (C7 D6) (C7 B6) (C7 B7) (C7 C8)
