@@ -2,7 +2,7 @@
 # format:
 
 fgrep -v '#' knight-connections.txt | tr -d '\015' | grep '(' | awk -F'(' '
-{for(a=2;a<=9;a++){if($a){k[a]=k[a] "(" $a " "}}} #
+{for(a=2;a<=9;a++){if($a && $a !~ /NULL/){k[a]=k[a] "(" $a " "}}} #
 END{for(a in k){print "(links k" a-1 " " k[a] ")";print""}}' | fmt #
 
 # Knight paths.  We start at just past noon (for things like F8-E9,
@@ -17,14 +17,78 @@ END{for(a in k){print "(links k" a-1 " " k[a] ")";print""}}' | fmt #
 # Cells: We start at the top left, left-to-right top-to-bottom,
 # as per the rows defined for Turtle Shell
 
+# NULL means we use the next connection for this cell.
+# Note that a knight move is a turtle shell chess knight move, which could
+# be seen as a ferz move if this were a square board.
+# We have the first connections be NW-NE-SW-SE using the following rules:
+
+# NW:
+# 1) Look at all of the possible knight moves from a given cell
+# 2) Move left (west) one file like a rook.  
+# 3) Only if one is in a cell that occupies two files do the following: 
+#    a) If step 4 has not been performed, stay in the same cell, but
+#       be in the leftmost file of that cell.
+#    b) If step 4 has already been performed, move to the file to the 
+#       left of the leftmost file that occupies the starting cell.
+# 4) Look up (north) the file and see if there are any possible knight
+#    move destinations.  If not (e.g. D1 or D7), go back to step 3.
+# 5) Go up (north) this file until one is in the highest (most north)
+#    possible cell which is a knight move away from the starting cell.
+# 6) Make that cell the NW knight move from the starting cell.
+
+# NE, SW, and SE are similar, but I will spell them out for the sake of 
+# clarity:
+
+# NE:
+# 1) Look at all of the possible knight moves from a given cell
+# 2) Move right (east) one file like a rook.  
+# 3) Only if one is in a cell that occupies two files do the following: 
+#    a) If step 4 has not been performed, stay in the same cell, but
+#       be in the rightmost file of that cell.
+#    b) If step 4 has already been performed, move to the file to the 
+#       right of the rightmost file that occupies the starting cell.
+# 4) Look up (north) the file and see if there are any possible knight
+#    move destinations.  If not (e.g. D1 or D7), go back to step 3.
+# 5) Go up (north) this file until one is in the highest (most north)
+#    possible cell which is a knight move away from the starting cell.
+# 6) Make that cell the NE knight move from the starting cell.
+
+# SW:
+# 1) Look at all of the possible knight moves from a given cell
+# 2) Move left (west) one file like a rook.  
+# 3) Only if one is in a cell that occupies two files do the following: 
+#    a) If step 4 has not been performed, stay in the same cell, but
+#       be in the leftmost file of that cell.
+#    b) If step 4 has already been performed, move to the file to the 
+#       left of the leftmost file that occupies the starting cell.
+# 4) Look down (south) the file and see if there are any possible knight
+#    move destinations.  If not (e.g. D2 or D8), go back to step 3.
+# 5) Go down (south) this file until one is in the lowest (most south)
+#    possible cell which is a knight move away from the starting cell.
+# 6) Make that cell the SW knight move from the starting cell.
+
+# SE:
+# 1) Look at all of the possible knight moves from a given cell
+# 2) Move right (east) one file like a rook.  
+# 3) Only if one is in a cell that occupies two files do the following: 
+#    a) If step 4 has not been performed, stay in the same cell, but
+#       be in the rightmost file of that cell.
+#    b) If step 4 has already been performed, move to the file to the 
+#       right of the rightmost file that occupies the starting cell.
+# 4) Look down (south) the file and see if there are any possible knight
+#    move destinations.  If not (e.g. D2 or D8), go back to step 3.
+# 5) Go down (south) this file until one is in the lowest (most south)
+#    possible cell which is a knight move away from the starting cell.
+# 6) Make that cell the SE knight move from the starting cell.
+
 # Row 1
-(B9 C8) (B9 B8) 
-(C9 E8) (C9 D8) (C9 B8) (C9 B7)
-(D9 E9) (D9 D8) (D9 C8)
-(E8 F9) (E8 F8) (E8 C8) (E8 C9)
-(E9 F8) (E9 D8) (E9 D9)
-(F9 G7) (F9 G8) (F9 D8) (F9 E8)
-(G9 G8) (G9 F8)
+(NULL)  (NULL)  (NULL)  (B9 B8) (B9 C8) 
+(NULL)  (NULL)  (C9 B7) (C9 D8) (C9 E8) (C9 B8) 
+(NULL)  (NULL)  (D9 C8) (D9 D8) (D9 E9) 
+(NULL)  (NULL)  (E8 C8) (E8 F8) (E8 F9) (E8 C9)
+(NULL)  (NULL)  (E9 D8) (E9 F8) (E9 D9)
+(NULL)  (NULL)  (F9 D8) (F9 G7) (F9 G8) (F9 E8)
+(NULL)  (NULL)  (G9 G8) (NULL)  (G9 F8)
 
 # Row 2
 (B7 C9) (B7 C8) (B7 C7) (B7 C6) (B7 A6)

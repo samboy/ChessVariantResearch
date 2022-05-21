@@ -8,7 +8,7 @@
 
 fgrep -v '#' knight-connections.txt | tr -d '\015' | grep '(' | awk -F'(' '
 {for(a=2;a<=9;a++){
-if($a){path=$a;gsub(/)/,"",path);gsub(/ /,"",path); 
+if($a && $a !~ /NULL/){path=$a;gsub(/)/,"",path);gsub(/ /,"",path); 
 inverse = substr(path,3,2) substr(path,1,2)
 if(seen[path]){print "FATAL: Connection " path " already seen"} 
 seen[path]=inverse;}}}
