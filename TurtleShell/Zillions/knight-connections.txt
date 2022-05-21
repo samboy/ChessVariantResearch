@@ -5,21 +5,27 @@ fgrep -v '#' knight-connections.txt | tr -d '\015' | grep '(' | awk -F'(' '
 {for(a=2;a<=9;a++){if($a && $a !~ /NULL/){k[a]=k[a] "(" $a " "}}} #
 END{for(a in k){print "(links k" a-1 " " k[a] ")";print""}}' | fmt #
 
-# Knight paths.  We start at just past noon (for things like F8-E9,
-# a line from the center of the originating polygon connects to
-# the point in the center of the destination polygon; for G8-F9,
-# the point in the middle of F9 is to the right of the point in the
-# middle of G8: F9 is .5 + ((3 ^ .5)/2) or 1.35 or so wide, so
-# its halfway point is just under .7 over, while G8's halfway
-# point is only .5 over), and move
-# clockwise
-
-# Cells: We start at the top left, left-to-right top-to-bottom,
-# as per the rows defined for Turtle Shell
+# Knight paths.  
 
 # NULL means we use the next connection for this cell.
 # Note that a knight move is a turtle shell chess knight move, which could
 # be seen as a ferz move if this were a square board.
+# For the purposes of determining NW-NE-SW-SE connections, we use
+# the illustration of files for Rook moves, which shows the following 
+# six files:
+
+# B0-B1-B3-A3-A4-A5-A6-B6-B7-B9
+# C0-C1-B2-C2-C3-C4-B5-C5-C6-C7-B8-C8-C9
+# D0-E1-D2-D2-E2-D3-D5-D6-E7-D7-D8-E8-D9
+# E0-E1-D2-D2-E2-E3-E5-E6-E7-D7-D8-E8-E9 
+# F0-F1-G2-F2-F3-F4-G5-F5-G6-F7-G8-F8-F9
+# G0-G1-G3-H3-H4-H5-H6-G6-G7-G9
+
+# In addition, we have two more files:
+
+# A3-A4-A5-A6
+# H3-H4-H5-H6
+
 # We have the first connections be NW-NE-SW-SE using the following rules:
 
 # NW:
@@ -106,13 +112,13 @@ END{for(a in k){print "(links k" a-1 " " k[a] ")";print""}}' | fmt #
 
 # Row 4
 (NULL)  (A6 B7) (NULL)  (A6 C5) (A6 C6)
-(NULL)  (B6 B8) (NULL)  (B6 C5) (B6 C7) (B6 A5)
+(NULL)  (B6 B8) (B6 A5) (B6 C5) (B6 C7) 
 (C6 B7) (C6 D7) (C6 A5) (C6 D5) (C6 B8) (C6 E7) (C6 B5) (C6 A6) 
 (D6 C7) (D6 D7) (D6 B5) (D6 E5) (D6 E6) (D6 C5) 
 (E7 C7) (E7 F7) (E7 D5) (E7 E5) (E7 F6) (E7 C6) 
 (E6 D7) (E6 F7) (E6 D5) (E6 G5) (E6 F5) (E6 D6) 
 (F6 D7) (F6 G7) (F6 E5) (F6 H5) (F6 H6) (F6 G5) (F6 E7) (F6 G8)
-(G6 G8) (NULL)  (G6 F5) (NULL)  (G6 H5) (G6 F7) 
+(G6 G8) (NULL)  (G6 F5) (G6 H5) (G6 F7) 
 (H6 G7) (NULL)  (H6 F5) (NULL)  (H6 F6) 
 
 # Row 5
