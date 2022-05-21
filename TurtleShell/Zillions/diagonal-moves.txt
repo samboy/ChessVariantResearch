@@ -1,0 +1,78 @@
+For the purposes of determining diagonal connections, we use
+the illustration of files for Rook moves, which shows the following 
+six files:
+
+B0-B1-B3-A3-A4-A5-A6-B6-B7-B9
+C0-C1-B2-C2-C3-C4-B5-C5-C6-C7-B8-C8-C9
+D0-E1-D2-D2-E2-D3-D5-D6-E7-D7-D8-E8-D9
+E0-E1-D2-D2-E2-E3-E5-E6-E7-D7-D8-E8-E9 
+F0-F1-G2-F2-F3-F4-G5-F5-G6-F7-G8-F8-F9
+G0-G1-G3-H3-H4-H5-H6-G6-G7-G9
+
+In addition, we have two more files when determining if a connection
+is diagonal
+
+A3-A4-A5-A6
+H3-H4-H5-H6
+
+We have the first connections be NW-NE-SW-SE using the following rules:
+
+NW:
+1) Look at all of the possible knight moves from a given cell
+2) Move left (west) one file like a rook.  
+3) Only if one is in a cell that occupies two files do the following: 
+   a) If step 4 has not been performed, stay in the same cell, but
+      be in the leftmost file of that cell.
+   b) If step 4 has already been performed, move to the file to the 
+      left of the leftmost file that occupies the starting cell.
+4) Look up (north) the file and see if there are any possible knight
+   move destinations.  If not (e.g. D1 or D7), go back to step 3.
+5) Go up (north) this file until one is in the highest (most north)
+   possible cell which is a knight move away from the starting cell.
+6) Make that cell the NW knight move from the starting cell.
+
+NE, SW, and SE are similar, but I will spell them out for the sake of 
+clarity:
+
+NE:
+1) Look at all of the possible knight moves from a given cell
+2) Move right (east) one file like a rook.  
+3) Only if one is in a cell that occupies two files do the following: 
+   a) If step 4 has not been performed, stay in the same cell, but
+      be in the rightmost file of that cell.
+   b) If step 4 has already been performed, move to the file to the 
+      right of the rightmost file that occupies the starting cell.
+4) Look up (north) the file and see if there are any possible knight
+   move destinations.  If not (e.g. D1 or D7), go back to step 3.
+5) Go up (north) this file until one is in the highest (most north)
+   possible cell which is a knight move away from the starting cell.
+6) Make that cell the NE knight move from the starting cell.
+
+SW:
+1) Look at all of the possible knight moves from a given cell
+2) Move left (west) one file like a rook.  
+3) Only if one is in a cell that occupies two files do the following: 
+   a) If step 4 has not been performed, stay in the same cell, but
+      be in the leftmost file of that cell.
+   b) If step 4 has already been performed, move to the file to the 
+      left of the leftmost file that occupies the starting cell.
+4) Look down (south) the file and see if there are any possible knight
+   move destinations.  If not (e.g. D2 or D8), go back to step 3.
+5) Go down (south) this file until one is in the lowest (most south)
+   possible cell which is a knight move away from the starting cell.
+6) Make that cell the SW knight move from the starting cell.
+
+SE:
+1) Look at all of the possible knight moves from a given cell
+2) Move right (east) one file like a rook.  
+3) Only if one is in a cell that occupies two files do the following: 
+   a) If step 4 has not been performed, stay in the same cell, but
+      be in the rightmost file of that cell.
+   b) If step 4 has already been performed, move to the file to the 
+      right of the rightmost file that occupies the starting cell.
+4) Look down (south) the file and see if there are any possible knight
+   move destinations.  If not (e.g. D2 or D8), go back to step 3.
+5) Go down (south) this file until one is in the lowest (most south)
+   possible cell which is a knight move away from the starting cell.
+6) Make that cell the SE knight move from the starting cell.
+
