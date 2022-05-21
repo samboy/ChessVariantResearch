@@ -1,3 +1,16 @@
+Diagonal moves on the Turtle Shell board are a judgment call, which is
+why the main variants of Turtle Shell (either with or without a cardinal)
+do not have a diagonal move.  
+
+The simplified rule is that the diagonal moves forward are the two knight
+moves with the most forward vertical movement, and the diagonal moves
+backwards are the two knight moves with the most backwards vertical
+movement.  In addition, some effort is made to have a diagonal move
+change the file one is on, except where that would eliminate a
+diagonal move (such as on E6).
+
+The full rules are below:
+
 For the purposes of determining diagonal connections, we use
 the illustration of files for Rook moves, which shows the following 
 six files:
@@ -19,7 +32,7 @@ We have the first connections be NW-NE-SW-SE using the following rules:
 
 NW:
 1) Look at all of the possible knight moves from a given cell
-2) Move left (west) one file like a rook.  
+2) If the cell occupies one file, move left (west) one file like a rook.  
 3) Only if one is in a cell that occupies two files do the following: 
    a) If step 4 has not been performed, stay in the same cell, but
       be in the leftmost file of that cell.
@@ -36,7 +49,7 @@ clarity:
 
 NE:
 1) Look at all of the possible knight moves from a given cell
-2) Move right (east) one file like a rook.  
+2) If the cell occupies one file, move right (east) one file like a rook.  
 3) Only if one is in a cell that occupies two files do the following: 
    a) If step 4 has not been performed, stay in the same cell, but
       be in the rightmost file of that cell.
@@ -50,7 +63,7 @@ NE:
 
 SW:
 1) Look at all of the possible knight moves from a given cell
-2) Move left (west) one file like a rook.  
+2) If the cell occupies one file, move left (west) one file like a rook.  
 3) Only if one is in a cell that occupies two files do the following: 
    a) If step 4 has not been performed, stay in the same cell, but
       be in the leftmost file of that cell.
@@ -64,7 +77,7 @@ SW:
 
 SE:
 1) Look at all of the possible knight moves from a given cell
-2) Move right (east) one file like a rook.  
+2) If the cell occupies one file, move right (east) one file like a rook.  
 3) Only if one is in a cell that occupies two files do the following: 
    a) If step 4 has not been performed, stay in the same cell, but
       be in the rightmost file of that cell.
