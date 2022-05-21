@@ -132,10 +132,10 @@ END{for(a in k){print "(links k" a-1 " " k[a] ")";print""}}' | fmt #
 (H5 G6) (NULL)  (H5 F4) (NULL)  (H5 G5) (H5 F6) 
 
 # Row 6
-(A4 C5) (A4 B5) (A4 C3) (A4 B3)
-(C4 D5) (C4 D3) (C4 B3) (C4 A3) (C4 A5) (C4 C5)
-(F4 H5) (F4 H3) (F4 G3) (F4 E3) (F4 E5) (F4 F5)
-(H4 G3) (H4 F3) (H4 G5) (H4 F5)
+(NULL)  (A4 C5) (NULL)  (A4 B3) (A4 B5) (A4 C3) 
+(C4 A5) (C4 D5) (C4 D3) (C4 B3) (C4 A3) (C4 C5)
+(F4 E5) (F4 H5) (F4 E3) (F4 G3) (F4 H3) (F4 F5)
+(H4 F5) (NULL)  (H4 G3) (NULL)  (H4 F3) (H4 G5) 
 
 # Row 7
 (A3 C4) (A3 C3) (A3 B1)
