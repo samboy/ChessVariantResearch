@@ -27,6 +27,7 @@ END{for(a in k){print "(links k" a-1 " " k[a] ")";print""}}' | fmt #
 # H3-H4-H5-H6
 
 # We have the first connections be NW-NE-SW-SE using the following rules:
+# Note that these are nightrider moves, *not* bishop moves
 
 # NW:
 # 1) Look at all of the possible knight moves from a given cell
