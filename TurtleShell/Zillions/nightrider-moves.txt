@@ -1,17 +1,17 @@
-Diagonal moves on the Turtle Shell board are a judgment call, which is
+Nightrider moves on the Turtle Shell board are a judgment call, which is
 why the main variants of Turtle Shell (either with or without a cardinal)
 do not have a diagonal move.  
 
-The simplified rule is that the diagonal moves forward are the two knight
-moves with the most forward vertical movement, and the diagonal moves
+The simplified rule is that the nightrider moves forward are the two knight
+moves with the most forward vertical movement, and the nightrider moves
 backwards are the two knight moves with the most backwards vertical
-movement.  In addition, some effort is made to have a diagonal move
+movement.  In addition, some effort is made to have a nightrider move
 change the file one is on, except where that would eliminate a
-diagonal move (such as on E6).
+nightrider move (such as on E6).
 
 The full rules are below:
 
-For the purposes of determining diagonal connections, we use
+For the purposes of determining nightrider connections, we use
 the illustration of files for Rook moves, which shows the following 
 six files:
 
@@ -23,7 +23,7 @@ F0-F1-G2-F2-F3-F4-G5-F5-G6-F7-G8-F8-F9
 G0-G1-G3-H3-H4-H5-H6-G6-G7-G9
 
 In addition, we have two more files when determining if a connection
-is diagonal
+is a nightrider one
 
 A3-A4-A5-A6
 H3-H4-H5-H6
