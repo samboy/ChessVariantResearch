@@ -478,85 +478,85 @@
 )
 
 ; Uncomment the following to add diagonal moves for pawns
-;(variant
-; (title "Diagonal capture pawns")
-; (piece (name wpawn)
-;  (help "Pawn: Moves forward; captures diagonally; promotes to rook")
-;  (image white "images\TurtleShellChess\pawnw.bmp" 
-;         black "images\TurtleShellChess\pawnb.bmp")
-;  (moves (n (verify empty?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (n (verify empty?) (verify (in-zone? endzone)) (add rook))
-;        (np (verify empty?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook))) 
-;	 (np (verify empty?) (verify (in-zone? endzone)) (add rook))
-;	 (k1 (verify enemy?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (k1 (verify enemy?) (verify (in-zone? endzone)) (add rook))
-;	 (k2 (verify enemy?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (k2 (verify enemy?) (verify (in-zone? endzone)) (add rook))
-;  ) ; moves
-; ) ; wpawn
-; (piece (name bpawn)
-;  (help "Pawn: Moves forward; captures diagonally; promotes to rook")
-;  (image white "images\TurtleShellChess\pawnw.bmp" 
-;         black "images\TurtleShellChess\pawnb.bmp")
-;  (moves (s (verify empty?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (s (verify empty?) (verify (in-zone? endzone)) (add rook))
-;        (sp (verify empty?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook))) 
-;	 (sp (verify empty?) (verify (in-zone? endzone)) (add rook))
-;	 (k3 (verify enemy?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (k3 (verify enemy?) (verify (in-zone? endzone)) (add rook))
-;	 (k4 (verify enemy?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (k4 (verify enemy?) (verify (in-zone? endzone)) (add rook))
-;  ) ; moves
-; ) ; bpawn
-;)
+(variant
+ (title "Diagonal capture pawns")
+ (piece (name wpawn)
+  (help "Pawn: Moves forward; captures diagonally; promotes to rook")
+  (image white "images\TurtleShellChess\pawnw.bmp" 
+         black "images\TurtleShellChess\pawnb.bmp")
+  (moves (n (verify empty?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (n (verify empty?) (verify (in-zone? endzone)) (add rook))
+         (np (verify empty?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook))) 
+	 (np (verify empty?) (verify (in-zone? endzone)) (add rook))
+	 (nw (verify enemy?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (nw (verify enemy?) (verify (in-zone? endzone)) (add rook))
+	 (ne (verify enemy?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (ne (verify enemy?) (verify (in-zone? endzone)) (add rook))
+  ) ; moves
+ ) ; wpawn
+ (piece (name bpawn)
+  (help "Pawn: Moves forward; captures diagonally; promotes to rook")
+  (image white "images\TurtleShellChess\pawnw.bmp" 
+         black "images\TurtleShellChess\pawnb.bmp")
+  (moves (s (verify empty?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (s (verify empty?) (verify (in-zone? endzone)) (add rook))
+         (sp (verify empty?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook))) 
+	 (sp (verify empty?) (verify (in-zone? endzone)) (add rook))
+	 (sw (verify enemy?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (sw (verify enemy?) (verify (in-zone? endzone)) (add rook))
+	 (se (verify enemy?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (se (verify enemy?) (verify (in-zone? endzone)) (add rook))
+  ) ; moves
+ ) ; bpawn
+)
 
-;(variant
-; (title "Berolina pawns")
-; (piece (name wpawn)
-;  (help "Pawn: Moves diagonally; captures forward; promotes to rook")
-;  (image white "images\TurtleShellChess\pawnw.bmp" 
-;         black "images\TurtleShellChess\pawnb.bmp")
-;  (moves (k1 (verify empty?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (k1 (verify empty?) (verify (in-zone? endzone)) (add rook))
-;        (k2 (verify empty?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook))) 
-;	 (k2 (verify empty?) (verify (in-zone? endzone)) (add rook))
-;	 (n  (verify enemy?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (n  (verify enemy?) (verify (in-zone? endzone)) (add rook))
-;	 (np (verify enemy?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (np (verify enemy?) (verify (in-zone? endzone)) (add rook))
-; ) ; moves
-; ) ; wpawn
-; (piece (name bpawn)
-;  (help "Pawn: Moves diagonally; captures forward; promotes to rook")
-;  (image white "images\TurtleShellChess\pawnw.bmp" 
-;         black "images\TurtleShellChess\pawnb.bmp")
-;  (moves (k3 (verify empty?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (k3 (verify empty?) (verify (in-zone? endzone)) (add rook))
-;        (k4 (verify empty?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook))) 
-;	 (k4 (verify empty?) (verify (in-zone? endzone)) (add rook))
-;	 (s  (verify enemy?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (s  (verify enemy?) (verify (in-zone? endzone)) (add rook))
-;	 (sp (verify enemy?) (verify (not-in-zone? endzone)) add
-;	 (if (in-zone? promotion) (add rook)))
-;	 (sp (verify enemy?) (verify (in-zone? endzone)) (add rook))
-;  ) ; moves
-; ) ; bpawn
-;)
+(variant
+ (title "Berolina pawns")
+ (piece (name wpawn)
+  (help "Pawn: Moves diagonally; captures forward; promotes to rook")
+  (image white "images\TurtleShellChess\pawnw.bmp" 
+         black "images\TurtleShellChess\pawnb.bmp")
+  (moves (nw (verify empty?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (nw (verify empty?) (verify (in-zone? endzone)) (add rook))
+         (ne (verify empty?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook))) 
+	 (ne (verify empty?) (verify (in-zone? endzone)) (add rook))
+	 (n  (verify enemy?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (n  (verify enemy?) (verify (in-zone? endzone)) (add rook))
+	 (np (verify enemy?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (np (verify enemy?) (verify (in-zone? endzone)) (add rook))
+ ) ; moves
+ ) ; wpawn
+ (piece (name bpawn)
+  (help "Pawn: Moves diagonally; captures forward; promotes to rook")
+  (image white "images\TurtleShellChess\pawnw.bmp" 
+         black "images\TurtleShellChess\pawnb.bmp")
+  (moves (sw (verify empty?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (sw (verify empty?) (verify (in-zone? endzone)) (add rook))
+         (se (verify empty?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook))) 
+	 (se (verify empty?) (verify (in-zone? endzone)) (add rook))
+	 (s  (verify enemy?) (verify (not-in-zone? endzone)) add
+	 (if (in-zone? promotion) (add rook)))
+	 (s  (verify enemy?) (verify (in-zone? endzone)) (add rook))
+	 (sp (verify enemy?) (verify (not-in-zone? endzone)) add
+  (if (in-zone? promotion) (add rook)))
+	 (sp (verify enemy?) (verify (in-zone? endzone)) (add rook))
+  ) ; moves
+ ) ; bpawn
+)
 
 (variant 
  (title "Empty board")
@@ -565,4 +565,4 @@
  ) ; board-setup
 ) ; variant
 
-; This will be version 1.07 at zillions-of-games.com
+; This currently is not at zillions-of-games.com
