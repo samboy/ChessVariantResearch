@@ -1,0 +1,79 @@
+The way diagonal moves are implemented in a way which is reasonably
+intuitive is as follows:
+
+* Diagonal moves are colorbound: Any move that starts on a square ends
+  on a square.  Likewise, any move that starts on a triangle ends on a
+  triangle.
+* Diagonal moves go in four directions: NW, NE, SW, and SE, which are
+  short for northwest, northeast, southwest, and southeast.
+
+The rules for moving diagonally one of the directions are nearly the
+same for each direction, as follows:
+
+NW:
+* If on a triangle and making a NW move, if there is a triangle sharing
+  an edge to the north or west, go to the triangle.
+* If on a triangle and making a NW move, and there is no triangle sharing
+  an edge to the north nor west, go to a triangle one shares a corner with
+  to the northwest of the origin triangle that shares only one edge with
+  another triangle.
+* If on a square and making a NW move, if there is a square which shares 
+  an edge to the north or west, go to that square.
+* If on a square and making a NW move, if there is no square which shares
+  an edge to the north nor east, go to the sqaure one shares a corner with
+  to the northwest of the origin square.
+
+NE:
+* If on a triangle and making a NE move, if there is a triangle sharing
+  an edge to the north or east, go to the triangle.
+* If on a triangle and making a NE move, and there is no triangle sharing
+  an edge to the north nor east, go to a triangle one shares a corner with
+  to the northeast of the origin triangle that shares only one edge with
+  another triangle.
+* If on a square and making a NE move, if there is a square which shares 
+  an edge to the north or east, go to that square.
+* If on a square and making a NE move, if there is no square which shares
+  an edge to the north nor east, go to the sqaure one shares a corner with
+  to the northeast of the origin square.
+
+SW:
+* If on a triangle and making a SW move, if there is a triangle sharing
+  an edge to the south or west, go to the triangle.
+* If on a triangle and making a SW move, and there is no triangle sharing
+  an edge to the south nor west, go to a triangle one shares a corner with
+  to the southeast of the origin triangle that shares only one edge with
+  another triangle.
+* If on a square and making a SW move, if there is a square which shares 
+  an edge to the south or west, go to that square.
+* If on a square and making a SW move, if there is no square which shares
+  an edge to the south nor east, go to the sqaure one shares a corner with
+  to the southwest of the origin square.
+
+SE:
+* If on a triangle and making a SE move, if there is a triangle sharing
+  an edge to the south or east, go to the triangle.
+* If on a triangle and making a SE move, and there is no triangle sharing
+  an edge to the south nor east, go to a triangle one shares a corner with
+  to the southeast of the origin triangle that shares only one edge with
+  another triangle.
+* If on a square and making a SE move, if there is a square which shares 
+  an edge to the south or east, go to that square.
+* If on a square and making a SE move, if there is no square which shares
+  an edge to the south nor east, go to the sqaure one shares a corner with
+  to the southeast of the origin square.
+
+Again, to clarify with triangles:
+
+* If the origin triangle shares two edges with other triangles, the
+  destination square will be a triangle one shares an edge with.
+* The desination square, when moving across a diagonal corner instead
+  of across an edge, will always be a triangle with only shares one
+  edge with another triangle.
+
+The result of this is that diagonal moves will be on a jagged path,
+alternating between moving straight along a clump of two squares or three
+triangles, then moving diagonally from one group of cells to another group.
+
+This particular path is more easy to visualize than the nightrider
+path, and allows an experienced Turtle Shell player to easily visualize
+the diagonal path a given piece can make.
