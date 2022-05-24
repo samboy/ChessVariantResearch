@@ -67,7 +67,7 @@ Again, to clarify with triangles:
 * If the origin triangle shares two edges with other triangles, the
   destination square will be a triangle one shares an edge with.
 * The desination square, when moving across a diagonal corner instead
-  of across an edge, will always be a triangle with only shares one
+  of across an edge, will always be a triangle which only shares one
   edge with another triangle.
 
 The result of this is that diagonal moves will be on a jagged path,
