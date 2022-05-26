@@ -89,6 +89,9 @@
 	            C1 D1 F1 B0 C0 D0 E1 E0 F0 G0)) ; black promotion zone
 	(zone (name endzone) (players white) (positions B9 C9 D9 E8 E9 F9 G9))
 	(zone (name endzone) (players black) (positions B0 C0 D0 E1 E0 F0 G0))
+
+; ==ROOK PATHS==
+
 	; Rook/Guard/King paths
 	(links e 
 	  (B9 C9) (C9 D9) (D9 E8) (E8 E9) (E9 F9) (F9 G9)
@@ -150,6 +153,9 @@
 	  (E1 E0) (D1 E1) (D2 D1) (E2 D2) (E3 E2) (E5 E3) (E6 E5)
 	          (E7 E6) (D7 E7) (D8 D7) (E8 D8) (E9 E8)
 	) ; sp
+
+; ==KNIGHT PATHS==
+
 ; Use the file knight-connections.txt to generate the following lines:
 (links k1 (B8 B9)  (C8 B9)  (D8 D9)  (F8 E8)  (G8 D8)  (G7 F9)  (C7 B7)
 (D7 C8)  (F7 D8)  (C6 B7)  (D6 C7)  (E7 C7)  (E6 D7)  (F6 D7)  (G6 G8)
@@ -207,6 +213,9 @@
 (links k8 (D8 C9) (D7 B8)  (C6 A6)  (F6 G8) (D5 C5)  (E5 D6)  (C3 B5)
 (F3 E2)  (D2 C3) (D1 B2)  )
 ; END knight-connections.txt generated content
+
+; == BISHOP PATHS ==
+
 ; I finally found some reasonable diagonal moves.  It's colorbound:
 ; a diagonal move is from a square to a square, or from a triangle to
 ; a triangle
@@ -269,7 +278,9 @@
     (B1 C0)
     (F9 G7)
  )
- 
+
+; == CIRCLE PATHS ==
+
  ; The Turtls Shell board has horizontal and vertical circular 
  ; paths, since the board has both ovals which are wider than high, and
  ; ovals taller than wide.  The wider ovals are "horizontal circles";
@@ -292,7 +303,7 @@
     (E2 E3) (E3 F3) (F3 G3) (G3 G1) (G1 G0) (G0 F0) (F0 E0) (E0 E1)
     (E1 D0) (D0 C0) (C0 B0) (B0 B1) (B1 B3) (B3 C3) (C3 D3) (D3 E2)
  ) ; hclock
- (links hclockt ; truncated circles overlap, so they need a different paths
+ (links hclockt ; truncated circles overlap, so they need different paths
     ; Left (truncated)
     (A6 B6) (B6 C6) (C6 D6) (D6 D5) (D5 D3) (D3 C3) (C3 B3) (B3 A3)
     ; Right (truncated)
@@ -334,6 +345,9 @@
  ) ; ihcounter
 
  ) ; board
+
+; == OPENING SETUP ==
+
  (board-setup (white (rook B0 G0)
                      (knight C0 F0)
 		     (guard D0 E0)
@@ -345,6 +359,8 @@
 		     (king E8)
 		     (bpawn B7 B8 C7 D7 F7 G8 G7))
  ) ; board-setup
+
+; == PIECES ==
 
  (piece (name rook) 
   (help "Rook: Moves any number of cells along a row or file")
@@ -453,7 +469,7 @@
 
  ; Horizontal circle mover (also moves like guard)
  (piece (name hcircle)
-  (help "Guard: Moves like guard or on horizontal circular path")
+  (help "HCircle mover: Moves like guard or on horizontal circular path")
   (image white "images\TurtleShellChess\hcirclew.bmp" 
          black "images\TurtleShellChess\hcircleb.bmp")
   ; guard moves
