@@ -766,7 +766,7 @@
 
 (variant
  (title "Diagonal capture pawns")
- (description "Pawns capture diagonally forwards one cell like a Bishop,
+ (description "Pawns capture diagonally forwards one cell like a bishop,
                just like in standard chess")
  (piece (name wpawn)
   (help "Pawn: Moves forward; captures diagonally; promotes to rook")
@@ -808,7 +808,7 @@
 
 (variant
  (title "Berolina pawns")
- (description "Pawns move diagonally forwards one cell like a Bishop,
+ (description "Pawns move diagonally forwards one cell like a bishop,
                and capture one cell forwards like a rook")
  (piece (name wpawn)
   (help "Pawn: Moves diagonally; captures forward; promotes to rook")
