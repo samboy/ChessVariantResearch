@@ -2,7 +2,8 @@
 (game
  (title "TurtleShell")
  (description "Chess on a 33344-33434 tiling")
- (history "Original idea in 1994.  Implemented in 2021 (board graphics) and 2022 (game rules).  Version 1.06 released April 2022.")
+ (history "Original idea in 1994.  Implemented in 2021 (board graphics) 
+           and 2022 (game rules).  Version 1.12 released May 2022.")
  (players white black)
  (board (image "images\TurtleShellChess\TurtleShell.bmp")
         (positions 
@@ -622,8 +623,28 @@
  (turn-order white black)
 )
 
+; == VARIANTS ==
+
+(variant
+ (title "Alternate TurtleShell setup")
+ (description "An alternate Turtle Shell Chess opening setup.")
+ (board-setup (white (rook C0 F0)
+                     (knight B0 G0)
+		     (guard D0 E0)
+		     (king E1)
+		     (wpawn B1 C2 D2 F2 G1))
+	      (black (rook C9 F9)
+	             (knight B9 G9)
+		     (guard D9 E9)
+		     (king E8)
+		     (bpawn B7 C7 D7 F7 G7))
+ ) ; board-setup
+) ; variant
+
 (variant 
  (title "Cardinal TurtleShell")
+ (description "A cardinal added to the standard Turtle Shell Chess setup.
+               Pawns only promote to rooks.")
  (board-setup (white (rook B0 G0)
                      (knight C0 F0)
 		     (guard D0 E0)
@@ -640,8 +661,75 @@
 ) ; variant
 
 (variant
+ (title "Bishops and Cardinal")
+ (description "Turtle Shell Chess with bishops and a cardinal.
+               Pawns only promote to rooks.")
+ (board-setup (white (rook C0 F0)
+                     (knight B0 G0)
+		     (guard D0 E0)
+		     (king E1)
+		     (bishop C1 D1)
+		     (cardinal F1)
+		     (wpawn B1 C2 D2 F2 G1))
+	      (black (rook C9 F9)
+	             (knight B9 G9)
+		     (guard D9 E9)
+		     (king E8)
+		     (bishop C8 D8)
+		     (cardinal F8)
+		     (bpawn B7 C7 D7 F7 G7))
+ ) ; board-setup
+) ; variant
+
+(variant
+ (title "Circle movers")
+ (description "Turtle Shell Chess with circle movers.
+               Pawns only promote to rooks.")
+ (board-setup (white (rook C1 F1)
+ 		     (hcircle C0)
+		     (vcircle F0)
+                     (knight B0 G0)
+		     (guard D0 E0)
+		     (king E1)
+		     (wpawn B1 C2 D2 F2 G1))
+	      (black (rook C8 F8)
+	      	     (hcircle C9)
+		     (vcircle F9)
+	             (knight B9 G9)
+		     (guard D9 E9)
+		     (king E8)
+		     (bpawn B7 C7 D7 F7 G7))
+ ) ; board-setup
+) ; variant
+
+(variant
+ (title "Circle movers, bishops, cardinal")
+ (description "Turtle Shell Chess with bishops, a cardinal, 
+               and circle movers.  Pawns only promote to rooks.")
+ (board-setup (white (rook C1 F1)
+ 		     (hcircle C0)
+		     (vcircle F0)
+                     (knight B0 G0)
+		     (guard D0 E0)
+		     (king E1)
+		     (cardinal G2)
+		     (bishop B2 D1)
+		     (wpawn B1 C2 D2 F2 G1))
+	      (black (rook C8 F8)
+	      	     (hcircle C9)
+		     (vcircle F9)
+	             (knight B9 G9)
+		     (guard D9 E9)
+		     (king E8)
+		     (cardinal G8)
+		     (bishop B8 D8)
+		     (bpawn B7 C7 D7 F7 G7))
+ ) ; board-setup
+) ; variant
+
+(variant
  (title "Sideways move pawns")
- ; Shogi-style pawns with non-capturing sideways move
+ (description "Shogi-style pawns with non-capturing sideways move.")
  (piece (name wpawn)
  (help "Pawn: Move/captures one cell forward; sideways move; promotes to rook")
   (image white "images\TurtleShellChess\pawnw.bmp" 
@@ -676,9 +764,10 @@
  ) ; bpawn
 )
 
-; Uncomment the following to add diagonal moves for pawns
 (variant
  (title "Diagonal capture pawns")
+ (description "Pawns capture diagonally forwards one cell like a Bishop, 
+               just like in standard chess")
  (piece (name wpawn)
   (help "Pawn: Moves forward; captures diagonally; promotes to rook")
   (image white "images\TurtleShellChess\pawnw.bmp" 
@@ -719,6 +808,8 @@
 
 (variant
  (title "Berolina pawns")
+ (description "Pawns move diagonally forwards one cell like a Bishop, 
+               and capture one cell forwards like a rook")
  (piece (name wpawn)
   (help "Pawn: Moves diagonally; captures forward; promotes to rook")
   (image white "images\TurtleShellChess\pawnw.bmp" 
@@ -764,4 +855,4 @@
  ) ; board-setup
 ) ; variant
 
-; This currently is not at zillions-of-games.com
+; This is version 1.12; it currently is not at zillions-of-games.com
