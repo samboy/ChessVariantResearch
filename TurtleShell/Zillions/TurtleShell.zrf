@@ -497,16 +497,17 @@
  ) ; knight
 
  ; A nightrider has an unusual movement, and only moves four directions
- (piece (name nightrider)
-  (image white "images\TurtleShellChess\nightriderw.bmp"
-         black "images\TurtleShellChess\nightriderb.bmp")
-  (help "Nightrider: Moves four directions")
-  (moves
-   (k1 (while empty? add k1) (verify not-friend?) add)
-   (k2 (while empty? add k2) (verify not-friend?) add)
-   (k3 (while empty? add k3) (verify not-friend?) add)
-   (k4 (while empty? add k4) (verify not-friend?) add))
- ) ; nightrider
+ ; Commented out -- not intuitive
+ ;(piece (name nightrider)
+ ; (image white "images\TurtleShellChess\nightriderw.bmp"
+ ;        black "images\TurtleShellChess\nightriderb.bmp")
+ ; (help "Nightrider: Moves four directions")
+ ; (moves
+ ;  (k1 (while empty? add k1) (verify not-friend?) add)
+ ;  (k2 (while empty? add k2) (verify not-friend?) add)
+ ;  (k3 (while empty? add k3) (verify not-friend?) add)
+ ;  (k4 (while empty? add k4) (verify not-friend?) add))
+ ;) ; nightrider
 
  (piece (name bishop)
   (image white "images\TurtleShellChess\bishopw.bmp"
@@ -627,7 +628,7 @@
 ; == VARIANTS ==
 
 (variant
- (title "Alternate TurtleShell setup")
+ (title "Alternate Turtle Shell setup")
  (description "An alternate Turtle Shell Chess opening setup.")
  (board-setup (white (rook C0 F0)
                      (knight B0 G0)
@@ -643,7 +644,7 @@
 ) ; variant
 
 (variant
- (title "Cardinal TurtleShell")
+ (title "Cardinal Turtle Shell")
  (description "A cardinal added to the standard Turtle Shell Chess setup.
                Pawns only promote to rooks.")
  (board-setup (white (rook B0 G0)
