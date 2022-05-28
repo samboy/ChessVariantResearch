@@ -1,7 +1,8 @@
 ; Given to the public domain in 2022 by Sam Trenholme
 (game
- (title "TurtleShell")
- (description "Chess on a 33344-33434 tiling")
+ (title "Turtle Shell Chess")
+ (description "Chess on a 33344-33434 tiling.  See the included PDF file or
+   https://www.chessvariants.com/rules/turtleshellchess for full rules.")
  (history "Original idea in 1994.  Implemented in 2021 (board graphics)
            and 2022 (game rules).  Version 1.12 released May 2022.")
  (players white black)
