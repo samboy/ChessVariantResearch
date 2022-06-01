@@ -1,15 +1,21 @@
 #!/usr/bin/env lua
 
--- Donated to the public domain by Sam Trenholme 2021
+-- Donated to the public domain by Sam Trenholme 2021, 2022
 
 -- Make a "turtle shell" tesselation of the plane in SVG format
 
+gridCount =  7 -- The number of groups of cells we place, both horizontally
+               -- and vertically (cells is a multiple of the square of this 
+	       -- number)
 scale = 100 -- How long each line will be in the pattern
 rad3 = scale * .5 * (3 ^ .5)
 half = scale / 2
 pathdef = '<path fill="none" stroke="black" stroke-width="5" '
 newline = "\n"
-svgHeader = '<svg viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">'
+svgHeader = '<svg viewBox="0 0 ' .. tostring(scale * gridCount * 2.2) 
+            .. ' ' ..
+            tostring(scale * gridCount * 2.2)
+	    .. '" xmlns="http://www.w3.org/2000/svg">'
 svgFooter = '</svg>'
 
 -- The shapes used for the Turtle shell
@@ -164,8 +170,8 @@ function turtleShellGridPoint(x, y)
 end
 
 print(svgHeader)
-for a = 0,7 do
-  for b = 0,7 do
+for a = 0,gridCount do
+  for b = 0,gridCount do
     print(turtleShellGridPoint(a,b))
   end
 end
