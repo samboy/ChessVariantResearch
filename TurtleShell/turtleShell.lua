@@ -4,9 +4,13 @@
 
 -- Make a "turtle shell" tesselation of the plane in SVG format
 
+
 gridCount =  7 -- The number of groups of cells we place, both horizontally
                -- and vertically (cells is a multiple of the square of this 
 	       -- number)
+if arg and tonumber(arg[1]) and tonumber(arg[1]) >= 3 then
+  gridCount = tonumber(arg[1])
+end
 scale = 100 -- How long each line will be in the pattern
 rad3 = scale * .5 * (3 ^ .5)
 half = scale / 2
