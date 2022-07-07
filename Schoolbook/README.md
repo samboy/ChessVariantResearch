@@ -33,6 +33,24 @@ with a relatively low advantage for White. This in mind, I have gone
 back to considering Schoolbook to be the best Capablanca opening setup
 I have come up with.
 
+# The opening
+
+There are about five good first moves for White:
+
+* `1. e4` where Black’s best reply looks to be `Ng6` 
+* `1. Mh3` where Black’s best reply looks to be `Ni6` 
+* `1. Ng3` where Black’s best reply looks to be `d5`
+* `1. d4` where Black’s best reply looks to be `f5`
+* `1. c3` where Black’s best reply looks to be `e5`
+
+Note that, back in 2009, Joker80 indicated that `1. c4` was winning
+for White, but Fairy Stockfish with Belzedar’s Capablanca NNUE file
+shows that `1. e4` is actually White’s best move, and that it’s
+not winning (it’s only +0.44 at a depth of 36 ply and seldepth of 41
+ply; that’s about 0.15 a pawn better than White’s best move in
+standard international chess, so Schoolbook is slightly less drawish
+with a slightly larger advantage for White in comparison).  
+
 # The environment
 
 The environment here is a Windows 10 machine using Cygwin.  The 
@@ -93,7 +111,7 @@ Some points here:
 * `Evalfile` points to the Capablanca chess NNUE we have
 * `MultiPV` here means we look at the seven best possible moves
 
-Let’s verify we’re ready to evaulate things with the NNUE file and
+Let’s verify we’re ready to evaluate things with the NNUE file and
 the Schoolbook position.  Again, in Fairy Stockfish:
 
 ```
