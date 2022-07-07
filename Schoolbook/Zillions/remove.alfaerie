@@ -1,6 +1,8 @@
 #!/bin/bash
 
 rm -fr alfaerie
+cat Schoolbook2.zrf | sed -r 's/\"alfaerie\\[^"]+\"//' > foo
+mv foo Schoolbook2.zrf
 cat Schoolbook-a.zrf | sed -r 's/\"alfaerie\\[^"]+\"//' > foo
 mv foo Schoolbook-a.zrf
 cat Schoolbook-b.zrf | sed -r 's/\"alfaerie\\[^"]+\"//' > foo

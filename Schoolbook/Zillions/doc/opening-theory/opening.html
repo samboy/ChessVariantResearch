@@ -1,5 +1,32 @@
 <h1>Exploring the openings in Schoolbook chess</h1>
 
+As of 2022, based on research using Fairy Stockfish with an
+appropriate NNUE file, for Schoolbook 2.0 (where the king can only
+move three squares when castling), there are five good opening moves
+for White:
+
+<ul>
+<li> 1. e4 where Black’s best reply looks to be Ng6
+<li> 1. Mh3 where Black’s best reply looks to be Ni6
+<li> 1. Ng3 where Black’s best reply looks to be d5
+<li> 1. d4 where Black’s best reply looks to be f5
+<li> 1. c3 where Black’s best reply looks to be e5
+</ul>
+
+Note that, back in 2009, Joker80 indicated that 1. c4 was winning
+for White, but Fairy Stockfish with Belzedar’s Capablanca NNUE file
+shows that 1. e4 is actually White’s best move, and that it's
+not winning (it's only +0.44 at a depth of 36 ply and seldepth of 41
+ply; that’s about 0.15 a pawn better than White's best move in
+standard international chess, so Schoolbook is slightly less drawish
+with a slightly larger advantage for White in comparison).
+
+<hr>
+
+<i>Please note that the following notes were made long before Fairy
+   Stockfish with an appropriate NNUE file has updated our opening
+   theory for Schoolbook</i>
+
 <h2>Table of contents</h2>
 <ol>
 <li><A href="#intro">An introduction to Schoolbook</A>
@@ -19,9 +46,9 @@
 <h2>An introduction to Schoolbook</h2>
 
 One of the nice things about chess variant design is that it opens up
-new fields of opening study to explore.  In FIDE (orthodox, western)
-Chess, any move on the first half-dozen turns that is not an outright
-blunder has already been throughly studied and explored.  Many opening
+new fields of opening study to explore.  In standard international
+Chess, many moves on the first half-dozen turns that is not an outright
+blunder has been throughly studied and explored.  Many opening
 lines are 20 or 30 moves deep.  There are little, if any, interesting 
 new frontiers to explore.
 <p>
@@ -81,7 +108,7 @@ of the king forward two squares.
 <b>1. f4 f5</b><p>
 </A>
 
-Just like in FIDE chess, one of White's best moves is moving the
+Just like standard international chess, one of White's best moves is moving the
 king's pawn forward two squares.  This is called the "f4" move in
 Schoolbook notation.  After <tt>1. f4</tt>, black has a number of
 replies, the best probably being <tt>1. ... f5</tt>.  The game,

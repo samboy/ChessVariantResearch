@@ -4,22 +4,29 @@ http://www.zillions-of-games.com) and a set of Chess piece graphics
 which are either public domain or released under a liberal license (see
 the file copying.txt for details).
 
-There are three .zrf files here:
+There are four .zrf files here:
+
+* Schoolbook2.zrf, which implements the rules for version 2.0 of
+  Schoolbook, where the king always moves three squares when castling.
 
 * Schoolbook-a.zrf, which uses Mats Winther's tweaks to make Zillions
   play a better game.  A few variants with different pawn moves
   (including Mats' Scorpions) are included in the .zrf file.
+  This has not been updated for Schoolbook 2.0; if one wishes a
+  strong engine, use Fairy Stockfish along with a Capablanca NNUE
+  file.
 
 * Schoolbook-b.zrf, which is a "stock" set of rules for Zillions.
   This file makes the standard mistakes Zillions makes: Developing
   knights and archbishops before pawns, moving the queen too early,
   etc.  The advantage of this .zrf file is that it offers a number
   of interesting variants not offered in the Schoolbook-a.zrf file.
+  This uses the version 1 rules of Schoolbook.
 
 * Schoolbook-compat.zrf.  This is a "compatibility" .zrf file, which
   is compatible with saved games created by early versions of the
   Schoolbook .zrf.  Only use this if you have an old saved game you want
-  to replay.
+  to replay.  This uses the version 1 rules of Schoolbook.
 
 There is also a good deal of documentation here, including 20 different
 mating problems and some opening analysis.
@@ -162,12 +169,16 @@ Value of the pieces
 
                                    Rules
 
-   Castling comes from Fergus Duniho's Grotesque Chess: The king may
-   castle two or three squares towards the rook on the right hand side,
-   and two, three, or four squares towards the rook on the left hand
-   side. The rook leaps over the king to land besides the king. The king
-   can not castle out of, through, or in to check. Both the king and
-   rook that the king castles with must not have previously moved.
+   In Schoolbook 2.0, the king always moves three squares towards the
+   corresponding rook when castling.
+
+   Castling in the older Schoolbook 1.0 comes from Fergus Duniho's 
+   Grotesque Chess: The king may castle two or three squares towards the 
+   rook on the right hand side, and two, three, or four squares towards 
+   the rook on the left hand side. The rook leaps over the king to land 
+   besides the king. The king can not castle out of, through, or in to 
+   check. Both the king and rook that the king castles with must not 
+   have previously moved.
 
    The name of the rook + knight piece in Schoolbook is called the
    "marshall". The name of the bishop + knight piece in Schoolbook is

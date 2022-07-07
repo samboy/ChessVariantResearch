@@ -49,6 +49,12 @@
 0.9.7: ChessV and other links updated.  Link to games added to Schoolbook.html
        file.  More mating positions added. (2007.07.30)
 
-1.0.0: Final release of Schoolbook .zrf/zip file.  Four more mating positions
+1.0.0: Final release of Schoolbook1 .zrf/zip file.  Four more mating positions
        added.  Pdf file of mating problems and solutions added in doc directory.
        (2008.06.23)
+
+2.0.0: Added .zrf file with Schoolbook version 2 rules: Castling is now
+       always three squares towards the corresponding rook.  Updated
+       graphics to not be encumbered by TeX license at all; added note
+       that alfaerie graphics are probably not protected by copyright
+       in the US.  Updated documents.
