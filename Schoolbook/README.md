@@ -44,7 +44,7 @@ Included is the following file:
 This is a neural network optimized to play Capablanca (and Schoolbook)
 Chess as strongly as possible.
 
-Since this file is 101,518,240 bytes in size compressed, I have 
+Since this file is 101,518,240 bytes in size uncompressed, I have 
 compressed it using the `xz` program.
 
 To decompress the file:
