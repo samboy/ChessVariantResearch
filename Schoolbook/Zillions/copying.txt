@@ -10,7 +10,9 @@ All of the files in the alfaeire/ directory are under a restrictive
 copyright in some jurisdictions.
 
 In more detail, these images are derived from David Howe's
-alfaerie graphics, which have no stated copyright.  
+alfaerie graphics, which have no stated copyright, but can
+not be copyright protected in the United States as per
+*Eltra Corp. v. Ringer*.
 
 The alfaerie graphics, in turn, are based on renderings of characters in 
 Eric Bentzen's Chess Alpha font, which "is free for personal non 
@@ -18,7 +20,6 @@ commercial use."  Note that, since the glyphs are raster images,
 and since fonts (which, yes, includes chess piece image fonts; see
 *Eltra Corp. v. Ringer*) do not have copyright in the United States,
 these images are not encumbered by Bentzen's copyright in the US.  
-*Adobe Systems, Inc. v. Southern Software, Inc.* does not apply here; only 
-David Howe can claim copyright on these images.
+*Adobe Systems, Inc. v. Southern Software, Inc.* does not apply here.
 
 All other files are released to the public domain.
