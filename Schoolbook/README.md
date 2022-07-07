@@ -110,6 +110,14 @@ a Schoolbook opening book:
 go
 ```
 
+To make moves before evaluating the position, we can do a command
+in this form:
+
+```
+position fen  rqnbakbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RQNBAKBNCR w KQkq - 0
+ 1 moves i1h3
+```
+
 # OK, let’s look at the output
 
 The output will look like this after a few minutes:
