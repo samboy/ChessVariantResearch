@@ -49,13 +49,11 @@ compressed it using the `xz` program.
 
 To decompress the file:
 
-`xz -d capablanca-bb644ef32758-2022-05.nnue.xz`
+`xz -k -d capablanca-bb644ef32758-2022-05.nnue.xz`
 
 The file, once uncompressed, has a MD5 sum of 
 `3cbb35a76799176837990410c18c6a54`, a SHA-256 sum of
 `bb644ef32758eb8e1e6d795226290ec2c816beee479c8cd82939aa5f53517732`, and a
 RadioGatún[32] sum of
 `53e10b9a18d5a0e1892f6d13a95d03b10ceb4721f3e05be174a9d3d6b157c81a`
-
-
 
