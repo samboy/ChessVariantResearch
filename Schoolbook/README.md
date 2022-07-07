@@ -35,6 +35,11 @@ with a relatively low advantage for White. This in mind, I have gone
 back to considering Schoolbook to be the best Capablanca opening setup
 I have come up with.
 
+# The environment
+
+The environment here is a Windows 10 machine using Cygwin.  The 
+directions are similar but might vary in other environments.
+
 # The files here
 
 Included is the following file:
@@ -64,5 +69,45 @@ To test Schoolbook with this NNUE file, one will need Fairy Stockfish:
 https://github.com/ianfab/Fairy-Stockfish/releases/tag/fairy_sf_14_0_1_xq
 
 As a courtesy, I have included a Windows binary of this program here;
-as per the GPL, source code is also available.
+as per the GPL, source code is also available as a `.tar.xz` file.
+
+To evaluate the opening do the following:
+
+`./fairy-stockfish-largeboard_x86-64-bmi2.exe | tee fs-out.txt`
+
+Then, let’s set things up for Schoolbook Chess:
+
+```
+uci
+setoption name UCI_Variant value capablanca
+position fen rqnbakbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RQNBAKBNCR w KQkq - 0 1
+setoption name Use NNUE value true
+setoption name Evalfile value capablanca-bb644ef32758-2022-05.nnue
+setoption name MultiPV value 7
+```
+
+Some points here:
+
+* `uci` is the interface we use (the commands we send)
+* `UCI_Variant` tells us to play an 8x10 Capablanca variant
+* `position` sets up the Schoolbook opening position
+* `Use NNUE` sets up the best possible evaluation
+* `Evalfile` points to the Capablanca chess NNUE we have
+* `MultiPV` here means we look at the seven best possible moves
+
+Let’s verify we’re ready to evaulate things with the NNUE file and
+the Schoolbook position.  Again, in Fairy Stockfish:
+
+```
+d
+eval
+```
+
+Now we can evaluate the starting position and start to build up
+a Schoolbook opening book:
+
+```
+go
+```
+
 
