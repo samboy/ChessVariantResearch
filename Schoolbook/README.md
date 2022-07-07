@@ -155,4 +155,5 @@ Some things we can see here:
   the advantage is 55 centipawns, or a little over 1/10 of a pawn better.
 * White’s best opening looks to be 1. f4 f5 2. Mh3 Mh6 3. Mxh6 gxh6 4. Ng3 e6
   5. e4 fxe4 6. d3 Bf7 7. dxe4 Ni6
+* White has five good opening moves: f4, Mh3, Ng3, e4, and c3.
 
