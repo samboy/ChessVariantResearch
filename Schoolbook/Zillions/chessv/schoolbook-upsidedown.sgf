@@ -1,0 +1,10 @@
+Upsidedown Schoolbook:Capablanca Chess
+$array = "RQNMAKBNMR/PPPPPPPPPP/10/10/10/10/pppppppppp/rqnbakbnmr"
+$castling-type = "flexible"
+change-piece-name("Chancellor","Marshall","M")
+change-piece-value("Rook",5000,75,15)
+change-piece-value("Bishop",3250,25,10)
+change-piece-value("Knight",2500,0,0)
+change-piece-value("Queen",9000,50,12)
+change-piece-value("Archbishop",6500,25,10)
+change-piece-value("Chancellor",8250,25,14)

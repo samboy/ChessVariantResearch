@@ -1,0 +1,37 @@
+Zillions Save Game File Version 0.02 HCC
+RulesFile=Z:\Schoolbook\Zillions\Select.zrf
+VariantName=Schoolbook Chess
+1. Knight c1 - d3
+1. Pawn f7 - f5 Black H M1
+2. Marshall I1 - h3
+2. Pawn e7 - e6 Black H M2
+3. Pawn f2 - f3 White H M3
+3. Pawn h7 - h6 Black H M4
+4. Knight h1 - g3
+4. Knight c8 - d6
+5. Pawn e2 - e4
+5. Bishop g8 - j5
+6. Marshall h3 - j4
+6. Bishop j5 - h7
+7. Pawn e4 - e5
+7. Knight h8 - I6
+8. Marshall j4 - d4
+8. Knight d6 - f7
+9. Bishop g1 - e3
+9. Pawn c7 - c6
+10. Knight d3 - c5
+10. Knight f7 x e5
+11. Pawn f3 - f4
+11. Archbishop e8 - d6
+12. Archbishop e1 - d3
+12. Knight e5 x d3
+13. Knight c5 x d7
+13. King f8 - e8 @ e8 0 0
+14. Knight d7 x b8
+14. Archbishop d6 x b8
+15. Pawn c2 x d3
+15. Pawn e6 - e5
+16. Marshall d4 - e6
+16. King e8 - f7 @ f7 0 0
+17. Bishop d1 - b3
+17. Bishop d8 - h4

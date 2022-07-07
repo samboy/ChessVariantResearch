@@ -1,0 +1,10 @@
+#!/bin/bash
+
+rm -fr alfaerie
+cat Schoolbook-a.zrf | sed -r 's/\"alfaerie\\[^"]+\"//' > foo
+mv foo Schoolbook-a.zrf
+cat Schoolbook-b.zrf | sed -r 's/\"alfaerie\\[^"]+\"//' > foo
+mv foo Schoolbook-b.zrf
+cat Schoolbook-compat.zrf | sed -r 's/\"images\\alfaerie\\[^"]+\"//' > foo
+mv foo Schoolbook-compat.zrf
+

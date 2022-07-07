@@ -1,0 +1,1204 @@
+; *** Schoolbook 
+; *** Copyright 1998-2002 Zillions Development
+; *** Modified 2006 by Sam Trenholme to run Schoolbook 
+
+; This is a version of the zrf file designed to load saved games
+; made with older versions of Schoolbook zrfs
+
+; You need to purchase Zillions of Games to load this rules file
+; Visit the Zillions web site at http://www.zillions-of-games.com
+
+; Schoolbook version 0.9.2
+
+; This file is encumbered by whatever copyrights the chess.zrf file
+; that Zillions of Games 2.0 comes with.  The Knight, Marshall, and
+; Archbishop piece images are encumbered under the liberal Latex
+; Project Public Licence.  Nothing else included with this package is
+; encumbered by copyrights nor any other intellectual property claims.
+
+; Changelog:
+
+; 0.5: First version
+
+; 0.6: Image of pawns fixed in Kinglet chess
+;      Non-royal king in non-royal variants can now castle (through check
+;      if desired)
+
+; 0.7: The proprietary ("free for non-commercial use") chess piece images 
+;      have been replaced by public domain images, based on the images 
+;      in the chess diagrams in Ben Foster's 1889 book on the
+;      Chancellor Chess variant.
+
+; 0.7.1: The queen graphic has been improved
+
+; 0.8.0: The knight, archbishop, and marshall graphics have been improved
+;        by using the knight from the Skak Latex font.
+
+; 0.8.1-0.8.3: Improvments made to the graphics
+
+; 0.8.4: File packaged as per the zillions-of-games.com submission 
+;        guidelines.
+
+; 0.8.5: Chessboard colors updated; mating problems added
+
+; 0.9.0: Minor tweaks to graphics; new "bw" color set added which is
+;        suitable for monochrome displays and for printing; copying.txt
+;        clarified a little
+
+; 0.9.1: Updated graphics; made chessboard slightly smaller and updated
+;        the knight images.  Notation updated to use an upper-case I for
+;        the I file (so "I" will look different than "j").  This breaks
+;        saved games.  Updated description of game and added five more mates
+
+; 0.9.2: Added compatibility zrf file
+
+(version "2.0")
+
+(define leap1        ($1    (verify not-friend?) add) )
+(define leap2        ($1 $2 (verify not-friend?) add) )
+(define king-shift   ($1    (verify not-friend?) (set-attribute never-moved? false) add) )
+
+(define slide        ($1 (while empty? add $1) (verify not-friend?) add))
+(define rook-slide (
+  $1
+  (while empty? (set-attribute never-moved? false) add $1)
+  (verify not-friend?)
+  (set-attribute never-moved? false)
+  add
+))
+
+(define Castle-i
+	 ( (verify never-moved?)
+	   e ; g1
+	   (verify empty?)
+	   e ; h1
+	   (verify empty?)
+           e ; i1
+           (verify empty?)
+	   cascade
+	   e ; j1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   e ; g1
+	   (verify not-attacked?)
+           e ; h1
+           (verify not-attacked?)
+	   to
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   e ; i1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Castle-h
+	 ( (verify never-moved?)
+	   e ; g1
+	   (verify empty?)
+	   e ; h1
+	   (verify empty?)
+           cascade
+           e ; i1
+           (verify empty?)
+	   ;cascade
+	   e ; j1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   e ; g1
+	   (verify not-attacked?)
+	   to
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   e ; h1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Castle-b
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           w ; c1
+           (verify empty?)
+	   w ; b1
+           (verify empty?)
+           cascade
+           w ; a1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   w ; e1
+	   (verify not-attacked?)
+           w ; d1
+           (verify not-attacked?)
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   w ; c1
+           to
+           w ; b1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Castle-c
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           w ; c1
+           (verify empty?)
+	   cascade
+	   w ; b1
+           (verify empty?)
+           w ; a1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   w ; e1
+	   (verify not-attacked?)
+           w ; d1
+           (verify not-attacked?)
+	   to
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   w ; c1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Castle-d
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           cascade
+           w ; c1
+           (verify empty?)
+	   w ; b1
+           (verify empty?)
+           w ; a1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   w ; e1
+           (verify not-attacked?)
+           to
+	   (set-attribute never-moved? false)
+           w ; d1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Pawn-add
+   (if (in-zone? promotion-zone) (add Knight Bishop Rook Queen Archbishop Marshall) else add)
+)
+
+(define Pawn-move
+   (
+      n
+      (verify empty?)
+      (Pawn-add)
+      (verify (in-zone? third-rank))
+      n
+      (verify empty?)
+      add
+   )
+)
+
+(define Pawn-capture
+   (
+      $1
+      (verify enemy?)
+      (Pawn-add)
+   )
+)
+
+(define En-Passant
+   (
+      $1
+      (verify enemy?)
+      (verify last-to?)
+      (verify (piece? Pawn))
+      capture
+      n
+      to
+      n
+      (verify last-from?)
+      add
+   )
+)
+
+(define Board-Definitions
+  (image "images\10x8.bmp" "images\bw\10x8.bmp" "images\10x8.bmp" )
+  (grid
+     (start-rectangle 0 0 50 50)
+     (dimensions
+         ("a/b/c/d/e/f/g/h/i/j" (50 0)) ; files
+         ("8/7/6/5/4/3/2/1" (0 50)) ; ranks
+     )
+     (directions (n 0 -1) (e 1 0) (s 0 1) (w -1 0)
+			     (ne 1 -1) (nw -1 -1) (se 1 1) (sw -1 1)
+     )
+  )
+  (symmetry Black (n s)(s n) (nw sw)(sw nw) (ne se)(se ne))
+  (zone
+     (name promotion-zone)
+     (players White)
+     (positions a8 b8 c8 d8 e8 f8 g8 h8 i8 j8)
+  )
+  (zone
+     (name promotion-zone)
+     (players Black)
+     (positions a1 b1 c1 d1 e1 f1 g1 h1 i1 j1)
+  )
+  (zone
+     (name third-rank)
+     (players White)
+     (positions a3 b3 c3 d3 e3 f3 g3 h3 i3 j3)
+  )
+  (zone
+     (name third-rank)
+     (players Black)
+     (positions a6 b6 c6 d6 e6 f6 g6 h6 i6 j6)
+  )
+)
+
+(game
+   (title "Schoolbook")
+   (description "Schoolbook is a Chess variant played on a 10 x 8 board. 
+Each player has the usual Chess set plus two more Pawns, an Archbishop, and a
+Marshall. The Archbishop moves like a Knight or Bishop, and the Marshall
+moves like a Knight or Rook.\\Castling is
+different: when a King castles, he may move 2, 3, or 4 spaces toward the Rook.
+Pawns may promote to one of the new pieces as well as the standard Chess
+pieces.  The rules are otherwise as in FIDE Chess.
+\\Try playing one of the many exciting variants.")
+   (history "8x10 chess variants with these two extra pieces have
+existed since the 17th century.  In the 20th century, world Chess 
+champion Jose Raul Capablanca developed an interest 8x10 chess using these pieces. 
+Capablanca wanted to 'introduce in the game
+new forces which would necessarily throw the players on to their own
+resources, and give much greater scope to the imagination and to the
+creative power of the individual player.'\\Study of these versions of chess
+has resulted in a desire for knight and bishop development to resemble, as 
+much as possible, development in FIDE chess. Another thing research has 
+shown is the importance of having all pawns guarded in the opening 
+configuration.\\This opening setup attempts to 
+achieve both goals, and is, to the inventor's knowledge, the first 8x10 
+Chess variant to do so.  Fergus Duniho invented the flexible castling that 
+this variant uses. Originally invented in 2004 by Sam Trenholme, he 
+finally made a .zrf file and formalized the rules in 2006.");
+   (strategy "There is no clear consensus on the value of the pieces in this
+Chess variant.  However, it appears that a bishop is a half-pawn more valuable
+than a knight, two knights are more valuable than a rook, an archbishop is
+worth more than two knights, a marshall is worth more than an archbishop, 
+a queen is worth more than a marshall, two rooks are worth more than a queen,
+a marshall is worth more than a rook and knight, a rook and knight are worth
+more than an archbishop, and, finally, a marshall is worth more than two 
+bishops.\\
+The development of knights and bishops resembles the 
+development in FIDE chess.  Both center pawns, however, are undefended on the 
+fourth rank in the opening setup.\\While there is no weak spot near the 
+king in the opening as in FIDE chess, the greater amount of force on the 
+board more than compensates.   This game is more tactical than FIDE chess; 
+for people who love the chess of Morphy and other great players of the 
+romantic era, this variant will be very enjoyable.");
+   (option "prevent flipping" 2)
+   (win-sound "Audio\Orchestra_CF.wav")
+   (loss-sound "Audio\Orchestra_FC.wav")
+   (click-sound "Audio\Pickup.wav")
+   (release-sound "Audio\WoodThunk.wav")
+   (players White Black)
+   (turn-order White Black)
+   (board (Board-Definitions))
+
+   (board-setup
+      (White
+         (Pawn a2 b2 c2 d2 e2 f2 g2 h2 i2 j2)
+         (Knight c1 h1)
+         (Bishop d1 g1)
+         (Rook a1 j1)
+         (Queen b1)
+         (Archbishop e1)
+         (Marshall i1)
+         (King f1)
+      )
+      (Black
+         (Pawn a7 b7 c7 d7 e7 f7 g7 h7 i7 j7)
+         (Knight c8 h8)
+         (Bishop d8 g8)
+         (Rook a8 j8)
+         (Queen b8)
+         (Archbishop e8)
+         (Marshall i8)
+         (King f8)
+      )
+   )
+
+   (piece
+      (name Pawn)
+      (help "Pawn: moves forward, captures diagonally, can promote on 8th row")
+      (description "Pawn\A Pawn can move straight ahead one square, or two squares from
+           its starting position.  A Pawn captures by moving one square ahead and
+           diagonally.  If a Pawn reaches the far rank it promotes, changing into
+           a Knight, Bishop, Rook, or Queen.  On rare occasions Pawns can also execute
+           a move called `En Passant`, or `in passing`.  This allows a Pawn to take
+           an enemy Pawn that has just moved two squares.")
+      (image White "images\pawnw.bmp" "images\bw\pawnw.bmp" "alfaerie\pawnw.bmp" 
+             Black "images\pawnb.bmp" "images\bw\pawnb.bmp" "alfaerie\pawnb.bmp" )
+      (moves
+         (Pawn-capture nw)
+         (Pawn-capture ne)
+         (Pawn-move)
+         (En-Passant e)
+         (En-Passant w)
+      )
+   )
+
+   (piece
+      (name Knight)
+	  (help "Knight: moves like an `L`, 2 squares one way and one the other")
+      (description "Knight\A Knight moves like an `L`, two squares vertically plus one
+          horizontally, or two squares horizontally plus one vertically.  It
+          hops over any pieces on the way.")
+      (image White "images\schoolbook-knightw.bmp" "images\bw\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" 
+             Black "images\schoolbook-knightb.bmp" "images\bw\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" )
+      (moves
+	     (leap2 n ne)
+	     (leap2 n nw)
+	     (leap2 s se)
+	     (leap2 s sw)
+	     (leap2 e ne)
+	     (leap2 e se)
+	     (leap2 w nw)
+	     (leap2 w sw)
+      )
+   )
+
+   (piece
+      (name Bishop)
+	  (help "Bishop: slides diagonally any number of squares")
+      (description "Bishop\A Bishop moves any number of squares on a diagonal.  It may
+           not leap over other pieces.")
+      (image White "images\bishopw.bmp" "images\bw\bishopw.bmp" "alfaerie\bishopw.bmp" 
+             Black "images\bishopb.bmp" "images\bw\bishopb.bmp" "alfaerie\bishopb.bmp" )
+      (moves
+         (slide ne)
+         (slide nw)
+         (slide se)
+         (slide sw)
+      )
+   )
+
+   (piece
+      (name Rook)
+	  (help "Rook: slides any number of squares along the row or column.")
+      (description "Rook\A Rook moves any number of squares orthogonally on a rank
+           or a file.  It may not leap over other pieces.")
+      (image White "images\rookw.bmp" "images\bw\rookw.bmp" "alfaerie\rookw.bmp" 
+             Black "images\rookb.bmp" "images\bw\rookb.bmp" "alfaerie\rookb.bmp" )
+      (attribute never-moved? true)
+      (moves
+         (rook-slide n)
+         (rook-slide e)
+         (rook-slide s)
+         (rook-slide w)
+      )
+   )
+
+   (piece
+      (name Queen)
+	  (help "Queen: can slide any number of squares in any direction")
+      (description "Queen\A Queen moves any number of squares in a straight line.
+          It may not leap over other pieces.")
+      (image White "images\queenw.bmp" "images\bw\queenw.bmp" "alfaerie\queenw.bmp" 
+             Black "images\queenb.bmp" "images\bw\queenb.bmp" "alfaerie\queenb.bmp" )
+      (moves
+         (slide n)
+         (slide e)
+         (slide s)
+         (slide w)
+         (slide ne)
+         (slide nw)
+         (slide se)
+         (slide sw)
+      )
+   )
+
+   (piece
+      (name Archbishop)
+           (help "Archbishop: Moves like a bishop or knight")
+      (description "Archbishop\An archbishop can move like a bishop or a knight.")
+      (image White "images\schoolbook-archbishopw.bmp" "images\bw\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" 
+             Black "images\schoolbook-archbishopb.bmp" "images\bw\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" )
+      (moves
+          (slide ne)
+          (slide nw)
+          (slide se)
+          (slide sw)
+	  (leap2 n ne)
+	  (leap2 n nw)
+	  (leap2 s se)
+	  (leap2 s sw)
+	  (leap2 e ne)
+	  (leap2 e se)
+	  (leap2 w nw)
+	  (leap2 w sw)
+      )
+   )
+
+   (piece
+      (name Marshall)
+           (help "Marshall: Moves like a rook or knight")
+      (description "Archbishop\An archbishop can move like a rook or a knight.")
+      (image White "images\schoolbook-marshallw.bmp" "images\bw\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" 
+             Black "images\schoolbook-marshallb.bmp" "images\bw\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" )
+      (moves
+          (slide n)
+          (slide s)
+          (slide e)
+          (slide w)
+	  (leap2 n ne)
+	  (leap2 n nw)
+	  (leap2 s se)
+	  (leap2 s sw)
+	  (leap2 e ne)
+	  (leap2 e se)
+	  (leap2 w nw)
+	  (leap2 w sw)
+      )
+   )
+
+   (piece
+      (name King)
+	  (help "King: steps 1 square in any direction to a safe square")
+      (description "King\A King can move to any adjacent square, but never to a 
+	      square where it can be captured.  It may also `castle`
+          with the Rook if neither the Rook nor King has moved yet and there is
+          nothing in between them.  In castling the King moves two squares nearer
+          the Rook and the Rook leaps to the far side of the King.  You may not
+          castle out of or through check, or if the King or Rook involved has 
+		  previously moved.")
+      (image White "images\kingw.bmp" "images\bw\kingw.bmp" "alfaerie\kingw.bmp" 
+             Black "images\kingb.bmp" "images\bw\kingb.bmp" "alfaerie\kingb.bmp" )
+      (attribute never-moved? true)
+      (moves
+         (king-shift n)
+         (king-shift e)
+         (king-shift s)
+         (king-shift w)
+         (king-shift ne)
+         (king-shift nw)
+         (king-shift se)
+         (king-shift sw)
+         (Castle-i)
+         (Castle-h)
+         (Castle-b)
+         (Castle-c)
+         (Castle-d)
+      )
+   )
+
+   (loss-condition (White Black) (checkmated King) )
+)
+
+; **************************************************************************
+; VARIANTS WHERE THE KING ISN'T ROYAL
+; **************************************************************************
+(variant
+   (title "-") ; --------------------------------------------------------
+)
+
+(define progressive-turns
+   (turn-order
+      White
+      Black Black
+      White White White
+      Black Black Black Black
+      White White White White White
+      Black Black Black Black Black Black
+      White White White White White White White
+      Black Black Black Black Black Black Black Black
+      White White White White White White White White White
+      Black Black Black Black Black Black Black Black Black Black
+      White White White White White White White White White White White
+      Black Black Black Black Black Black Black Black Black Black Black Black
+      White White White White White White White White White White White White White
+      Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+      White White White White White White White White White White White White White White White
+     repeat
+      Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+      White White White White White White White White White White White White White White White White
+   )
+)
+
+(define tc-Castle-i
+	 ( (verify never-moved?)
+	   e ; g1
+	   (verify empty?)
+	   e ; h1
+	   (verify empty?)
+           e ; i1
+           (verify empty?)
+	   cascade
+	   e ; j1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   e ; g1
+           e ; h1
+	   to
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   e ; i1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define tc-Castle-h
+	 ( (verify never-moved?)
+	   e ; g1
+	   (verify empty?)
+	   e ; h1
+	   (verify empty?)
+           cascade
+           e ; i1
+           (verify empty?)
+	   ;cascade
+	   e ; j1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   e ; g1
+	   to
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   e ; h1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define tc-Castle-b
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           w ; c1
+           (verify empty?)
+	   w ; b1
+           (verify empty?)
+           cascade
+           w ; a1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   w ; e1
+           w ; d1
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   w ; c1
+           to
+           w ; b1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define tc-Castle-c
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           w ; c1
+           (verify empty?)
+	   cascade
+	   w ; b1
+           (verify empty?)
+           w ; a1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   w ; e1
+           w ; d1
+	   to
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   w ; c1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define tc-Castle-d
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           cascade
+           w ; c1
+           (verify empty?)
+	   w ; b1
+           (verify empty?)
+           w ; a1
+	   (verify (and friend? (piece? Rook) never-moved?) )
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   w ; e1
+           to
+	   (set-attribute never-moved? false)
+           w ; d1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define unroyal-King
+  (piece
+    (name King)
+    (help "King: steps 1 square in any direction, castles with rook")
+    (description "King\A non-royal King can move to any adjacent square.  In
+	     castling the King moves two squares nearer the Rook and the Rook
+		 leaps to the far side of the King.  It can castle through check
+		 if desired.  The non-royal King can be captured like any other piece.")
+    (image White "images\kingw.bmp" "images\bw\kingw.bmp" "alfaerie\kingw.bmp" 
+           Black "images\kingb.bmp" "images\bw\kingb.bmp" "alfaerie\kingb.bmp" )
+    (attribute never-moved? true)
+    (moves
+       (king-shift n)
+       (king-shift e)
+       (king-shift s)
+       (king-shift w)
+       (king-shift ne)
+       (king-shift nw)
+       (king-shift se)
+       (king-shift sw)
+       (tc-Castle-i)
+       (tc-Castle-h)
+       (tc-Castle-b)
+       (tc-Castle-c)
+       (tc-Castle-d)
+    )
+  )
+)
+
+; These macros allow promotion to a King
+(define unroyal-Pawn-add      (if (in-zone? promotion-zone) (add Knight Bishop Rook Queen King Archbishop Marshall) else add) )
+(define unroyal-Pawn-capture  ($1 (verify enemy?) (unroyal-Pawn-add)) )
+(define unroyal-Pawn-move (
+	n (verify empty?) (unroyal-Pawn-add)
+	(verify (in-zone? third-rank)) n (verify empty?) add
+))
+
+(define unroyal-Pawn
+   (piece
+      (name Pawn)
+	  (help "Pawn: moves forward, captures diagonally, can promote on 8th row to KQRBN")
+      (description "Pawn\A Pawn can move straight ahead one square, or two squares
+	     from its starting position.  A Pawn captures by moving one square ahead and
+		 diagonally.  If a Pawn reaches the far rank it promotes, changing into a
+		 Knight, Bishop, Rook, Queen, or (in this variant) even a King.  On rare
+		 occasions Pawns can also execute a move called `En Passant`, or `in
+		 passing`.  This allows a Pawn to take an enemy Pawn that has just moved two
+         squares.")
+      (image White "images\pawnw.bmp" "images\bw\pawnw.bmp" "alfaerie\pawnw.bmp" 
+             Black "images\pawnb.bmp" "images\bw\pawnb.bmp" "alfaerie\pawnb.bmp" )
+      (moves
+         (unroyal-Pawn-capture nw)
+         (unroyal-Pawn-capture ne)
+         (En-Passant e)
+         (En-Passant w)
+         (unroyal-Pawn-move)
+     )
+   )
+)
+
+; **************************************************************************
+(variant
+   (title "Extinction Schoolbook")
+   (description "Object: Make all of a type of piece extinct; e.g., win
+       by capturing both your opponent's Knights.  Victory is achieved 
+when you have captured your opponent's King, Queen, Archbishop, Marshall, 
+or both of his Rooks, Knights, or Bishops.");
+   (history "This game was invented as a variant of FIDE Chess by R. 
+Wayne Schmittberger, and was first published under his pseudonym 
+`Paddy Smith` in the August 1985 issue of Games Magazine.  It was originally 
+called `Survival of the Species` and became popular in NOST under 
+its present name.  Sam Trenholme adopted Extinction chess to use the setup 
+of his Schoolbook Chess variant.")
+   (strategy "Games are usually shorter than in orthodox chess and endgames are
+       almost impossible.  The queen is somewhat less powerful than in orthodox chess,
+       since it cannot move to attacked squares, even if protected.  Multiple piece
+       attacks (forks and pins) can be very powerful if one or more of the targets is
+       the last of its kind.  Exchanges can reap dividends if the remaining piece
+       of a pair can be subsequently attacked.")
+   (unroyal-King)
+   (unroyal-Pawn)
+   (loss-condition (White Black)
+        (or
+              (pieces-remaining 0 King)
+		      (pieces-remaining 0 Queen)
+		      (pieces-remaining 0 Rook)
+		      (pieces-remaining 0 Bishop)
+		      (pieces-remaining 0 Knight)
+                      (pieces-remaining 0 Archbishop)
+                      (pieces-remaining 0 Marshall)
+		      (pieces-remaining 0 Pawn)
+		)
+   )
+)
+
+; **************************************************************************
+; These macros just force promotion to a King
+(define KC-Pawn-add      (if (in-zone? promotion-zone) (add King) else add) )
+(define KC-Pawn-capture  ($1 (verify enemy?) (KC-Pawn-add)) )
+(define KC-Pawn-move (
+	n (verify empty?) (KC-Pawn-add)
+	(verify (in-zone? third-rank)) n (verify empty?) add
+))
+(variant
+   (title "Kinglet Schoolbook")
+   (description "Object: To capture all of your opponent's Pawns (Kinglets).\
+      The King is not royal and may be captured without ending the game.  Pawns are
+      always promoted to Kings.  Right-click on pieces to see how they move.")
+   (history "This game is one of the best creations of the prolific inventor of
+      chess variants, V. R. Parton.    It was invented as a FIDE Chess 
+      variant in 1953, and appeared in Boyer's second anthology of chess 
+      variants in 1954.   When Parton described it in his own book `Chess 
+      -- Curiouser and Curiouser` in 1960, he called it
+      `Imperial Fiddlesticks`, after an exclamation by the White King in Lewis
+      Carroll's `Alice Through The Looking-Glass`.  Sam Trenholme adopted 
+Kinglet Chess to use the setup of his Schoolbook Chess variant")
+   (strategy "Although it is dangerous to allow your opponent too great a material
+      advantage in pieces, Parton himself suggests sacrificing a minor piece (including
+      the non-royal king, which is about as strong as a knight or bishop) for a single
+      pawn, or a rook (perhaps even a queen!) for two pawns.   Forcing your opponent
+      to promote a pawn can also be a useful tactic: if you can force him to promote
+      his last remaining pawn, you win.")
+   (unroyal-King)
+   (piece
+      (name Pawn)
+	  (help "Pawn (Kinglet): moves forward, captures diagonally, promotes on 8th row to King")
+      (description "Pawn (Kinglet)\A Pawn can move straight ahead one square, or two squares
+        from its starting position.  A Pawn captures by moving one square ahead and
+        diagonally.  If a Pawn reaches the far rank it promotes to a non-royal King.  On rare
+        occasions Pawns can also execute a move called `En Passant`, or `in passing`.  This
+        allows a Pawn to take an enemy Pawn that has just moved two squares.\\
+        The object of the game is capture all of the opponent's Pawns.")
+	  (image White "images\pawnw.bmp" "images\bw\pawnw.bmp" "alfaerie\pawnw.bmp" 
+                 Black "images\pawnb.bmp" "images\bw\pawnb.bmp" "alfaerie\pawnb.bmp" )
+      (moves
+         (KC-Pawn-capture nw)
+         (KC-Pawn-capture ne)
+         (KC-Pawn-move)
+         (En-Passant e)
+         (En-Passant w)
+      )
+   )
+   (loss-condition (White Black) (pieces-remaining 0 Pawn))
+)
+
+; **************************************************************************
+(variant
+   (title "Double-Move Take-All")
+   (description "Object: To capture all of your opponent's pieces.\The
+      King is not royal and may be captured without ending the
+	  game.  Pawns may be promoted to Kings.  Right-click on pieces to
+	  see how they move.")
+   (history "The origin of the game is not known.   In his books, V. R. Parton
+      referred to the game as `Mock Chess`.  If the double-move version is
+      too slow for you, try the progressive form!  Sam Trenholme made
+      this a double-move game and adopted it for Schoolbook.")
+   (strategy "Material is all-important.  The King is an ordinary piece, about
+        the strength of a knight.")
+   (unroyal-King)
+   (unroyal-Pawn)
+   (turn-order White Black Black repeat White White Black Black)
+   (loss-condition (White Black) (pieces-remaining 0))
+)
+
+; **************************************************************************
+(variant
+   (title "Progressive Take-All")
+   (description "Object: To capture all of your opponent's pieces.\The
+      King is not royal and may be captured without ending the
+	  game.  Pawns may be promoted to Kings.  Right-click on pieces to
+	  see how they move.\\White gets 1 move, Black gets 2, White gets 3, etc.")
+   (history "Progressive Take-All was invented as a FIDE Chess variant in 1979 by Giuseppe Dipilato, one
+      of the leading players in the Italian variant organization AISE.  It is
+      a popular game and was one of the seven variants selected for the First
+      Heterochess Olympics, an international team postal championship in 1989.
+      Sam Trenholme adopted this game for Schoolbook.")
+   (strategy "Bishops and queens are powerful in the opening.  Queens tend to
+      disappear rather quickly.  In the endgame, knights and rooks are more
+      powerful and bishops become weaker.  Single bishops are particularly
+      weak, as opposing pieces can easily move to squares of the opposite color.
+      As the number of moves per turn increases, watch for promotion opportunities
+      for both sides.  When ahead of the opponent in material, try to block his
+      remaining pawns from promoting.")
+   (unroyal-King)
+   (unroyal-Pawn)
+   (progressive-turns)
+   (loss-condition (White Black) (pieces-remaining 0))
+)
+
+
+; **************************************************************************
+; DOUBLE-MOVE VARIANTS
+; **************************************************************************
+(variant
+   (title "-") ; --------------------------------------------------------
+)
+
+; **************************************************************************
+(variant
+   (title "Double-Move (Capture)")
+   (description "Like normal Chess, except that each side moves twice.  Also,
+      the King is not royal and may captured.  There is no check -- the winner
+	  is the first person to capture the opponent's King.")
+   (history "In one form or another, Double-Move Chess has been enjoyed for
+      many centuries.  One particular version, Marseillais Chess, was played
+	  in the 1920's by many strong Chess players including Alekhine,
+	  Reti, Znosko-Borovsky, and Cheron.  Alekhine, known for his attacking
+	  play, was world champion in normal Chess.  Sam Trenholme adopted this game for Schoolbook.")
+   (strategy "Shield your King so the opponent can't check you.  If he can
+      check you on the first move, he can capture you on the second!  Watch
+	  for the opportunity to capture an enemy piece and then
+      escape on the second move.  Queens are particular agile in this regard.")
+   (turn-order White Black Black repeat White White Black Black)
+   (unroyal-King)
+   (loss-condition (White Black) (pieces-remaining 0 King))
+)
+
+; **************************************************************************
+(variant
+   (title "Double-Move (Checkmate)")
+   (description "Like normal Chess, except that each side moves twice.  A King
+      that is in check doesn't have to get out of check until his second move.
+	  In fact, it is okay to move into check on the first move as long as you
+	  move out again on the second move.  Checking the opponent is only allowed
+	  on the second move.")
+   (history "In one form or another, Double-Move Chess has been enjoyed for
+      many centuries.  One particular version, Marseillais Chess, was played
+	  in the 1920's by many strong Chess players including Alekhine,
+	  Reti, Znosko-Borovsky, and Cheron.  Alekhine, known for his attacking
+	  play, was world champion in normal Chess.  Sam Trenholme adopted this game for Schoolbook.")
+   (strategy "Shield your King so the opponent can't check you.  If he can
+      check you on the first move, he can capture you on the second!  Watch
+	  for the opportunity to capture an enemy piece and then
+      escape on the second move.  Queens are particular agile in this regard.")
+   (turn-order White Black Black repeat White White Black Black)
+)
+
+
+; **************************************************************************
+; OTHER VARIANTS
+; **************************************************************************
+(variant
+   (title "-") ; --------------------------------------------------------
+)
+
+; **************************************************************************
+(variant
+   (title "Cylindrical Schoolbook")
+   (description "Schoolbook played on a cylinder: the left and right edges wrap around.")
+   (history "Cylindrical variants for FIDE Chess dates back at least to the early 20th century, where
+      it was a popular problem theme.   The game has also been a popular progressive
+      game in AISE.  Sam Trenholme adopted this game for Schoolbook.")
+   (strategy "The Queen and Bishop are relatively stronger than in chess due to
+      slightly greater mobility.   The knight has its maximum mobility anywhere in
+      the four middle ranks.   Learn to visualize all of the possible moves around
+      the board edges.")
+   (board
+      (Board-Definitions)
+      ; Connect left and right edges
+      (links e  (j1 a1) (j2 a2) (j3 a3) (j4 a4) (j5 a5) (j6 a6) (j7 a7) (j8 a8))
+      (links w  (a1 j1) (a2 j2) (a3 j3) (a4 j4) (a5 j5) (a6 j6) (a7 j7) (a8 j8))
+      (links ne (j1 a2) (j2 a3) (j3 a4) (j4 a5) (j5 a6) (j6 a7) (j7 a8))
+      (links nw (a1 j2) (a2 j3) (a3 j4) (a4 j5) (a5 j6) (a6 j7) (a7 j8))
+      (links se (j2 a1) (j3 a2) (j4 a3) (j5 a4) (j6 a5) (j7 a6) (j8 a7))
+      (links sw (a2 j1) (a3 j2) (a4 j3) (a5 j4) (a6 j5) (a7 j6) (a8 j7))
+   )
+)
+
+
+; **************************************************************************
+(define royal-leap2
+   ($1 $2 (verify not-friend?) (set-attribute never-moved? false) add)
+)
+; These macros allow promotion to a King, but not to a Knight
+(define knightmate-Pawn-add      (if (in-zone? promotion-zone) (add Bishop Rook Queen King Archbishop Marshall) else add) )
+(define knightmate-Pawn-capture  ($1 (verify enemy?) (knightmate-Pawn-add)) )
+(define knightmate-Pawn-move (
+   n (verify empty?) (knightmate-Pawn-add)
+   (verify (in-zone? third-rank)) n (verify empty?) add)
+)
+(variant
+   (title "Knightmate")
+   (description "Like normal Schoolbook, except that the Knights are interchanged
+      with the Kings and the object becomes to checkmate the Knight.  Kings
+      are not royal and may be taken.  The Knight does not castle.  Pawns
+      may not promote to Knights, but may promote to Kings.")
+   (history "Invented by Bruce Zimov in 1972.  The first Knightmate Open
+      occurred in Ohio in 1991.   It has also been popular in postal play
+      in NOST.   The game was independently invented in the early 1970's at
+      Sheffield University in England, where it was known as `Mate The Knight`.
+      Sam Trenholme adopted this game for Schoolbook.")
+   (strategy "Keep a careful watch on the squares next to your Knight: if it
+      is checked from an adjacent square, it won't be able to capture the
+      checking piece.")
+   (board-setup
+      (White
+         (Pawn a2 b2 c2 d2 e2 f2 g2 h2 i2 j2)
+         (King c1 h1)
+         (Bishop d1 g1)
+         (Rook a1 j1)
+         (Queen b1)
+         (Knight f1)
+         (Archbishop e1)
+         (Marshall i1)
+      )
+      (Black
+         (Pawn a7 b7 c7 d7 e7 f7 g7 h7 i7 j7)
+         (King c8 h8)
+         (Bishop d8 g8)
+         (Rook a8 j8)
+         (Queen b8)
+         (Knight f8)
+         (Archbishop e8)
+         (Marshall i8)
+      )
+   )
+   (piece
+      (name Pawn)
+      (help "Pawn: moves forward, captures diagonally, can promote on 8th row to KQRB")
+      (description "Pawn\A Pawn can move straight ahead one square, or two squares
+          from its starting position.  A Pawn captures by moving one square ahead and
+          diagonally.  If a Pawn reaches the far rank it promotes, changing into a
+          Bishop, Rook, Queen, or (in this variant) even a King.  On rare
+          occasions Pawns can also execute a move called `En Passant`, or `in
+          passing`.  This allows a Pawn to take an enemy Pawn that has just moved two
+          squares.")
+      (image White "images\pawnw.bmp" "images\bw\pawnw.bmp" "alfaerie\pawnw.bmp" 
+             Black "images\pawnb.bmp" "images\bw\pawnb.bmp" "alfaerie\pawnb.bmp" )
+      (moves
+         (knightmate-Pawn-capture nw)
+         (knightmate-Pawn-capture ne)
+         (En-Passant e)
+         (En-Passant w)
+         (knightmate-Pawn-move)
+     )
+   )
+   (piece
+      (name Knight)
+	  (help "Knight: moves like an `L`, 2 squares one way and one the other")
+      (description "Knight\A Knight moves like an `L`, two squares vertically plus one
+          horizontally, or two squares horizontally plus one vertically.  It
+          hops over any pieces on the way.  A Knight that hasn't moved has the
+          option of castling with one of its Rooks.  This is achieved just as in
+          regular Chess.\\The object of this variant is to checkmate the Knight.")
+      (image White "images\schoolbook-knightw.bmp" "images\bw\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" 
+             Black "images\schoolbook-knightb.bmp" "images\bw\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" )
+      (attribute never-moved? true)
+      (moves
+	     (royal-leap2 n ne)
+	     (royal-leap2 n nw)
+	     (royal-leap2 s se)
+	     (royal-leap2 s sw)
+	     (royal-leap2 e ne)
+	     (royal-leap2 e se)
+	     (royal-leap2 w nw)
+	     (royal-leap2 w sw)
+      )
+   )
+   (piece
+      (name King)
+      (description "King\A King can move to any adjacent square.  It may not
+	     castle.  In this variant the King is not royal and may be captured.")
+      (help "King: steps 1 square in any direction")
+      (image White "images\kingw.bmp" "images\bw\kingw.bmp" "alfaerie\kingw.bmp" 
+             Black "images\kingb.bmp" "images\bw\kingb.bmp" "alfaerie\kingb.bmp" )
+      (moves
+         (leap1 n)
+         (leap1 e)
+         (leap1 s)
+         (leap1 w)
+         (leap1 ne)
+         (leap1 nw)
+         (leap1 se)
+         (leap1 sw)
+      )
+   )
+   (loss-condition (White Black) (checkmated Knight) )
+)
+
+
+; **************************************************************************
+(variant
+   (title "Pocket Knight Schoolbook")
+   (description "Same as regular Schoolbook except that each side begins
+       with an extra Knight `in his pocket.`  This Knight may dropped
+	 on any empty square in place of a regular move.");
+   (history "Also known as Tombola Chess, this game as a FIDE Chess variant 
+       was popular in the
+       early 20th century.   Large tournaments were held in 1909 and 1910.
+       In the early versions of the game, the `pocket knight` was either
+       the queenside or kingside Knight, removed before the game.   The
+       game is generally played today with the standard array and a third
+       knight in hand.   The game has been played postally in NOST, and is
+       seen as a good way to gently introduce orthodox players to variant
+       play.  Sam Trenholme adopted this game for Schoolbook.")
+   (strategy "Most of the strategy of chess is sound; indeed, games have been
+       won without even using the pocket knight.   But possible drop squares
+       for either side should be kept in mind; knight forks can be particularly
+       devastating if the King and Queen, or Queen and Rook, are carelessly
+       situated.")
+   (board-setup
+      (White
+         (Pawn a2 b2 c2 d2 e2 f2 g2 h2 i2 j2)
+         (Knight off 1 c1 h1)
+         (Bishop d1 g1)
+         (Rook a1 j1)
+         (Queen b1)
+         (King f1)
+         (Archbishop e1)
+         (Marshall i1)
+      )
+      (Black
+         (Pawn a7 b7 c7 d7 e7 f7 g7 h7 i7 j7)
+         (Knight off 1 c8 h8)
+         (Bishop d8 g8)
+         (Rook a8 j8)
+         (Queen b8)
+         (King f8)
+         (Archbishop e8)
+         (Marshall i8)
+      )
+   )
+   (piece
+      (name Knight)
+	  (help "Knight: moves like an `L`, 2 squares one way and one the other")
+      (description "Knight\A Knight moves like an `L`, two squares vertically plus one
+          horizontally, or two squares horizontally plus one vertically.  It
+          hops over any pieces on the way.")
+      (image White "images\schoolbook-knightw.bmp" "images\bw\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" 
+             Black "images\schoolbook-knightb.bmp" "images\bw\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" )
+      (moves
+	     (leap2 n ne)
+	     (leap2 n nw)
+	     (leap2 s se)
+	     (leap2 s sw)
+	     (leap2 e ne)
+	     (leap2 e se)
+	     (leap2 w nw)
+	     (leap2 w sw)
+      )
+      (drops ((verify empty?) add))
+   )
+)
+
+; **************************************************************************
+; TRAINING GAMES
+; **************************************************************************
+(variant
+   (title "-") ; --------------------------------------------------------
+)
+
+; **************************************************************************
+(variant
+   (title "King vs. King")
+   (description "The object for the White King is to reach on of the starred squares
+      (h8 or j8) in the upper-right-hand corner of the chessboard.  The object for
+      Black is to prevent White from reaching these squares.")
+   (history "This endgame training puzzle appears in `Essential Chess Endings
+      Explained Move by Move` (Chess Digest 1988) by International Master Jeremy Silman.  Sam Trenholme adopted this endgame exercise for Schoolbook.")
+   (strategy "White can force a win.  To solve this puzzle every time you'll need to
+      understand the chess concepts of opposition, distant opposition, and outflanking.")
+   (option "highlight goals" true)
+   (board-setup
+      (White (King a1))
+      (Black (King a8))
+   )
+   (win-condition (White) (or (absolute-config King (h8)) (absolute-config King (j8))) )
+   (win-condition (Black) repetition)
+   (loss-condition (White) repetition)
+   (loss-condition (White Black) (checkmated King) ) ; needed to keep kings from touching
+)
+
+; **************************************************************************
+(variant
+   (title "Knight Hunting")
+   (description "The object for White is to capture the Knight, which he should be
+      able to do.  Black's object is to prevent this and Black wins if a 3-fold 
+      repetition occurs.  Black also wins if he captures White's Rook.\\Passing is
+      allowed.")
+   (history "This endgame training puzzle appears in `Winning Chess: Endings`
+      (Microsoft Press 1999) by International Grandmaster Yasser Seirawan.  It is 
+      useful practice for King and Rook vs. King and Knight endings.  Sam Trenholme adopted this endgame exercise for Schoolbook.")
+   (strategy "White can force a win, though it can be tricky.  To solve this puzzle 
+      you'll need to gradually restrict the Knight's movement to force it to the 
+      edge of the board where it can be trapped.  Choose `Show Solution` under the 
+      Help menu to see possible play.  See how few moves you can use to trap the Knight.")
+   (option "pass turn" true)
+   (solution "Solutions\Chess\Knight_Hunting.zsg")
+   (board-setup
+      (White
+         (Rook b2)
+         (King a1)
+      )
+      (Black
+         (Knight e5)
+      )
+   )
+   (loss-condition (White) (captured Rook))
+   (loss-condition (Black) (captured Knight))
+   (loss-condition (White) (checkmated King) ) ; to force King away from Knight checks
+   (loss-condition (White) repetition)
+   (win-condition (Black) repetition)
+)

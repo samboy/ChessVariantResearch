@@ -1,0 +1,34 @@
+Zillions Save Game File Version 0.02 HHC
+RulesFile=c:\windows\profiles\set\My Documents\geek\schoolbook\schoolbook\zillions\schoolbook-0.9.7\Schoolbook-a.zrf
+VariantName=Schoolbook Chess
+1. Pawn e2 - e4 White H M1
+1. Pawn e7 - e5
+2. Knight c1 - d3
+2. Knight c8 - d6
+3. Pawn c2 - c3
+3. Knight h8 - g6
+4. Knight h1 - g3
+4. Bishop d8 - h4
+5. Knight g3 - f5
+5. Bishop h4 - I5
+6. Bishop d1 - g4
+6. Knight d6 x e4
+7. Pawn j2 - j4
+7. Bishop I5 - j6
+8. Knight d3 x e5
+8. Knight e4 x d2
+9. Archbishop e1 x d2
+9. Knight g6 x e5
+10. Bishop g4 - h3
+10. Pawn d7 - d5
+11. Pawn a2 - a4
+11. Pawn f7 - f6 Black H M2
+12. Pawn f2 - f4 White H M3
+12. Knight e5 - c4
+13. Archbishop d2 - f3
+13. Pawn b7 - b6
+14. Knight f5 - d4
+14. Archbishop e8 - g6
+15. aQueen b1 - a2 flip Z6 = Queen on a2
+15. Archbishop g6 - d3
+16. Archbishop f3 - e2

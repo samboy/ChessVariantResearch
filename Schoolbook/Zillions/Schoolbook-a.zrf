@@ -1,0 +1,1146 @@
+; *** Capablanca's Chess
+; *** Copyright 1998-2002 Zillions Development
+; v.2.0
+;
+; Implemented by Mats Winther, April 2006
+; Modified by Sam Trenholme for Schoolbook Chess, October 2006
+;
+; You need to purchase Zillions of Games to load this rules file
+; Visit the Zillions web site at http://www.zillions-of-games.com
+
+(version "2.0")
+
+
+(define aQueen-slide  (  $1 ;the queen on the initial square, discouraged to move
+	 (while empty? 
+	 (if (friend? Z6) (flip Z6) 
+	  else  (if (friend? Z7) (flip Z7))) (add Queen) $1) ;discourage
+	 (verify not-friend?)   		  
+	(add Queen)
+))
+(define leap1        ($1          (verify not-friend?) add) )
+(define leap2        ($1 $2       (verify not-friend?) add) )
+(define leap3        ($1 $2 $3    (verify not-friend?) add) )
+(define leap4        ($1 $2 $3 $4 (verify not-friend?) add) )
+
+(define leap1ride    ($1       (while empty? add $1      ) (verify not-friend?) add) )
+(define leap2ride    ($1 $2    (while empty? add $1 $2   ) (verify not-friend?) add) )
+(define leap3ride    ($1 $2 $3 (while empty? add $1 $2 $3) (verify not-friend?) add) )
+
+(define shift2       ($1 (verify empty?) $2 (verify not-friend?) add) )
+
+
+(define King-shift   ($1 (verify not-friend?) (set-attribute never-moved? false) add) )
+
+(define Rook-ride (
+  $1
+  (while empty? add $1)
+  (verify not-friend?)
+  add
+))
+
+(define aRook-ride (
+  $1
+  (while empty? (add Rook) $1)
+  (verify not-friend?)
+  (add Rook)
+))
+
+
+(define Bishop-moves
+
+
+     (leap1ride ne)
+     (leap1ride nw)
+     (leap1ride se)
+     (leap1ride sw)
+)
+(define Rook-moves
+
+
+     (leap1ride n)
+     (leap1ride s)
+     (leap1ride e)
+     (leap1ride w)
+)
+(define Knight-moves
+
+	 (leap2 n ne)
+	 (leap2 n nw)
+	 (leap2 s se)
+	 (leap2 s sw)
+	 (leap2 e ne)
+	 (leap2 e se)
+	 (leap2 w nw)
+	 (leap2 w sw)
+)
+
+(define Castle-i
+	 ( (verify never-moved?)
+	   e ; g1
+	   (verify empty?)
+	   e ; h1
+	   (verify empty?)
+           e ; I1
+           (verify empty?)
+	   cascade
+	   e ; j1
+	   (verify (piece? aRook))
+	   (if (empty? Z4) (create H Z4) else  (create H Z5));encourage
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   e ; g1
+	   (verify not-attacked?)
+           e ; h1
+           (verify not-attacked?)
+	   to
+           (create Rook)
+	   (set-attribute never-moved? false)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   e ; I1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Castle-h
+	 ( (verify never-moved?)
+	   e ; g1
+	   (verify empty?)
+	   e ; h1
+	   (verify empty?)
+           cascade
+           e ; I1
+           (verify empty?)
+	   ;cascade
+	   e ; j1
+	   (verify (piece? aRook))
+	   (if (empty? Z4) (create H Z4) else  (create H Z5)) ;encourage
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   e ; g1
+	   (verify not-attacked?)
+	   to
+           (create Rook)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   e ; h1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Castle-b
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           w ; c1
+           (verify empty?)
+	   w ; b1
+           (verify empty?)
+           cascade
+           w ; a1
+	   (verify (piece? aRook))
+           (if (empty? Z4) (create H Z4) else  (create H Z5));encourage
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   w ; e1
+	   (verify not-attacked?)
+           w ; d1
+           (verify not-attacked?)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   w ; c1
+           to
+           (create Rook) 
+           w ; b1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Castle-c
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           w ; c1
+           (verify empty?)
+	   cascade
+	   w ; b1
+           (verify empty?)
+           w ; a1
+	   (verify (piece? aRook))
+	   (if (empty? Z4) (create H Z4) else  (create H Z5));encourage
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   w ; e1
+	   (verify not-attacked?)
+           w ; d1
+           (verify not-attacked?)
+	   to
+           (create Rook)
+		 ; We could check if KN1 is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   w ; c1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define Castle-d
+	 ( (verify never-moved?)
+	   w ; e1
+	   (verify empty?)
+	   w ; d1
+	   (verify empty?)
+           cascade
+           w ; c1
+           (verify empty?)
+	   w ; b1
+           (verify empty?)
+           w ; a1
+	   (verify (piece? aRook))
+	   (if (empty? Z4) (create H Z4) else  (create H Z5));encourage
+	   from
+	   back ; f1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   w ; e1
+           (verify not-attacked?)
+           to
+           (create Rook)
+           w ; d1
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define O-O
+	 ( (verify never-moved?)
+	   e ; KB1
+	   (verify empty?)
+	   e ; KN1
+	   (verify empty?)
+	   e ; KH1
+	   (verify empty?)
+	   cascade
+	   e ; KR1
+	  (verify (piece? aRook))
+        (if (empty? Z4) (create H Z4) else  (create H Z5));encourage 
+	   from
+	   back ; K1
+		 ; Save expensive not-attacked?s for last
+	   (verify not-attacked?)
+	   e  
+         (verify not-attacked?)
+	   e  
+	   to
+	   (create Rook)
+		 ; We could check if this square is attacked too, but this isn't
+		 ; really necessary since Zillions doesn't allow any moves
+		 ; into check
+	   e 
+	   (set-attribute never-moved? false)
+	   add
+	 )
+)
+
+(define O-O-O
+     ( (verify never-moved?)
+       w ; Q1
+       (verify empty?)
+       w ; QB1
+       (verify empty?)
+      w ; QN1
+       (verify empty?)
+       cascade
+       w ; QH1
+       (verify empty?)
+       w ; QR1
+       (verify (piece? aRook))
+       (if (empty? Z4) (create H Z4) else  (create H Z5));encourage 
+       from
+       back ; K1
+         ; Save expensive not-attacked?s for last
+       (verify not-attacked?)
+       w 
+       (verify not-attacked?)
+       w 
+       (verify not-attacked?)
+       to
+       (create Rook)
+         ; We could check if KN1 is attacked too, but this isn't
+         ; really necessary since Zillions doesn't allow any moves
+         ; into check
+       w ; QB1
+       (set-attribute never-moved? false)
+       add
+     )
+)
+
+(define Pawn-move1  
+   (
+       n
+      (verify empty?)
+      (if (in-zone? final-rank) 
+           (add Knight Bishop Rook Queen Archbishop Marshall) 
+      else 
+          (if (in-zone? centre-pawns1)
+			(if (empty? M1) (create H M1)
+			else   (if (empty? M2) (create H M2)
+			else   (if (empty? M3) (create H M3)
+			else   (if (empty? M4) (create H M4)			
+			))))
+          )
+     add)
+      (verify (in-zone? third-rank))
+      n
+      (verify empty?) 
+      (if (in-zone? centre-pawns3)
+			(if (empty? M1) (create H M1)
+			else   (if (empty? M2) (create H M2)
+			else   (if (empty? M3) (create H M3)
+			else   (if (empty? M4) (create H M4)			
+			))))
+      )      
+      add
+   )
+)
+
+(define Pawn-add
+   (if (in-zone? final-rank) 
+             (add Marshall Archbishop Bishop Knight Queen Rook) 
+    else add)
+)
+
+(define Pawn-move-s1
+   (
+      $1 $2
+      (verify empty?)
+      (Pawn-add)
+   )
+)
+
+
+(define Pawn-move  
+   (
+       n
+      (verify empty?)
+      (if (in-zone? final-rank) 
+           (add Knight Bishop Rook Queen Archbishop Marshall) 
+      else 
+          (if (in-zone? centre-pawns)
+			(if (empty? M1) (create H M1)
+			else   (if (empty? M2) (create H M2)
+			else   (if (empty? M3) (create H M3)
+			else   (if (empty? M4) (create H M4)			
+			))))
+          )
+     add)
+      (verify (in-zone? third-rank))
+      n
+      (verify empty?) 
+      (if (in-zone? centre-pawns2)
+			(if (empty? M1) (create H M1)
+			else   (if (empty? M2) (create H M2)
+			else   (if (empty? M3) (create H M3)
+			else   (if (empty? M4) (create H M4)			
+			))))
+      )      
+      add
+   )
+)
+
+(define Pawn-capture
+   (
+      $1
+      (verify enemy?)
+      (if (in-zone? final-rank) 
+           (add Knight Bishop Rook Queen Archbishop Marshall) 
+      else add)
+   )
+)
+
+
+
+(define En-Passant
+   (
+      $1
+      (verify enemy?)
+      (verify last-to?)
+      (verify (piece? Pawn))
+      capture
+      n
+      to
+      n
+      (verify last-from?)
+      add
+   )
+)
+
+(define Scorpion-En-Passant
+   (
+      $1
+      (verify enemy?)
+      (verify last-to?)
+      (verify (piece? Scorpion))
+      capture
+      n
+      to
+      n
+      (verify last-from?)
+      add
+   )
+)
+
+(define Caltrop-En-Passant
+   (
+      $1
+      (verify enemy?)
+      (verify last-to?)
+      (verify (piece? Caltrop))
+      capture
+      n
+      to
+      n
+      (verify last-from?)
+      add
+   )
+)
+
+(define Horseman-En-Passant
+   (
+      $1
+      (verify enemy?)
+      (verify last-to?)
+      (verify (piece? Horseman))
+      capture
+      n
+      to
+      n
+      (verify last-from?)
+      add
+   )
+)
+
+(define tweak_shift ($1 (verify empty?) add)) ;for tweaking the engine to play better
+
+(define Board-Definitions-8x10
+  (image "images\10x8.bmp" "images\10x8.bmp" "images\bw\10x8.bmp" ) 
+  (grid
+     (start-rectangle 0 0 50 50)
+     (dimensions
+         ("a/b/c/d/e/f/g/h/I/j" (50 0)) ; files
+         ("8/7/6/5/4/3/2/1" (0 50)) ; ranks
+     )
+         (directions (n 0 -1) (e 1 0) (s 0 1) (w -1 0)
+			         (ne 1 -1) (nw -1 -1) (se 1 1) (sw -1 1)
+         )
+  )
+
+
+ 	  (positions  
+
+   		  (Z1 530 0 570 40)
+   		  (Z2 530 40 570 80)
+   		  (Z3 530 80 570 120)
+   		  (Z4 530 120 570 160)
+   		  (Z5 530 160 570 200) 
+   		  (Z6 530 200 570 240)
+   		  (Z7 530 240 570 280)
+
+   		  (M1 570 0 610 40)
+   		  (M2 570 40 610 80)
+   		  (M3 570 80 610 120)
+   		  (M4 570 120 610 160)
+
+ 	) 
+
+(links corners1 ;to discourage the king from wasting moves to the corner squares
+  (a1 Z1) 
+  (j1 Z1) 	
+  (a8 Z1) 	
+  (j8 Z1) 		
+)
+
+(links corners2 
+ (a1 Z2) 	
+ (j1 Z2) 	
+ (a8 Z2) 	
+ (j8 Z2) 			
+)
+
+
+  (symmetry Black (n s)(s n) (nw sw)(sw nw) (ne se)(se ne))
+  (zone
+     (name final-rank)
+     (players White)
+     (positions a8 b8 c8 d8 e8 f8 g8 h8 I8 j8)
+  )
+  (zone
+     (name final-rank)
+     (players Black)
+     (positions a1 b1 c1 d1 e1 f1 g1 h1 I1 j1)
+  )
+
+ (zone
+     (name centre-pawns)
+     (players Black)
+     (positions h6 e6 f6  )
+  )
+  (zone
+     (name centre-pawns)
+     (players White)
+     (positions d3 e3 f3)
+  )
+
+ (zone
+     (name centre-pawns2)
+     (players Black)
+     (positions g5 c5 f5  )
+  )
+  (zone
+     (name centre-pawns2)
+     (players White)
+     (positions d4 e4 f4)
+  )
+
+ (zone
+     (name centre-pawns1)
+     (players Black)
+     (positions h6 e6 f6  )
+  )
+  (zone
+     (name centre-pawns1)
+     (players White)
+     (positions d3 e3 f3)
+  )
+
+ (zone
+     (name centre-pawns3)
+     (players Black)
+     (positions c5 e5 g5  )
+  )
+  (zone
+     (name centre-pawns3)
+     (players White)
+     (positions d4 e4 f4)
+  )
+
+
+  (zone
+     (name third-rank)
+     (players White)
+     (positions a3 b3 c3 d3 e3 f3 g3 h3 I3 j3)
+  )
+  (zone
+     (name third-rank)
+     (players Black)
+     (positions a6 b6 c6 d6 e6 f6 g6 h6 I6 j6)
+  )
+)
+
+
+(game
+   (title "Schoolbook Chess")
+   (description "Schoolbook is a Chess variant played on a 10 x 8 board. 
+Each player has the usual Chess set plus two more Pawns, an Archbishop, and a
+Marshall. The Archbishop moves like a Knight or Bishop, and the Marshall
+moves like a Knight or Rook.\\Castling is
+different: when a King castles, he may move 2, 3, or 4 spaces toward the Rook.
+Pawns may promote to one of the new pieces as well as the standard Chess
+pieces.  The rules are otherwise as in FIDE Chess.
+\\Try playing one of the many exciting variants.")
+   (history "8x10 chess variants with these two extra pieces have
+existed since the 17th century.  In the 20th century, world Chess 
+champion Jose Raul Capablanca developed an interest 8x10 chess using these pieces. 
+Capablanca wanted to 'introduce in the game
+new forces which would necessarily throw the players on to their own
+resources, and give much greater scope to the imagination and to the
+creative power of the individual player.'\\Study of these versions of chess
+has resulted in a desire for knight and bishop development to resemble, as 
+much as possible, development in FIDE chess. Another thing research has 
+shown is the importance of having all pawns guarded in the opening 
+configuration.\\This opening setup attempts to 
+achieve both goals, and is, to the inventor's knowledge, the first 8x10 
+Chess variant to do so.  Fergus Duniho invented the flexible castling that 
+this variant uses. Originally invented in 2004 by Sam Trenholme, he 
+finally made a .zrf file and formalized the rules in 2006.  This .zrf
+file is an adaptation of Mats Winther's Capablanca Chess zillions file,
+which has special rules that encourage Zillions to correctly move pawns
+and not move the queen in the opening.");
+   (strategy "There is no clear consensus on the value of the pieces in this
+Chess variant.  However, it appears that a bishop is a half-pawn more valuable
+than a knight, two knights are more valuable than a rook, an archbishop is
+worth more than two knights, a marshall is worth more than an archbishop, 
+a queen is worth more than a marshall, two rooks are worth more than a queen,
+a marshall is worth more than a rook and knight, a rook and knight are worth
+more than an archbishop, and, finally, a marshall is worth more than two 
+bishops.\\
+The development of knights and bishops resembles the 
+development in FIDE chess.  Both center pawns, however, are undefended on the 
+fourth rank in the opening setup.\\While there is no weak spot near the 
+king in the opening as in FIDE chess, the greater amount of force on the 
+board more than compensates.   This game is more tactical than FIDE chess; 
+for people who love the chess of Morphy and other great players of the 
+romantic era, this variant will be very enjoyable.")
+   (board (Board-Definitions-8x10))
+   (option "prevent flipping" 2)
+   (opening-sound "Audio\\Clinking.wav")
+   (win-sound "Audio\\Orchestra_CF.wav")
+   (loss-sound "Audio\\Orchestra_FC.wav")
+   (click-sound "Audio\\Pickup.wav")
+   (move-sound "Audio\\Metal3.wav")
+   (release-sound "Audio\\WoodThunk.wav")
+   (capture-sound "Audio\\Click3.wav")
+   (change-sound "Audio\\WoodThunk.wav")
+   (players White Black Dummy_player)
+   (move-priorities normaltype)
+   (turn-order White Black)
+
+   (board-setup
+      (White
+         (Pawn a2 b2 c2 d2 e2 f2 g2 h2 I2 j2)
+         (Knight c1 h1)
+         (Bishop d1 g1)
+         (aRook a1 j1)
+         (Marshall I1)
+         (Archbishop e1)
+         (aQueen b1)
+         (King f1)
+	   (H1 Z6)
+      )
+      (Black
+         (Pawn a7 b7 c7 d7 e7 f7 g7 h7 I7 j7)
+         (Knight c8 h8)
+         (Bishop d8 g8)
+         (aRook a8 j8)
+         (Marshall I8)
+         (Archbishop e8)
+         (aQueen b8)
+         (King f8)
+	   (H1 Z7)
+      )
+    (Dummy_player
+	(Dummy_piece  Z1 Z2 Z3 )
+      )
+   )
+
+
+(piece
+      (name Dummy_piece)  (dummy)
+  (help "used internally by program")   
+		
+)
+
+   (piece
+      (name H)   (dummy)
+	  (help "Hidden_Rook: used by program")
+ 
+      (moves
+     (tweak_shift Z1)
+     (tweak_shift Z2)
+     (tweak_shift Z3)
+  
+            )
+   )
+
+  (piece
+      (name H1)   (dummy)
+	  (help "Hidden_Rook: used by program")
+ 
+      (moves
+       (tweak_shift Z3)  
+      )
+   )
+
+
+   (piece
+      (name Pawn)
+      (help "Pawn: moves forward, captures diagonally, can promote on 8th-10th row")
+      (description "Pawn\A Pawn can move straight ahead one square, or two 
+squares from its starting position.  A Pawn captures by moving one square ahead and 
+diagonally. On rare occasions Pawns can also execute a move called `En Passant`, 
+or `in passing`. This allows a Pawn to take an enemy Pawn that has just moved two 
+squares.\Upon reaching eighth rank, Pawns promote to any captured piece. 
+Promotion is not mandatory and is also possible on ninth and tenth rank. However, 
+the Pawn can not move to tenth rank if there are no pieces to promote to, although 
+it can still give check from the ninth rank.")
+(image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
+             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+     (moves
+
+
+(move-type normaltype)
+         (Pawn-capture nw)
+         (Pawn-capture ne)
+         (Pawn-move)
+         (En-Passant e)
+         (En-Passant w)
+      )
+   )
+  
+   (piece
+      (name Knight)
+      (help "Knight: moves like an `L`, 2 squares one way and one the other")
+      (description "Knight\A Knight moves like an `L`, two squares vertically plus one
+          horizontally, or two squares horizontally plus one vertically.  It
+          hops over any pieces on the way.")
+      (image White "images\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\bw\schoolbook-knightw.bmp" 
+             Black "images\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\bw\schoolbook-knightb.bmp" )
+
+      (moves 
+     (tweak_shift Z2)
+(move-type normaltype)
+
+(Knight-moves))
+   )
+   (piece
+      (name Bishop)
+      (help "Bishop: slides diagonally any number of squares")
+      (description "Bishop\A Bishop moves any number of squares on a diagonal.  It may
+           not leap over other pieces.")
+      (image White "images\bishopw.bmp" "alfaerie\bishopw.bmp" "images\bw\bishopw.bmp" 
+             Black "images\bishopb.bmp" "alfaerie\bishopb.bmp" "images\bw\bishopb.bmp" )
+
+      (moves 
+     (tweak_shift Z2)
+(move-type normaltype)
+(Bishop-moves))
+   )
+
+   (piece
+      (name aRook)
+      (help "Rook: slides any number of squares along the row or column.")
+      (description "Rook\A Rook moves any number of squares orthogonally on a rank
+           or a file.  It may not leap over other pieces (except the King during
+           a Castling move).")
+      (image White "images\rookw.bmp" "alfaerie\rookw.bmp" "images\bw\rookw.bmp" 
+             Black "images\rookb.bmp" "alfaerie\rookb.bmp" "images\bw\rookb.bmp" )
+
+      (moves
+
+(move-type normaltype)
+         (aRook-ride n)
+         (aRook-ride e)
+         (aRook-ride s)
+         (aRook-ride w)
+      )
+   )
+
+
+
+
+   (piece
+      (name Rook)
+      (help "Rook: slides any number of squares along the row or column.")
+      (description "Rook\A Rook moves any number of squares orthogonally on a rank
+           or a file.  It may not leap over other pieces (except the King during
+           a Castling move).")
+(image White "images\rookw.bmp" "alfaerie\rookw.bmp" "images\bw\rookw.bmp" 
+             Black "images\rookb.bmp" "alfaerie\rookb.bmp" "images\bw\rookb.bmp" )
+
+      (moves
+
+
+(move-type normaltype)
+         (Rook-ride n)
+         (Rook-ride e)
+         (Rook-ride s)
+         (Rook-ride w)
+      )
+   )
+
+ (piece
+      (name aQueen); used to discourage early queen moves
+      (help "Queen: can slide any number of squares in any direction")
+      (description "Queen\A Queen moves any number of squares in a straight line.
+          It may not leap over other pieces.")
+      (image White "images\queenw.bmp" "alfaerie\queenw.bmp" "images\bw\queenw.bmp" 
+             Black "images\queenb.bmp" "alfaerie\queenb.bmp" "images\bw\queenb.bmp" )
+
+      (moves 
+
+     (tweak_shift Z1)
+     (tweak_shift Z2)
+
+     (move-type normaltype)
+
+     (aQueen-slide ne)
+     (aQueen-slide nw)
+     (aQueen-slide se)
+     (aQueen-slide sw)
+     (aQueen-slide n)
+     (aQueen-slide s)
+     (aQueen-slide e)
+     (aQueen-slide w)
+
+     )
+   )
+
+
+   (piece
+      (name Queen)
+      (help "Queen: can slide any number of squares in any direction")
+      (description "Queen\A Queen moves any number of squares in a straight line.
+          It may not leap over other pieces.")
+      (image White "images\queenw.bmp" "alfaerie\queenw.bmp" "images\bw\queenw.bmp" 
+             Black "images\queenb.bmp" "alfaerie\queenb.bmp" "images\bw\queenb.bmp" )
+
+      (moves 
+     (tweak_shift Z1)
+     (tweak_shift Z2)
+(move-type normaltype)
+(Bishop-moves) (Rook-moves)
+
+     )
+   )
+
+ 
+
+   (piece
+      (name King)
+      (help "King: steps 1 square in any direction to a safe square")
+      (description "King\A King can move to any adjacent square, but never to a 
+	      square where it can be captured.  It may also `castle`
+          with the Rook if neither the Rook nor King has moved yet and there is
+          nothing in between them.  In castling the King moves two squares nearer
+          the Rook and the Rook leaps to the far side of the King.  You may not
+          castle out of or through check, or if the King or Rook involved has 
+		  previously moved.")
+      (image White "images\kingw.bmp" "alfaerie\kingw.bmp" "images\bw\kingw.bmp" 
+             Black "images\kingb.bmp" "alfaerie\kingb.bmp" "images\bw\kingb.bmp" )
+      (attribute never-moved? true)
+      (moves
+
+
+(move-type normaltype)
+         (King-shift n)
+         (King-shift e)
+         (King-shift s)
+         (King-shift w)
+         (King-shift ne)
+         (King-shift nw)
+         (King-shift se)
+         (King-shift sw)
+         (Castle-i)
+         (Castle-h)
+         (Castle-b)
+         (Castle-c)
+         (Castle-d)
+      )
+   )
+
+   ;*** Combination pieces
+   (piece
+      (name Archbishop)
+      (help "Archbishop/Princess/Cardinal (B+N): slides like a Bishop or leaps like a Knight")
+      (description "Princess (Cardinal)\Combines the powers of a Bishop and a Knight.  It
+        is somewhat weaker than a Queen.\The Archbishop (Cardinal) and Chancellor (Marshall) have proved popular in expanded forms of chess on 8x10 and larger boards.")
+      (image White "images\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\bw\schoolbook-archbishopw.bmp" 
+             Black "images\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\bw\schoolbook-archbishopb.bmp" )
+
+      (moves 
+     (tweak_shift Z1)
+     (tweak_shift Z2)
+     (tweak_shift Z3)
+     (tweak_shift Z2)
+(move-type normaltype)
+(Bishop-moves) (Knight-moves))
+   )
+   (piece
+      (name Marshall)
+      (help "Chancellor/Empress/Marshall (R+N): slides like a Rook or leaps like a Knight")
+      (description "Chancellor/Empress (Marshall)\Combines the powers of a Rook and a
+        Knight.  It is comparable in strength to the Queen.\The Archbishop (Cardinal) and Chancellor (Marshall) have proved popular in expanded forms of chess on 8x10 and larger boards.")
+      (image White "images\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\bw\schoolbook-marshallw.bmp" 
+             Black "images\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\bw\schoolbook-marshallb.bmp" )
+
+      (moves 
+     (tweak_shift Z1)
+     (tweak_shift Z2)
+     (tweak_shift Z3)
+     (tweak_shift Z2)
+(move-type normaltype)
+(Rook-moves) (Knight-moves))
+   )
+ 
+
+   (loss-condition (White Black) (checkmated King) )
+)
+
+
+(variant (title "-"))
+(variant (title "Schoolbook, with Scorpions")
+   (description "In this variant Scorpions take the place of the pawns. 
+The Scorpion has the additional moves of a Knight, but 
+only in two forward directions: east-north-east, and west-north-west. There are no additional capture moves.The Scorpion's value is half the value of a Knight or Bishop, that is, 1.5. 
+This means that a light piece can be exchanged for two Scorpions, a possibility which often occurs. In the endgame it could become very dangerous, and its value often increases.")
+   (history "Scorpions were invented by Mats Winther in 2006")
+   (board-setup
+      (White
+         (Scorpion a2 b2 c2 d2 e2 f2 g2 h2 I2 j2)
+         (Knight c1 h1)
+         (Bishop d1 g1)
+         (aRook a1 j1)
+         (Marshall I1)
+         (Archbishop e1)
+         (aQueen b1)
+         (King f1)
+	   (H1 Z6)
+      )
+      (Black
+         (Scorpion a7 b7 c7 d7 e7 f7 g7 h7 I7 j7)
+         (Knight c8 h8)
+         (Bishop d8 g8)
+         (aRook a8 j8)
+         (Marshall I8)
+         (Archbishop e8)
+         (aQueen b8)
+         (King f8)
+	   (H1 Z7)
+      )
+    (Dummy_player
+	(Dummy_piece  Z1 Z2 Z3 )
+      )
+   )
+   (piece
+      (name Scorpion)
+	  (help "Scorpion: moves north, east-north-east, west-north-west. Captures diagonally, promotes on 8th rank.")
+      (description "Scorpion\A Scorpion can move straight ahead one square, or two squares from
+           its starting position.  A Scorpion captures by moving one square ahead and
+           diagonally.  It can also make a non-capturing move like a knight, east-north-east, west-north-west. If a Scorpion reaches the far rank it promotes, changing into
+           a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.  On rare occasions Scorpions can also execute
+           a move called `En Passant`, or `in passing`.  This allows a Scorpion to take
+           an enemy Scorpion that has just moved two squares.")
+      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
+             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+
+      (moves       
+
+       (move-type normaltype)
+
+         (Pawn-capture nw)
+         (Pawn-capture ne)
+         (Pawn-move)
+         (Pawn-move-s1 e ne)
+         (Pawn-move-s1 w nw)
+         (Scorpion-En-Passant e)
+         (Scorpion-En-Passant w)
+      )
+   ) 
+
+)
+
+(variant (title "Schoolbook, with Caltrops")
+   (description "In this variant Caltrops take the place of the pawns. 
+The Caltrop has the additional moves of a Knight, but 
+only in two forward directions: north-north-east, and north-north-west.")
+   (history "The Caltrop is a simple adoption of the Scorpion proposed by Sam Trenholme in 2006")
+   (board-setup
+      (White
+         (Caltrop a2 b2 c2 d2 e2 f2 g2 h2 I2 j2)
+         (Knight c1 h1)
+         (Bishop d1 g1)
+         (aRook a1 j1)
+         (Marshall I1)
+         (Archbishop e1)
+         (aQueen b1)
+         (King f1)
+	   (H1 Z6)
+      )
+      (Black
+         (Caltrop a7 b7 c7 d7 e7 f7 g7 h7 I7 j7)
+         (Knight c8 h8)
+         (Bishop d8 g8)
+         (aRook a8 j8)
+         (Marshall I8)
+         (Archbishop e8)
+         (aQueen b8)
+         (King f8)
+	   (H1 Z7)
+      )
+    (Dummy_player
+	(Dummy_piece  Z1 Z2 Z3 )
+      )
+   )
+
+   (piece
+      (name Caltrop)
+	  (help "Caltrop: moves north, north-north-east, north-north-west. Captures diagonally, promotes on 8th rank.")
+      (description "Caltrop\A Caltrop can move straight ahead one square, or two squares from
+           its starting position.  A Caltrop captures by moving one square ahead and
+           diagonally.  It can also make a non-capturing move like a knight, north-north-west or north-north-east. If a Caltrop reaches the far rank it promotes, changing into
+           a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.  On rare occasions a Caltrop can also execute
+           a move called `En Passant`, or `in passing`.  This allows a Caltrop to take
+           an enemy Caltrop that has just moved two squares.")
+      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
+             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+
+      (moves       
+
+       (move-type normaltype)
+
+         (Pawn-capture nw)
+         (Pawn-capture ne)
+         (Pawn-move)
+         (Pawn-move-s1 n ne)
+         (Pawn-move-s1 n nw)
+         (Caltrop-En-Passant e)
+         (Caltrop-En-Passant w)
+      )
+   ) 
+
+)
+
+(variant (title "Schoolbook, with Horsemen")
+   (description "In this variant Horsemen take the place of the pawns. 
+The Horseman has the additional four forward moves of a Knight.")
+      (history "A piece with a similar non-leaping move was proposed by David Howe in his 1999 variant Xhess.
+Sam Trenholme kept the name, but changed the forward knight move to be a leaping move, and reinstated the normal
+pawn move to this piece in 2006.")
+   (board-setup
+      (White
+         (Horseman a2 b2 c2 d2 e2 f2 g2 h2 I2 j2)
+         (Knight c1 h1)
+         (Bishop d1 g1)
+         (aRook a1 j1)
+         (Marshall I1)
+         (Archbishop e1)
+         (aQueen b1)
+         (King f1)
+	   (H1 Z6)
+      )
+      (Black
+         (Horseman a7 b7 c7 d7 e7 f7 g7 h7 I7 j7)
+         (Knight c8 h8)
+         (Bishop d8 g8)
+         (aRook a8 j8)
+         (Marshall I8)
+         (Archbishop e8)
+         (aQueen b8)
+         (King f8)
+	   (H1 Z7)
+      )
+    (Dummy_player
+	(Dummy_piece  Z1 Z2 Z3 )
+      )
+   )
+
+   (piece
+      (name Horseman)
+	  (help "Horseman: moves north or forward like a knight. Captures diagonally, promotes on 8th rank.")
+      (description "Horseman\A Horseman can move straight ahead one square, or two squares from
+           its starting position.  A Horseman captures by moving one square ahead and
+           diagonally.  It can also make a non-capturing forward move like a knight. If a Horseman reaches the far rank it promotes, changing into
+           a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.  On rare occasions a Horseman can also execute
+           a move called `En Passant`, or `in passing`.  This allows a Horseman to take
+           an enemy Horseman that has just moved two squares.")
+      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
+             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+
+      (moves       
+
+       (move-type normaltype)
+
+         (Pawn-capture nw)
+         (Pawn-capture ne)
+         (Pawn-move)
+         (Pawn-move-s1 n ne)
+         (Pawn-move-s1 n nw)
+         (Pawn-move-s1 e ne)
+         (Pawn-move-s1 w nw)
+         (Horseman-En-Passant e)
+         (Horseman-En-Passant w)
+      )
+   ) 
+
+)
+
+(variant (title "Shogi Pawns")
+   (description "In this variant the pawns are Shogi pawns, which both move 
+and capture straight forward")
+   (board-setup
+      (White
+         (ShogiPawn a2 b2 c2 d2 e2 f2 g2 h2 I2 j2)
+         (Knight c1 h1)
+         (Bishop d1 g1)
+         (aRook a1 j1)
+         (Marshall I1)
+         (Archbishop e1)
+         (aQueen b1)
+         (King f1)
+	   (H1 Z6)
+      )
+      (Black
+         (ShogiPawn a7 b7 c7 d7 e7 f7 g7 h7 I7 j7)
+         (Knight c8 h8)
+         (Bishop d8 g8)
+         (aRook a8 j8)
+         (Marshall I8)
+         (Archbishop e8)
+         (aQueen b8)
+         (King f8)
+	   (H1 Z7)
+      )
+    (Dummy_player
+	(Dummy_piece  Z1 Z2 Z3 )
+      )
+   )
+
+   (piece
+      (name ShogiPawn)
+	  (help "Shogi Pawn: Moves and captures straight forward, promotes on 8th rank.")
+      (description "Shogi Pawn\A Shogi Pawn moves and captures straight ahead one square, or moves two squares from
+           its starting position.  If a Shogi Pawn reaches the far rank it promotes, changing into
+           a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.")
+      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
+             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+
+      (moves       
+
+       (move-type normaltype)
+
+         (Pawn-capture n)
+         (Pawn-move)
+      )
+   ) 
+
+)
+
+(variant (title "(empty board)")
+
+   (board-setup
+      (White
+
+         (King f1)
+	   (H1 Z6)
+      )
+      (Black
+
+         (King f8)
+	   (H1 Z7)
+      )
+    (Dummy_player
+	(Dummy_piece  Z1 Z2 Z3  )
+      )
+   )
+
+)

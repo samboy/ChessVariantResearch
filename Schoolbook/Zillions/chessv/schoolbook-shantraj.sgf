@@ -1,0 +1,11 @@
+Schoolbook Shantraj:Capablanca Chess
+$array = "rqnbhkbnmr/pppppppppp/10/10/10/10/PPPPPPPPPP/RQNBHKBNMR"
+$castling-type = "flexible"
+remove-piece-type("Chancellor")
+remove-piece-type("Archbishop")
+add-piece-type("Minister")
+add-piece-type("High Priestess")
+change-piece-value("Rook",5000,75,15)
+change-piece-value("Bishop",3250,25,10)
+change-piece-value("Knight",2500,0,0)
+change-piece-value("Queen",9000,50,12)

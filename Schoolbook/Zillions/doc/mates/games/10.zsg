@@ -1,0 +1,65 @@
+Zillions Save Game File Version 0.02 CH
+RulesFile=C:\Zillions\Rules\Schoolbook-b.zrf
+VariantName=Schoolbook
+1. Archbishop e1 - f3
+1. Pawn f7 - f6
+2. Knight h1 - g3
+2. Knight h8 - I6
+3. Knight c1 - d3
+3. Pawn c7 - c6
+4. Knight d3 - c5
+4. Pawn b7 - b6
+5. Knight c5 - d3
+5. Bishop g8 - e6
+6. Pawn h2 - h4
+6. Marshall I8 - h6
+7. Pawn h4 - h5
+7. Knight I6 - g5
+8. Archbishop f3 - h4
+8. King f8 - I8 Rook j8 - h8 @ h8 0 0 @ I8 0 0
+9. Pawn e2 - e4
+9. Archbishop e8 - d6
+10. Bishop g1 - j4
+10. Marshall h6 - f7
+11. Bishop d1 - f3
+11. Archbishop d6 - c4
+12. King f1 - e1 @ e1 0 0
+12. Knight g5 x f3
+13. Pawn g2 x f3
+13. Knight c8 - d6
+14. Marshall I1 - g2
+14. Bishop d8 - c7
+15. Knight g3 - f5
+15. Bishop e6 x f5
+16. Pawn e4 x f5
+16. Knight d6 - e8
+17. Marshall g2 - g4
+17. Pawn b6 - b5
+18. Rook j1 - g1 @ g1 0 0
+18. Archbishop c4 - d5
+19. Bishop j4 x g7
+19. Knight e8 x g7
+20. Marshall g4 x g7
+20. Marshall f7 x g7
+21. Rook g1 x g7 @ g7 0 0
+21. Queen b8 - e8
+22. Pawn I2 - I4
+22. Pawn j7 - j5
+23. Pawn j2 - j3
+23. Rook h8 - g8 @ g8 0 0
+24. Rook g7 x g8 @ g8 0 0
+24. Queen e8 x g8
+25. Pawn I4 x j5
+25. Bishop c7 - f4
+26. King e1 - e2 @ e2 0 0
+26. Archbishop d5 - c4
+27. Queen b1 - c1
+27. Bishop f4 x d2
+28. Queen c1 x d2
+28. Archbishop c4 x d2
+29. King e2 x d2 @ d2 0 0
+29. Queen g8 - d5
+30. Rook a1 - I1 @ I1 0 0
+30. King I8 - j7 @ j7 0 0
+31. Archbishop h4 - I5
+31. King j7 - I8 @ I8 0 0

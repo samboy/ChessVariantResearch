@@ -1,0 +1,345 @@
+<html><head><title>Schoolbook Chess</title>
+<link rel="stylesheet" 
+ type="text/css" media="screen, projection" href="schoolbook-s.css">
+<link rel="stylesheet" type="text/css" media="print" 
+ href="schoolbook-p.css">
+</head><body>
+<h1>Introduction</h1>
+
+<a href="http://www.samiam.org/chessvariants/">Schoolbook</a> is my take on 8x10 chess with the rook + knight and bishop +
+knight pieces added.  While <A href=http://www.chessvariants.org/historic.dir/carrera.html>a</A> <A href=http://www.chessvariants.org/large.dir/bird.html>number</A> <A href=http://www.chessvariants.org/large.dir/capablanca.html>of</A> <A href=http://www.chessvariants.org/large.dir/capablancavariation.html>different </A> <A href=http://www.chessvariants.org/large.dir/grotesque.html>opening</A> <A href=http://www.chessvariants.org/large.dir/univers.html>setups</A> using
+these pieces and board <A href=http://play.chessvariants.org/pbm/presets/embassy.html>have</A> <A href=http://www.chessvariants.org/large.dir/ladorean_chess.html>been</A> <A href=http://www.chessvariants.org/d.betza/chessvar/outrig.html>proposed</A>, I have not been completely satisfied 
+with any of them.  My goal, in designing Schoolbook, was to come
+up with an 8x10 opening setup with the following characteristics:
+
+<ul>
+<li>All of the pawns are defended in the opening array; as many pieces as
+    possible are defended in the opening array.
+<li>The development of the knights and bishops resembles their development
+    in FIDE chess; other arrays seem to be detrimental.  For example,
+    some 8x10 arrays have it so moving the center pawns two squares forward
+    blocks the development of the bishops.
+<li>The rooks are placed in the corners, and the king is centrally placed. 
+    This makes the opening setup more ascetically pleasing.
+</ul>
+
+There are two opening setups which meet this criteria.  I chose the one 
+where white's queen is left of his king, since this allows a right-side
+castle to be done more quickly, and since this preserves the traditional
+idea of having a "king side" and a "queen side".
+
+<p>
+
+Schoolbook is for people who like 19th century tactical chess.  By
+putting the archbishop in the center like that results in having the
+archbishop pawn undefended when moved forward two squares.  This results
+in the kind of intensely tactical games that Morphy or Anderssen played.
+1. d4 in FIDE chess was very uncommon (Morphy only opened with 1. e4 and
+always responded to 1. e4 with 1. ... e5) and Morphy once said that the
+Sicilian results in "uninteresting games and dreary analytical labours".
+
+<p>
+
+Schoolbook is designed to play sharp games where tactics is King (or
+at least checkmates the other King) and where games are interesting and
+never dreary, while keeping the general feel of FIDE games.
+
+<p>
+
+The name "schoolbook" comes from the recent tradition of naming 8x10
+chess variants after fonts.
+
+<h1>Setup</h1>
+
+Schoolbook chess' opening setup is as follows:
+
+<p>
+<script type=text/javascript>
+<!-- 
+function isOKbrowser() {
+
+  if(navigator.appVersion.indexOf) {
+      if(navigator.appName == "Netscape" && 
+         navigator.appVersion.indexOf("4") == 0 &&
+         navigator.userAgent.indexOf("MSIE") == -1) {
+            return false;
+         }
+      if(navigator.appName == "Netscape" && 
+         navigator.appVersion.indexOf("3") == 0 &&
+         navigator.userAgent.indexOf("MSIE") == -1) {
+            return false;
+         }
+      if(navigator.appName == "Microsoft Internet Explorer" && 
+         navigator.appVersion.indexOf("MSIE 4") != -1) {
+            return false;
+         }
+      return true;
+  }	
+  
+  return true;
+}
+if(isOKbrowser()) { 
+document.write("<img class=print src=setup-bw.png>");
+}
+document.write("<img class=screen src=setup-rustic.png>");
+-->
+</script>
+<noscript>
+<img src=setup-rustic.png>
+</noscript>
+<p>
+
+<!-- 
+The ASCII version of the setup is as follows:
+
+<pre>
+R Q N B A K B N M R
+P P P P P P P P P P
+- - - - - - - - - -
+- - - - - - - - - -
+- - - - - - - - - -
+- - - - - - - - - -
+p p p p p p p p p p
+r q n b a k b n m r
+</pre>
+
+(Lower case pieces are white; upper case pieces are black)
+ -->
+
+<h1>Pieces</h1>
+
+<h2>Names of the pieces</h2>
+
+R: Rook.  Moves as a Chess rook; the only difference is in how this piece may castle.
+<p>
+Q: Queen.  Identical to a chess queen.
+<p>
+N: kNight.  Identical to a chess knight.
+<p>
+B: Bishop.  Identical to a chess bishop.
+<p>
+K: King.  Moves a a Chess king; object is to checkmate this piece.  The only difference is how this piece castles.
+<p>
+A: Archbishop.  Has the combined moves of a knight and bishop.
+<p>
+M: Marshall.  Has the combined moves of a knight and rook.
+<p>
+<h2>Value of the pieces</h2>
+A lot of research has been done in determining the values of the pieces
+in 8x10 chess variants with the rook + knight and bishop + knight pieces.
+Schoolbook is able to utilize the fruits of this research.
+
+<p>
+
+Here is a table of five different derived values for the pieces, obtained 
+from three different chess variant playing computer programs and 
+two other sources.
+
+<p>
+<table border="1">
+<tr><td>Piece</td><td>ChessV</td><td>SMIRF</td><td>Zillions</td><td>Aberg</td><td>Nalls</td></tr>
+<tr><td>
+Pawn            </td><td>1.000</td><td>1.000</td><td>1.000</td><td>1.000</td><td>1.000</td></tr><tr><td>
+Knight         </td><td>2.500</td><td>3.053</td><td>2.362</td><td>3.000</td><td>3.077</td></tr><tr><td>
+Bishop         </td><td>3.250</td><td>3.500</td><td>2.859</td><td>3.300</td><td>3.535</td></tr><tr><td>
+Rook            </td><td>4.700</td><td>5.815</td><td>4.262</td><td>5.000</td><td>5.777</td></tr><tr><td>
+Queen          </td><td>8.750</td><td>9.617</td><td>7.060</td><td>9.000</td><td>9.312</td></tr><tr><td>
+Archbishop     </td><td>6.500</td><td>6.858</td><td>5.127</td><td>6.800</td><td>6.612</td></tr><tr><td>
+Marshall       </td><td>8.250</td><td>8.870</td><td>6.659</td><td>8.700</td><td>8.854</td></tr></table>
+
+<p>
+The ChessV numbers were obtained by looking at the source code for ChessV.
+The SMIRF values, derived by Reinhard Scharnagl for his SMIRF chess
+computer program, were obtained from 
+<A 
+href=http://web.archive.org/web/20070409085426/http://www.chessbox.de/Compu/schachveri1_e.html>this web page</A>.
+The Zillions of Games' values were obtained by looking at the values of 
+pieces by right-clicking on them after loading a fresh Schoolbook zrf file,
+and before moving any pieces.  Aberg's figures come from <A
+href=http://www.chessvariants.org/large.dir/capablancavariation.html>the
+Chess variants server</A>.   Nalls' figures come from 
+<a href="http://www.symmetryperfect.com/shots/values-capa.pdf">a document 
+on his web page</a> (PDF document)
+
+<p>
+
+All four agree on the following:
+
+<ul>
+<li>A bishop is about a half-pawn more valuable than a knight.
+<li>Two knights are worth more than a rook.
+<li>An archbishop is worth more than two knights.
+<li>A marshall is worth more than an archbishop.
+<li>A queen is worth more than a marshall.
+<li>Two rooks are worth more than a queen.
+<li>A marshall is worth more than a rook and knight.
+<li>A marshall is worth more than two bishops.
+<li>A rook and knight are worth more than an archbishop.
+</ul>
+
+The verdict is still out on some other exchanges:
+
+<ul>
+<li>A rook and bishop vs. a queen.
+<li>A rook and bishop vs. a marshall.
+<li>A bishop and knight vs. an archbishop.
+<li>Two bishops vs. an archbishop (Two bishops are <i>probably</i> worth more). 
+</ul>
+
+<h1>Rules</h1>
+
+Castling comes from Fergus Duniho's <A
+href=http://www.chessvariants.org/large.dir/grotesque.html>Grotesque
+Chess</A>: The king may castle two or three squares towards the rook on
+the right hand side, and two, three, or four squares towards the rook
+on the left hand side.  The rook leaps over the king to land besides the
+king.  The king can not castle out of, through, or in to check.  Both the
+king and rook that the king castles with must not have previously moved.
+
+<p>
+
+The name of the rook + knight piece in Schoolbook is called the "marshall".
+The name of the bishop + knight piece in Schoolbook is called the
+"archbishop".  Pawns may promote to become a rook, knight, bishop, archbishop, marshall, or queen, regardless of the number of pieces already on the board.
+
+<p>
+
+The notation used for this game is standard algebraic opening, where
+the lower left corner is square a1, the upper right corner square j8,
+and 'A' signifies the Archbishop and 'M' signifies the Marshall. When no
+piece name is specified, a pawn is assumed to move. For example, f4 is
+the move that moves the King's pawn to the forth rank. When castling,
+only the King's move is noted, such as "Kh1" to signify that the king
+has moved to h1 and the rook to g1. In order to minimize the confusion
+between "i" and "j", the I file is always upper case in notation.
+
+<p>
+
+The rules are otherwise as in FIDE chess.
+
+<h1>Notes</h1>
+
+<h2>The opening</h2>
+
+The opening of Schoolbook has many similar themes to the opening of
+FIDE chess, since both games have the knights and bishops in the same
+position relative to the king in the opening setup.  There are, however,
+a number of differences.  For example:
+
+<ul>
+<li>Any opening that is dependent on the queen pawn (which has become
+    the archbishop pawn in Schoolbook) being protected by the queen will
+    not work in Schoolbook.  This makes the center game, the center
+    counter (Scandinavian game), the Scotch game, and so on not translate
+    to Schoolbook.  For example, the Schoolbook version of the Scotch just
+    loses a pawn without compensation: 1. f4 f5 2. Ng3 Nd6 3. e4?? fxe4
+<li>The "Queen's gambit" does not translate to Schoolbook; this "gambit"
+    depends on Black's queen rook being undefended in the opening array.  
+<li>The Schoolbook equivalent of the Nimzovich defense (1. f4 Nd6) is more 
+    feasible here than it is in FIDE chess, since this defense delays white
+    making an immediate e4 move.
+<li>Openings that take advantage of the weakness with the king bishop
+    pawn in FIDE Chess do not work in Schoolbook.  For example, the Damiano
+    defense is feasible in Schoolbook chess: 1. f4 f5 2. Ng3 g6 3. Nxf5??
+    gxf5 4. Ai5+ and now black can defend nicely with either Ag7 or
+    h6 (since Af5+ is <i>not</i> a legal move), and white gets no
+    compensation for the lost knight.
+    <p>
+    While this change removes many of the opening traps enjoyed in FIDE
+    chess, this is offset by the increased power of the pieces in 
+    Schoolbook chess.
+</ul>
+
+One good opening position for white is as follows:
+
+<p>
+<script type=text/javascript>
+<!-- 
+if(isOKbrowser()) { 
+document.write("<img class=print src=opening-bw.png>");
+}
+document.write("<img class=screen src=opening-rustic.png>");
+-->
+</script>
+<noscript>
+<img src=opening-rustic.png>
+</noscript>
+<p>
+
+<!-- 
+This position can also be represented in ASCII:
+
+<pre>
+- - - b p p b - - -
+p - p n - a n m - -
+- p - p q - p p p p
+- - - - r r - - k -
+</pre>
+ -->
+
+
+Black's goal is to stop this kind of opening setup.  Considering the
+tactical power of all of the Schoolbook pieces, Black has many options
+to try and equalize.
+<p>
+
+For example, the following moves stop 1. f4 from being followed by 2. e4:
+Nd6, Af6 (Problem: blocks Black's f pawn), Ad6 (Blocks black's best
+developing square for his queenside Knight), f5 (the King's pawn
+opening Schoolbook-style), d5 (Schoolbook's version of the Sicilian), 
+and Ng6 (Schoolbook's version of the Alekine).
+<p>
+
+Since Schoolbook has a higher branching factor than FIDE chess, rote
+memorization of openings is not as fruitful in Schoolbook as it is
+in FIDE chess.  Since the general themes in Schoolbook are the same,
+players who understand the concepts behind a good opening in FIDE chess
+will feel right at home playing Schoolbook.
+
+<p>
+
+More information about the Schoolbook opening can be found in
+the <A href=opening-theory/opening.html>opening theory document</A>.
+
+<h2>Tactics</h2>
+
+A sense of Schoolbook's tactics can be gleamed by solving the <A 
+href=mates/mates.html>included mating problems</A>, which are
+not composed problems, but positions from actual games of Schoolbook.
+One may also look at some <A href="../games/zillions_vs_chessv.html">analysis
+of Schoolbook games</A>.
+
+<h2>Fool's mate</h2>
+
+The shortest possible game in Schoolbook is the following fool's mate: 
+1. f3 Ad6 2. Bf2?? Axh2# 
+<p>
+David Paulowich found the following 4-move mate that mates with a bishop: 1. e4 g6 2. f4 Kg7? 3. Bf2 Kh6?? 4. Bi5#
+
+
+<h2>Intellectual property claims</h2>
+
+I make no intellectual property claims whatsoever with this (such as it is) invention.  
+
+<h2>Playing Schoolbook Chess</h2>
+
+This Zillions of Games implementation of Schoolbook chess requires the
+proprietary Zillions of game program available at <A 
+href=http://www.zillions-of-games.com/>www.zillions-of-games.com</A>.
+Note that this implementation does not implement all of the rules of
+Schoolbook; in particular the "50 moves without a capture or pawn move
+is a draw" rule and the "insufficient mating material is a draw" rules
+are not implemented.
+<p>
+
+I have made a Game Courier preset which is available <A href=http://play.chessvariants.org/pbm/play.php?game%3DSchoolbook+Chess%26settings%3Ddefault>on
+the chessvariants server</A> at play.chessvariants.org.
+
+<p>
+
+<A href="http://www.chessv.com">ChessV</A> version 0.9 and
+later can also play Schoolbook.  This is a free open-source Chess playing
+program for Windows.
+
+</body></html>
+

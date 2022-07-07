@@ -1,0 +1,18 @@
+* Add Mats' "B" personality to the Schoolbook-a.zrf file.
+
+* Create graphics for the Schoolbook Shantraj pieces and the various
+  custom pawns in the Schoolbook-a.zrf file.
+
+* More annotated games and mating problems.
+
+* 10x10 "Grand Schoolbook" variant.
+
+* More pawn types: Berlina pawns, Beroshogi pawns (with both move and
+  capture diagonally forward), "super" pawns (move as wazir and capture
+  as ferz, with double step first move), "superbero" pawns (move as ferz
+  and capture as wazir), etc.
+
+* Python script that allows one to change the opening array; this script 
+  will allow various castling forms and affect the setup for all
+  variants in both the "a" and "b" .zrf files.
+

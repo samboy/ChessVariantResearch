@@ -1,0 +1,8 @@
+This game is the first ever human vs. human game of Schoolbook.
+
+1. f4 f5 2. Ng3 Nd6 3. Bd4 NI6 4. Mh3 Ag6 5. Kh1@ b6 6. e3 e6
+7. Bf3 c6 8. Be5 Mh8 9. b4 Bf6 10. Nd3 h5 11. b5 a5 12. bxc6 Ra6
+13. Nc5 bxc5? (correct was Ra7) 14. Qxb8+ Ke7 15. Qxd6+ Kf7
+16. Qxd7+ Ae7 17. c7 Ra7 18. Qxe7+ Kxe7 19. c8=Q Bxe5 20. fxe5 g6
+21. Ad3 Mf7 22. Axc5+ Md6 23. exd6+?? (better was Axd6#) Kf6 24. Axa7 1-0
+ 

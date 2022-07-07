@@ -1,0 +1,37 @@
+Zillions Save Game File Version 0.02 HH
+RulesFile=C:\Zillions\Rules\Schoolbook-b.zrf
+VariantName=Schoolbook
+1. Pawn f2 - f4
+1. Knight c8 - d6
+2. Bishop g1 - d4
+2. Knight h8 - g6
+3. Knight c1 - d3
+3. Knight d6 - e4
+4. Knight h1 - g3
+4. Archbishop e8 - d6
+5. Pawn b2 - b3
+5. Pawn f7 - f5
+6. Queen b1 - b2
+6. Bishop g8 - d5
+7. Marshall I1 - h3
+7. Pawn h7 - h6
+8. King f1 - I1 Rook j1 - h1 @ h1 0 0 @ I1 0 0
+8. Pawn e7 - e6
+9. Knight g3 - h5
+9. Bishop d8 - f6
+10. Knight h5 x f6
+10. Pawn g7 x f6
+11. Bishop d4 x f6
+11. Knight e4 x f6
+12. Queen b2 x f6
+12. Archbishop d6 - f7
+13. Knight d3 - e5
+13. Knight g6 x e5
+14. Pawn f4 x e5
+14. Marshall I8 - g7
+15. Marshall h3 - g3
+15. Marshall g7 x g3
+16. Archbishop e1 x g3
+16. Bishop d5 x g2
+17. Rook h1 - g1 @ g1 0 0
+17. Bishop g2 - e4
