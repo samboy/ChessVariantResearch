@@ -6,29 +6,19 @@ Mats Winther imposes on his modifications to the chess.zrf file that
 he has made, and the copyright the chess.zrf that Zillions-of-games 
 comes with has.
 
-The Knight image, and the derived Marshall and Archbishop images,
-were obtained from the Skak TeX font (a Chess diagram font
-for Chess), which has the following copyright notice:
-
-This package is distributed under the terms described in the Latex
-Project Public Licence, i.e.,    
-
-  This software is copyright but you are granted a license which gives
-  you, the "user" of the software, legal permission to copy,
-  distribute, and/or modify the software. However, if you modify the
-  software and then distribute it (even just locally) you must change
-  the name of the software to avoid confusion.
-
-For the purposes of "the name of the software", I have placed the
-"Schoolbook" prefix before the names of the pieces using these symbols,
-which presumably needs to be changed if the graphics are ever modified by
-someone besides myself.
-
 All of the files in the alfaeire/ directory are under a restrictive
-copyright.  In more detail, these images are derived from David Howe's
-alfaeir graphics, which have no stated copyright.  The alfaerie graphics,
-in turn, are based on renderings of characters in Eric Bentzen's Chess 
-Alpha font, which "is free for personal non commercial use."
+copyright in some jurisdictions.
+
+In more detail, these images are derived from David Howe's
+alfaerie graphics, which have no stated copyright.  
+
+The alfaerie graphics, in turn, are based on renderings of characters in 
+Eric Bentzen's Chess Alpha font, which "is free for personal non 
+commercial use."  Note that, since the glyphs are raster images,
+and since fonts (which, yes, includes chess piece image fonts; see
+*Eltra Corp. v. Ringer*) do not have copyright in the United States,
+these images are not encumbered by Bentzen's copyright in the US.  
+*Adobe Systems, Inc. v. Southern Software, Inc.* does not apply here; only 
+David Howe can claim copyright on these images.
 
 All other files are released to the public domain.
-
