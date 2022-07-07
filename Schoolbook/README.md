@@ -15,9 +15,7 @@ but remains 8 ranks (rows) high, and two new pieces are added:
 Schoolbook was the opening setup I proposed for Capablanca chess back
 in 2006. It puts the queen on the left wing, the archbishop next to the
 king, and the marshal on the right wing. Knights and bishops more or
-less develop as they do in “normal” Chess (as an aside, we can no
-longer call normal chess “FIDE Chess” as we used to do, for reasons
-I will detail below).
+less develop as they do in “normal” Chess.
 
 Schoolbook initially had complicated castling rules, but in its current
 form, castling is always three squares towards the corresponding rook.
