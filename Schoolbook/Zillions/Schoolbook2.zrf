@@ -352,8 +352,10 @@ Marshall. The Archbishop moves like a Knight or Bishop, and the Marshall
 moves like a Knight or Rook.\\Castling is
 different: when a King castles, he may move 2, 3, or 4 spaces toward the Rook.
 Pawns may promote to one of the new pieces as well as the standard Chess
-pieces.  The rules are otherwise as in FIDE Chess.
-\\Try playing one of the many exciting variants.")
+pieces.  The rules are otherwise as in FIDE Chess.\\
+In this version of Schoolbook, version 2.0, the king, when castling,
+moves precisely three squares.\\
+Try playing one of the many exciting variants.")
    (history "8x10 chess variants with these two extra pieces have
 existed since the 17th century.  In the 20th century, world Chess 
 champion Jose Raul Capablanca developed an interest 8x10 chess using these pieces. 
@@ -366,9 +368,11 @@ much as possible, development in FIDE chess. Another thing research has
 shown is the importance of having all pawns guarded in the opening 
 configuration.\\This opening setup attempts to 
 achieve both goals, and is, to the inventor's knowledge, the first 8x10 
-Chess variant to do so.  Fergus Duniho invented the flexible castling that 
-this variant uses. Originally invented in 2004 by Sam Trenholme, he 
-finally made a .zrf file and formalized the rules in 2006.");
+Chess variant to do so.\\
+Originally invented in 2004 by Sam Trenholme, he 
+finally made a .zrf file and formalized the rules in 2006.  In 2022,
+the castling rules were updated so the game can be played by
+Fairy Stockfish.");
    (strategy "There is no clear consensus on the value of the pieces in this
 Chess variant.  However, it appears that a bishop is a half-pawn more valuable
 than a knight, two knights are more valuable than a rook, an archbishop is
@@ -378,10 +382,10 @@ a marshall is worth more than a rook and knight, a rook and knight are worth
 more than an archbishop, and, finally, a marshall is worth more than two 
 bishops.\\
 The development of knights and bishops resembles the 
-development in FIDE chess.  Both center pawns, however, are undefended on the 
+development in normal chess.  Both center pawns, however, are undefended on the 
 fourth rank in the opening setup.\\While there is no weak spot near the 
-king in the opening as in FIDE chess, the greater amount of force on the 
-board more than compensates.   This game is more tactical than FIDE chess; 
+king in the opening as in normal chess, the greater amount of force on the 
+board more than compensates.   This game is more tactical than normal chess; 
 for people who love the chess of Morphy and other great players of the 
 romantic era, this variant will be very enjoyable.");
    (option "prevent flipping" 2)
@@ -556,7 +560,7 @@ romantic era, this variant will be very enjoyable.");
       (description "King\A King can move to any adjacent square, but never to a 
 	      square where it can be captured.  It may also `castle`
           with the Rook if neither the Rook nor King has moved yet and there is
-          nothing in between them.  In castling the King moves two squares nearer
+          nothing in between them.  In castling the King moves three squares nearer
           the Rook and the Rook leaps to the far side of the King.  You may not
           castle out of or through check, or if the King or Rook involved has 
 		  previously moved.")
