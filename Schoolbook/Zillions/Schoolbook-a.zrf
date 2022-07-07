@@ -443,7 +443,8 @@
 (define tweak_shift ($1 (verify empty?) add)) ;for tweaking the engine to play better
 
 (define Board-Definitions-8x10
-  (image "images\10x8.bmp" "images\10x8.bmp" "images\bw\10x8.bmp" ) 
+  (image "images\Schoolbook\10x8.bmp" "images\Schoolbook\10x8.bmp" 
+         "images\Schoolbook\bw\10x8.bmp" ) 
   (grid
      (start-rectangle 0 0 50 50)
      (dimensions
@@ -683,8 +684,12 @@ squares.\Upon reaching eighth rank, Pawns promote to any captured piece.
 Promotion is not mandatory and is also possible on ninth and tenth rank. However, 
 the Pawn can not move to tenth rank if there are no pieces to promote to, although 
 it can still give check from the ninth rank.")
-(image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+(image White "images\Schoolbook\pawnw.bmp" 
+             "alfaerie\pawnw.bmp" 
+	     "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" 
+	     "alfaerie\pawnb.bmp" 
+	     "images\Schoolbook\bw\pawnb.bmp" )
      (moves
 
 
@@ -703,8 +708,13 @@ it can still give check from the ninth rank.")
       (description "Knight\A Knight moves like an `L`, two squares vertically plus one
           horizontally, or two squares horizontally plus one vertically.  It
           hops over any pieces on the way.")
-      (image White "images\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\bw\schoolbook-knightw.bmp" 
-             Black "images\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\bw\schoolbook-knightb.bmp" )
+      (image White 
+             "images\Schoolbook\schoolbook-knightw.bmp" 
+	     "alfaerie\knightw.bmp" 
+	     "images\Schoolbook\bw\schoolbook-knightw.bmp" 
+             Black "images\Schoolbook\schoolbook-knightb.bmp" 
+	     "alfaerie\knightb.bmp" 
+	     "images\Schoolbook\bw\schoolbook-knightb.bmp" )
 
       (moves 
      (tweak_shift Z2)
@@ -717,8 +727,10 @@ it can still give check from the ninth rank.")
       (help "Bishop: slides diagonally any number of squares")
       (description "Bishop\A Bishop moves any number of squares on a diagonal.  It may
            not leap over other pieces.")
-      (image White "images\bishopw.bmp" "alfaerie\bishopw.bmp" "images\bw\bishopw.bmp" 
-             Black "images\bishopb.bmp" "alfaerie\bishopb.bmp" "images\bw\bishopb.bmp" )
+      (image White "images\Schoolbook\bishopw.bmp" 
+             "alfaerie\bishopw.bmp" "images\Schoolbook\bw\bishopw.bmp" 
+             Black "images\Schoolbook\bishopb.bmp" 
+	     "alfaerie\bishopb.bmp" "images\Schoolbook\bw\bishopb.bmp" )
 
       (moves 
      (tweak_shift Z2)
@@ -732,8 +744,12 @@ it can still give check from the ninth rank.")
       (description "Rook\A Rook moves any number of squares orthogonally on a rank
            or a file.  It may not leap over other pieces (except the King during
            a Castling move).")
-      (image White "images\rookw.bmp" "alfaerie\rookw.bmp" "images\bw\rookw.bmp" 
-             Black "images\rookb.bmp" "alfaerie\rookb.bmp" "images\bw\rookb.bmp" )
+      (image White "images\Schoolbook\rookw.bmp" 
+      	     "alfaerie\rookw.bmp" 
+	     "images\Schoolbook\bw\rookw.bmp" 
+             Black "images\Schoolbook\rookb.bmp" 
+	     "alfaerie\rookb.bmp" 
+	     "images\Schoolbook\bw\rookb.bmp" )
 
       (moves
 
@@ -754,8 +770,12 @@ it can still give check from the ninth rank.")
       (description "Rook\A Rook moves any number of squares orthogonally on a rank
            or a file.  It may not leap over other pieces (except the King during
            a Castling move).")
-(image White "images\rookw.bmp" "alfaerie\rookw.bmp" "images\bw\rookw.bmp" 
-             Black "images\rookb.bmp" "alfaerie\rookb.bmp" "images\bw\rookb.bmp" )
+(image White "images\Schoolbook\rookw.bmp" 
+"alfaerie\rookw.bmp" 
+"images\Schoolbook\bw\rookw.bmp" 
+             Black "images\Schoolbook\rookb.bmp" 
+	     "alfaerie\rookb.bmp" 
+	     "images\Schoolbook\bw\rookb.bmp" )
 
       (moves
 
@@ -773,8 +793,12 @@ it can still give check from the ninth rank.")
       (help "Queen: can slide any number of squares in any direction")
       (description "Queen\A Queen moves any number of squares in a straight line.
           It may not leap over other pieces.")
-      (image White "images\queenw.bmp" "alfaerie\queenw.bmp" "images\bw\queenw.bmp" 
-             Black "images\queenb.bmp" "alfaerie\queenb.bmp" "images\bw\queenb.bmp" )
+      (image White "images\Schoolbook\queenw.bmp" 
+             "alfaerie\queenw.bmp" 
+	     "images\Schoolbook\bw\queenw.bmp" 
+             Black "images\Schoolbook\queenb.bmp" 
+	     "alfaerie\queenb.bmp" 
+	     "images\Schoolbook\bw\queenb.bmp" )
 
       (moves 
 
@@ -801,8 +825,11 @@ it can still give check from the ninth rank.")
       (help "Queen: can slide any number of squares in any direction")
       (description "Queen\A Queen moves any number of squares in a straight line.
           It may not leap over other pieces.")
-      (image White "images\queenw.bmp" "alfaerie\queenw.bmp" "images\bw\queenw.bmp" 
-             Black "images\queenb.bmp" "alfaerie\queenb.bmp" "images\bw\queenb.bmp" )
+      (image White "images\Schoolbook\queenw.bmp" 
+             "alfaerie\queenw.bmp" 
+	     "images\Schoolbook\bw\queenw.bmp" 
+             Black "images\Schoolbook\queenb.bmp" 
+	     "alfaerie\queenb.bmp" "images\Schoolbook\bw\queenb.bmp" )
 
       (moves 
      (tweak_shift Z1)
@@ -825,8 +852,12 @@ it can still give check from the ninth rank.")
           the Rook and the Rook leaps to the far side of the King.  You may not
           castle out of or through check, or if the King or Rook involved has 
 		  previously moved.")
-      (image White "images\kingw.bmp" "alfaerie\kingw.bmp" "images\bw\kingw.bmp" 
-             Black "images\kingb.bmp" "alfaerie\kingb.bmp" "images\bw\kingb.bmp" )
+      (image White "images\Schoolbook\kingw.bmp" 
+      	     "alfaerie\kingw.bmp" 
+	     "images\Schoolbook\bw\kingw.bmp" 
+             Black "images\Schoolbook\kingb.bmp" 
+	     "alfaerie\kingb.bmp" 
+	     "images\Schoolbook\bw\kingb.bmp" )
       (attribute never-moved? true)
       (moves
 
@@ -854,8 +885,12 @@ it can still give check from the ninth rank.")
       (help "Archbishop/Princess/Cardinal (B+N): slides like a Bishop or leaps like a Knight")
       (description "Princess (Cardinal)\Combines the powers of a Bishop and a Knight.  It
         is somewhat weaker than a Queen.\The Archbishop (Cardinal) and Chancellor (Marshall) have proved popular in expanded forms of chess on 8x10 and larger boards.")
-      (image White "images\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\bw\schoolbook-archbishopw.bmp" 
-             Black "images\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\bw\schoolbook-archbishopb.bmp" )
+      (image White "images\Schoolbook\schoolbook-archbishopw.bmp" 
+             "alfaerie\archbishopw.bmp" 
+	     "images\Schoolbook\bw\schoolbook-archbishopw.bmp" 
+             Black "images\Schoolbook\schoolbook-archbishopb.bmp" 
+	     "alfaerie\archbishopb.bmp" 
+	     "images\Schoolbook\bw\schoolbook-archbishopb.bmp" )
 
       (moves 
      (tweak_shift Z1)
@@ -870,8 +905,12 @@ it can still give check from the ninth rank.")
       (help "Chancellor/Empress/Marshall (R+N): slides like a Rook or leaps like a Knight")
       (description "Chancellor/Empress (Marshall)\Combines the powers of a Rook and a
         Knight.  It is comparable in strength to the Queen.\The Archbishop (Cardinal) and Chancellor (Marshall) have proved popular in expanded forms of chess on 8x10 and larger boards.")
-      (image White "images\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\bw\schoolbook-marshallw.bmp" 
-             Black "images\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\bw\schoolbook-marshallb.bmp" )
+      (image White "images\Schoolbook\schoolbook-marshallw.bmp" 
+      "alfaerie\marshallw.bmp" 
+      "images\Schoolbook\bw\schoolbook-marshallw.bmp" 
+             Black "images\Schoolbook\schoolbook-marshallb.bmp" 
+	     "alfaerie\marshallb.bmp" 
+	     "images\Schoolbook\bw\schoolbook-marshallb.bmp" )
 
       (moves 
      (tweak_shift Z1)
@@ -930,8 +969,12 @@ This means that a light piece can be exchanged for two Scorpions, a possibility 
            a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.  On rare occasions Scorpions can also execute
            a move called `En Passant`, or `in passing`.  This allows a Scorpion to take
            an enemy Scorpion that has just moved two squares.")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" 
+      "alfaerie\pawnw.bmp" 
+      "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" 
+	     "alfaerie\pawnb.bmp" 
+	     "images\Schoolbook\bw\pawnb.bmp" )
 
       (moves       
 
@@ -991,8 +1034,12 @@ only in two forward directions: north-north-east, and north-north-west.")
            a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.  On rare occasions a Caltrop can also execute
            a move called `En Passant`, or `in passing`.  This allows a Caltrop to take
            an enemy Caltrop that has just moved two squares.")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" 
+      "alfaerie\pawnw.bmp" 
+      "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" 
+	     "alfaerie\pawnb.bmp" 
+	     "images\Schoolbook\bw\pawnb.bmp" )
 
       (moves       
 
@@ -1053,8 +1100,12 @@ pawn move to this piece in 2006.")
            a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.  On rare occasions a Horseman can also execute
            a move called `En Passant`, or `in passing`.  This allows a Horseman to take
            an enemy Horseman that has just moved two squares.")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" 
+      "alfaerie\pawnw.bmp" 
+             "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" 
+	     "alfaerie\pawnb.bmp" 
+	     "images\Schoolbook\bw\pawnb.bmp" )
 
       (moves       
 
@@ -1111,8 +1162,12 @@ and capture straight forward")
       (description "Shogi Pawn\A Shogi Pawn moves and captures straight ahead one square, or moves two squares from
            its starting position.  If a Shogi Pawn reaches the far rank it promotes, changing into
            a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" 
+      "alfaerie\pawnw.bmp" 
+      "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" 
+	     "alfaerie\pawnb.bmp" 
+	     "images\Schoolbook\bw\pawnb.bmp" )
 
       (moves       
 

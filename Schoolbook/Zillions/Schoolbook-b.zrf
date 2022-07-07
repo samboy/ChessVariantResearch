@@ -311,7 +311,7 @@
 )
 
 (define Board-Definitions
-  (image "images\10x8.bmp" "images\10x8.bmp" "images\bw\10x8.bmp" ) 
+  (image "images\Schoolbook\10x8.bmp" "images\Schoolbook\10x8.bmp" "images\Schoolbook\bw\10x8.bmp" ) 
   (grid
      (start-rectangle 0 0 50 50)
      (dimensions
@@ -426,8 +426,8 @@ romantic era, this variant will be very enjoyable.");
            a Knight, Bishop, Rook, Archbishop, Marshall, or Queen.  On rare occasions Pawns can also execute
            a move called `En Passant`, or `in passing`.  This allows a Pawn to take
            an enemy Pawn that has just moved two squares.")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" "alfaerie\pawnw.bmp" "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" "alfaerie\pawnb.bmp" "images\Schoolbook\bw\pawnb.bmp" )
       (moves
          (Pawn-capture nw)
          (Pawn-capture ne)
@@ -443,8 +443,8 @@ romantic era, this variant will be very enjoyable.");
       (description "Knight\A Knight moves like an `L`, two squares vertically plus one
           horizontally, or two squares horizontally plus one vertically.  It
           hops over any pieces on the way.")
-      (image White "images\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\bw\schoolbook-knightw.bmp" 
-             Black "images\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\bw\schoolbook-knightb.bmp" )
+      (image White "images\Schoolbook\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\Schoolbook\bw\schoolbook-knightw.bmp" 
+             Black "images\Schoolbook\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\Schoolbook\bw\schoolbook-knightb.bmp" )
       (moves
 	     (leap2 n ne)
 	     (leap2 n nw)
@@ -462,8 +462,8 @@ romantic era, this variant will be very enjoyable.");
 	  (help "Bishop: slides diagonally any number of squares")
       (description "Bishop\A Bishop moves any number of squares on a diagonal.  It may
            not leap over other pieces.")
-      (image White "images\bishopw.bmp" "alfaerie\bishopw.bmp" "images\bw\bishopw.bmp" 
-             Black "images\bishopb.bmp" "alfaerie\bishopb.bmp" "images\bw\bishopb.bmp" )
+      (image White "images\Schoolbook\bishopw.bmp" "alfaerie\bishopw.bmp" "images\Schoolbook\bw\bishopw.bmp" 
+             Black "images\Schoolbook\bishopb.bmp" "alfaerie\bishopb.bmp" "images\Schoolbook\bw\bishopb.bmp" )
       (moves
          (slide ne)
          (slide nw)
@@ -477,8 +477,8 @@ romantic era, this variant will be very enjoyable.");
 	  (help "Rook: slides any number of squares along the row or column.")
       (description "Rook\A Rook moves any number of squares orthogonally on a rank
            or a file.  It may not leap over other pieces.")
-      (image White "images\rookw.bmp" "alfaerie\rookw.bmp" "images\bw\rookw.bmp" 
-             Black "images\rookb.bmp" "alfaerie\rookb.bmp" "images\bw\rookb.bmp" )
+      (image White "images\Schoolbook\rookw.bmp" "alfaerie\rookw.bmp" "images\Schoolbook\bw\rookw.bmp" 
+             Black "images\Schoolbook\rookb.bmp" "alfaerie\rookb.bmp" "images\Schoolbook\bw\rookb.bmp" )
       (attribute never-moved? true)
       (moves
          (rook-slide n)
@@ -493,8 +493,8 @@ romantic era, this variant will be very enjoyable.");
 	  (help "Queen: can slide any number of squares in any direction")
       (description "Queen\A Queen moves any number of squares in a straight line.
           It may not leap over other pieces.")
-      (image White "images\queenw.bmp" "alfaerie\queenw.bmp" "images\bw\queenw.bmp" 
-             Black "images\queenb.bmp" "alfaerie\queenb.bmp" "images\bw\queenb.bmp" )
+      (image White "images\Schoolbook\queenw.bmp" "alfaerie\queenw.bmp" "images\Schoolbook\bw\queenw.bmp" 
+             Black "images\Schoolbook\queenb.bmp" "alfaerie\queenb.bmp" "images\Schoolbook\bw\queenb.bmp" )
       (moves
          (slide n)
          (slide e)
@@ -511,8 +511,8 @@ romantic era, this variant will be very enjoyable.");
       (name Archbishop)
            (help "Archbishop: Moves like a bishop or knight")
       (description "Archbishop\An archbishop can move like a bishop or a knight.")
-      (image White "images\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\bw\schoolbook-archbishopw.bmp" 
-             Black "images\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\bw\schoolbook-archbishopb.bmp" )
+      (image White "images\Schoolbook\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\Schoolbook\bw\schoolbook-archbishopw.bmp" 
+             Black "images\Schoolbook\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\Schoolbook\bw\schoolbook-archbishopb.bmp" )
       (moves
           (slide ne)
           (slide nw)
@@ -533,8 +533,8 @@ romantic era, this variant will be very enjoyable.");
       (name Marshall)
            (help "Marshall: Moves like a rook or knight")
       (description "Marshall\A marshall can move like a rook or a knight.")
-      (image White "images\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\bw\schoolbook-marshallw.bmp" 
-             Black "images\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\bw\schoolbook-marshallb.bmp" )
+      (image White "images\Schoolbook\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\Schoolbook\bw\schoolbook-marshallw.bmp" 
+             Black "images\Schoolbook\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\Schoolbook\bw\schoolbook-marshallb.bmp" )
       (moves
           (slide n)
           (slide s)
@@ -561,8 +561,8 @@ romantic era, this variant will be very enjoyable.");
           the Rook and the Rook leaps to the far side of the King.  You may not
           castle out of or through check, or if the King or Rook involved has 
 		  previously moved.")
-      (image White "images\kingw.bmp" "alfaerie\kingw.bmp" "images\bw\kingw.bmp" 
-             Black "images\kingb.bmp" "alfaerie\kingb.bmp" "images\bw\kingb.bmp" )
+      (image White "images\Schoolbook\kingw.bmp" "alfaerie\kingw.bmp" "images\Schoolbook\bw\kingw.bmp" 
+             Black "images\Schoolbook\kingb.bmp" "alfaerie\kingb.bmp" "images\Schoolbook\bw\kingb.bmp" )
       (attribute never-moved? true)
       (moves
          (king-shift n)
@@ -795,8 +795,8 @@ pawns, initiative is more important than material")
 	     castling the King moves two squares nearer the Rook and the Rook
 		 leaps to the far side of the King.  It can castle through check
 		 if desired.  The non-royal King can be captured like any other piece.")
-    (image White "images\kingw.bmp" "alfaerie\kingw.bmp" "images\bw\kingw.bmp" 
-           Black "images\kingb.bmp" "alfaerie\kingb.bmp" "images\bw\kingb.bmp" )
+    (image White "images\Schoolbook\kingw.bmp" "alfaerie\kingw.bmp" "images\Schoolbook\bw\kingw.bmp" 
+           Black "images\Schoolbook\kingb.bmp" "alfaerie\kingb.bmp" "images\Schoolbook\bw\kingb.bmp" )
     (attribute never-moved? true)
     (moves
        (king-shift n)
@@ -835,8 +835,8 @@ pawns, initiative is more important than material")
 		 occasions Pawns can also execute a move called `En Passant`, or `in
 		 passing`.  This allows a Pawn to take an enemy Pawn that has just moved two
          squares.")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" "alfaerie\pawnw.bmp" "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" "alfaerie\pawnb.bmp" "images\Schoolbook\bw\pawnb.bmp" )
       (moves
          (unroyal-Pawn-capture nw)
          (unroyal-Pawn-capture ne)
@@ -919,8 +919,8 @@ Kinglet Chess to use the setup of his Schoolbook Chess variant")
         occasions Pawns can also execute a move called `En Passant`, or `in passing`.  This
         allows a Pawn to take an enemy Pawn that has just moved two squares.\\
         The object of the game is capture all of the opponent's Pawns.")
-	  (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-                 Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+	  (image White "images\Schoolbook\pawnw.bmp" "alfaerie\pawnw.bmp" "images\Schoolbook\bw\pawnw.bmp" 
+                 Black "images\Schoolbook\pawnb.bmp" "alfaerie\pawnb.bmp" "images\Schoolbook\bw\pawnb.bmp" )
       (moves
          (KC-Pawn-capture nw)
          (KC-Pawn-capture ne)
@@ -1101,7 +1101,7 @@ and has used it in a number of his variants.")
      (positions a6 b6 c6 d6 e6 f6 g6 h6 I6 j6)
   )
         
-        (image "images\gustav.bmp")
+        (image "images\Schoolbook\gustav.bmp")
         (kill-positions a2 a3 a4 a5 a6 a7 j2 j3 j4 j5 j6 j7)
    )
 
@@ -1134,8 +1134,8 @@ and has used it in a number of his variants.")
       (description "Knight\A Knight moves like an `L`, two squares vertically plus one
           horizontally, or two squares horizontally plus one vertically.  It
           hops over any pieces on the way.")
-      (image White "images\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\bw\schoolbook-knightw.bmp" 
-             Black "images\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\bw\schoolbook-knightb.bmp" )
+      (image White "images\Schoolbook\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\Schoolbook\bw\schoolbook-knightw.bmp" 
+             Black "images\Schoolbook\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\Schoolbook\bw\schoolbook-knightb.bmp" )
       (moves
 	     (leap1 nne)
 	     (leap1 nnw)
@@ -1152,8 +1152,8 @@ and has used it in a number of his variants.")
       (name Archbishop)
            (help "Archbishop: Moves like a bishop or knight")
       (description "Archbishop\An archbishop can move like a bishop or a knight.")
-      (image White "images\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\bw\schoolbook-archbishopw.bmp" 
-             Black "images\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\bw\schoolbook-archbishopb.bmp" )
+      (image White "images\Schoolbook\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\Schoolbook\bw\schoolbook-archbishopw.bmp" 
+             Black "images\Schoolbook\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\Schoolbook\bw\schoolbook-archbishopb.bmp" )
       (moves
           (slide ne)
           (slide nw)
@@ -1174,8 +1174,8 @@ and has used it in a number of his variants.")
       (name Marshall)
            (help "Marshall: Moves like a rook or knight")
       (description "Marshall\A marshall can move like a rook or a knight.")
-      (image White "images\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\bw\schoolbook-marshallw.bmp" 
-             Black "images\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\bw\schoolbook-marshallb.bmp" )
+      (image White "images\Schoolbook\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\Schoolbook\bw\schoolbook-marshallw.bmp" 
+             Black "images\Schoolbook\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\Schoolbook\bw\schoolbook-marshallb.bmp" )
       (moves
           (slide n)
           (slide s)
@@ -1250,8 +1250,8 @@ and has used it in a number of his variants.")
           occasions Pawns can also execute a move called `En Passant`, or `in
           passing`.  This allows a Pawn to take an enemy Pawn that has just moved two
           squares.")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" "alfaerie\pawnw.bmp" "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" "alfaerie\pawnb.bmp" "images\Schoolbook\bw\pawnb.bmp" )
       (moves
          (knightmate-Pawn-capture nw)
          (knightmate-Pawn-capture ne)
@@ -1268,8 +1268,8 @@ and has used it in a number of his variants.")
           hops over any pieces on the way.  A Knight that hasn't moved has the
           option of castling with one of its Rooks.  This is achieved just as in
           regular Chess.\\The object of this variant is to checkmate the Knight.")
-      (image White "images\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\bw\schoolbook-knightw.bmp" 
-             Black "images\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\bw\schoolbook-knightb.bmp" )
+      (image White "images\Schoolbook\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\Schoolbook\bw\schoolbook-knightw.bmp" 
+             Black "images\Schoolbook\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\Schoolbook\bw\schoolbook-knightb.bmp" )
       (attribute never-moved? true)
       (moves
 	     (royal-leap2 n ne)
@@ -1287,8 +1287,8 @@ and has used it in a number of his variants.")
       (description "King\A King can move to any adjacent square.  It may not
 	     castle.  In this variant the King is not royal and may be captured.")
       (help "King: steps 1 square in any direction")
-      (image White "images\kingw.bmp" "alfaerie\kingw.bmp" "images\bw\kingw.bmp" 
-             Black "images\kingb.bmp" "alfaerie\kingb.bmp" "images\bw\kingb.bmp" )
+      (image White "images\Schoolbook\kingw.bmp" "alfaerie\kingw.bmp" "images\Schoolbook\bw\kingw.bmp" 
+             Black "images\Schoolbook\kingb.bmp" "alfaerie\kingb.bmp" "images\Schoolbook\bw\kingb.bmp" )
       (moves
          (leap1 n)
          (leap1 e)
@@ -1352,8 +1352,8 @@ and has used it in a number of his variants.")
       (description "Knight\A Knight moves like an `L`, two squares vertically plus one
           horizontally, or two squares horizontally plus one vertically.  It
           hops over any pieces on the way.")
-      (image White "images\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\bw\schoolbook-knightw.bmp" 
-             Black "images\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\bw\schoolbook-knightb.bmp" )
+      (image White "images\Schoolbook\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\Schoolbook\bw\schoolbook-knightw.bmp" 
+             Black "images\Schoolbook\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\Schoolbook\bw\schoolbook-knightb.bmp" )
       (moves
 	     (leap2 n ne)
 	     (leap2 n nw)
@@ -1417,8 +1417,8 @@ rule file.")
            a Knight, Bishop, Rook, High Priestess, Minister, or Queen.  On rare occasions Pawns can also execute
            a move called `En Passant`, or `in passing`.  This allows a Pawn to take
            an enemy Pawn that has just moved two squares.")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" "alfaerie\pawnw.bmp" "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" "alfaerie\pawnb.bmp" "images\Schoolbook\bw\pawnb.bmp" )
       (moves
          (SShantraj-Pawn-capture nw)
          (SShantraj-Pawn-capture ne)
@@ -1431,8 +1431,8 @@ rule file.")
       (name HighPriestess)
            (help "HighPriestess: Moves like a knight, ferz, or alfil")
       (description "Archbishop\An archbishop can move like a knight, ferz, or alfil.")
-      (image White "images\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\bw\schoolbook-archbishopw.bmp" 
-             Black "images\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\bw\schoolbook-archbishopb.bmp" )
+      (image White "images\Schoolbook\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\Schoolbook\bw\schoolbook-archbishopw.bmp" 
+             Black "images\Schoolbook\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\Schoolbook\bw\schoolbook-archbishopb.bmp" )
       (moves
 	  (leap1 nw)
           (leap1 ne)
@@ -1457,8 +1457,8 @@ rule file.")
       (name Minister)
            (help "Minister: Moves like a knight, wazir, or dabbah")
       (description "Minister\An mister can move like knight, wazir, or dabbah.")
-      (image White "images\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\bw\schoolbook-marshallw.bmp" 
-             Black "images\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\bw\schoolbook-marshallb.bmp" )
+      (image White "images\Schoolbook\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\Schoolbook\bw\schoolbook-marshallw.bmp" 
+             Black "images\Schoolbook\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\Schoolbook\bw\schoolbook-marshallb.bmp" )
       (moves
           (leap2 n n)
 	  (leap2 s s)
@@ -1493,8 +1493,8 @@ rule file.")
            A Pawn captures by moving one square ahead and
            diagonally.  If a Pawn reaches the far rank it promotes, changing into
            a Crab, Lobster, Snail, Oyster, Jellyfish, or Mollusk")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" "alfaerie\pawnw.bmp" "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" "alfaerie\pawnb.bmp" "images\Schoolbook\bw\pawnb.bmp" )
       (moves
          (Shell-Pawn-capture nw)
          (Shell-Pawn-capture ne)
@@ -1507,8 +1507,8 @@ rule file.")
 	  (help "Crab: Moves like a knight, but only forward two squares or back one square")
       (description "A Crab moves like a knight, but only forward two squares or back one square.  In other
 words, a crab on e4 can jump to d6, f6, c3, or g3.")
-      (image White "images\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\bw\schoolbook-knightw.bmp" 
-             Black "images\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\bw\schoolbook-knightb.bmp" )
+      (image White "images\Schoolbook\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\Schoolbook\bw\schoolbook-knightw.bmp" 
+             Black "images\Schoolbook\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\Schoolbook\bw\schoolbook-knightb.bmp" )
       (moves
 	     (leap2 n ne)
 	     (leap2 n nw)
@@ -1522,8 +1522,8 @@ words, a crab on e4 can jump to d6, f6, c3, or g3.")
 	  (help "Lobster: Moves forward like an Alfil, backwards like a Ferz")
       (description "A lobster moves forward like an Alfil, or backwards like a Ferz.  In other
 words, a lobster on e4 can jump to c6, g6, d3, or f3")
-      (image White "images\bishopw.bmp" "alfaerie\bishopw.bmp" "images\bw\bishopw.bmp" 
-             Black "images\bishopb.bmp" "alfaerie\bishopb.bmp" "images\bw\bishopb.bmp" )
+      (image White "images\Schoolbook\bishopw.bmp" "alfaerie\bishopw.bmp" "images\Schoolbook\bw\bishopw.bmp" 
+             Black "images\Schoolbook\bishopb.bmp" "alfaerie\bishopb.bmp" "images\Schoolbook\bw\bishopb.bmp" )
       (moves
          (leap2 ne ne)
          (leap2 nw nw)
@@ -1537,8 +1537,8 @@ words, a lobster on e4 can jump to c6, g6, d3, or f3")
 	  (help "Snail: Moves like a wazir or forward like a Dabbah")
       (description "A snail moves forward like a Dabbah or like a Wazir.  In other words, a Snail on
 e4 can jump to e5, e6, d4, f4, or e3.")
-      (image White "images\rookw.bmp" "alfaerie\rookw.bmp" "images\bw\rookw.bmp" 
-             Black "images\rookb.bmp" "alfaerie\rookb.bmp" "images\bw\rookb.bmp" )
+      (image White "images\Schoolbook\rookw.bmp" "alfaerie\rookw.bmp" "images\Schoolbook\bw\rookw.bmp" 
+             Black "images\Schoolbook\rookb.bmp" "alfaerie\rookb.bmp" "images\Schoolbook\bw\rookb.bmp" )
       (attribute never-moved? true)
       (moves
          (leap2 n n)
@@ -1553,8 +1553,8 @@ e4 can jump to e5, e6, d4, f4, or e3.")
       (name Jellyfish)
 	  (help "Jellyfish: Snail + Lobster")
       (description "A Jellyfish moves like a snail or a lobster")
-      (image White "images\queenw.bmp" "alfaerie\queenw.bmp" "images\bw\queenw.bmp" 
-             Black "images\queenb.bmp" "alfaerie\queenb.bmp" "images\bw\queenb.bmp" )
+      (image White "images\Schoolbook\queenw.bmp" "alfaerie\queenw.bmp" "images\Schoolbook\bw\queenw.bmp" 
+             Black "images\Schoolbook\queenb.bmp" "alfaerie\queenb.bmp" "images\Schoolbook\bw\queenb.bmp" )
       (moves
          (leap2 n n)
          (leap1 n)
@@ -1572,8 +1572,8 @@ e4 can jump to e5, e6, d4, f4, or e3.")
       (name Mollusk)
            (help "Mollusk: Moves like a crab or lobster")
       (description "Mollusk\An starfish can move like a crab or a lobster.")
-      (image White "images\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\bw\schoolbook-archbishopw.bmp" 
-             Black "images\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\bw\schoolbook-archbishopb.bmp" )
+      (image White "images\Schoolbook\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\Schoolbook\bw\schoolbook-archbishopw.bmp" 
+             Black "images\Schoolbook\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\Schoolbook\bw\schoolbook-archbishopb.bmp" )
       (moves
          (leap2 ne ne)
          (leap2 nw nw)
@@ -1590,8 +1590,8 @@ e4 can jump to e5, e6, d4, f4, or e3.")
       (name Oyster)
            (help "Oyster: Moves like a snail or crab")
       (description "Oyster\An oyster can move like a snail or a crab.")
-      (image White "images\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\bw\schoolbook-marshallw.bmp" 
-             Black "images\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\bw\schoolbook-marshallb.bmp" )
+      (image White "images\Schoolbook\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\Schoolbook\bw\schoolbook-marshallw.bmp" 
+             Black "images\Schoolbook\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\Schoolbook\bw\schoolbook-marshallb.bmp" )
       (moves
 	 (leap2 n ne)
 	 (leap2 n nw)
@@ -1662,8 +1662,8 @@ back.  A bare or stalemated king is a win for the other player.")
            A Pawn captures by moving one square ahead and
            diagonally.  If a Pawn reaches the far rank it promotes, changing into
            a Crab, Lobster, Snail, Oyster, Jellyfish, or Mollusk")
-      (image White "images\pawnw.bmp" "alfaerie\pawnw.bmp" "images\bw\pawnw.bmp" 
-             Black "images\pawnb.bmp" "alfaerie\pawnb.bmp" "images\bw\pawnb.bmp" )
+      (image White "images\Schoolbook\pawnw.bmp" "alfaerie\pawnw.bmp" "images\Schoolbook\bw\pawnw.bmp" 
+             Black "images\Schoolbook\pawnb.bmp" "alfaerie\pawnb.bmp" "images\Schoolbook\bw\pawnb.bmp" )
       (moves
          (Shell-Pawn-capture nw)
          (Shell-Pawn-capture ne)
@@ -1676,8 +1676,8 @@ back.  A bare or stalemated king is a win for the other player.")
 	  (help "Crab: Moves like a knight, but only forward two squares or back one square")
       (description "A Crab moves like a knight, but only forward two squares or back one square.  In other
 words, a crab on e4 can jump to d6, f6, c3, or g3.")
-      (image White "images\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\bw\schoolbook-knightw.bmp" 
-             Black "images\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\bw\schoolbook-knightb.bmp" )
+      (image White "images\Schoolbook\schoolbook-knightw.bmp" "alfaerie\knightw.bmp" "images\Schoolbook\bw\schoolbook-knightw.bmp" 
+             Black "images\Schoolbook\schoolbook-knightb.bmp" "alfaerie\knightb.bmp" "images\Schoolbook\bw\schoolbook-knightb.bmp" )
       (moves
 	     (leap2 n ne)
 	     (leap2 n nw)
@@ -1691,8 +1691,8 @@ words, a crab on e4 can jump to d6, f6, c3, or g3.")
 	  (help "Lobster: Moves forward like an Alfil, backwards like a Ferz")
       (description "A lobster moves forward like an Alfil, or backwards like a Ferz.  In other
 words, a lobster on e4 can jump to c6, g6, d3, or f3")
-      (image White "images\bishopw.bmp" "alfaerie\bishopw.bmp" "images\bw\bishopw.bmp" 
-             Black "images\bishopb.bmp" "alfaerie\bishopb.bmp" "images\bw\bishopb.bmp" )
+      (image White "images\Schoolbook\bishopw.bmp" "alfaerie\bishopw.bmp" "images\Schoolbook\bw\bishopw.bmp" 
+             Black "images\Schoolbook\bishopb.bmp" "alfaerie\bishopb.bmp" "images\Schoolbook\bw\bishopb.bmp" )
       (moves
          (leap2 ne ne)
          (leap2 nw nw)
@@ -1706,8 +1706,8 @@ words, a lobster on e4 can jump to c6, g6, d3, or f3")
 	  (help "Snail: Moves like a wazir or forward like a Dabbah")
       (description "A snail moves forward like a Dabbah or like a Wazir.  In other words, a Snail on
 e4 can jump to e5, e6, d4, f4, or e3.")
-      (image White "images\rookw.bmp" "alfaerie\rookw.bmp" "images\bw\rookw.bmp" 
-             Black "images\rookb.bmp" "alfaerie\rookb.bmp" "images\bw\rookb.bmp" )
+      (image White "images\Schoolbook\rookw.bmp" "alfaerie\rookw.bmp" "images\Schoolbook\bw\rookw.bmp" 
+             Black "images\Schoolbook\rookb.bmp" "alfaerie\rookb.bmp" "images\Schoolbook\bw\rookb.bmp" )
       (attribute never-moved? true)
       (moves
          (leap2 n n)
@@ -1722,8 +1722,8 @@ e4 can jump to e5, e6, d4, f4, or e3.")
       (name Jellyfish)
 	  (help "Jellyfish: Snail + Lobster")
       (description "A Jellyfish moves like a snail or a lobster")
-      (image White "images\queenw.bmp" "alfaerie\queenw.bmp" "images\bw\queenw.bmp" 
-             Black "images\queenb.bmp" "alfaerie\queenb.bmp" "images\bw\queenb.bmp" )
+      (image White "images\Schoolbook\queenw.bmp" "alfaerie\queenw.bmp" "images\Schoolbook\bw\queenw.bmp" 
+             Black "images\Schoolbook\queenb.bmp" "alfaerie\queenb.bmp" "images\Schoolbook\bw\queenb.bmp" )
       (moves
          (leap2 n n)
          (leap1 n)
@@ -1741,8 +1741,8 @@ e4 can jump to e5, e6, d4, f4, or e3.")
       (name Mollusk)
            (help "Mollusk: Moves like a crab or lobster")
       (description "Mollusk\An starfish can move like a crab or a lobster.")
-      (image White "images\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\bw\schoolbook-archbishopw.bmp" 
-             Black "images\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\bw\schoolbook-archbishopb.bmp" )
+      (image White "images\Schoolbook\schoolbook-archbishopw.bmp" "alfaerie\archbishopw.bmp" "images\Schoolbook\bw\schoolbook-archbishopw.bmp" 
+             Black "images\Schoolbook\schoolbook-archbishopb.bmp" "alfaerie\archbishopb.bmp" "images\Schoolbook\bw\schoolbook-archbishopb.bmp" )
       (moves
          (leap2 ne ne)
          (leap2 nw nw)
@@ -1759,8 +1759,8 @@ e4 can jump to e5, e6, d4, f4, or e3.")
       (name Oyster)
            (help "Oyster: Moves like a snail or crab")
       (description "Oyster\An oyster can move like a snail or a crab.")
-      (image White "images\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\bw\schoolbook-marshallw.bmp" 
-             Black "images\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\bw\schoolbook-marshallb.bmp" )
+      (image White "images\Schoolbook\schoolbook-marshallw.bmp" "alfaerie\marshallw.bmp" "images\Schoolbook\bw\schoolbook-marshallw.bmp" 
+             Black "images\Schoolbook\schoolbook-marshallb.bmp" "alfaerie\marshallb.bmp" "images\Schoolbook\bw\schoolbook-marshallb.bmp" )
       (moves
 	 (leap2 n ne)
 	 (leap2 n nw)
