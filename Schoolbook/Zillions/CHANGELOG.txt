@@ -57,4 +57,4 @@
        always three squares towards the corresponding rook.  Updated
        graphics to not be encumbered by TeX license at all; added note
        that alfaerie graphics are probably not protected by copyright
-       in the US.  Updated documents.
+       in the US.  Updated documents. (2022.07.07)
