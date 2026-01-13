@@ -39,3 +39,77 @@ exec $LUNACY $0 "$@"
 -- ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 -- OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+-- Create a new “board” (really, row) where we will place pieces
+function initBoard(size)
+  local out = {}
+  for a=1,size do
+    out[a] = " "
+  end
+  return out
+end
+
+-- Add a piece to the board, on the #place available empty square
+function addPiece(board, piece, place)
+  local count = 0
+  if type(board) ~= 'table' then return false end
+  if type(piece) ~= 'string' then piece = 'b' end 
+  if type(place) ~= 'number' then place = 1 end
+  for a=1,#board do
+    if board[a] == " " then
+      place = place - 1
+      if place < 1 then
+        board[a] = piece
+        return true
+      end
+    end
+  end
+  return false
+end
+
+-- Output all 720 Capa720 setups
+function Capa720(setup)
+  if type(setup) ~= 'number' then setup = 1 end
+  local set = setup
+  local board = initBoard(10)
+  board[1] = 'r'
+  board[10] = 'r'
+  board[6] = 'k'
+  local bishop1 = set % 3
+  set = math.floor(set / 3)
+  bishop1 = bishop1 + 1
+  bishop1 = bishop1 * 2
+  if bishop1 == 6 then bishop1 = 8 end
+  board[bishop1] = 'b'
+  local bishop2 = set % 4
+  set = math.floor(set / 4)     
+  bishop2 = bishop2 * 2
+  bishop2 = bishop2 + 3
+  board[bishop2] = 'b'
+  local queen = set % 5
+  queen = queen + 1
+  set = math.floor(set / 5)
+  addPiece(board,'q',queen)
+  local arch = set % 4
+  arch = arch + 1
+  set = math.floor(set / 4)
+  addPiece(board,'a',arch)
+  local chan = set % 3
+  chan = chan + 1
+  addPiece(board,'c',chan)
+  addPiece(board,'n')
+  addPiece(board,'n')
+  return board
+end  
+ 
+function board2ASCII(board)
+  local out = ""
+  for a=1,#board do
+    out = out .. board[a]
+  end
+  return out
+end
+   
+for setup=0,719 do
+  local board = Capa720(setup)
+  print(board2ASCII(board),setup + 1)
+end
