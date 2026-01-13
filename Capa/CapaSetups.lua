@@ -66,7 +66,7 @@ function addPiece(board, piece, place)
   return false
 end
 
--- Output all 720 Capa720 setups
+-- Output a Capa720 setup, given a number from 0 to 719
 function Capa720(setup)
   if type(setup) ~= 'number' then setup = 1 end
   local set = setup
@@ -100,16 +100,83 @@ function Capa720(setup)
   addPiece(board,'n')
   return board
 end  
- 
+
+-- Given a board array, output the setup as ASCII 
 function board2ASCII(board)
   local out = ""
   for a=1,#board do
-    out = out .. board[a]
+    out = out .. tostring(board[a])
   end
   return out
 end
-   
+
+-- Given a board array, output the setup as PGN
+function board2PGN(board)
+  local out = ""
+  local line = board2ASCII(board)
+  local pawns = ""
+  for a=1,#board do
+    pawns = pawns .. "p"
+  end
+  local empty = tostring(#board)
+  out = line .. "/" .. pawns .. "/" 
+  out = out .. empty .. "/" .. empty .. "/" .. empty .. "/" .. empty .. "/" 
+  out = out .. pawns:upper() .. "/" line:upper()
+  out = out .. "_w_KQkq_-_0_1"
+  return out
+end
+
+-- Given a board array and a list of pieces with their moves, see
+-- how many pawns are guarded
+function pawnsGuarded(board, pieces)
+  local out = {}
+  for a=1,#board do
+    out[a] = 0
+  end
+  for a=1,#board do
+    local p = pieces[board[a]]
+    if type(p) == 'table' then
+      for b=1,#p do
+        local q = p[b]
+        if a + q > 0 and a + q <= #board then -- This check isn’t needed
+          out[a + q] = out[a + q] + 1
+        end
+      end
+    end
+  end
+  return out
+end
+
+-- Yes or know: Are all pawns guarded
+function allPawnsGuarded(board, pieces)
+  local look = pawnsGuarded(board, pieces)
+  local out = true
+  for a=1,#look do
+    if look[a] == 0 then
+      out = false
+    end
+  end
+  return out
+end
+
+-- Return the pieces we have in Capa chess
+function capaPieces() 
+  local out = {}
+  out['a'] = {-2, -1, 1, 2} -- Archbishop (knight + Bishop)
+  out['b'] = {-1, 1}        -- Bishop
+  out['c'] = {-2, 0, 2}     -- Rook + Bishop
+  out['k'] = {-1, 0, 1}     -- King
+  out['m'] = {-2, 0, 2}     -- Rook + Bishop
+  out['n'] = {-2, 2}        -- kNight
+  out['p'] = {-1, 1}        -- pawn
+  out['q'] = {-1, 0, 1}     -- Queen
+  out['r'] = {0}            -- Rook
+  return out
+end
+
 for setup=0,719 do
   local board = Capa720(setup)
-  print(board2ASCII(board),setup + 1)
+  if allPawnsGuarded(board, capaPieces()) then
+    print(board2PGN(board),setup + 1)
+  end
 end
