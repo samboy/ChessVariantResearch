@@ -147,6 +147,17 @@ function pawnsGuarded(board, pieces)
   return out
 end
 
+-- Input: Board, pieces
+-- Output: Total of how much the pawns are guarded
+function pawnsGuardedCount(board, pieces)
+  local out = 0
+  local t = pawnsGuarded(board, pieces)
+  for a=1,#t do
+    out = out + t[a] 
+  end
+  return out
+end
+
 -- Yes or no: Are all pawns guarded
 function allPawnsGuarded(board, pieces)
   local look = pawnsGuarded(board, pieces)
@@ -196,6 +207,6 @@ end
 for setup=0,719 do
   local board = Capa720(setup)
   if kingPawns2Guarded(board, capaPieces()) then
-    print(board2PGN(board),setup + 1)
+    print(board2PGN(board),pawnsGuardedCount(board, capaPieces()),setup + 1)
   end
 end
