@@ -121,7 +121,7 @@ function board2PGN(board)
   local empty = tostring(#board)
   out = line .. "/" .. pawns .. "/" 
   out = out .. empty .. "/" .. empty .. "/" .. empty .. "/" .. empty .. "/" 
-  out = out .. pawns:upper() .. "/" line:upper()
+  out = out .. pawns:upper() .. "/" .. line:upper()
   out = out .. "_w_KQkq_-_0_1"
   return out
 end
@@ -147,12 +147,31 @@ function pawnsGuarded(board, pieces)
   return out
 end
 
--- Yes or know: Are all pawns guarded
+-- Yes or no: Are all pawns guarded
 function allPawnsGuarded(board, pieces)
   local look = pawnsGuarded(board, pieces)
   local out = true
   for a=1,#look do
     if look[a] == 0 then
+      out = false
+    end
+  end
+  return out
+end
+
+-- Yes or no: Are all pawns guarded, and all pawns in front of the king
+-- Double guarded
+function kingPawns2Guarded(board, pieces, kingFile)
+  if not kingFile then kingFile = 6 end
+  local look = pawnsGuarded(board, pieces)
+  local out = true
+  for a=1,#look do
+    if look[a] == 0 then
+      out = false
+    end
+  end
+  for a=kingFile - 1,kingFile + 1 do
+    if look[a] < 2 then
       out = false
     end
   end
@@ -176,7 +195,7 @@ end
 
 for setup=0,719 do
   local board = Capa720(setup)
-  if allPawnsGuarded(board, capaPieces()) then
+  if kingPawns2Guarded(board, capaPieces()) then
     print(board2PGN(board),setup + 1)
   end
 end
