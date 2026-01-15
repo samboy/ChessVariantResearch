@@ -1,4 +1,4 @@
--- Placed in the public domain 2021 by Sam Trenholme
+-- Placed in the public domain 2021,2026 by Sam Trenholme
 -- This is a lunacy (Lua + Steve Donovan's spawner lib) implementation of
 -- a simple Chess/Chess variants client
 --
@@ -9,6 +9,8 @@
 -- This client requires the Fairy-Stockfish program to be installed
 -- and available with the name fairy-stockfish-largeboard_x86-64
 -- (if it has another name, change "ChessEngine" below)
+
+math.randomseed(os.time())
 
 -- Let's look at win/lose/draw ratio for different capa setups
 vSetup = "RQNBAKCNBR"
