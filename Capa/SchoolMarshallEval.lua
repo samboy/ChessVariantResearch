@@ -149,4 +149,4 @@ while not string.match(lineFromEngine,'^bestmove') do
   print(lineFromEngine)
 end
 io.flush()
-print("SCORE: " .. eval)
+print(vSetup .. " eval: " .. eval)
