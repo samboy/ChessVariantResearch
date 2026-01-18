@@ -66,41 +66,6 @@ function addPiece(board, piece, place)
   return false
 end
 
--- Output a Capa720 setup, given a number from 0 to 719
-function Capa720(setup)
-  if type(setup) ~= 'number' then setup = 1 end
-  local set = setup
-  local board = initBoard(10)
-  board[1] = 'r'
-  board[10] = 'r'
-  board[6] = 'k'
-  local bishop1 = set % 3
-  set = math.floor(set / 3)
-  bishop1 = bishop1 + 1
-  bishop1 = bishop1 * 2
-  if bishop1 == 6 then bishop1 = 8 end
-  board[bishop1] = 'b'
-  local bishop2 = set % 4
-  set = math.floor(set / 4)     
-  bishop2 = bishop2 * 2
-  bishop2 = bishop2 + 3
-  board[bishop2] = 'b'
-  local queen = set % 5
-  queen = queen + 1
-  set = math.floor(set / 5)
-  addPiece(board,'q',queen)
-  local arch = set % 4
-  arch = arch + 1
-  set = math.floor(set / 4)
-  addPiece(board,'a',arch)
-  local chan = set % 3
-  chan = chan + 1
-  addPiece(board,'c',chan)
-  addPiece(board,'n')
-  addPiece(board,'n')
-  return board
-end  
-
 -- Output a Chess960 setup, given a number from 0 to 959
 function Chess960(setup)
   if type(setup) ~= 'number' then setup = 1 end
