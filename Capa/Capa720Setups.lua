@@ -74,30 +74,37 @@ function Capa720(setup)
   board[1] = 'r'
   board[10] = 'r'
   board[6] = 'k'
+  -- In Chess960, we place the light bishop before the dark one
   local bishop1 = set % 3
   set = math.floor(set / 3)
   bishop1 = bishop1 + 1
   bishop1 = bishop1 * 2
   if bishop1 == 6 then bishop1 = 8 end
   board[bishop1] = 'b'
+  -- Dark bishop
   local bishop2 = set % 4
   set = math.floor(set / 4)     
   bishop2 = bishop2 * 2
   bishop2 = bishop2 + 3
   board[bishop2] = 'b'
+  -- Queen
   local queen = set % 5
   queen = queen + 1
   set = math.floor(set / 5)
   addPiece(board,'q',queen)
-  local arch = set % 4
-  arch = arch + 1
-  set = math.floor(set / 4)
-  addPiece(board,'a',arch)
-  local chan = set % 3
+  -- Marshal/Chancellor
+  local chan = set % 4
   chan = chan + 1
   addPiece(board,'c',chan)
+  set = math.floor(set / 4)
+  -- Archbishop
+  local arch = set % 3
+  arch = arch + 1
+  addPiece(board,'a',arch)
+  -- Knights
   addPiece(board,'n')
   addPiece(board,'n')
+  -- Done
   return board
 end  
 
