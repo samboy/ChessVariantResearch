@@ -101,6 +101,42 @@ function Capa720(setup)
   return board
 end  
 
+-- Output a Chess960 setup, given a number from 0 to 959
+function Chess960(setup)
+  if type(setup) ~= 'number' then setup = 1 end
+  local set = setup
+  local board = initBoard(8)
+  local bishop1 = set % 4
+  set = math.floor(set / 4)
+  bishop1 = bishop1 + 1
+  bishop1 = bishop1 * 2
+  board[bishop1] = 'b'
+  local bishop2 = set % 4
+  set = math.floor(set / 4)     
+  bishop2 = bishop2 * 2
+  bishop2 = bishop2 + 1
+  board[bishop2] = 'b'
+  local queen = set % 6
+  queen = queen + 1
+  set = math.floor(set / 6)
+  addPiece(board,'q',queen)
+  -- Knights are tricky
+  local knights = set % 10
+  knights = knights + 1
+  -- This could be calculated, but since we only have to do this with
+  -- knights, just use a two dimensional array
+  local knightArray = {{1,1}, {1,2}, {1,3}, {1,4}, {2,2}, {2,3}, {2,4},
+                       {3,3}, {3,4}, {4,4}}
+  addPiece(board,'n',knightArray[knights][1])
+  addPiece(board,'n',knightArray[knights][2])
+  -- Once Bishops, Queen, Knights are placed, king is always between
+  -- the two rooks so there is only one possible setup at this point
+  addPiece(board,'r')
+  addPiece(board,'k')
+  addPiece(board,'r')
+  return board
+end
+
 -- Given a board array, output the setup as ASCII 
 function board2ASCII(board)
   local out = ""
@@ -190,6 +226,8 @@ function kingPawns2Guarded(board, pieces, kingFile)
 end
 
 -- Return the pieces we have in Capa chess
+-- This also works for classic chess, since Capa is a superset of
+-- regular chess
 function capaPieces() 
   local out = {}
   out['a'] = {-2, -1, 1, 2} -- Archbishop (knight + Bishop)
@@ -204,9 +242,21 @@ function capaPieces()
   return out
 end
 
-for setup=0,719 do
-  local board = Capa720(setup)
+-- Return true is the board is a Chess18 position (rooks and king unmoved
+-- from classic Chess)
+function isChess18(board) 
+  if type(board) ~= 'table' then return nil end
+  if #board ~= 8 then return nil end
+  if board[1] == 'r' and board[5] == 'k' and board[8] == 'r' then
+    return true
+  end
+  return false
+end
+
+for setup=0,959 do
+  local board = Chess960(setup)
   if kingPawns2Guarded(board, capaPieces()) or true then
-    print(board2PGN(board),pawnsGuardedCount(board, capaPieces()),setup + 1)
+  -- if isChess18(board) then 
+    print(board2PGN(board),pawnsGuardedCount(board, capaPieces()),setup)
   end
 end
