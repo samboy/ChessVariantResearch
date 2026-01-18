@@ -214,6 +214,6 @@ end
 for setup=0,719 do
   local board = Capa720(setup)
   if kingPawns2Guarded(board, capaPieces()) or true then
-    print(board2PGN(board),pawnsGuardedCount(board, capaPieces()),setup + 1)
+    print(board2PGN(board),pawnsGuardedCount(board, capaPieces()),setup)
   end
 end
