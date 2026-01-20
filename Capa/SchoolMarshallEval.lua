@@ -155,6 +155,7 @@ while not string.match(lineFromEngine,'^bestmove') do
     eval = x
   end
   print(lineFromEngine)
+  io.flush()
 end
 io.flush()
 print(vSetup .. " eval: " .. eval)
