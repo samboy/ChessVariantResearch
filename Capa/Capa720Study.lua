@@ -39,6 +39,19 @@ exec $LUNACY $0 "$@"
 -- ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 -- OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+-- showCapa36: We show all Capa36 setups because many of those setups 
+-- were considered possible Capablanca opening setups during the first
+-- 2000s decade
+showCapa36 = true
+if #arg >= 1 then
+  showCapa36 = false
+end
+-- Number of winning setups we show them
+winners = 12
+if #arg >= 2 then
+  winners = tonumber(arg[2])
+end
+
 -- Create a new “board” (really, row) where we will place pieces
 function initBoard(size)
   local out = {}
@@ -296,15 +309,15 @@ byRank = {}
 for k,v in sPairs(eval, evalSorter) do
   v['rank'] = rank
   byRank[rank] = v
-  if isCapa36(k) then print(k,v.mean,rank) end
+  if showCapa36 and isCapa36(k) then print(k,v.mean,rank) end
   rank = rank + 1
 end
 
 a = 1
 i = 1
-while a <= 12 do
+while a <= winners do
   local setup = byRank[i]['setup']
-  if not isCapa36(setup) then
+  if not showCapa36 or not isCapa36(setup) then
     print(setup,byRank[i]['mean'],i)
     a = a + 1
   end
