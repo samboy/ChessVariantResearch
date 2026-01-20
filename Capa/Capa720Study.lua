@@ -120,7 +120,12 @@ end
 -- Given a board array, output the setup as PGN
 function board2PGN(board)
   local out = ""
-  local line = board2ASCII(board)
+  local line = ""
+  if type(board) == 'table' then
+    line = board2ASCII(board)
+  elseif type(board) == 'string' then
+    line = board
+  end 
   local pawns = ""
   for a=1,#board do
     pawns = pawns .. "p"
@@ -203,6 +208,39 @@ function grabEvals(fname)
   return out
 end
 
+-- Return a list with the 720 Capa720 setups in order
+function Capa720keys()
+  local out = {}
+  for a=0,719 do
+    local board = Capa720(a)
+    local key = board2ASCII(board)
+    key = string.upper(key)
+    table.insert(out,key)
+  end
+  return out
+end
+
+-- Iterator which allows us to have a for loop where the string is the 
+-- Capa720 setup
+function CapaIterator()
+  local a = 0
+  return function()
+    local last = a
+    if(a >= 720 or a < 0) then return nil end
+    a = a + 1
+    return string.upper(board2ASCII(Capa720(last)))
+  end
+end
+
 evals = {}
+evals[18] = grabEvals("Capa720evalNNUE18ply.txt")
+evals[19] = grabEvals("Capa720evalNNUE19ply.txt")
+evals[20] = grabEvals("Capa720evalNNUE20ply.txt")
+evals[21] = grabEvals("Capa720evalNNUE21ply.txt")
+evals[22] = grabEvals("Capa720evalNNUE22ply.txt")
+evals[23] = grabEvals("Capa720evalNNUE23ply.txt")
 evals[24] = grabEvals("Capa720evalNNUE24ply.txt")
-showTable(evals[24])
+
+for a in CapaIterator() do
+  print(a)
+end
