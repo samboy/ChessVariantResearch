@@ -232,6 +232,22 @@ function CapaIterator()
   end
 end
 
+-- Function which determines if an ASCII starting position is Capa36
+-- Capa36 is described here:
+-- https://archive.ph/20090923161739/https://maradns.blogspot.com/2008/12/capa-opening-setups.html
+-- It’s the 36 positions where rooks, knights, bishops are all symmetrical,
+-- the king is on the sixth file, and the rooks are in the corners.
+function isCapa36(setup)
+  if type(setup) ~= 'string' then return false end
+  if setup:match('R.NB.KBN.R') then return true end
+  if setup:match('RN.B.KB.NR') then return true end
+  if setup:match('RNB..K.BNR') then return true end
+  if setup:match('R.BN.KNB.R') then return true end
+  if setup:match('RB.N.KN.BR') then return true end
+  if setup:match('RBN..K.NBR') then return true end
+  return false
+end
+
 evals = {}
 evals[18] = grabEvals("Capa720evalNNUE18ply.txt")
 evals[19] = grabEvals("Capa720evalNNUE19ply.txt")
@@ -264,6 +280,7 @@ for a in CapaIterator() do
   sd = sd / 7
   sd = sd ^ 0.5
   eval[a]['sd'] = sd
+  eval[a]['setup'] = a
 end
 
 function evalSorter(a, b)
@@ -274,6 +291,22 @@ function evalSorter(a, b)
   return va < vb
 end
 
+rank = 1
+byRank = {}
 for k,v in sPairs(eval, evalSorter) do
-  print(k,v['mean'],v['sd'])
+  v['rank'] = rank
+  byRank[rank] = v
+  if isCapa36(k) then print(k,v.mean,rank) end
+  rank = rank + 1
+end
+
+a = 1
+i = 1
+while a <= 12 do
+  local setup = byRank[i]['setup']
+  if not isCapa36(setup) then
+    print(setup,byRank[i]['mean'],i)
+    a = a + 1
+  end
+  i = i + 1
 end
