@@ -241,6 +241,39 @@ evals[22] = grabEvals("Capa720evalNNUE22ply.txt")
 evals[23] = grabEvals("Capa720evalNNUE23ply.txt")
 evals[24] = grabEvals("Capa720evalNNUE24ply.txt")
 
+eval = {}
+
 for a in CapaIterator() do
-  print(a)
+  eval[a] = {}
+  eval[a]['values'] = {}
+  local total = 0
+  for b=18,24 do
+    local value = evals[b][a]
+    eval[a]['values'][b] = value
+    total = total + value
+  end
+  local mean = total / 7
+  local sd = 0 -- Standard deviation
+  eval[a]['mean'] = mean
+  for b=18,24 do
+    local value = eval[a]['values'][b]
+    local dev = value - mean
+    dev = dev * dev
+    sd = sd + dev
+  end
+  sd = sd / 7
+  sd = sd ^ 0.5
+  eval[a]['sd'] = sd
+end
+
+function evalSorter(a, b)
+  if not a or not b then return false end
+  if not eval[a] or not eval[b] then return true end
+  local va = eval[a]['mean'] + eval[a]['sd']
+  local vb = eval[b]['mean'] + eval[b]['sd']
+  return va < vb
+end
+
+for k,v in sPairs(eval, evalSorter) do
+  print(k,v['mean'],v['sd'])
 end
