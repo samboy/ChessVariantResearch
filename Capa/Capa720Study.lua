@@ -133,4 +133,76 @@ function board2PGN(board)
   return out
 end
 
--- CODE HERE
+function regexSplit(subject, splitOn)
+  if not splitOn then splitOn = "," end
+  local place = true
+  local out = {}
+  local mark
+  local last = 1
+  while place do
+    place, mark = string.find(subject, splitOn, last, false)
+    if place then
+      table.insert(out,string.sub(subject, last, place - 1))
+      last = mark + 1
+    end
+  end
+  table.insert(out,string.sub(subject, last, -1))
+  return out
+end
+
+-- Like pairs() but sorted
+function sPairs(inTable, sFunc)
+  if not sFunc then
+    sFunc = function(a, b)
+      local ta = type(a)
+      local tb = type(b)
+      if(ta == tb)
+        then return a < b 
+      end
+      return tostring(ta) <
+             tostring(tb)
+    end
+  end
+  local keyList = {}
+  local index = 1
+  for k,_ in pairs(inTable) do
+    table.insert(keyList,k)
+  end
+  table.sort(keyList, sFunc)
+  return function()
+    key = keyList[index]
+    index = index + 1
+    return key, inTable[key]
+  end
+end
+
+-- Output a table on standard output
+function showTable(inTable) 
+  if type(inTable) ~= 'table' then 
+    print("Type of inTable is " .. type(inTable))
+    return nil
+  end
+  for k,v in sPairs(inTable) do print(k,v) end
+end
+
+-- Open up a file and grab the evals
+function grabEvals(fname) 
+  local handle = io.open(fname,"rb")
+  if not handle then return nil end
+  local out = {}
+  local line = ""
+  for line in handle:lines() do
+    line = line:gsub("[\r\n]","")
+    local fields = regexSplit(line, "%s+")
+    if fields and #fields >= 3 then
+      local key = fields[1]
+      local value = fields[3]
+      out[key] = value
+    end
+  end
+  return out
+end
+
+evals = {}
+evals[24] = grabEvals("Capa720evalNNUE24ply.txt")
+showTable(evals[24])
