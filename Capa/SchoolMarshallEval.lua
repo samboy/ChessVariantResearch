@@ -17,6 +17,10 @@ vSetup = "RQNBAKCNBR"
 if #arg >= 1 then
   vSetup = arg[1]
 end
+plies = false
+if #arg >= 2 then
+  plies = tonumber(arg[2])
+end
 
 -- params is a table with the "user tunable" parameters
 params = {
@@ -91,6 +95,10 @@ end
 if not searchPly or searchPly < 7 then 
   print("searchPly too small/not set, using 21") 
   searchPly = 21
+end
+
+if plies then
+  searchPly = plies
 end
 
 ----------------------- rStrSplit() -----------------------
