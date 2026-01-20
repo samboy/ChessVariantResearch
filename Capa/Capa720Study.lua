@@ -309,7 +309,16 @@ byRank = {}
 for k,v in sPairs(eval, evalSorter) do
   v['rank'] = rank
   byRank[rank] = v
-  if showCapa36 and isCapa36(k) then print(k,v.mean,rank) end
+  if showCapa36 and isCapa36(k) then 
+    print(k,v.mean,rank,
+          v.values[18] .. " " ..
+          v.values[19] .. " " ..
+          v.values[20] .. " " ..
+          v.values[21] .. " " ..
+          v.values[22] .. " " ..
+          v.values[23] .. " " ..
+          v.values[24])
+  end
   rank = rank + 1
 end
 
@@ -318,7 +327,14 @@ i = 1
 while a <= winners do
   local setup = byRank[i]['setup']
   if not showCapa36 or not isCapa36(setup) then
-    print(setup,byRank[i]['mean'],i)
+    print(setup,byRank[i]['mean'],i,
+          byRank[i].values[18] .. " " ..
+          byRank[i].values[19] .. " " ..
+          byRank[i].values[20] .. " " ..
+          byRank[i].values[21] .. " " ..
+          byRank[i].values[22] .. " " ..
+          byRank[i].values[23] .. " " ..
+          byRank[i].values[24])
     a = a + 1
   end
   i = i + 1
