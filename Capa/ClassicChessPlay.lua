@@ -13,9 +13,9 @@
 math.randomseed(os.time())
 
 -- Let's look at win/lose/draw ratio for different capa setups
-vSetup = "RQNBAKCNBR"
+plies = 12
 if #arg >= 1 then
-  vSetup = arg[1]
+  plies = tonumber(arg[1])
 end
 
 -- params is a table with the "user tunable" parameters
@@ -39,7 +39,7 @@ params = {
   --          "w KQkq - 0 1",
   -- variantFEN = false, -- Use default opening setup for variant
   -- After this many plies are searched, decide on a move to make
-  searchPly = 12,
+  searchPly = plies,
   -- Opening to play.  Format is like this: "f2f4 f7f5", where each move has
   -- four letters (from, to) or five letters (for pawn promotions: b7b8q)
   -- King move for castling (e.g. e1g1 with normal RNBQKBNR chess).  Spaces
@@ -90,7 +90,7 @@ if not MultiPV or MultiPV < 2 then
 end
 if not searchPly or searchPly < 7 then 
   print("searchPly too small/not set, using 21") 
-  searchPly = 21
+  searchPly = plies
 end
 
 ----------------------- rStrSplit() -----------------------
