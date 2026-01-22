@@ -133,6 +133,20 @@ function board2PGN(board)
   return out
 end
 
+-- It’s the 36 positions where rooks, knights, bishops are all symmetrical,
+-- the king is on the sixth file, and the rooks are in the corners.
+function isCapa36(setup)
+  if type(setup) == 'table' then setup = board2ASCII(setup) end
+  if type(setup) ~= 'string' then return false end
+  if setup:match('R.NB.KBN.R') then return true end
+  if setup:match('RN.B.KB.NR') then return true end
+  if setup:match('RNB..K.BNR') then return true end
+  if setup:match('R.BN.KNB.R') then return true end
+  if setup:match('RB.N.KN.BR') then return true end
+  if setup:match('RBN..K.NBR') then return true end
+  return false
+end
+
 -- Given a board array and a list of pieces with their moves, see
 -- how many pawns are guarded
 function pawnsGuarded(board, pieces)
