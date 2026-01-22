@@ -1,0 +1,24 @@
+These are 8x10 Knighted Chess setups which existed in 2008, as per
+https://archive.ph/20090923161739/https://maradns.blogspot.com/2008/12/capa-opening-setups.html
+
+    Setup           Name               21-ply score    Notes	
+    --------------  -----------------  --------------  -----------------
+    RNABCKBQNR      Finesse            12              Pieces flipped
+    RNBAQKCBNR      Capa 1             19
+    RNBQCKABNR      Gothic             25
+    RCNBQKBNAR      Carrera            26
+    RNCBQKBANR      Nalls              29
+    RBNCQKANBR      Univers            30
+    RCNBAKBNQR      Notebook           35              Pieces flipped
+    RNQBCKBANR      Blackbook          37
+    RQNBAKBNCR      Schoolbook         38
+    RBANCKNQBR      Grotesque          40              Pieces flipped
+    RANBQKBNCR      Aberg              42
+    RBCNAKNQBR      Landorean          45              Pieces flipped
+    RNBACKQBNR      Embassy            45
+    RNBQAKCBNR      Teutonic           50
+    RNBCQKABNR      Bird               51
+    RANBCKBNQR      Narcotic           52              Pieces flipped
+    RNABQKBCNR      Capa 2             56
+    RNBCAKQBNR      Consulate          60              Pieces flipped
+
