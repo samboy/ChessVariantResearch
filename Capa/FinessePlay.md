@@ -15,12 +15,16 @@ balanced, the fact that this proposal is so balanced is blind luck.
 To see how balanced it is, open up Fairy Stockfish in this directory then:
 
 ```
+setoption name MultiPV value 3
 setoption name UCI_Variant value capablanca
 setoption name EvalFile value capablanca-bb644ef32758.nnue
 setoption name Use NNUE value true
 ucinewgame
 position fen rnabckbqnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABCKBQNR w KQkq - 0
 1
+d
+go depth 12
+position fen rnabckbqnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABCKBQNR w KQkq - 0 1 moves g2g4
 d
 ```
 
