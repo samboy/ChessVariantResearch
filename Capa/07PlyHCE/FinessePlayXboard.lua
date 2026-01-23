@@ -227,6 +227,7 @@ while true do
         bestMove = move
       end
     end
+    --print(lineFromEngine) -- DEBUG
     if ply > searchPly and #movelist > 0 then
       local thisValue = -10000000
       local toMove = ""
