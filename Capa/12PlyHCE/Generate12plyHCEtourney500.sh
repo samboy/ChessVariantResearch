@@ -13,8 +13,8 @@ cp ../capablanca-bb644ef32758.nnue .
 A=1 
 while [ $A -le $COUNT ] ; do 
 	echo $A; A=$(( $A + 1 )); 
-	lunacy Play12plyXboard.lua $SETUP >> 500/${SETUP}-Chess07PlyHCE.txt; 
-	echo 'Game ended' >> 500/${SETUP}-Chess07PlyHCE.txt; sleep 3 
+	lunacy Play12plyXboard.lua $SETUP >> 500/${SETUP}-Chess12PlyHCE.txt; 
+	echo 'Game ended' >> 500/${SETUP}-Chess12PlyHCE.txt; sleep 3 
 done
 
 
