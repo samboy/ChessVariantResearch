@@ -27,7 +27,7 @@ balanced.
 
 Quick summary:
 
-![RNABMKBQNR](https://samboy.github.io/blog/pics/FinesseChess.png)
+![RNABMKBQNR](https://samboy.github.io/blog/pics/FinesseChessBorder.png)
 
 Knight + Bishop pices moves like knight or bishop; Knight + Rook piece
 moves like knight or rook.  King moves three (instead of two) squares
