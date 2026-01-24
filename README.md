@@ -4,6 +4,17 @@ This is my attempt to find Chess variants which are balanced while not
 being drawish: Draws are rare, and white does not have a significant
 advantage.
 
+In the `Turtle Shell` directory, there is research showing
+a playable set of chess variants on an [unusual 
+tiling](https://en.wikipedia.org/wiki/33344-33434_tiling).
+
+There is also some look at both Chess (Chess960 setup #518 if you will)
+and Chess960 in the `Chess960` directory.
+
+`ShortRange` has some research about the number of non-colorbound possible
+short range pieces a Chess variant on a square board can have.  Almost
+all possible short range pieces are not colorbound.
+
 # Capablanca variants
 
 World chapion #3, Capablanca, proposed a 10x8 variant with two extra
@@ -11,86 +22,22 @@ pieces: One that moves like a rook and a bishop, and another that moves
 like a knight and a bishop.  Since there, there have been various
 proposals to change the opening setup of Capablanca.
 
-Here is some of my study of these variants, using Fairy-Stockfish.
+I’ve done a lot of study and have found a variant which looks remarkably
+balanced.
 
-## How to look at Capablanca setups in Fairy-Stockfish
+Quick summary:
 
-It’s actually possible to run commands directly from Fairy-Stockfish’s
-command line.
+![RNABMKBQNR](https://samboy.github.io/blog/pics/FinesseChess.png)
 
-Let’s look at a variant:
-
-```
-xboard
-variant capablanca
-setboard ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR w KQkq - 0 1
-d
-analyze
-```
-
-First number is plies.  Second number is white’s advantage, in centipawns.
-Third number is elapsed time (centiseconds), fourth number is nodes searched.
-
-As per 
-https://maradns.blogspot.com/2009/10/capablanca-opening-setup-research.html
-here are some other set ups to look at:
-
-```
-setboard ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR w KQkq - 0 1
-setboard rqnbakbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RQNBAKBNCR w KQkq - 0 1
-setboard rqnbckbnar/pppppppppp/10/10/10/10/PPPPPPPPPP/RQNBCKBNAR w KQkq - 0 1
-setboard ranbckbnqr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBCKBNQR w KQkq - 0 1
-setboard rcnbakbnqr/pppppppppp/10/10/10/10/PPPPPPPPPP/RCNBAKBNQR w KQkq - 0 1
-setboard rcnbqkbnar/pppppppppp/10/10/10/10/PPPPPPPPPP/RCNBQKBNAR w KQkq - 0 1
-```
-
-Since Fairy Stockfish is deterministic, playing 1000 games will just
-result in the same game being played 1000 times.  So, we will just perform
-a 30-ply analysis of the above six opening positions.
-
-## Results 
-
-`RQNBAKBNCR` (+8% White, 13% Draws)
-
-```
-30 60 37392 81774242 42 218694 0         e2e4 e7e5 c2c3 h8g6 f2f3 d7d5 (etc.)
-```
-
-`RANBCKBNQR` (+8% White, 10% Draws)
-
-```
-30 71 36180 78484478 44 216923 0         d2d4 h8g6 e2e4 e7e5 d4e5 f7f6 (etc.)
-```
-
-`RCNBAKBNQR` (+16% White, 10% Draws)
-
-```
-30 75 26930 56640413 43 210323 0         e2e4 f7f6 d2d4 e7e5 f2f3 h8g6 (etc.)
-```
-
-`RANBQKBNCR` (+3% White, 12% draws)
-
-```
-30 87 43785 99279922 46 226740 0         d2d4 f7f6 e2e4 e7e5 d4e5 h8g6 (etc.)
-```
-
-`RCNBQKBNAR` (+5% White, 12% draws)
-
-```
-30 87 41632 86329874 47 207362 0         f2f4 f7f5 i1h3 c8d6 e2e4 f5e4 (etc.)
-```
-
-`RQNBCKBNAR` (+8% White, 10% draws)
-
-```
-30 114 30852 67721988 46 219499 0        i1h3 e7e6 e2e4 i8h6 f2f4 c7c6 (etc.)
-```
+Knight + Bishop pices moves like knight or bishop; Knight + Rook piece
+moves like knight or rook.  King moves three (instead of two) squares
+when castling.
 
 ## My 2009 research
 
 To the right of each setup is the white advantage and draw percentage
 from my 2009 research which used Joker80 (`m` here is the Rook + Knight
-piece):
+piece, `a` is bishop + knight):
 
 ```
 Setup	        Wins	Losses	Draws	White	Games played
@@ -103,117 +50,6 @@ rmnbakbnqr	53%	37%	10%	+16%	1011
 Numbers may not add up to 100% because of rounding
 ```
 
-# Standard western Chess
+## My 2026 research
 
-As a point of comparison, here is what Fairy Stockfish has to say
-about standard western Chess:
 
-`RNBQKBNR`
-
-```
-30 67 22524 58470334 44 259590 0         d2d4 g8f6 c2c4 d7d5 c4d5 c7c6
-```
-
-(Queen's Gambit Declined: Marshall Defense, Tan Gambit)
-
-## Looking at multiple possible lines
-
-Let us start up the Fairy-Stockfish program from the command line.
-We should see something like this:
-
-```
-Fairy-Stockfish 11.2 LB 64 by Fabian Fichter
-```
-
-Let’s start off by typing this command:
-
-```
-setoption name MultiPV value 7
-```
-
-This instructs Fairy Stockfish to tell us the seven best possible moves
-for any given position.
-
-We can also, if we have the memory, increase the hash size.  For example,
-since my computer has 32 gigs of memory, we will use 16 gigs for the
-hash table:
-
-```
-setoption name Hash value 16384
-```
-
-Use a smaller number than 16384 if one’s computer has less memory.
-
-Then, type in `xboard` and then `variant chess` to get in “xboard” mode
-to play a game of standard FIDE chess.
-
-The `variant chess` command gives us this output:
-
-```
-setup (PNBRQ................Kpnbrq................k) 8x8+0_fairy 
-rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-piece P& fmWfceFifmnD
-piece N& N
-piece B& B
-piece R& R
-piece Q& RB
-piece K& KO2
-```
-
-Then we type in `d` for “display board” and see this:
-
-```
- +---+---+---+---+---+---+---+---+
- | r | n | b | q | k | b | n | r |8  
- +---+---+---+---+---+---+---+---+
- | p | p | p | p | p | p | p | p |7
- +---+---+---+---+---+---+---+---+
- |   |   |   |   |   |   |   |   |6
- +---+---+---+---+---+---+---+---+
- |   |   |   |   |   |   |   |   |5
- +---+---+---+---+---+---+---+---+
- |   |   |   |   |   |   |   |   |4
- +---+---+---+---+---+---+---+---+
- |   |   |   |   |   |   |   |   |3
- +---+---+---+---+---+---+---+---+
- | P | P | P | P | P | P | P | P |2
- +---+---+---+---+---+---+---+---+
- | R | N | B | Q | K | B | N | R |1 *
- +---+---+---+---+---+---+---+---+
-   a   b   c   d   e   f   g   h
-
-Fen: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-Sfen: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b - 1
-Key: 9160F14A6C929FCE
-Checkers: 
-```
-
-Then `analysis`, and after about a day we get something like this:
-
-```
-1 110 0 119 1 39666 0	 e2e3
-1 102 0 119 1 39666 0	 e2e4
-1 95 0 119 1 39666 0	 d2d4
-1 79 0 119 1 39666 0	 d2d3
-1 70 0 119 1 39666 0	 b1c3
-1 63 0 119 1 39666 0	 g1f3
-1 25 0 119 1 39666 0	 b2b3
-[Lots of lines removed; following sorted by strength]
-41 48 2757150 8488910265 57 307887 0     d2d4 g8f6 g1f3 d7d5 c2c4 e7e6 (etc.)
-41 36 2757150 8488910265 57 307887 0     g1f3 d7d5 e2e3 g8f6 b2b3 c8f5 (etc.)
-41 33 2757150 8488910265 62 307887 0     c2c4 e7e6 b1c3 g8f6 d2d4 f8b4 (etc.)
-41 33 2757150 8488910265 69 307887 0     e2e3 d7d5 d2d4 g8f6 g1f3 c7c5 (etc.)
-40 33 2363202 7271425238 61 307693 0     e2e4 c7c5 g1f3 e7e6 c2c3 b8c6 (etc.)
-41 28 2757150 8488910265 65 307887 0     g2g3 d7d5 g1f3 c7c5 f1g2 g8f6 (etc.)
-40 28 2757150 8488910265 58 307887 0     c2c3 d7d5 d2d4 g8f6 c1f4 e7e6 (etc.)
-```
-
-The only fields we will look at are the first one (the search depth, in 
-plies), the second one (how strong the current player’s advantage is, in 
-centipawns; when the other player is ahead, this is a negative number),
-and the fields showing the move on the right hand side.
-
-Fairy Stockfish thinks 1. d4 then 1. Nf3 are White’s strongest moves,
-which is consistent with classical Chess theory.  However, it considers 1.
-e4 somewhat weaker than 1. d4, about as strong as the English (1. c4),
-and thinks 1. e3 is just as strong as 1. e4 (???).  
