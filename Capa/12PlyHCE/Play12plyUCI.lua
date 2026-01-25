@@ -25,7 +25,7 @@ function sPairs(inTable, sFunc)
   end
   local keyList = {}
   local index = 1
-  for k,_ in sPairs(inTable) do
+  for k,_ in pairs(inTable) do
     table.insert(keyList,k)
   end
   table.sort(keyList, sFunc)
