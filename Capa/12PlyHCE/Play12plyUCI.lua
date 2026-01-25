@@ -10,6 +10,32 @@
 -- and available with the name fairy-stockfish-largeboard_x86-64
 -- (if it has another name, change "ChessEngine" below)
 
+-- Utility function: Sorted pairs()
+function sPairs(inTable, sFunc)
+  if not sFunc then
+    sFunc = function(a, b)
+      local ta = type(a)
+      local tb = type(b)
+      if(ta == tb)
+        then return a < b 
+      end
+      return tostring(ta) <
+             tostring(tb)
+    end
+  end
+  local keyList = {}
+  local index = 1
+  for k,_ in sPairs(inTable) do
+    table.insert(keyList,k)
+  end
+  table.sort(keyList, sFunc)
+  return function()
+    key = keyList[index]
+    index = index + 1
+    return key, inTable[key]
+  end
+end
+
 gSeed = os.time()
 
 -- Let's look at win/lose/draw ratio for different capa setups
@@ -262,12 +288,12 @@ while true do
     -- the player to play. So, if it’s Black’s move, positive scores
     -- favor Black, and if it’s White’s move, positive scores favor 
     -- White
-    for k,v in pairs(multiMoves) do 
+    for k,v in sPairs(multiMoves) do 
       if type(v) == 'table' and v.v then
         if tonumber(v.v) > maxV then maxV = tonumber(v.v) end
       end
     end
-    for k,v in pairs(multiMoves) do
+    for k,v in sPairs(multiMoves) do
       if type(v) == 'table' and v.v and v.m then
         showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
         if tonumber(v.v) >= maxV - 30 then
