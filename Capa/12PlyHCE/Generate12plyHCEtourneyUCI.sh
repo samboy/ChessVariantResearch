@@ -20,8 +20,9 @@ cp ../capablanca-bb644ef32758.nnue .
 A=1 
 while [ $A -le $COUNT ] ; do 
 	echo $A; A=$(( $A + 1 )); 
-	#lunacy Play12plyUCI.lua $SETUP >> $FILE 
-	lunacy Play12plyUCI.lua $SETUP | grep { >> $FILE 
+	lunacy Play12plyUCI.lua $SETUP >> $FILE 
+	#lunacy Play12plyUCI.lua $SETUP | grep { >> $FILE 
+	sleep 3
 done
 
 

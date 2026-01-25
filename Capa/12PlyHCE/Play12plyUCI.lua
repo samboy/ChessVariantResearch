@@ -255,23 +255,41 @@ while true do
       os.exit(0)
     end
     -- It’s better to play a random good looking move so each game differs
-    local maxV = -100000000
-    for k,v in pairs(multiMoves) do 
-      if type(v) == 'table' and v.v then
-        if tonumber(v.v) > maxV then maxV = tonumber(v.v) end
-      end
-    end
     local consider = {}
     local showMoves = ""
-    for k,v in pairs(multiMoves) do
-      if type(v) == 'table' and v.v and v.m then
-        showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
-        if tonumber(v.v) > maxV - 30 then
-          table.insert(consider,v.m)
+    if pWinner == "Black" then -- White to move
+      local maxV = -100000000
+      for k,v in pairs(multiMoves) do 
+        if type(v) == 'table' and v.v then
+          if tonumber(v.v) > maxV then maxV = tonumber(v.v) end
         end
       end
+      for k,v in pairs(multiMoves) do
+        if type(v) == 'table' and v.v and v.m then
+          showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
+          if tonumber(v.v) >= maxV - 30 then
+            table.insert(consider,v.m)
+          end
+        end
+      end
+      move = consider[rg32.random(#consider)]
+    else -- Black to move
+      local minV = 100000000
+      for k,v in pairs(multiMoves) do 
+        if type(v) == 'table' and v.v then
+          if tonumber(v.v) < minV then minV = tonumber(v.v) end
+        end
+      end
+      for k,v in pairs(multiMoves) do
+        if type(v) == 'table' and v.v and v.m then
+          showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
+          if tonumber(v.v) <= minV + 30 then
+            table.insert(consider,v.m)
+          end
+        end
+      end
+      move = consider[rg32.random(#consider)]
     end
-    move = consider[rg32.random(#consider)]
     print("(" .. showMoves .. ") " .. move)
     -- Note the move we decided on
     game = game .. move .. ' '
