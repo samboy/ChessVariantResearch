@@ -212,21 +212,50 @@ end
 --end
 
 pWinner = "Black"
+multiMoves = {}
 while true do
   lineFromEngine = r:read()
-  -- print(lineFromEngine)
   local fields = rStrSplit(lineFromEngine,' ')
+  if fields[2] == "string" then print(lineFromEngine) end -- Know eval engine
+  if fields[6] == "multipv" then
+    -- One day, we will check that "depth" is as high as possible
+    multiMoves[fields[7]] = {}
+    multiMoves[fields[7]]['v'] = fields[10]
+    multiMoves[fields[7]]['m'] = fields[20]
+  end
   if fields[1] == "bestmove" then
-    move = fields[2]
-    game = game .. move .. ' '
+    move = fields[2] -- Make sure we make some move
     if(move:match('none')) then
       print(game .. "{" .. pWinner .. " wins}\n")
       os.exit(0)
     end
+    -- It’s better to play a random good looking move so each game differs
+    local maxV = -100000000
+    for k,v in pairs(multiMoves) do 
+      if type(v) == 'table' and v.v then
+        if tonumber(v.v) > maxV then maxV = tonumber(v.v) end
+      end
+    end
+    local consider = {}
+    local showMoves = ""
+    for k,v in pairs(multiMoves) do
+      if type(v) == 'table' and v.v and v.m then
+        showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
+        if tonumber(v.v) > maxV - 30 then
+          table.insert(consider,v.m)
+        end
+      end
+    end
+    move = consider[math.random(#consider)]
+    print("(" .. showMoves .. ") " .. move)
+    -- Note the move we decided on
+    game = game .. move .. ' '
     io.flush()
+    -- Now, tell the engine the move we made
     w:write('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
     w:write("d\n")
     w:flush()
+    -- And see what the new position looks like
     thisFEN = grabFEN(r)
     if pWinner == "Black" then
       pWinner = "White"
@@ -242,6 +271,7 @@ while true do
     r:flush()
     w:write("go depth " .. searchPly .. "\n")
     w:flush()
+    multiMoves = {}
   end
 end
 
