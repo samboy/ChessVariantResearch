@@ -216,7 +216,8 @@ function processFENline(hash, line)
     KomiMoves = {} -- This position hasn’t been played before
   else
     hash[line] = hash[line] + 1
-    if hash[line] > 1 then -- Semi-Komi rule, we saw this move before
+    -- Semi-Komi rule, we saw this move before
+    if hash[line] > 1 and not isForcedKomi then 
       KomiMoves[previousMove] = true
       thisFEN = previousFEN
       game = game .. " (KOMI) "
@@ -227,25 +228,30 @@ function processFENline(hash, line)
       else
         pWinner = "Black"
       end
-      return previousFEN, hash 
+      return previousFEN, true
     end
     if hash[line] >= 3 then
       print(game .. "{draw by repetition}\n")
       os.exit(0)
     end 
   end
-  return outLine, hash -- We actually modify hash in place, but still
+  return outLine, false
 end
 function grabFEN(handle)
   local out = ""
+  local isKomi = false
   while not string.match(lineFromEngine,'^Key') do
     lineFromEngine = handle:read()
     if lineFromEngine:match('^Fen: ') then
-      out = processFENline(FENseen, lineFromEngine)
+      out, isKomi = processFENline(FENseen, lineFromEngine)
     end
     --print(lineFromEngine)
   end
-  print(out)
+  if not isKomi then
+    print(out)
+  else
+    print(out .. " (KOMI)")
+  end
   return out
 end
 
@@ -297,7 +303,7 @@ infoS = false
 while true do
   lineFromEngine = r:read()
   local fields = rStrSplit(lineFromEngine,' ')
-  -- Note how we evaluate
+  -- Note how we evaluate (NNUE or HCE)
   if not infoS and fields[2] == "string" then 
     infoS = lineFromEngine 
     infoS = infoS:gsub('[\r\n]','')
@@ -335,27 +341,33 @@ while true do
         -- go for a draw to avoid a loss)
         if tonumber(v.v) > maxV and not KomiMoves[v.m] then 
           maxV = tonumber(v.v) 
-        elseif tonumber(v.v) > maxV and tonumber(v.v) < 0 then
+        elseif tonumber(v.v) > maxV and tonumber(v.v) <= 0 then
           maxV = tonumber(v.v)
         end
       end
     end
+    local forcedKomi = {}
     for k,v in sPairs(multiMoves) do
       if type(v) == 'table' and v.v and v.m then
         showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
         -- Again, Semi-Komi rule
         if tonumber(v.v) >= maxV - 30 and not KomiMoves[v.m] then
           table.insert(consider,v.m)
-        elseif tonumber(v.v) < 0 and tonumber(v.v) >= maxV - 30 then
+        elseif tonumber(v.v) <= 0 and tonumber(v.v) >= maxV - 30 then
           table.insert(consider,v.m)
+          forcedKomi[#consider] = true
         end
       end
     end
-    if #consider == 0 then -- It’s a draw
+    if #consider < 1 then -- It’s a draw, this is a “panic button”
       print(game .. "{draw by no legal move}\n")
       os.exit(0)
     end
-    move = consider[rg32.random(#consider)]
+    local toConsider = rg32.random(#consider)
+    isForcedKomi = false
+    if forcedKomi[toConsider] then isForcedKomi = true end
+    forcedKomi = {}
+    move = consider[toConsider]
     print("(" .. showMoves .. ") " .. move)
     -- Note the move we decided on
     game = game .. move .. ' '
