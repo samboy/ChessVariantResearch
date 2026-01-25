@@ -310,7 +310,7 @@ while true do
     io.flush()
     -- Now, tell the engine the move we made
     w:write('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
-    print('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
+    -- print('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
     w:write("d\n")
     w:flush()
     -- And see what the new position looks like
