@@ -380,6 +380,7 @@ while true do
     end
     r:flush()
     previousMove = move
+    previousFEN = thisFEN
     w:write("go depth " .. searchPly .. "\n")
     w:flush()
     multiMoves = {}
