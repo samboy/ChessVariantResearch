@@ -89,16 +89,16 @@ in the Finesse setup is only 0.22 pawns ahead of Black when evaulated to
 the 20th move; this is similar to classic Chess, where deep NNUE analysis
 shows White 0.2 paws or so ahead.
 
-White looks to, after 1,000 12-ply games, have a 3% or 4% edge, with a 12%
+White looks to, after 1,500 12-ply games, have a 2% or so edge, with a 12%
 or so draw rate:
 
 ```
-White 462 46.2%
-Draw 115 11.5%
-Black 423 42.3%
-1000 games played
-3.9% White winning edge
-51.95% White score
+White 679 45.2667%
+Draw  174 11.6%
+Black 647 43.1333%
+1500 games played
+2.1%  White winning edge
+51.1% White score
 ```
 
 This is much better than Classic (RNBQKBNR) chess using the same game engine
@@ -106,11 +106,21 @@ and game parameters:
 
 ```
 White 197 39.4%
-Draw 150 30%
+Draw  150 30%
 Black 153 30.6%
 500 games played
-8.8% White winning edge
+8.8%  White winning edge
 54.4% White score
+```
+
+Or, for that matter, master level Classic chess play:
+
+```
+White 33%
+Draw  44%
+Black 24%
+9%    White winning edge
+55%   White score
 ```
 
 Note that we need more games to get a better sense of White’s edge because
@@ -123,3 +133,4 @@ Point being:
   on its design, and it’s incredibly balanced.
 * More to the point, in Finesse Chess, White wins less often than he does
   in classic Chess, and draws are much less common.
+
