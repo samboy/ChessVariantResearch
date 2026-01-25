@@ -189,6 +189,8 @@ function processFENline(hash, line)
   if not hash then hash = {} end
   line = line:gsub('[\r\n]','')
   line = line:gsub('^Fen: ','')
+  local outLine = line -- Let engine know move number, 50-move count
+  line = line:gsub('%d+%s%d+$','') -- Remove move number, 50-move count
   if not hash[line] then
     hash[line] = 1
   else
@@ -198,7 +200,7 @@ function processFENline(hash, line)
       os.exit(0)
     end 
   end
-  return line, hash -- We actually modify hash in place, but still
+  return outLine, hash -- We actually modify hash in place, but still
 end
 function grabFEN(handle)
   local out = ""
@@ -308,6 +310,7 @@ while true do
     io.flush()
     -- Now, tell the engine the move we made
     w:write('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
+    print('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
     w:write("d\n")
     w:flush()
     -- And see what the new position looks like
