@@ -168,8 +168,9 @@ function grabFEN(handle)
     if lineFromEngine:match('^Fen: ') then
       out = processFENline(FENseen, lineFromEngine)
     end
-    print(lineFromEngine)
+    --print(lineFromEngine)
   end
+  print(out)
   return out
 end
 
@@ -213,7 +214,7 @@ end
 pWinner = "Black"
 while true do
   lineFromEngine = r:read()
-  print(lineFromEngine)
+  -- print(lineFromEngine)
   local fields = rStrSplit(lineFromEngine,' ')
   if fields[1] == "bestmove" then
     move = fields[2]
@@ -224,7 +225,6 @@ while true do
     end
     io.flush()
     w:write('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
-    print('position fen ' .. thisFEN .. ' moves ' .. move .. "\n") -- DEBUG
     w:write("d\n")
     w:flush()
     thisFEN = grabFEN(r)
@@ -233,6 +233,7 @@ while true do
     else
       pWinner = "Black"
       movenumber = movenumber + 1
+      game = game .. tostring(movenumber) .. '. '
       if(movenumber > 200) then
         print(game .. "{draw by over 200 moves}\n")
         os.exit(0)
