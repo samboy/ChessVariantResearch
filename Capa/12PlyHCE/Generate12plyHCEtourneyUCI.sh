@@ -6,10 +6,10 @@ if [ -z "$SETUP" ] ; then
   # Finesse chess is default
   SETUP=RNABCKBQNR
 fi
-FILE=${SETUP}/${SETUP}-${N}-Chess12PlyHCE.txt
+FILE=${SETUP}/${SETUP}-${N}-Chess12PlyNNUE.txt
 while [ -e "$FILE" ] || [ -e "${FILE}.xz" ] ; do
   N=$(( $N + 1 ))
-  FILE=${SETUP}/${SETUP}-${N}-Chess12PlyHCE.txt
+  FILE=${SETUP}/${SETUP}-${N}-Chess12PlyNNUE.txt
 done
 echo $FILE
 COUNT="$2"

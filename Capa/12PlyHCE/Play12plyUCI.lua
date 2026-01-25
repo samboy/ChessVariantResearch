@@ -11,13 +11,25 @@
 -- (if it has another name, change "ChessEngine" below)
 
 gSeed = os.time()
-math.randomseed(gSeed)
 
 -- Let's look at win/lose/draw ratio for different capa setups
 vSetup = "RNABCKBQNR" -- Finesse Chess, most balanced 2008 setup
 if #arg >= 1 then
   vSetup = arg[1]
+  if vSetup == "--help" or vSetup == "-help" or vSetup == "help" then
+    print("Usage: Play12plyUCI.lua {setup} {plies} {seed}")
+    print("Example: Play12plyUCI.lua RNABCKBQNR 12")
+    os.exit(0)
+  end
 end
+plies = 12
+if #arg >= 2 then
+  plies = tonumber(arg[2])
+end
+if #arg >= 3 then
+  gSeed = arg[3] -- Yes, seeds can be strings (with Lunacy)
+end
+rg32.randomseed(gSeed)
 
 -- params is a table with the "user tunable" parameters
 params = {
@@ -40,7 +52,7 @@ params = {
   --          "w KQkq - 0 1",
   -- variantFEN = false, -- Use default opening setup for variant
   -- After this many plies are searched, decide on a move to make
-  searchPly = 12,
+  searchPly = plies,
   -- Opening to play.  Format is like this: "f2f4 f7f5", where each move has
   -- four letters (from, to) or five letters (for pawn promotions: b7b8q)
   -- King move for castling (e.g. e1g1 with normal RNBQKBNR chess).  Spaces
@@ -229,7 +241,12 @@ while true do
     -- One day, we will check that "depth" is as high as possible
     multiMoves[fields[7]] = {}
     multiMoves[fields[7]]['v'] = fields[10]
-    multiMoves[fields[7]]['m'] = fields[20]
+    -- Find the move to make
+    for a=1,#fields do
+      if fields[a] == 'pv' then
+        multiMoves[fields[7]]['m'] = fields[a+1]
+      end
+    end
   end
   if fields[1] == "bestmove" then
     move = fields[2] -- Make sure we make some move
@@ -254,7 +271,7 @@ while true do
         end
       end
     end
-    move = consider[math.random(#consider)]
+    move = consider[rg32.random(#consider)]
     print("(" .. showMoves .. ") " .. move)
     -- Note the move we decided on
     game = game .. move .. ' '
