@@ -10,7 +10,8 @@
 -- and available with the name fairy-stockfish-largeboard_x86-64
 -- (if it has another name, change "ChessEngine" below)
 
-math.randomseed(os.time())
+gSeed = os.time()
+math.randomseed(gSeed)
 
 -- Let's look at win/lose/draw ratio for different capa setups
 vSetup = "RNABCKBQNR" -- Finesse Chess, most balanced 2008 setup
@@ -203,6 +204,7 @@ movenumber = 1
 if type(params["variantSetup"]) == "string" then
   game = game .. "(Setup: " .. params["variantSetup"] .. ") "
 end
+game = game .. "(Seed: " .. gSeed .. ") "
 -- Note opening, if any
 --if openmove and type(openmove) == "table" then
 --  game = game .. "(Opening) "
@@ -213,10 +215,16 @@ end
 
 pWinner = "Black"
 multiMoves = {}
+infoS = false
 while true do
   lineFromEngine = r:read()
   local fields = rStrSplit(lineFromEngine,' ')
-  if fields[2] == "string" then print(lineFromEngine) end -- Know eval engine
+  -- Note how we evaluate
+  if not infoS and fields[2] == "string" then 
+    infoS = lineFromEngine 
+    infoS = infoS:gsub('[\r\n]','')
+    game = game .. "(" .. infoS .. ") 1. "
+  end 
   if fields[6] == "multipv" then
     -- One day, we will check that "depth" is as high as possible
     multiMoves[fields[7]] = {}
