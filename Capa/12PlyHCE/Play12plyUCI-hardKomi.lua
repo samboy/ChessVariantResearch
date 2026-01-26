@@ -350,8 +350,13 @@ while true do
           showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
           table.insert(consider,v.m)
         else
-          showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. 
+          if tonumber(v.v) < maxV - 30 then
+            showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. 
+                      " is weak move "
+          else
+            showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. 
                       " is Komi "
+          end
         end
       end
     end
