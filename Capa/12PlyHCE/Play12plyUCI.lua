@@ -4,7 +4,7 @@
 --
 -- This client is a “randomized” version of Fairy-Stockfish:  It looks
 -- at the top MultiPV number of moves (default: 3), and chooses one within
--- 50 centipawns of what it thinks is the best move at random.
+-- 30 centipawns of what it thinks is the best move at random.
 --
 -- This client requires the Fairy-Stockfish program to be installed
 -- and available with the name fairy-stockfish-largeboard_x86-64

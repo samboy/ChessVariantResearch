@@ -3,12 +3,10 @@
 -- a simple Chess/Chess variants client
 --
 -- Note that NNUE games have what might be unfair draws, so this implements
--- a semi-Komi rule: If a given position has been seen before (where the
+-- a hard Komi rule: If a given position has been seen before (where the
 -- position is FEN w/o move number nor 50-move count), we go back to the
 -- previous position and see if there’s a move available which hasn’t been
--- done and gives the player a positive score.  This makes up for the fact
--- Stockfish will sometimes chase a king around in repetitive patterns when
--- he has other winning moves.
+-- done.
 --
 -- This client is a “randomized” version of Fairy-Stockfish:  It looks
 -- at the top MultiPV number of moves (default: 3), and chooses one within
@@ -217,7 +215,7 @@ function processFENline(hash, line)
   else
     hash[line] = hash[line] + 1
     -- Semi-Komi rule, we saw this move before
-    if hash[line] > 1 and not isForcedKomi then 
+    if hash[line] > 1 then 
       KomiMoves[previousMove] = true
       thisFEN = previousFEN
       game = game .. " (KOMI) "
@@ -336,37 +334,26 @@ while true do
     -- White
     for k,v in sPairs(multiMoves) do 
       if type(v) == 'table' and v.v then
-        -- Semi-Komi rule: We don’t consider winning moves we have already
-        -- made (we still consider them if they are losing moves, i.e. we
-        -- go for a draw to avoid a loss)
+        -- Hard Komi rule: We don’t consider moves we have already
+        -- made.
         if tonumber(v.v) > maxV and not KomiMoves[v.m] then 
           maxV = tonumber(v.v) 
-        elseif tonumber(v.v) > maxV and tonumber(v.v) <= 0 then
-          maxV = tonumber(v.v)
         end
       end
     end
-    local forcedKomi = {}
     for k,v in sPairs(multiMoves) do
       if type(v) == 'table' and v.v and v.m then
         showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
-        -- Again, Semi-Komi rule
         if tonumber(v.v) >= maxV - 30 and not KomiMoves[v.m] then
           table.insert(consider,v.m)
-        elseif tonumber(v.v) <= 0 and tonumber(v.v) >= maxV - 30 then
-          table.insert(consider,v.m)
-          forcedKomi[#consider] = true
         end
       end
     end
-    if #consider < 1 then -- It’s a draw, this is a “panic button”
-      print(game .. "{draw by no legal move}\n")
+    if #consider < 1 then -- It’s a Komi win, this is a “panic button”
+      print(game .. "{" .. pWinner .. " wins by Komi}\n")
       os.exit(0)
     end
     local toConsider = rg32.random(#consider)
-    isForcedKomi = false
-    if forcedKomi[toConsider] then isForcedKomi = true end
-    forcedKomi = {}
     move = consider[toConsider]
     print("(" .. showMoves .. ") " .. move)
     -- Note the move we decided on
