@@ -6,7 +6,8 @@
 -- a hard Komi rule: If a given position has been seen before (where the
 -- position is FEN w/o move number nor 50-move count), we go back to the
 -- previous position and see if there’s a move available which hasn’t been
--- done.
+-- done.  (BUG: We need to increase MultiPV in these Komi positions,
+-- see seed 1769356168 to reproduce)
 --
 -- This client is a “randomized” version of Fairy-Stockfish:  It looks
 -- at the top MultiPV number of moves (default: 3), and chooses one within
