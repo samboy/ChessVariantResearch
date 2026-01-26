@@ -2,12 +2,12 @@
 -- This is a lunacy (Lua + Steve Donovan's spawner lib) implementation of
 -- a simple Chess/Chess variants client
 --
--- This client is a “randomized” version of Fairy-Stockfish:  It looks
+-- This client is a “randomized” version of Stockfish:  It looks
 -- at the top MultiPV number of moves (default: 3), and chooses one within
 -- 30 centipawns of what it thinks is the best move at random.
 --
--- This client requires the Fairy-Stockfish program to be installed
--- and available with the name fairy-stockfish-largeboard_x86-64
+-- This client requires the Stockfish program to be installed
+-- and available with the name stockfish
 -- (if it has another name, change "ChessEngine" below)
 
 -- Utility function: Sorted pairs()
@@ -39,21 +39,17 @@ end
 gSeed = os.time()
 
 -- Let's look at win/lose/draw ratio for different capa setups
-vSetup = "RNABCKBQNR" -- Finesse Chess, most balanced 2008 setup
+plies = 12
 if #arg >= 1 then
-  vSetup = arg[1]
-  if vSetup == "--help" or vSetup == "-help" or vSetup == "help" then
-    print("Usage: Play12plyUCI.lua {setup} {plies} {seed}")
-    print("Example: Play12plyUCI.lua RNABCKBQNR 12")
+  plies = arg[1]
+  if plies == "--help" or plies == "-help" or plies == "help" then
+    print("Usage: Play12plyUCIClassicChess.lua {plies} {seed}")
+    print("Example: Play12plyUCIClassicChess.lua 12")
     os.exit(0)
   end
 end
-plies = 12
 if #arg >= 2 then
-  plies = tonumber(arg[2])
-end
-if #arg >= 3 then
-  gSeed = arg[3] -- Yes, seeds can be strings (with Lunacy)
+  gSeed = arg[2] -- Yes, seeds can be strings (with Lunacy)
 end
 rg32.randomseed(gSeed)
 
@@ -61,13 +57,13 @@ rg32.randomseed(gSeed)
 params = {
   -- See https://github.com/ianfab/Fairy-Stockfish for the Chess engine
   -- This is the name of the chess engine, as it appears in one's $PATH
-  ChessEngine = "fairy-stockfish",
+  ChessEngine = "stockfish",
   -- This is the number of lines we look at and consider for our next move
   MultiPV = 3,
   -- The name of the variant we will look at.  This needs to be a variant
   -- Fairy-Stockfish supports
-  variantName = "capablanca",
-  -- variantName = "chess",
+  -- variantName = "capablanca",
+  variantName = "chess",
   -- The opening setup (or position) we will play from in the game
   -- Note: This currently only works with 8xN games (8x8, 8x10, 8x12, etc.)
   variantSetup = vSetup,
@@ -171,18 +167,8 @@ end
 w,r = spawner.popen2(ChessEngine)
 w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
 -- Load NNUE
-w:write("setoption name EvalFile value capablanca-bb644ef32758.nnue\n")
-w:write("setoption name Use NNUE value true\n")
-w:write("setoption name UCI_Variant value " .. variantName .. "\n")
 w:write("ucinewgame\n")
-if variantFEN then
-  w:write("position fen " .. variantFEN .. "\n")
-else 
-  -- Default to Finesse chess
-  w:write(
-"position fen rnabckbqnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABCKBQNR "
-.. "w KQkq - 0 1")
-end
+w:write("position startpos\n")
 FENseen = {}
 thisFEN = ""
 function processFENline(hash, line)

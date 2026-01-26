@@ -15,7 +15,7 @@
 -- 30 centipawns of what it thinks is the best move at random.
 --
 -- This client requires the Fairy-Stockfish program to be installed
--- and available with the name fairy-stockfish-largeboard_x86-64
+-- and available with the name fairy-stockfish
 -- (if it has another name, change "ChessEngine" below)
 
 -- Utility function: Sorted pairs()

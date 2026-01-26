@@ -2,21 +2,12 @@
 -- This is a lunacy (Lua + Steve Donovan's spawner lib) implementation of
 -- a simple Chess/Chess variants client
 --
--- Note that NNUE games have what might be unfair draws, so this implements
--- a hard Komi rule: If a given position has been seen before (where the
--- position is FEN w/o move number nor 50-move count), we go back to the
--- previous position and see if there’s a move available which hasn’t been
--- done.  
---
--- This means it’s not really classic chess; Fischer - Tal Leipzig 1960’s
--- draw is not possible when there’s a Komi rule.
---
--- This client is a “randomized” version of Stockfish:  It looks
+-- This client is a “randomized” version of Fairy-Stockfish:  It looks
 -- at the top MultiPV number of moves (default: 3), and chooses one within
 -- 30 centipawns of what it thinks is the best move at random.
 --
 -- This client requires the Fairy-Stockfish program to be installed
--- and available with the name fairy-stockfish-largeboard_x86-64
+-- and available with the name fairy-stockfish
 -- (if it has another name, change "ChessEngine" below)
 
 -- Utility function: Sorted pairs()
@@ -48,18 +39,21 @@ end
 gSeed = os.time()
 
 -- Let's look at win/lose/draw ratio for different capa setups
-plies = 12
+vSetup = "RNABCKBQNR" -- Finesse Chess, most balanced 2008 setup
 if #arg >= 1 then
-  plies = arg[1]
+  vSetup = arg[1]
   if vSetup == "--help" or vSetup == "-help" or vSetup == "help" then
-    print("Usage: PlayClassicChess.lua {plies} {seed}")
-    print("Example: PlayClassicChess.lua 12")
+    print("Usage: Play12plyUCI.lua {setup} {plies} {seed}")
+    print("Example: Play12plyUCI.lua RNABCKBQNR 12")
     os.exit(0)
   end
-  plies = tonumber(plies)
+end
+plies = 12
+if #arg >= 2 then
+  plies = tonumber(arg[2])
 end
 if #arg >= 3 then
-  gSeed = arg[2] -- Yes, seeds can be strings (with Lunacy)
+  gSeed = arg[3] -- Yes, seeds can be strings (with Lunacy)
 end
 
 if rg32 == nil then
@@ -75,16 +69,16 @@ rg32.randomseed(gSeed)
 params = {
   -- See https://github.com/ianfab/Fairy-Stockfish for the Chess engine
   -- This is the name of the chess engine, as it appears in one's $PATH
-  ChessEngine = "stockfish",
+  ChessEngine = "fairy-stockfish",
   -- This is the number of lines we look at and consider for our next move
   MultiPV = 3,
   -- The name of the variant we will look at.  This needs to be a variant
   -- Fairy-Stockfish supports
-  -- variantName = "capablanca",
-  variantName = "chess",
+  variantName = "capablanca",
+  -- variantName = "chess",
   -- The opening setup (or position) we will play from in the game
   -- Note: This currently only works with 8xN games (8x8, 8x10, 8x12, etc.)
-  variantSetup = nil,
+  variantSetup = vSetup,
   -- It's also possible to set up any arbitrary FEN, not just a mirrored
   -- 8x# backrank opening setup
   -- This is an argument given to the Fairy-Stockfish "setboard" command
@@ -185,9 +179,18 @@ end
 w,r = spawner.popen2(ChessEngine)
 w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
 -- Load NNUE
+w:write("setoption name EvalFile value capablanca-bb644ef32758.nnue\n")
+w:write("setoption name Use NNUE value true\n")
+w:write("setoption name UCI_Variant value " .. variantName .. "\n")
 w:write("ucinewgame\n")
-previousFEN = ""
-w:write("position startpos\n")
+if variantFEN then
+  w:write("position fen " .. variantFEN .. "\n")
+else 
+  -- Default to Finesse chess
+  w:write(
+"position fen rnabckbqnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABCKBQNR "
+.. "w KQkq - 0 1")
+end
 FENseen = {}
 thisFEN = ""
 function processFENline(hash, line)
@@ -198,47 +201,25 @@ function processFENline(hash, line)
   line = line:gsub('%d+%s%d+$','') -- Remove move number, 50-move count
   if not hash[line] then
     hash[line] = 1
-    KomiMoves = {} -- This position hasn’t been played before
-    w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
   else
     hash[line] = hash[line] + 1
-    -- Semi-Komi rule, we saw this move before
-    if hash[line] > 1 then 
-      KomiMoves[previousMove] = true
-      w:write("setoption name MultiPV value 15\n")
-      thisFEN = previousFEN
-      game = game .. " (KOMI) "
-      if pWinner == "Black" then
-        movenumber = movenumber - 1
-        if movenumber < 1 then movenumber = 1 end
-        pWinner = "White"
-      else
-        pWinner = "Black"
-      end
-      return previousFEN, true
-    end
     if hash[line] >= 3 then
       print(game .. "{draw by repetition}\n")
       os.exit(0)
     end 
   end
-  return outLine, false
+  return outLine, hash -- We actually modify hash in place, but still
 end
 function grabFEN(handle)
   local out = ""
-  local isKomi = false
   while not string.match(lineFromEngine,'^Key') do
     lineFromEngine = handle:read()
     if lineFromEngine:match('^Fen: ') then
-      out, isKomi = processFENline(FENseen, lineFromEngine)
+      out = processFENline(FENseen, lineFromEngine)
     end
     --print(lineFromEngine)
   end
-  if not isKomi then
-    print(out)
-  else
-    print(out .. " (KOMI)")
-  end
+  print(out)
   return out
 end
 
@@ -246,7 +227,6 @@ w:write("d\n")
 w:flush()
 lineFromEngine = ""
 thisFEN = grabFEN(r)
-previousFEN = thisFEN
 io.flush()
 
 -- If there is an opening, play it
@@ -268,9 +248,6 @@ w:write("go depth " .. searchPly .. "\n")
 w:flush()
 game = ""
 movenumber = 1
-move = ""
-previousMove = ""
-KomiMoves = {}
 -- Note setup, if specified as VariantSetup
 if type(params["variantSetup"]) == "string" then
   game = game .. "(Setup: " .. params["variantSetup"] .. ") "
@@ -290,7 +267,7 @@ infoS = false
 while true do
   lineFromEngine = r:read()
   local fields = rStrSplit(lineFromEngine,' ')
-  -- Note how we evaluate (NNUE or HCE)
+  -- Note how we evaluate
   if not infoS and fields[2] == "string" then 
     infoS = lineFromEngine 
     infoS = infoS:gsub('[\r\n]','')
@@ -323,35 +300,18 @@ while true do
     -- White
     for k,v in sPairs(multiMoves) do 
       if type(v) == 'table' and v.v then
-        -- Hard Komi rule: We don’t consider moves we have already
-        -- made.
-        if tonumber(v.v) > maxV and not KomiMoves[v.m] then 
-          maxV = tonumber(v.v) 
-        end
+        if tonumber(v.v) > maxV then maxV = tonumber(v.v) end
       end
     end
     for k,v in sPairs(multiMoves) do
       if type(v) == 'table' and v.v and v.m then
-        if tonumber(v.v) >= maxV - 30 and not KomiMoves[v.m] then
-          showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
+        showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
+        if tonumber(v.v) >= maxV - 30 then
           table.insert(consider,v.m)
-        else
-          if tonumber(v.v) < maxV - 30 then
-            showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. 
-                      " is weak move "
-          else
-            showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. 
-                      " is Komi "
-          end
         end
       end
     end
-    if #consider < 1 then -- It’s a Komi win, this is a “panic button”
-      print(game .. "(" .. showMoves .. ") {" .. pWinner .. " wins by Komi}\n")
-      os.exit(0)
-    end
-    local toConsider = rg32.random(#consider)
-    move = consider[toConsider]
+    move = consider[rg32.random(#consider)]
     print("(" .. showMoves .. ") " .. move)
     -- Note the move we decided on
     game = game .. move .. ' '
@@ -375,8 +335,6 @@ while true do
       end
     end
     r:flush()
-    previousMove = move
-    previousFEN = thisFEN
     w:write("go depth " .. searchPly .. "\n")
     w:flush()
     multiMoves = {}
