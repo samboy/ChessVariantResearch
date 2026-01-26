@@ -213,11 +213,13 @@ function processFENline(hash, line)
   if not hash[line] then
     hash[line] = 1
     KomiMoves = {} -- This position hasn’t been played before
+    w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
   else
     hash[line] = hash[line] + 1
     -- Semi-Komi rule, we saw this move before
     if hash[line] > 1 then 
       KomiMoves[previousMove] = true
+      w:write("setoption name MultiPV value 15\n")
       thisFEN = previousFEN
       game = game .. " (KOMI) "
       if pWinner == "Black" then
@@ -344,14 +346,17 @@ while true do
     end
     for k,v in sPairs(multiMoves) do
       if type(v) == 'table' and v.v and v.m then
-        showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
         if tonumber(v.v) >= maxV - 30 and not KomiMoves[v.m] then
+          showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
           table.insert(consider,v.m)
+        else
+          showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. 
+                      " is Komi "
         end
       end
     end
     if #consider < 1 then -- It’s a Komi win, this is a “panic button”
-      print(game .. "{" .. pWinner .. " wins by Komi}\n")
+      print(game .. "(" .. showMoves .. ") {" .. pWinner .. " wins by Komi}\n")
       os.exit(0)
     end
     local toConsider = rg32.random(#consider)
