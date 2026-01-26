@@ -134,3 +134,47 @@ Point being:
 * More to the point, in Finesse Chess, White wins less often than he does
   in classic Chess, and draws are much less common.
 
+### Komi Rule
+
+One ule Go has, the *Komi* rule, is a rule that a position can not be
+repeated. We can have Komi Finesse Chess, which is Finesse Chess, but
+with the additional rule that a position can not be repeated.  If, in
+over the board tournament play, someone can show that a given position
+was reached previously, the person making the move that results in a
+repeated position loses.
+
+The way this “hard Komi” is implemented is as follows:
+
+* We see if a given board position has been previously played
+* If so, we take back the move, increase Fairy Stockfish’s MultiPV
+  to 15 (in case all good moves lead to a Komi position), and ask the
+  player to make another move.
+* If all legal moves result in a previously played board position, the
+  player loses to Komi.
+* Draws are still possible (insufficient mating material mainly), because 
+  a game becomes an automatic draw on move 200.
+
+Playing Finesse at a higher level (12-ply NNUE evaluation) shows that
+non-Komi Finesse favors White more and is more drawish:
+
+```
+White 437 43.7%
+Draw  195 19.5%
+Black 368 36.8%
+1000 games played
+6.9%   White winning edge
+53.45% White score
+```
+
+Initial testing of Komi Finesse shows that the White win/Draw issues
+are greatly reduced:
+
+```
+White 124 49.6%
+Draw 7     2.8%
+Black 119 47.6%
+250 games played
+2% White winning edge
+51% White score
+```
+
