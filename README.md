@@ -170,11 +170,11 @@ Initial testing of Komi Finesse shows that the White win/Draw issues
 are greatly reduced:
 
 ```
-White 124 49.6%
-Draw 7     2.8%
-Black 119 47.6%
-250 games played
-2% White winning edge
-51% White score
+White 202 50.5%
+Draw 10 2.5%
+Black 188 47%
+400 games played
+3.5% White winning edge
+51.75% White score
 ```
 
