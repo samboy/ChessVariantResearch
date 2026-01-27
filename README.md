@@ -141,7 +141,8 @@ repeated. We can have Ko Finesse Chess, which is Finesse Chess, but
 with the additional rule that a position can not be repeated.  If, in
 over the board tournament play, someone can show that a given position
 was reached previously, the person making the move that results in a
-repeated position loses.
+repeated position loses (or is asked to make another move, which is
+how I implement it with Fairy Stockfish).
 
 The way this “hard Ko” is implemented is as follows:
 
