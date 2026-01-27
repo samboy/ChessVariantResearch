@@ -3,13 +3,13 @@
 -- a simple Chess/Chess variants client
 --
 -- Note that NNUE games have what might be unfair draws, so this implements
--- a hard Komi rule: If a given position has been seen before (where the
+-- a hard Ko rule: If a given position has been seen before (where the
 -- position is FEN w/o move number nor 50-move count), we go back to the
 -- previous position and see if there’s a move available which hasn’t been
 -- done.  
 --
 -- This means it’s not really classic chess; Fischer - Tal Leipzig 1960’s
--- draw is not possible when there’s a Komi rule.
+-- draw is not possible when there’s a Ko rule.
 --
 -- This client is a “randomized” version of Stockfish:  It looks
 -- at the top MultiPV number of moves (default: 3), and chooses one within
@@ -198,16 +198,16 @@ function processFENline(hash, line)
   line = line:gsub('%d+%s%d+$','') -- Remove move number, 50-move count
   if not hash[line] then
     hash[line] = 1
-    KomiMoves = {} -- This position hasn’t been played before
+    KoMoves = {} -- This position hasn’t been played before
     w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
   else
     hash[line] = hash[line] + 1
-    -- Semi-Komi rule, we saw this move before
+    -- Semi-Ko rule, we saw this move before
     if hash[line] > 1 then 
-      KomiMoves[previousMove] = true
+      KoMoves[previousMove] = true
       w:write("setoption name MultiPV value 15\n")
       thisFEN = previousFEN
-      game = game .. " (KOMI) "
+      game = game .. " (KO) "
       if pWinner == "Black" then
         movenumber = movenumber - 1
         if movenumber < 1 then movenumber = 1 end
@@ -226,18 +226,18 @@ function processFENline(hash, line)
 end
 function grabFEN(handle)
   local out = ""
-  local isKomi = false
+  local isKo = false
   while not string.match(lineFromEngine,'^Key') do
     lineFromEngine = handle:read()
     if lineFromEngine:match('^Fen: ') then
-      out, isKomi = processFENline(FENseen, lineFromEngine)
+      out, isKo = processFENline(FENseen, lineFromEngine)
     end
     --print(lineFromEngine)
   end
-  if not isKomi then
+  if not isKo then
     print(out)
   else
-    print(out .. " (KOMI)")
+    print(out .. " (KO)")
   end
   return out
 end
@@ -270,7 +270,7 @@ game = ""
 movenumber = 1
 move = ""
 previousMove = ""
-KomiMoves = {}
+KoMoves = {}
 -- Note setup, if specified as VariantSetup
 if type(params["variantSetup"]) == "string" then
   game = game .. "(Setup: " .. params["variantSetup"] .. ") "
@@ -323,16 +323,16 @@ while true do
     -- White
     for k,v in sPairs(multiMoves) do 
       if type(v) == 'table' and v.v then
-        -- Hard Komi rule: We don’t consider moves we have already
+        -- Hard Ko rule: We don’t consider moves we have already
         -- made.
-        if tonumber(v.v) > maxV and not KomiMoves[v.m] then 
+        if tonumber(v.v) > maxV and not KoMoves[v.m] then 
           maxV = tonumber(v.v) 
         end
       end
     end
     for k,v in sPairs(multiMoves) do
       if type(v) == 'table' and v.v and v.m then
-        if tonumber(v.v) >= maxV - 30 and not KomiMoves[v.m] then
+        if tonumber(v.v) >= maxV - 30 and not KoMoves[v.m] then
           showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. " "
           table.insert(consider,v.m)
         else
@@ -341,13 +341,13 @@ while true do
                       " is weak move "
           else
             showMoves = showMoves .. tostring(v.m) .. " " .. tostring(v.v) .. 
-                      " is Komi "
+                      " is Ko "
           end
         end
       end
     end
-    if #consider < 1 then -- It’s a Komi win, this is a “panic button”
-      print(game .. "(" .. showMoves .. ") {" .. pWinner .. " wins by Komi}\n")
+    if #consider < 1 then -- It’s a Ko win, this is a “panic button”
+      print(game .. "(" .. showMoves .. ") {" .. pWinner .. " wins by Ko}\n")
       os.exit(0)
     end
     local toConsider = rg32.random(#consider)
