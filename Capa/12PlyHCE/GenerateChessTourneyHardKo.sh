@@ -5,10 +5,10 @@ SETUP="$1"
 if [ -z "$SETUP" ] ; then
   SETUP=RNBQKBNR
 fi
-FILE=${SETUP}-hardKomi/${SETUP}-${N}-Chess12PlyNNUE.txt
+FILE=${SETUP}-hardKo/${SETUP}-${N}-Chess12PlyNNUE.txt
 while [ -e "$FILE" ] || [ -e "${FILE}.xz" ] ; do
   N=$(( $N + 1 ))
-  FILE=${SETUP}-hardKomi/${SETUP}-${N}-Chess12PlyNNUE.txt
+  FILE=${SETUP}-hardKo/${SETUP}-${N}-Chess12PlyNNUE.txt
 done
 echo $FILE
 COUNT="$2"
@@ -18,8 +18,8 @@ fi
 A=1 
 while [ $A -le $COUNT ] ; do 
 	echo $A; A=$(( $A + 1 )); 
-	lunacy PlayClassicChessUCI-hardKomi.lua $SETUP >> $FILE 
-	#lunacy PlayClassicChessUCI-hardKomi.lua | grep { >> $FILE 
+	lunacy PlayClassicChessUCI-hardKo.lua $SETUP >> $FILE 
+	#lunacy PlayClassicChessUCI-hardKo.lua | grep { >> $FILE 
 	sleep 3
 done
 
