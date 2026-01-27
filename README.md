@@ -167,15 +167,15 @@ Black 368 36.8%
 53.45% White score
 ```
 
-Initial testing of Ko Finesse shows that the White win/Draw issues
-are greatly reduced:
+Testing of Ko Finesse shows that the White win/Draw issues
+are both greatly reduced:
 
 ```
-White 202 50.5%
-Draw 10 2.5%
-Black 188 47%
-400 games played
-3.5% White winning edge
-51.75% White score
+White 997 51.42%
+Draw 42    2.17%
+Black 900 46.42%
+1939 games played
+5.01% White winning edge
+52.5% White score
 ```
 
