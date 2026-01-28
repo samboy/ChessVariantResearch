@@ -6,10 +6,10 @@ if [ -z "$SETUP" ] ; then
   # Finesse chess is default
   SETUP=RNABCKBQNR
 fi
-FILE=${SETUP}-hardKo/${SETUP}-${N}-Chess12PlyNNUE.txt
+FILE=${SETUP}-noKo/${SETUP}-${N}-Chess12PlyNNUE.txt
 while [ -e "$FILE" ] || [ -e "${FILE}.xz" ] ; do
   N=$(( $N + 1 ))
-  FILE=${SETUP}-hardKo/${SETUP}-${N}-Chess12PlyNNUE.txt
+  FILE=${SETUP}-noKo/${SETUP}-${N}-Chess12PlyNNUE.txt
 done
 echo $FILE
 COUNT="$2"
@@ -20,8 +20,8 @@ cp ../capablanca-bb644ef32758.nnue .
 A=1 
 while [ $A -le $COUNT ] ; do 
 	echo $A; A=$(( $A + 1 )); 
-	lunacy Play18plyUCI-hardKo.lua $SETUP >> $FILE 
-	#lunacy Play18plyUCI-hardKo.lua $SETUP | grep { >> $FILE 
+	lunacy Play18plyUCI-noKo.lua $SETUP >> $FILE 
+	#lunacy Play18plyUCI-noKo.lua $SETUP | grep { >> $FILE 
 	sleep 3
 done
 
