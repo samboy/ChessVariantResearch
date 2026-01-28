@@ -49,8 +49,8 @@ vSetup = "RNABCKBQNR" -- Finesse Chess, most balanced 2008 setup
 if #arg >= 1 then
   vSetup = arg[1]
   if vSetup == "--help" or vSetup == "-help" or vSetup == "help" then
-    print("Usage: Play12plyUCI.lua {setup} {plies} {seed}")
-    print("Example: Play12plyUCI.lua RNABCKBQNR 12")
+    print("Usage: Play18plyUCI.lua {setup} {plies} {seed}")
+    print("Example: Play18plyUCI.lua RNABCKBQNR 18")
     os.exit(0)
   end
 end
@@ -143,8 +143,8 @@ if not MultiPV or MultiPV < 2 then
   MultiPV = 3
 end
 if not searchPly or searchPly < 7 then 
-  print("searchPly too small/not set, using 12") 
-  searchPly = 12
+  print("searchPly too small/not set, using 18") 
+  searchPly = 18
 end
 
 ----------------------- rStrSplit() -----------------------
