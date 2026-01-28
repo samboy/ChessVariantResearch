@@ -23,6 +23,7 @@ END{
   print n " games played";
   print ((a["White"] - a["Black"]) / n * 100) "% White winning edge"
   print ((a["White"] + (a["Draw"] / 2)) / n * 100) "% White score"
+  print (a["White"] / (a["White"] + a["Black"]) * 100) "% White decisive wins"
 }'
 
 rm -f foo-$$
