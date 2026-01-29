@@ -205,7 +205,7 @@ function processFENline(hash, line)
     hash[line] = 1
   else
     hash[line] = hash[line] + 1
-    if hash[line] >= 3 then
+    if hash[line] > 7 then
       print(game .. "{draw by repetition}\n")
       os.exit(0)
     end 
