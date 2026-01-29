@@ -10,7 +10,7 @@
 -- and available with the name fairy-stockfish
 -- (if it has another name, change "ChessEngine" below)
 
-IsVerbose = true
+IsVerbose = false
 
 -- Utility function: Sorted pairs()
 function sPairs(inTable, sFunc)
