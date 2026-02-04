@@ -1,0 +1,53 @@
+[Event "Casual Game"]
+[Site "https://lichess.org/9RNVxxkR"]
+[Date "2026.02.03"]
+[Round "-"]
+[White "Sam T"]
+[Black "Zillions Level One with 1.... e5"]
+[Result "1-0"]
+[GameId "9RNVxxkR"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "C57"]
+[Opening "Italian Game: Two Knights Defense, Fried Liver Attack"]
+[Termination "Unknown"]
+[Annotator "lichess.org"]
+
+1. e4 { [%eval 0.18] } 1... e5 { [%eval 0.22] } 
+2. Nf3 { [%eval 0.18] } 2... Nc6 { [%eval 0.21] } 
+3. Bc4 { [%eval 0.07] } 3... Nf6 { [%eval 0.1] } 
+4. Ng5 { [%eval 0.17] } 4... d5 { [%eval 0.0] } 
+5. exd5 { [%eval 0.0] } 5... Nxd5?! { (0.00 → 0.67) Inaccuracy. Na5 was best. } { [%eval 0.67] } (5... Na5 6. Bb5+ c6 7. dxc6 bxc6 8. Bd3 Nd5 9. Nf3 Bd6 10. O-O) 
+6. Nxf7 { [%eval 0.88] } { C57 Italian Game: Two Knights Defense, Fried Liver Attack } 6... Kxf7 { [%eval 0.87] } 
+7. Qf3+ { [%eval 0.86] } 7... Ke6 { [%eval 0.59] } 
+8. Nc3 { [%eval 0.8] } 8... Nb4 { [%eval 0.92] } 
+9. O-O { [%eval 0.68] } 9... Bc5?? { (0.68 → 3.80) Blunder. c6 was best. } { [%eval 3.8] } (9... c6 10. d4 Qf6 11. Qe2 Ke7 12. Ne4 Qg6 13. c3 Bf5 14. f3 Na6 15. g4) 
+10. a3 { [%eval 3.73] } 10... Rf8 { [%eval 3.66] } 
+11. Qh3+ { [%eval 3.68] } 11... Ke7 { [%eval 3.68] } 
+12. Qh4+? { (3.68 → 1.42) Blunder. Qxh7 was best. } { [%eval 1.42] } (12. Qxh7 Rxf2 13. Rxf2 Bxf2+ 14. Kxf2 Qf8+ 15. Kg1 Nf6 16. Qg6 Nc6 17. d3 Be6) 12... g5?? { (1.42 → 4.05) Blunder. Kd6 was best. } { [%eval 4.05] } (12... Kd6 13. Qg3) 
+13. Qxg5+ { [%eval 3.23] } 13... Kd6?! { (3.23 → 4.36) Inaccuracy. Kd7 was best. } { [%eval 4.36] } (13... Kd7 14. Qh6 Qf6 15. Qxf6 Nxf6 16. axb4 Bxb4 17. d3 c6 18. Bh6 Rd8 19. Bg5) 
+14. Qh6+ { [%eval 4.44] } 14... Rf6 { [%eval 4.47] } 
+15. Ne4+ { [%eval 4.35] } 15... Kc6 { [%eval 4.33] } 
+16. Nxf6 { [%eval 4.51] } 16... Nxf6 { [%eval 5.45] } 
+17. axb4 { [%eval 5.81] } 17... Bxb4 { [%eval 5.76] } 
+18. Qe3 { [%eval 4.95] } 18... Bf5?! { (4.95 → 7.12) Inaccuracy. a6 was best. } { [%eval 7.12] } (18... a6 19. Be2 Qd5 20. c4 Qd4 21. d3 Bg4 22. Bf3+ Kd7 23. Bxg4+ Qxg4) 
+19. d3 { [%eval 6.37] } 19... Qd4 { [%eval 7.6] } 
+20. Qf3+ { [%eval 7.36] } 20... e4 { [%eval 8.76] } 
+21. Qxf5 { [%eval 8.83] } 21... Re8 { [%eval 9.76] } 
+22. Qb5+ { [%eval 9.96] } 22... Kd6 { [%eval 9.75] } 
+23. Qxb4+ { [%eval 9.81] } 23... Kc6 { [%eval 10.23] } 
+24. Be3 { [%eval 9.63] } 24... Nd5? { (9.63 → Mate in 3) Checkmate is now unavoidable. Qe5 was best. } { [%eval #3] } (24... Qe5 25. dxe4 Nxe4 26. Rfd1 Nd6 27. Rxa7 Kd7 28. Qxb7 Rc8 29. Be2 h5 30. Qa6) 
+25. Qb5+ { [%eval #10] } 25... Kd6 { [%eval #10] } 
+26. Bxd4 { [%eval #9] } 26... c6 { [%eval #9] } 
+27. Qxb7 { [%eval #7] } 27... Re7 { [%eval #7] } 
+28. Qb8+ { [%eval #7] } 28... Nc7 { [%eval #4] } 
+29. Qd8+ { [%eval #5] } 29... Rd7 { [%eval #5] } 
+30. Qf6+ { [%eval #4] } 30... Ne6 { [%eval #4] } 
+31. Qxe6+ { [%eval #3] } 31... Kc7 { [%eval #3] } 
+32. Rxa7+ { [%eval #2] } 32... Kb8 { [%eval #2] } 
+33. Qxd7 { [%eval #1] } 33... exd3 { [%eval #1] } 
+34. Qd8# { White wins. } 1-0
+
+
