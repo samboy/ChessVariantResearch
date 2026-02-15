@@ -14,6 +14,12 @@ vSetup = "RQNBAKCNBR"
 if #arg >= 1 then
   vSetup = arg[1]
 end
+if vSetup:len() <= 6 then
+  print("Usage: lunacy StockfishEval.lua {setup} {plies} {multiPV}")
+  print("Example: lunacy StockfishEval.lua RNBQKBNR 21 20")
+  os.exit(0)
+end
+
 -- params is a table with the "user tunable" parameters
 -- They are also tuned with arguments, which overrides these
 -- params.
