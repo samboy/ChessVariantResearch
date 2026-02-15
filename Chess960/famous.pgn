@@ -1,0 +1,64 @@
+[Event "Casual game"]
+[Site "London ENG"]
+[Date "1851.06.21"]
+[EventDate "?"]
+[Round "?"]
+[Result "1-0"]
+[White "Adolf Anderssen"]
+[Black "Lionel Adalbert Bagration Felix Kieseritzky"]
+[ECO "C33"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[Source "La Régence, v3 n7, July 1851, pp221-222"]
+[SourceNote "ends 19.Ke2"]
+[Source "The Chess Player, vol.i no.1, 1851.07.19, p.2"]
+[PlyCount "45"]
+
+1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 b5 5.Bxb5 Nf6 6.Nf3 Qh6
+7.d3 Nh5 8.Nh4 Qg5 9.Nf5 c6 10.g4 Nf6 11.Rg1 cxb5 12.h4 Qg6
+13.h5 Qg5 14.Qf3 Ng8 15.Bxf4 Qf6 16.Nc3 Bc5 17.Nd5 Qxb2 18.Bd6
+Bxg1 19. e5 Qxa1+ 20. Ke2 Na6 21.Nxg7+ Kd8 22.Qf6+ Nxf6
+23.Be7# 1-0
+
+[Event "Hoogovens Group A"]
+[Site "Wijk aan Zee NED"]
+[Date "1999.01.20"]
+[EventDate "1999.01.16"]
+[Round "4"]
+[Result "1-0"]
+[White "Garry Kasparov"]
+[Black "Veselin Topalov"]
+[ECO "B07"]
+[WhiteElo "2812"]
+[BlackElo "2700"]
+[PlyCount "87"]
+
+1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 Bg7 5. Qd2 c6
+6. f3 b5 7. Nge2 Nbd7 8. Bh6 Bxh6 9. Qxh6 Bb7 10. a3 e5
+11. O-O-O Qe7 12. Kb1 a6 13. Nc1 O-O-O 14. Nb3 exd4 15. Rxd4 c5
+16. Rd1 Nb6 17. g3 Kb8 18. Na5 Ba8 19. Bh3 d5 20. Qf4+ Ka7
+21. Rhe1 d4 22. Nd5 Nbxd5 23. exd5 Qd6 24. Rxd4 cxd4 25. Re7+ Kb6
+26. Qxd4+ Kxa5 27. b4+ Ka4 28. Qc3 Qxd5 29. Ra7 Bb7 30. Rxb7 Qc4
+31. Qxf6 Kxa3 32. Qxa6+ Kxb4 33. c3+ Kxc3 34. Qa1+ Kd2 35. Qb2+ Kd1
+36. Bf1 Rd2 37. Rd7 Rxd7 38. Bxc4 bxc4 39. Qxh8 Rd3 40. Qa8 c3
+41. Qa4+ Ke1 42. f4 f5 43. Kc1 Rd2 44. Qa7 1-0
+
+[Event "Offhand 3-minute blitz"]
+[Site "El Retiro Park, Madrid, ESP"]
+[Date "2022.07.02"]
+[EventDate "2022.07.02"]
+[Round "?"]
+[Result "1-0"]
+[White "Judit Polgar"]
+[Black "Magnus Carlsen"]
+[ECO "B48"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[Source "https://www.youtube.com/watch?v=AcpGZF3PcB8"]
+[PlyCount "38"]
+
+1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nc6 5. Nc3 a6
+6. Be3 Qc7 7. Qd2 Nf6 8. f3 Be7 9. O-O-O b5 10. g4 Nxd4
+11. Bxd4 Bb7 12. e5 Nxg4 13. Rg1 Nh6 14. Bd3 Bf8 15. Be4 Rc8
+16. Bb6 Bxe4 17. Bxc7 Bc6 18. Bd6 Nf5 19. Ne4 1-0
+
