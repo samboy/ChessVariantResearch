@@ -69,7 +69,7 @@ void movePieceOnBoard(int_fast32_t piece, int_fast8_t *board, int square) {
 	if((piece & 0x400000) != 0 && square % 8 < 7 && square < 48) 
 		moveTo(board,square+17,square); // s then se (Knight move)
 	if((piece & 0x800000) != 0 && square % 8 < 6 && square < 48)
-		moveTo(board,square+18,square);
+		moveTo(board,square+18,square); // se then se
 }
 
 // This determines if a given piece is colorbound on an 8x8 square.
@@ -158,6 +158,111 @@ void showPiece(int_fast32_t piece) {
 		}
 		piece >>= 1;
 	}
+}
+
+// Let’s expand this to allow some riders.  To make it simpler, each
+// piece, in the eight compass directions (N, NE, E, SE, S, SW, W, and NW)
+// can be one of: 
+// 1) No move
+// 2) Can move one square in the direction, like a king (or pawn)
+// 3) Can leap two squares in the direction, like an old Alfil
+// 4) Can move one square or leap two squares in the direction
+// 5) Can “ride” like a Rook/Bishop/Queen in the direction 
+// There are, for the eight compass directions, 5^8 possible pieces
+// (That number is 390,625).  If we also allow the piece to have any
+// combination of the eight possible Knight leaps, we have precisely
+// 100,000,000 possible pieces.
+// So now, how many of those 100,000,000 are colorbound?
+// To find out, we convert those 100,000,000 pieces in to its short-range
+// form, so the riders are seen as one square leapers, then we can see if 
+// the piece is colorbound
+int32_t semiRiderToShortRange(int32_t index) {
+	int32_t s = 0; // Short range version
+	// NE
+	int32_t l = index % 5;
+	// 0: No Move 1: Leap1 2: Leap2 3: Leap1 & Leap2 4: Rider (Leap1)
+	if(l == 2 || l == 3) {
+		s |= 0x10; // NE-NE
+        }
+	if(l == 1 || l == 2 || l == 4) {
+		s |= 0x100; // NE
+	}
+	// E
+	index = index / 5;
+	l = index % 5;
+	if(l == 2 || l == 3) {
+		s |= 0x2000; // E-E
+        }
+	if(l == 1 || l == 2 || l == 4) {
+		s |= 0x1000; // E
+	}
+	// SE
+	index = index / 5;
+	l = index % 5;
+	if(l == 2 || l == 3) {
+		s |= 0x800000; // SE-SE
+        }
+	if(l == 1 || l == 2 || l == 4) {
+		s |= 0x20000;  // SE
+	}
+	// S
+	index = index / 5;
+	l = index % 5;
+	if(l == 2 || l == 3) {
+		s |= 0x200000; // S-S
+        }
+	if(l == 1 || l == 2 || l == 4) {
+		s |= 0x10000;  // S
+	}
+	// SW
+	index = index / 5;
+	l = index % 5;
+	if(l == 2 || l == 3) {
+		s |= 0x80000; // SW-SW
+        }
+	if(l == 1 || l == 2 || l == 4) {
+		s |= 0x8000;  // SW
+	}
+	// W
+	index = index / 5;
+	l = index % 5;
+	if(l == 2 || l == 3) {
+		s |= 0x400; // W-W
+        }
+	if(l == 1 || l == 2 || l == 4) {
+		s |= 0x800;  // W
+	}
+	// NW
+	index = index / 5;
+	l = index % 5;
+	if(l == 2 || l == 3) {
+		s |= 0x01; // NW-NW
+        }
+	if(l == 1 || l == 2 || l == 4) {
+		s |= 0x40;  // NW
+	}
+	// N
+	index = index / 5;
+	l = index % 5;
+	if(l == 2 || l == 3) {
+		s |= 0x04; // N-N
+        }
+	if(l == 1 || l == 2 || l == 4) {
+		s |= 0x80;  // N
+	}
+	// Knight moves
+	index = index / 5;
+	l = index;
+	if(l >= 256) { return -1; } // ERROR
+	if(l & 0x1) { s |= 0x02; } // N-NW
+	if(l & 0x2) { s |= 0x08; } // N-NE
+	if(l & 0x4) { s |= 0x20; } // W-NW
+	if(l & 0x8) { s |= 0x200; } // E-NE
+	if(l & 0x10) { s |= 0x4000; } // W-SW
+	if(l & 0x20) { s |= 0x40000; } // E-SE
+	if(l & 0x40) { s |= 0x100000; } // S-SW
+	if(l & 0x80) { s |= 0x400000; } // S-SE
+	return s;
 }
 
 int main(int argc, char **argv) {
