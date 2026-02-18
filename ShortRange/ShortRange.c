@@ -319,6 +319,32 @@ int countShortRange(int argc, char **argv) {
 	return 0;
 }
 
+int countCompass(int argc, char **argv) {
+	int_fast32_t a;
+        int_fast32_t count = 0;
+	for(a = 0 ; a <= 100000000 ; a++) {
+		if(a % 1000000 == 0) {
+			printf("Calculating, %d of %d done, %d found\n",a,
+				100000000,count);
+			fflush(stdout);
+		}
+		if(countReachable8x8(semiRiderToShortRange(a),0) == 64) {
+		   	count++;
+		}
+	}
+	printf("%d non-colorbound pieces\n",count);
+}
+
 int main(int argc, char **argv) {
+	if(argc == 2 && *(argv[1]) == '-') {
+		printf("Usage: ShortRange {piece|--help|Compass}\n");
+		printf("Piece is a number, e.g. 5521962 for knight\n");
+		printf("--help is this help\n");
+		printf("Compass counts number of colorbound Compass pieces\n");
+		return 0;
+	}
+	if(argc == 2 && *(argv[1]) == 'C') {
+		return countCompass(argc,argv);
+	}
 	return countShortRange(argc, argv);
 }
