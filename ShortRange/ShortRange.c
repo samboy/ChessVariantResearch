@@ -265,7 +265,7 @@ int32_t semiRiderToShortRange(int32_t index) {
 	return s;
 }
 
-int main(int argc, char **argv) {
+int countShortRange(int argc, char **argv) {
 	int_fast32_t a;
 	int_fast32_t count = 0, bishopLikeCount = 0;
 	int_fast32_t moves[32];
@@ -316,4 +316,9 @@ int main(int argc, char **argv) {
 	// We need to correctly print 282,232,643,280 here
 	printf("With riders, %U total possible non-colorbound pieces\n",
 		grandTotal);
+	return 0;
+}
+
+int main(int argc, char **argv) {
+	return countShortRange(argc, argv);
 }
