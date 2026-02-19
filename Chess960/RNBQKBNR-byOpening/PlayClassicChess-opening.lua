@@ -240,11 +240,18 @@ if opening:len() > 0 then
   game = game .. "(Opening: " .. opening .. ") "
 end
 
--- CODE HERE: Change this depending on who has the move in the opening
--- and how many plies the opening has
-local openingMoves = rStrSplit(opening,'%s+')
-pWinner = "White"
-movenumber = 2
+-- Change movenumber and who plays depending on who has the move in the 
+-- opening and how many plies the opening has
+local openingMoves = rStrSplit(opening,' ')
+pWinner = "Black" -- Black to win if White has no moves (checkmate!)
+movenumber = 1
+if opening:len() > 0 then
+  SideToPlay = #openingMoves % 2
+  if SideToPlay == 1 then -- If Black has the move...
+    pWinner = "White" -- If Black has no moves (checkmate!) White has won
+  end
+  movenumber = movenumber + math.floor(#openingMoves / 2)
+end
 
 multiMoves = {}
 infoS = false
