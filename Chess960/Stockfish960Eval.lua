@@ -14,6 +14,14 @@ vSetup = "RNBQKBNR"
 if #arg >= 1 then
   vSetup = arg[1]
 end
+if vSetup:len() < 8 then 
+  print(
+     "Usage: lunacy Stockfish960Eval.lua {setup} {plies} {multiPV} {opening}")
+  print(
+     "Example: Stockfish960Eval.lua RBBQKNNR 21 7 'c2c4 c7c5'")
+  os.exit(0)
+end
+
 -- params is a table with the "user tunable" parameters
 -- They are also tuned with arguments, which overrides these
 -- params.
@@ -71,6 +79,10 @@ end
 if #arg >= 3 then
   MultiPV = tonumber(arg[3])
 end
+opening = falase
+if #arg >= 4 then
+  opening = arg[4]
+end
 
 -- If they specify a variantSetup (e.g. RNBQKBNR or RANBQKBNCR), convert
 -- that in to the appropriate 8x# FEN string
@@ -99,7 +111,7 @@ end
 searchPly = tonumber(params["searchPly"])
 
 -- Sanity for numeric vaues
-if not MultiPV or MultiPV < 2 then
+if not MultiPV or MultiPV < 1 then
   print("MultiPV too small/not set, using 3")
   MultiPV = 3
 end
@@ -158,7 +170,11 @@ w:write("setoption name Use NNUE value true\n")
 w:write("setoption name UCI_Chess960 value true\n")
 w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
 w:write("ucinewgame\n")
-w:write("position fen " .. variantFEN .. "\n")
+if not opening then
+  w:write("position fen " .. variantFEN .. "\n")
+else
+  w:write("position fen " .. variantFEN .. " moves " .. opening .. "\n")
+end
 w:write("d\n")
 w:write("go depth " .. tostring(searchPly) .. "\n")
 w:flush()
