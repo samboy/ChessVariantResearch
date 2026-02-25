@@ -79,7 +79,7 @@ end
 if #arg >= 3 then
   MultiPV = tonumber(arg[3])
 end
-opening = falase
+opening = false
 if #arg >= 4 then
   opening = arg[4]
 end
@@ -198,9 +198,15 @@ while not string.match(lineFromEngine,'^bestmove') do
   print(lineFromEngine)
   io.flush()
 end
-out = vSetup .. ":" 
+if opening then
+  out = vSetup .. " (" .. opening .. "): "
+else
+  out = vSetup .. ":" 
+end
 for a=1,#lines do
-  out = out .. lines[a]['eval'] .. ',' .. lines[a]['move'] .. ';'
+  if lines[a]['move'] then
+    out = out .. lines[a]['eval'] .. ',' .. lines[a]['move'] .. ';'
+  end
 end
 io.flush()
 print(vSetup .. " eval: " .. eval)
