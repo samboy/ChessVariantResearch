@@ -40,15 +40,19 @@ we list setups we find which have a lower White or Black advantage than
 the last setup listed:
 
 ```
-$ lunacy FindBalancedSetup.lua 100 777
+$ lunacy FindBalancedSetup.lua 500 777
 777,1,bbnqrknr/pppppppp/8/8/8/8/PPPPPPPP/NRNQKBBR w KQkq - 0 1:-116,d2d4;
 777,2,rnknbqrb/pppppppp/8/8/8/8/PPPPPPPP/RBNQBKNR w KQkq - 0 1:45,c2c3;
 777,4,bbqrknrn/pppppppp/8/8/8/8/PPPPPPPP/RKBBNRNQ w KQkq - 0 1:11,a2a4;
 777,37,bbrnkrnq/pppppppp/8/8/8/8/PPPPPPPP/QNNRBKRB w KQkq - 0 1:-3,g2g3;
+777,137,rnbkrbqn/pppppppp/8/8/8/8/PPPPPPPP/RKBBQNRN w KQkq - 0 1:-1,d2d4;
+777,246,qbrknrbn/pppppppp/8/8/8/8/PPPPPPPP/BRKBQNNR w KQkq - 0 1:0,b2b3;
+Eval 0 found, job done
 ```
 
 Here, the first setup we found really favored Black, the second setup
 we found really favored White, and the fourth setup has a much smaller
-White advantage than Classic Chess does.  Finally, on the 37th setup, we
-found a setup which only slightly favored Black.
-
+White advantage than Classic Chess does.  On the 37th setup, we found 
+a setup which only slightly favores Black, on the 137th setup we 
+got a setup which barely favors Black, and finally on the 246th setup
+we got a balanced setup.
