@@ -26,9 +26,7 @@ exec $LUNACY $0 "$@"
 -- This is a lunacy (Lua + Steve Donovan's spawner lib) implementation of
 -- a simple Chess/Chess variants client
 --
--- This client is a “randomized” version of Fairy-Stockfish:  It looks
--- at the top MultiPV number of moves (default: 3), and chooses one within
--- 50 centipawns of what it thinks is the best move at random.
+-- This client looks for balanced Double Fischer Random Chess setups.
 --
 -- This client requires the Stockfish program to be installed
 
@@ -39,9 +37,9 @@ else
 end
 if a1:match("%?") or a1:match("%-") or a1:match("[Hh]") then 
   print(
-     "Usage: lunacy FindBalancedSetup.lua {iterations} {seed}")
+     "Usage: lunacy FindBalancedSetup.lua {iterations} {seed} {depth}")
   print(
-     "Example: lunacy FindBalancedSetup.lua 100 SomeRandomText")
+     "Example: lunacy FindBalancedSetup.lua 100 SomeRandomText 21")
   os.exit(0)
 end
 
@@ -60,6 +58,14 @@ if #arg >= 2 then
   thisseed = arg[2]
 end
 
+local searchDepth = 21
+if #arg >= 3 then
+  searchDepth = tonumber(arg[3])
+end
+if not searchDepth or searchDepth < 1 then
+  searchDepth = 21
+end
+
 -- Here be dragons below
 if rg32 == nil then
   print("I need the rg32 lib to continue!")
@@ -67,12 +73,6 @@ if rg32 == nil then
   os.exit(1)
 end
 rg32.randomseed(thisseed)
-
-searchPly = 21
-if not searchPly or searchPly < 7 then 
-  print("searchPly too small/not set, using 21") 
-  searchPly = 21
-end
 
 ------------------------------------------------------------------
 -- Functions to make a Chess960 board
@@ -238,7 +238,7 @@ for z=1,iterations do
   thisFEN = MakeFEN()
   w:write("position fen " .. thisFEN .. "\n")
   w:write("d\n")
-  w:write("go depth 21\n")
+  w:write("go depth " .. tostring(searchDepth) .. "\n")
   w:flush()
   lineFromEngine = ""
   eval = -1
