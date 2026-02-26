@@ -39,7 +39,7 @@ if a1:match("%?") or a1:match("%-") or a1:match("[Hh]") then
   print(
      "Usage: lunacy FindBalancedSetup.lua {iterations} {seed} {depth}")
   print(
-     "Example: lunacy FindBalancedSetup.lua 100 SomeRandomText 21")
+     "Example: lunacy FindBalancedSetup.lua 100 SomeRandomText 17")
   os.exit(0)
 end
 
@@ -58,12 +58,12 @@ if #arg >= 2 then
   thisseed = arg[2]
 end
 
-local searchDepth = 21
+local searchDepth = 17
 if #arg >= 3 then
   searchDepth = tonumber(arg[3])
 end
 if not searchDepth or searchDepth < 1 then
-  searchDepth = 21
+  searchDepth = 17
 end
 
 -- Here be dragons below
@@ -75,7 +75,7 @@ end
 rg32.randomseed(thisseed)
 
 ------------------------------------------------------------------
--- Functions to make a Chess960 board
+-- Functions to make a Capa double random board
 -- Create a new “board” (really, row) where we will place pieces
 function initBoard(size)
   local out = {}
@@ -224,12 +224,12 @@ if spawner == nil then
   os.exit(1)
 end
 
-for a=0,83999 do print(board2ASCII(Capa84000(a)):upper(),a) end -- DEBUG
-os.exit(0) -- DEBUG
 thisIteration = 1
 ChessEngine = "fairy-stockfish"
 w,r = spawner.popen2(ChessEngine)
 w:write("setoption name Use NNUE value true\n")
+w:write("setoption name EvalFile value capablanca-bb644ef32758.nnue\n")
+w:write("setoption name UCI_Variant value caparandom\n")
 -- w:write("setoption name UCI_Chess960 value true\n")
 -- CODE HERE
 w:write("setoption name MultiPV value 1\n")
