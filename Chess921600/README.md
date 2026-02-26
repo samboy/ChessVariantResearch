@@ -10,7 +10,7 @@ There are 921,600 possible “Double Fischer Random” setups, hence the
 name Chess921600.
 
 However, then the concern is: Does a setup unfavorably favor Black or
-White?  And the answer is, with most setups, less so than with 
+White?  And the answer is, with many setups, less so than with 
 Classic Chess (which gives White a 39 centipawn advantage).
 
 ## This program
@@ -18,7 +18,8 @@ Classic Chess (which gives White a 39 centipawn advantage).
 This program looks at a Double Fischer Random setup, evaluates it with
 Stockfish (21-ply) and tells us how balanced it is.
 
-If the evaluation is 0, that means the setup is perfectly evaluated.
+If the evaluation is 0, that means the setup is balanced: At Stockfish’s
+12-ply evaluation, neither White nor Black have an advantage.
 
 For example, the seed 1772053877 gives us a 0 eval right off the bat:
 
