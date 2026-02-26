@@ -79,7 +79,9 @@ $ lunacy FindBalancedSetup.lua 500 777
 Eval 0 found, job done
 ```
 
-Here, 500 is the number of different setups we try.  777 is the seed; the
-seed can be a number or a string.  There is an optional third argument:
-The search depth.  Since it’s not specified here, the search depth 
-defaults to 17 (as in 17 plies; i.e. 8 1/2 moves).
+Here, 500 is the number of different setups we try.  If not specified, we 
+try 10 different setups.  777 is the seed; the seed can be a number
+or a string.  If the seed is not specified, it defaults to the current
+POSIX timestamp.  There is an optional third argument: The search depth.
+Since it’s not specified here, the search depth defaults to 17 (as in
+17 plies; i.e. 8 1/2 moves).
