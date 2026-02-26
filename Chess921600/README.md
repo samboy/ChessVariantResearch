@@ -57,3 +57,15 @@ White advantage than Classic Chess does.  On the 37th setup, we found
 a setup which only slightly favores Black, on the 137th setup we 
 got a setup which barely favors Black, and finally on the 246th setup
 we got a balanced setup.
+
+## TCEC evaluation of all 921,600 positions
+
+The TCEC, a few years ago, did a [20-ply analysis of all 921,600
+positions of Double Fischer Random 
+Chess](https://tcec-chess.com/misc/dfrc/DFRC_depth20.csv.xz).  I
+have taken that data, and sorted it by White’s evaluation (in 
+centipawns) and the setup.  
+
+There are 14,406 setups that evaluation found to be perfectly
+balanced.
+
