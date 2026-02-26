@@ -69,3 +69,18 @@ centipawns) and the setup.
 There are 14,406 setups that evaluation found to be perfectly
 balanced.
 
+That information is in the file `DFRC-all.txt.xz`; the format
+is {White advantage} {setup}.  White advantage is in centipawns;
+a negative White advantage means Black has an advantage for the
+given position.
+
+## 25 balanced setups
+
+The file `Balanced.positions.txt` has 25 balanced positions
+found by the Lua script.  The format is:
+
+seed, Iteration number, setup, best first move for White
+
+Iteration number is the number of positions we had to evaluate
+to find a balanced position.
+
