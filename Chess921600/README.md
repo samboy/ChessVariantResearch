@@ -38,7 +38,7 @@ To use FindBalancedSetup.lua, the arguments are (both optional)
 
 If we find a setup with an eval of 0, we stop our search.  Otherwise, 
 we list setups we find which have a lower White or Black advantage than 
-the last setup listed:
+the last setup listed.  Here we run it with Stockfish 17:
 
 ```
 $ lunacy FindBalancedSetup.lua 500 777
@@ -48,6 +48,22 @@ $ lunacy FindBalancedSetup.lua 500 777
 777,37,bbrnkrnq/pppppppp/8/8/8/8/PPPPPPPP/QNNRBKRB w KQkq - 0 1:-3,g2g3;
 777,137,rnbkrbqn/pppppppp/8/8/8/8/PPPPPPPP/RKBBQNRN w KQkq - 0 1:-1,d2d4;
 777,246,qbrknrbn/pppppppp/8/8/8/8/PPPPPPPP/BRKBQNNR w KQkq - 0 1:0,b2b3;
+Eval 0 found, job done
+```
+
+Stockfish 18 gives us different results:
+
+```
+$ lunacy FindBalancedSetup.lua 500 777
+777,1,bbnqrknr/pppppppp/8/8/8/8/PPPPPPPP/NRNQKBBR w KQkq - 0 1:-110,d2d4;
+777,2,rnknbqrb/pppppppp/8/8/8/8/PPPPPPPP/RBNQBKNR w KQkq - 0 1:54,c2c3;
+777,6,rkrnnbbq/pppppppp/8/8/8/8/PPPPPPPP/QBNRKRBN w KQkq - 0 1:39,b2b3;
+777,8,qnrnkbbr/pppppppp/8/8/8/8/PPPPPPPP/NRBQKBNR w KQkq - 0 1:27,e2e3;
+777,18,rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RBBKQRNN w KQkq - 0 1:19,f2f4;
+777,23,bnqbnrkr/pppppppp/8/8/8/8/PPPPPPPP/BBNNRKQR w KQkq - 0 1:9,f2f3;
+777,27,brqbnkrn/pppppppp/8/8/8/8/PPPPPPPP/NQBRNKRB w KQkq - 0 1:6,g2g3;
+777,66,bqnbrnkr/pppppppp/8/8/8/8/PPPPPPPP/QBBNRKNR w KQkq - 0 1:2,b2b4;
+777,157,nrbnkbrq/pppppppp/8/8/8/8/PPPPPPPP/RNKQBBNR w KQkq - 0 1:0,d2d4;
 Eval 0 found, job done
 ```
 
