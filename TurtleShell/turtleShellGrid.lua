@@ -69,9 +69,11 @@ end
 -- We have a multi-level table with each point, so we can keep track
 -- of lines coming out of a given point
 points = {}
+count = {} -- How many of each shape (square, triangle, etc.)
 scale = 100 -- How long each line will be in the pattern
 rad3 = .5 * (3 ^ .5)
 half = 1/2
+
 -- This doesn’t need to be precise; we just need a general sense of how
 -- big the bounding rectangle should be
 xmax = 0
@@ -209,18 +211,35 @@ function squareStraight(point1)
   draw(point2, point3)
   draw(point3, point4)
   draw(point4, point1)
+  if not count.squareStraight then
+    count.squareStraight = 1
+  else
+    count.squareStraight = count.squareStraight + 1
+  end
   return true 
 end
--- CODE HERE (Below still needs to be rewritten)
+
 -- Square, turned to the right.  Point is top left
-function squareRight(x, y)
-  return pathdef .. newline .. 
-         'd="M ' .. tostring(x) .. "," .. tostring(y) .. newline ..
-         ' l ' .. tostring(rad3) .. "," .. tostring(half) .. 
-         ' l -' .. tostring(half) .. ',' .. tostring(rad3) .. 
-         ' l -' .. tostring(rad3) .. ',-' .. tostring(half) .. 
-         ' l ' .. tostring(half) .. ',-' ..  tostring(rad3) .. ' Z" />'
+function squareRight(point1)
+  local x1 = point1.x1
+  local xrad3 = point1.xrad3
+  local y1 = point1.y1
+  local yrad3 = point1.yrad3
+  local point2 = (x1,xrad3+1,y1+half,yrad3)
+  local point3 = (x1-half,xrad3+1,y1+half,yrad3+1)
+  local point4 = (x1-half,xrad3,y1,yrad3+1)
+  draw(point1, point2)
+  draw(point2, point3)
+  draw(point3, point4)
+  draw(point4, point1)
+  if not count.squareRight then
+    count.squareRight = 1
+  else
+    count.squareRight = count.squareRight + 1
+  end
 end
+
+-- CODE HERE (Below still needs to be rewritten)
 -- Square, turned to the left.  Point is top left
 function squareLeft(x, y)
   return pathdef .. newline .. 
