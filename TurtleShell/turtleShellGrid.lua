@@ -35,6 +35,33 @@ exec $LUNACY $0 "$@"
 
 -- Make a "turtle shell" grid with a defined size in SVG format
 
+-- Utility function: table iterator
+-- Like pairs() but sorted
+function sPairs(inTable, sFunc)
+  if not sFunc then
+    sFunc = function(a, b)
+      local ta = type(a)
+      local tb = type(b)
+      if(ta == tb)
+        then return a < b
+      end
+      return tostring(ta) <
+             tostring(tb)
+    end
+  end
+  local keyList = {}
+  local index = 1
+  for k,_ in pairs(inTable) do
+    table.insert(keyList,k)
+  end
+  table.sort(keyList, sFunc)
+  return function()
+    key = keyList[index]
+    index = index + 1
+    return key, inTable[key]
+  end
+end
+
 -- Classes to define a point.  Points are in x (rational) + 
 -- x * rad3 (radical 3, i.e. 3^.5 is irrational), y + y*(3^.5) format
 -- so we never have floating point rounding errors
@@ -49,6 +76,7 @@ half = 1/2
 -- big the bounding rectangle should be
 xmax = 0
 ymax = 0
+
 -- This will point to a given point if it exists, and add it if it
 -- doesn’t exist
 function point(x1,xrad3,y1,yrad3)
@@ -77,6 +105,27 @@ function point(x1,xrad3,y1,yrad3)
   end
   return points[x1][xrad3][y1][yrad3]
 end
+
+-- Iterate through every single point
+-- This is a function factory so it can be used with “for”
+function pointIterate()
+  local list = {}
+  for k1,v1 in sPairs(points) do -- x1
+    for k2,v2 in sPairs(v1) do -- xrad3
+      for k3,v3 in sPairs(v2) do -- y1
+        for k4,v4 in sPairs(v3) do -- yrad3
+          table.insert(list, v4)
+        end -- yrad3
+      end -- y2
+    end -- xrad3
+  end -- x1
+  local index = 0
+  return function()
+    index = index + 1
+    return list[index]
+  end
+end
+
 -- Add a line between two points if it doesn’t already exist.  
 -- Input is two tables, one for each point.  
 -- Usage is like this: draw(point(1,1,2,2),point(2,2,3,3))
