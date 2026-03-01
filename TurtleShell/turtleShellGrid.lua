@@ -97,8 +97,10 @@ gridX = 7
 gridY = 7
 if #arg >= 1 then
   if arg[1]:match("h") or arg[1]:match("-") or arg[1]:match("?") then
+    -- Show help
     print "Usage: lunacy turtleShellGrid.lua {size x} {size y} {fill} {rotate}"
     print("Fill: 0 no fill; 1 fill top/bottom; 2 left/right; 3 all")
+    print("Fill: 4-6 no fill but offset on how the grid is made (6 is nice)")
     os.exit(0)
   end
   gridX=tonumber(arg[1])
@@ -111,6 +113,11 @@ end
 if #arg >= 3 then
   doFill = tonumber(arg[3])
 else
+  doFill = 0
+end
+doOffset = 0
+if doFill > 3 then
+  doOffset = doFill - 3
   doFill = 0
 end
 rotate = flase
@@ -438,7 +445,7 @@ function drawShapes(point1, phaseX, phaseY, fill)
     triangleDown(point1)
     local point3 = point(x1+half,xrad3,y1,yrad3+1)
     triangleUp(point3)
-    return x1+1,xrad3,y1,yrad3
+    return x1+1,xrad3,y1,yrad3, x1-half,xrad3,y1,yrad3+1
   end
   if (phaseX == 2 and phaseY == 0) then
     squareLeft(point1)
@@ -464,7 +471,7 @@ function drawShapes(point1, phaseX, phaseY, fill)
     triangleUp(point2)
     local point3 = point(x1+1,xrad3,y1,yrad3)
     triangleDown(point3)
-    return x1+2,xrad3,y1,yrad3
+    return x1+2,xrad3,y1,yrad3, x1+half,xrad3,y1,yrad3+1
   end
   if(phaseX == 0 and phaseY == 1) then
     triangleRight(point1)
@@ -478,7 +485,7 @@ function drawShapes(point1, phaseX, phaseY, fill)
     squareStraight(point1)
     local point2 = point(x1+1,xrad3,y1,yrad3)
     squareStraight(point2)
-    return x1+2,xrad3,y1,yrad3
+    return x1+2,xrad3,y1,yrad3, x1,xrad3,y1+1,yrad3
   end
   if(phaseX == 2 and phaseY == 1) then
     local point2 = point(x1,xrad3+1,y1-half,yrad3)
@@ -492,7 +499,7 @@ function drawShapes(point1, phaseX, phaseY, fill)
     squareStraight(point1)
     local point2 = point(x1,xrad3,y1+1,yrad3)
     squareStraight(point2)
-    return x1+1,xrad3,y1,yrad3 
+    return x1+1,xrad3,y1,yrad3, x1,xrad3,y1+2,yrad3
   end
 end
 
@@ -522,6 +529,12 @@ end
 point1 = point(2,0,2,0)
 px = 0
 py = 0
+if doOffset % 2 == 1 then
+  px = 1
+end
+if doOffset >= 2 then
+  py = 1
+end
 for a=1,gridY do
   local x1
   local xrad3
@@ -566,6 +579,9 @@ for a=1,gridY do
     end
   end
   px = 0
+  if doOffset % 2 == 1 then
+    px = 1
+  end
   py = py + 1
   py = py % 4
 end
