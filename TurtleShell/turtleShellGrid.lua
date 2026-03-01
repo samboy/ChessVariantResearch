@@ -241,7 +241,7 @@ function squareRight(point1)
 end
 
 -- Square, turned to the left.  Point is top left
-function squareLeft(x, y)
+function squareLeft(point1)
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -261,9 +261,8 @@ function squareLeft(x, y)
   return true
 end
 
--- CODE HERE (Below still needs to be rewritten)
 -- Triangle, pointing right.  Point is top left
-function triangleRight(x, y)
+function triangleRight(point1)
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -280,9 +279,8 @@ function triangleRight(x, y)
   end
   return true
 end
--- CODE HERE the three other possible triangles
 -- Triangle, pointing left.  Point is top right
-function triangleLeft(x, y)
+function triangleLeft(point1)
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -300,7 +298,7 @@ function triangleLeft(x, y)
   return true
 end
 -- Triangle, pointing up.  Point is bottom left
-function triangleUp(x, y)
+function triangleUp(point1)
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -318,7 +316,7 @@ function triangleUp(x, y)
   return true
 end
 -- Triangle, pointing down. Point is is top left
-function triangleDown(x, y)
+function triangleDown(point1)
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
