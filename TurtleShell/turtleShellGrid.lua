@@ -84,7 +84,8 @@ gridX = 7
 gridY = 7
 if #arg >= 1 then
   if arg[1]:match("h") or arg[1]:match("-") or arg[1]:match("?") then
-    print("Usage: lunacy turtleShellGrid.lua {size x} {size y} {fill}\n")
+    print("Usage: lunacy turtleShellGrid.lua {size x} {size y} {fill}")
+    print("Fill: 0 no fill; 1 fill top/bottom; 2 left/right; 3 all")
     os.exit(0)
   end
   gridX=tonumber(arg[1])
@@ -95,9 +96,9 @@ else
   gridY = gridX
 end 
 if #arg >= 3 then
-  doFill = 3 
+  doFill = tonumber(arg[3])
 else
-  doFill = false
+  doFill = 0
 end
 
 -- This will point to a given point if it exists, and add it if it
@@ -386,7 +387,14 @@ function drawShapes(point1, phaseX, phaseY, fill)
   end
   if (phaseX == 0 and phaseY == 0) then
     squareRight(point1)
-    if fill == 4 then
+    if fill == 1 then -- Left fill
+      local point2 = point(x1-1,xrad3,y1,yrad3)
+      triangleDown(point2)
+      local point3 = point(x1-1,xrad3,y1-1,yrad3)
+      squareStraight(point3)
+      triangleUp(point3)
+    end
+    if fill == 4 then -- Bottom fill
       local point2 = point(x1-half,xrad3,y1,yrad3+1)
       triangleRight(point2)
       local point3 = point(x1-1-half,xrad3,y1,yrad3+1)
@@ -405,6 +413,13 @@ function drawShapes(point1, phaseX, phaseY, fill)
   end
   if (phaseX == 2 and phaseY == 0) then
     squareLeft(point1)
+    if fill == 3 then -- Fill on right
+      local point2 = point(x1,xrad3+1,y1-half,yrad3)
+      triangleDown(point2)
+      local point3 = point(x1,xrad3+1,y1-half-1,yrad3)
+      squareStraight(point3)
+      triangleUp(point3)
+    end
     if fill == 2 then -- Fill on top
       local point4 = point(x1,xrad3,y1-1,yrad3)
       triangleRight(point4) 
@@ -488,13 +503,17 @@ for a=1,gridY do
   local y1d
   local yr3d
   for b=1,gridX do
-    if(b == 1) then
+    if py == 0 and a > 1 and b == 1 and doFill >= 2 then
+      x1, xrad3, y1, yrad3, x1d, xr3d, y1d, yr3d = drawShapes(point1,px,py,1)
+    elseif(b == 1) then
       x1, xrad3, y1, yrad3, x1d, xr3d, y1d, yr3d = drawShapes(point1, px, py)
-    elseif px == 2 and a == 1 and doFill then
+    elseif py == 2 and px == 0 and b == gridX and doFill >=2 then
+      x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 3)
+    elseif px == 2 and a == 1 and doFill % 2 == 1 then
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 2)
-    elseif px == 2 and a == gridY and doFill then
+    elseif px == 2 and a == gridY and doFill % 2 == 1 then
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 4)
-    elseif px == 0 and b > 2 and a == gridY and doFill then
+    elseif px == 0 and b > 2 and a == gridY and doFill % 2 == 1 then
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 4)
     else 
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py)
