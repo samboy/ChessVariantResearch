@@ -225,9 +225,9 @@ function squareRight(point1)
   local xrad3 = point1.xrad3
   local y1 = point1.y1
   local yrad3 = point1.yrad3
-  local point2 = (x1,xrad3+1,y1+half,yrad3)
-  local point3 = (x1-half,xrad3+1,y1+half,yrad3+1)
-  local point4 = (x1-half,xrad3,y1,yrad3+1)
+  local point2 = point(x1,xrad3+1,y1+half,yrad3)
+  local point3 = point(x1-half,xrad3+1,y1+half,yrad3+1)
+  local point4 = point(x1-half,xrad3,y1,yrad3+1)
   draw(point1, point2)
   draw(point2, point3)
   draw(point3, point4)
@@ -237,145 +237,102 @@ function squareRight(point1)
   else
     count.squareRight = count.squareRight + 1
   end
+  return true
+end
+
+-- Square, turned to the left.  Point is top left
+function squareLeft(x, y)
+  local x1 = point1.x1
+  local xrad3 = point1.xrad3
+  local y1 = point1.y1
+  local yrad3 = point1.yrad3
+  local point2 = point(x1,xrad3+1,y1-half,yrad3)
+  local point3 = point(x1+half,xrad3+1,y1-half,yrad3+1)
+  local point4 = point(x1+half,xrad3,y1,yrad3+1)
+  draw(point1, point2)
+  draw(point2, point3)
+  draw(point3, point4)
+  draw(point4, point1)
+  if not count.squareLeft then
+    count.squareLeft = 1
+  else
+    count.squareLeft = count.squareLeft + 1
+  end
+  return true
 end
 
 -- CODE HERE (Below still needs to be rewritten)
--- Square, turned to the left.  Point is top left
-function squareLeft(x, y)
-  return pathdef .. newline .. 
-         'd="M ' .. tostring(x) .. "," .. tostring(y) .. newline ..
-         ' l ' .. tostring(rad3) .. ",-" .. tostring(half) .. 
-         ' l ' .. tostring(half) .. ',' .. tostring(rad3) .. 
-         ' l -' .. tostring(rad3) .. ',' .. tostring(half) .. 
-         ' l -' .. tostring(half) .. ',-' .. tostring(rad3) .. ' Z" />'
-end
-
 -- Triangle, pointing right.  Point is top left
 function triangleRight(x, y)
-  return pathdef .. newline .. 
-         'd="M ' .. tostring(x) .. "," .. tostring(y) .. newline ..
-         ' l ' .. tostring(rad3) .. ',' .. tostring(half) ..
-         ' l -' .. tostring(rad3) .. ',' .. tostring(half) ..
-         ' l 0,-' .. tostring(scale) .. ' Z" />'
+  local x1 = point1.x1
+  local xrad3 = point1.xrad3
+  local y1 = point1.y1
+  local yrad3 = point1.yrad3
+  local point2 = point(x1,xrad3+1,y1+half,yrad3)
+  local point3 = point(x1,xrad3,y1+1,yrad3)
+  draw(point1, point2)
+  draw(point2, point3)
+  draw(point3, point1)
+  if not count.triangleRight then
+    count.triangleRight = 1
+  else
+    count.triangleRight = count.triangleRight + 1
+  end
+  return true
 end
+-- CODE HERE the three other possible triangles
 -- Triangle, pointing left.  Point is top right
 function triangleLeft(x, y)
-  return pathdef .. newline .. 
-         'd="M ' .. tostring(x) .. "," .. tostring(y) .. newline ..
-         ' l -' .. tostring(rad3) .. ',' .. tostring(half) ..
-         ' l ' .. tostring(rad3) .. ',' .. tostring(half) ..
-         ' l 0,-' .. tostring(scale) .. ' Z" />'
+  local x1 = point1.x1
+  local xrad3 = point1.xrad3
+  local y1 = point1.y1
+  local yrad3 = point1.yrad3
+  local point2 = point(x1,xrad3-1,y1+half,yrad3)
+  local point3 = point(x1,xrad3,y1+1,yrad3)
+  draw(point1, point2)
+  draw(point2, point3)
+  draw(point3, point1)
+  if not count.triangleLeft then
+    count.triangleLeft = 1
+  else
+    count.triangleLeft = count.triangleLeft + 1
+  end
+  return true
 end
 -- Triangle, pointing up.  Point is bottom left
 function triangleUp(x, y)
-  return pathdef .. newline .. 
-         'd="M ' .. tostring(x) .. "," .. tostring(y) .. newline ..
-         ' l ' .. tostring(half) .. ',-' .. tostring(rad3) ..
-         ' l ' .. tostring(half) .. ',' .. tostring(rad3) ..
-         ' l -' .. tostring(scale) .. ',0 Z" />'
+  local x1 = point1.x1
+  local xrad3 = point1.xrad3
+  local y1 = point1.y1
+  local yrad3 = point1.yrad3
+  local point2 = point(x1+half,xrad3,y1,yrad3-1)
+  local point3 = point(x1+1,xrad3,y1,yrad3)
+  draw(point1, point2)
+  draw(point2, point3)
+  draw(point3, point1)
+  if not count.triangleUp then
+    count.triangleUp = 1
+  else
+    count.triangleUp = count.triangleUp + 1
+  end
+  return true
 end
 -- Triangle, pointing down. Point is is top left
 function triangleDown(x, y)
-  return pathdef .. newline .. 
-         'd="M ' .. tostring(x) .. "," .. tostring(y) .. newline ..
-         ' l ' .. tostring(half) .. ',' .. tostring(rad3) ..
-         ' l ' .. tostring(half) .. ',-' .. tostring(rad3) ..
-         ' l -' .. tostring(scale) .. ',0 Z" />'
-end
-
--- Make the following part of the "turtle shell":
--- Three triangles on top (two pointed up, one pointed down)
--- Two squares in the middle row (next to each other left-right)
--- Three triangles on bottom (two pointed down, one pointed up)
--- The shape will be 2 * scale wide, 2 * rad3 + scale high
--- Input: x and y of top left of left square
--- Output: String with SVG code
-function hTurtleShell(x, y)
-  local out = ""
-  out = out .. squareStraight(x,y) .. newline
-  out = out .. squareStraight(x + scale, y) .. newline
-  out = out .. triangleUp(x,y) .. newline
-  out = out .. triangleDown(x + half, y - rad3) .. newline
-  out = out .. triangleUp(x + scale, y) .. newline
-  out = out .. triangleDown(x, y + scale) .. newline
-  out = out .. triangleUp(x + half, y + scale + rad3) .. newline
-  out = out .. triangleDown(x + scale, y + scale) .. newline
-  return out
-end
-
--- Make the following part of the "turtle shell"
--- Two squares, one above the other one
--- Six triangles around those two squares
--- Two squares at angles around the upper two squares
--- Input: top left corner of top square
-function vTurtleShell(x, y)
-  local out = ""
-  out = out .. squareStraight(x,y) .. newline
-  out = out .. squareStraight(x,y + scale) .. newline
-  out = out .. triangleLeft(x,y) .. newline
-  out = out .. triangleRight(x - rad3,y + half) .. newline
-  out = out .. triangleLeft(x,y + scale) .. newline
-  out = out .. triangleRight(x + scale, y) .. newline
-  out = out .. triangleLeft(x + scale + rad3, y + half) .. newline
-  out = out .. triangleRight(x + scale, y + scale) .. newline
-  -- Top angled squares
-  out = out .. squareLeft(x - half - rad3, y - rad3 + half) .. newline
-  out = out .. squareRight(x + scale + half,y - rad3) .. newline
-  return out
-end
--- Output some of a Turtle shell on standard output
-function try1()
-  -- In SVG, x goes right, y goes down.
-  print(svgHeader)
-  print(squareStraight(scale,scale))
-  print(triangleRight(scale * 2,scale))
-  print(triangleLeft(scale * 2 + rad3, scale - half))
-  print(triangleUp(scale,scale))
-  print(triangleDown(scale,scale * 2))
-  print(squareRight(scale * 2, scale * 2))
-  print(triangleLeft(scale * 2 + rad3, scale + half))
-  print(squareStraight(scale * 2 + rad3,half))
-  print(squareStraight(scale * 2 + rad3,scale + half))
-  print(hTurtleShell(scale + half + rad3,scale * 2 + half + rad3))
-  print(triangleRight(scale * 3 + rad3,half))
-  print(triangleRight(scale * 3 + rad3,scale + half))
-  print(triangleLeft(scale * 3 + rad3 * 2, scale))
-  print(vTurtleShell(scale * 2 + rad3,scale * 3 + half + 2 * rad3))
-  print(hTurtleShell(scale * 3 + rad3 * 2, scale))
-  -- This is how these meta tiles look vertically stacked, going down
-  print(vTurtleShell(scale * 3 + rad3 * 2 + half, scale * 2 + rad3)) 
-  print(hTurtleShell(scale * 3 + rad3 * 2, scale * 4 + rad3 * 2))
-  -- Here is a vTurtleShell to the right of the above hTurtleShell
-  print(vTurtleShell(scale * 5 + rad3 * 3, scale * 3 + half + rad3 * 2))
-  -- And a hTurtleShell above that one
-  print(hTurtleShell(scale * 4 + half + rad3 * 3, scale * 2 + half + rad3 * 1))
-  -- And move up to another vTurtleShell
-  print(vTurtleShell(scale * 5 + rad3 * 3, half))
-  -- OK, move over and down some
-  print(vTurtleShell(scale * 3 + rad3 * 2 + half, scale * 5 + rad3 * 3))
-  print(svgFooter)
-end
-
--- This converts the "turtle shell" in to a grid of tile groups, so
--- we can tile the plane the same way we would tile the plane with
--- squares
-function turtleShellGridPoint(x, y)
-  type = ((x % 2) + (y % 2)) % 2
-  if type == 0 then
-    return vTurtleShell(scale * x + rad3 * x + half * x,
-                        scale * y + rad3 * y + half * y)
-  else 
-    return hTurtleShell(scale * x + rad3 * x + half * (x - 1),
-                        scale * y + rad3 * y + half * (y + 1))
+  local x1 = point1.x1
+  local xrad3 = point1.xrad3
+  local y1 = point1.y1
+  local yrad3 = point1.yrad3
+  local point2 = point(x1+half,xrad3,y1,yrad3+1)
+  local point3 = point(x1+1,xrad3,y1,yrad3)
+  draw(point1, point2)
+  draw(point2, point3)
+  draw(point3, point1)
+  if not count.triangleDown then
+    count.triangleDown = 1
+  else
+    count.triangleDown = count.triangleDown + 1
   end
+  return true
 end
-
-print(svgHeader)
-for a = 0,gridCount do
-  for b = 0,gridCount do
-    print(turtleShellGridPoint(a,b))
-  end
-end
-print(svgFooter)
---try1()
 
