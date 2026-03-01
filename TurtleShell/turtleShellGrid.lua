@@ -84,7 +84,7 @@ gridX = 7
 gridY = 7
 if #arg >= 1 then
   if arg[1]:match("h") or arg[1]:match("-") or arg[1]:match("?") then
-    print("Usage: lunacy turtleShellGrid.lua {size x} {size y} {fill}")
+    print "Usage: lunacy turtleShellGrid.lua {size x} {size y} {fill} {rotate}"
     print("Fill: 0 no fill; 1 fill top/bottom; 2 left/right; 3 all")
     os.exit(0)
   end
@@ -99,6 +99,10 @@ if #arg >= 3 then
   doFill = tonumber(arg[3])
 else
   doFill = 0
+end
+rotate = flase
+if #arg >= 4 then
+  rotate = true
 end
 
 -- This will point to a given point if it exists, and add it if it
@@ -174,18 +178,24 @@ end
 pathdef = '<path fill="none" stroke="black" stroke-width="5" '
 linefeed = "\n"
 
-function svgHeader(scale, xmax, ymax) 
-  return '<svg viewBox="0 0 ' .. tostring((xmax + 2) * scale) 
+function svgHeader(scale, xmax, ymax, rotate) 
+  if not rotate then
+    return '<svg viewBox="0 0 ' .. tostring((xmax + 2) * scale) 
+           .. ' ' ..
+           tostring((ymax + 2) * scale)
+           .. '" xmlns="http://www.w3.org/2000/svg">'
+  end
+  return '<svg viewBox="0 0 ' .. tostring((ymax + 2) * scale) 
          .. ' ' ..
-            tostring((ymax + 2) * scale)
-	    .. '" xmlns="http://www.w3.org/2000/svg">'
+         tostring((xmax + 2) * scale)
+         .. '" xmlns="http://www.w3.org/2000/svg">'
 end
-function svgFooter(scale, xmax, ymax)
+function svgFooter(scale, xmax, ymax, rotate)
   return '</svg>'
 end
 
 -- If a given line has not been drawn, draw it
-function drawLine(scale, point1, point2)
+function drawLine(scale, point1, point2, rotate)
   if not point1.drawn then
     point1.drawn = {}
   end
@@ -206,12 +216,18 @@ function drawLine(scale, point1, point2)
   local yA = point1.y1 * scale + point1.yrad3 * rad3 * scale
   local xB = point2.x1 * scale + point2.xrad3 * rad3 * scale
   local yB = point2.y1 * scale + point2.yrad3 * rad3 * scale
-  local out = pathdef .. linefeed .. 'd="M ' ..
-      tostring(xA)
-      .. "," ..
-      tostring(yA)
-      .. ' l ' .. tostring(xB - xA) .. "," .. tostring(yB - yA)
-      .. ' Z" />'
+  local out = ""
+  if not rotate then
+    out = pathdef .. linefeed .. 'd="M ' ..
+          tostring(xA) .. "," ..  tostring(yA)
+          .. ' l ' .. tostring(xB - xA) .. "," .. tostring(yB - yA)
+          .. ' Z" />'
+  else 
+    out = pathdef .. linefeed .. 'd="M ' ..
+          tostring(yA) .. "," ..  tostring(xA)
+          .. ' l ' .. tostring(yB - yA) .. "," .. tostring(xB - xA)
+          .. ' Z" />'
+  end
   point1["drawn"][point2] = true
   point2["drawn"][point1] = true
   return out
@@ -542,13 +558,13 @@ for a=1,gridY do
 end
 
 -- Now, convert the points in to SVG
-print(svgHeader(scale,xmax,ymax))
+print(svgHeader(scale,xmax,ymax,rotate))
 print(svgTally())
 for point1 in pointIterate() do
   if point1.lines then
     for k,v in pairs(point1.lines) do
-      print(drawLine(scale,point1,k))
+      print(drawLine(scale,point1,k,rotate))
     end
   end
 end
-print(svgFooter(scale, xmax, ymax))
+print(svgFooter(scale, xmax, ymax, rotate))
