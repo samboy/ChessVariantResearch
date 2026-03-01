@@ -1,5 +1,8 @@
 #!/bin/sh
+doFill=false
 _rem=--[=[
+# Set doFill to true, and we round out the top and bottom of the grid
+# to have it look nicer
 # POSIX shell wrapper to call correct version of Lua or Lunacy
 
 LUNACY=""
@@ -357,8 +360,15 @@ end
 -- point1: Upper left corner of shapes to draw
 -- phaseX: What kind of shapes to draw (left to right) 0,1,2,or 3
 -- phaseY: Like phaseX, but vertical
+-- fill: Whether to, at the edge, round out the edge
+-- 0: No
+-- 1: Fill on left
+-- 2: Fill on top
+-- 3: Fill on right
+-- 4: Fill on bottom
 -- Return location one over right, location one down
-function drawShapes(point1, phaseX, phaseY)
+function drawShapes(point1, phaseX, phaseY, fill)
+  if not fill then fill = 0 end
   phaseX = phaseX % 4
   phaseY = phaseY % 4
   local x1 = point1.x1
@@ -372,6 +382,13 @@ function drawShapes(point1, phaseX, phaseY)
   end
   if (phaseX == 0 and phaseY == 0) then
     squareRight(point1)
+    if fill == 4 then
+      local point2 = point(x1-half,xrad3,y1,yrad3+1)
+      triangleRight(point2)
+      local point3 = point(x1-1-half,xrad3,y1,yrad3+1)
+      squareStraight(point3)
+      triangleLeft(point3)
+    end
     return x1,xrad3+1,y1+half,yrad3, x1-half,xrad3,y1,yrad3+1
   end
   if (phaseX == 1 and phaseY == 0) then
@@ -384,6 +401,13 @@ function drawShapes(point1, phaseX, phaseY)
   end
   if (phaseX == 2 and phaseY == 0) then
     squareLeft(point1)
+    if fill == 2 then -- Fill on top
+      local point4 = point(x1,xrad3,y1-1,yrad3)
+      triangleRight(point4) 
+      local point5 = point(x1-1,xrad3,y1-1,yrad3)
+      squareStraight(point5)
+      triangleLeft(point5)
+    end
     return x1,xrad3+1,y1-half,yrad3, x1+half,xrad3,y1,yrad3+1
   end
   if (phaseX == 3 and phaseY == 0) then
@@ -462,6 +486,10 @@ for a=1,gridY do
   for b=1,gridX do
     if(b == 1) then
       x1, xrad3, y1, yrad3, x1d, xr3d, y1d, yr3d = drawShapes(point1, px, py)
+    elseif px == 2 and a == 1 and doFill then
+      x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 2)
+    elseif px == 2 and a == gridY and doFill then
+      x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 4)
     else 
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py)
     end
