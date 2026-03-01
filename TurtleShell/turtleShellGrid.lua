@@ -151,10 +151,11 @@ end
 
 pathdef = '<path fill="none" stroke="black" stroke-width="5" '
 linefeed = "\n"
+
 function svgHeader(scale, xmax, ymax) 
-  return '<svg viewBox="0 0 ' .. tostring(xmax * scale + 1) 
+  return '<svg viewBox="0 0 ' .. tostring((xmax + 1) * scale) 
          .. ' ' ..
-            tostring(ymax * scale + 1)
+            tostring((ymax + 1) * scale)
 	    .. '" xmlns="http://www.w3.org/2000/svg">'
 end
 function svgFooter(scale, xmax, ymax)
@@ -184,10 +185,10 @@ function drawLine(scale, point1, point2)
   local xB = point2.x1 * scale + point2.xrad3 * rad3 * scale
   local yB = point2.y1 * scale + point2.yrad3 * rad3 * scale
   local out = pathdef .. linefeed .. 'd="M ' ..
-      tostring(Xa)
+      tostring(xA)
       .. "," ..
-      tostring(Ya)
-      .. ' l ' .. tostring(xB - Xa) .. "," .. tostring(yB - yA)
+      tostring(yA)
+      .. ' l ' .. tostring(xB - xA) .. "," .. tostring(yB - yA)
       .. ' Z" />'
   point1["drawn"][point2] = true
   point2["drawn"][point1] = true
@@ -362,6 +363,41 @@ function drawSquare(point1, phaseX, phaseY)
     triangleUp(point3)
     return x1+1,xrad3,y1,yrad3
   end
-  -- CODE HERE
+  if (phaseX == 2 and phaseY == 0) then
+    squareLeft(point1)
+    return x1,xrad3+1,y1-half,yrad3
+  end
+  if (phaseX == 3 and phaseY == 0) then
+    triangleDown(point1)
+    local point2 = point(x1+half,xrad3,y1,yrad3+1)
+    triangleUp(point2)
+    local point3 = point(x1+1,xrad3,y1,yrad3)
+    triangleDown(point3)
+    return x1+2,xrad3,y1,yrad3
+  end
+  -- CODE HERE: PhaseY 1,2, and 3
 end
-    
+   
+point1 = point(2,0,2,0)
+px = 0
+for a=1,7 do
+  local x1
+  local xrad3
+  local y1
+  local yrad3
+  local py = 0
+  x1, xrad3, y1, yrad3 = drawSquare(point1, px, py)
+  px = px + 1
+  px = px % 4
+  point1 = point(x1, xrad3, y1, yrad3) 
+end
+
+print(svgHeader(100,xmax,ymax))
+for point1 in pointIterate() do
+  if point1.lines then
+    for k,v in pairs(point1.lines) do
+      print(drawLine(100,point1,k))
+    end
+  end
+end
+print(svgFooter(100, xmax, ymax))
