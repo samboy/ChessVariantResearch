@@ -334,3 +334,34 @@ function triangleDown(point1) -- top left
   return true
 end
 
+-- Draw a single “square” (can have multiple tiles) on the board
+-- A square is one of:
+-- * A tilted square
+-- * Two straight sqares next to each other
+-- * Three triangles next to each other
+-- point1: Upper left corner of square to draw
+-- phaseX: What kind of “square” to draw (left to right) 0,1,2,or 3
+-- phaseY: Like phaseX, but vertical
+-- Return location one over right, location one down
+function drawSquare(point1, phaseX, phaseY)
+  phaseX = phaseX % 4
+  phaseY = phaseY % 4
+  local x1 = point1.x1
+  local xrad3 = point1.xrad3
+  local y1 = point1.y1
+  local yrad3 = point1.yrad3
+  if (phaseX == 0 and phaseY == 0) then
+    squareRight(point1)
+    return x1,xrad3+1,y1+half,yrad3, x1-half,xrad3,y1,yrad3+1
+  end
+  if (phaseX == 1 and phaseY == 0) then
+    local point2 = point(x1-half,xrad3,y1,yrad3+1)
+    triangleUp(point2)
+    triangleDown(point1)
+    local point3 = point(x1+half,xrad3,y1,yrad3+1)
+    triangleUp(point3)
+    return x1+1,xrad3,y1,yrad3
+  end
+  -- CODE HERE
+end
+    
