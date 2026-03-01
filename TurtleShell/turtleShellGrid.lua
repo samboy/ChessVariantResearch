@@ -79,6 +79,20 @@ half = 1/2
 xmax = 0
 ymax = 0
 
+-- Get the size of the grid from the command line
+gridX = 7
+gridY = 7
+if #arg >= 1 then
+  if arg[1]:match("h") or arg[1]:match("-") or arg[1]:match("?") then
+    print("Usage: lunacy turtleShellGrid.lua {size x} {size y}\n")
+    os.exit(0)
+  end
+  gridX=tonumber(arg[1])
+end
+if #arg >= 2 then
+  gridY=tonumber(arg[1])
+end 
+
 -- This will point to a given point if it exists, and add it if it
 -- doesn’t exist
 function point(x1,xrad3,y1,yrad3)
@@ -351,6 +365,11 @@ function drawShapes(point1, phaseX, phaseY)
   local xrad3 = point1.xrad3
   local y1 = point1.y1
   local yrad3 = point1.yrad3
+  if phaseY >= 2 then
+    phaseX = phaseX + 2
+    phaseX = phaseX % 4
+    phaseY = phaseY - 2
+  end
   if (phaseX == 0 and phaseY == 0) then
     squareRight(point1)
     return x1,xrad3+1,y1+half,yrad3, x1-half,xrad3,y1,yrad3+1
@@ -365,7 +384,7 @@ function drawShapes(point1, phaseX, phaseY)
   end
   if (phaseX == 2 and phaseY == 0) then
     squareLeft(point1)
-    return x1,xrad3+1,y1-half,yrad3
+    return x1,xrad3+1,y1-half,yrad3, x1+half,xrad3,y1,yrad3+1
   end
   if (phaseX == 3 and phaseY == 0) then
     triangleDown(point1)
@@ -395,7 +414,7 @@ function drawShapes(point1, phaseX, phaseY)
     triangleRight(point1)
     local point3 = point(x1,xrad3+1,y1+half,yrad3)
     triangleLeft(point3)
-    return x1,xrad3+1,y1-half,yrad3
+    return x1,xrad3+1,y1-half,yrad3, x1,xrad3,y1+1,yrad3
   end
   if(phaseX == 3 and phaseY == 1) then
     squareStraight(point1)
@@ -403,15 +422,34 @@ function drawShapes(point1, phaseX, phaseY)
     squareStraight(point2)
     return x1+1,xrad3,y1,yrad3 
   end
-  -- CODE HERE: PhaseY 2 and 3
+end
+
+function svgTally() 
+  if not count.squareStraight then count.squareStraight = 0 end
+  if not count.squareLeft then count.squareLeft = 0 end
+  if not count.squareRight then count.squareRight = 0 end
+  count.squares = count.squareStraight + count.squareLeft + count.squareRight
+  if not count.triangleUp then count.triangleUp = 0 end
+  if not count.triangleDown then count.triangleDown = 0 end
+  if not count.triangleLeft then count.triangleLeft = 0 end
+  if not count.triangleRight then count.triangleRight = 0 end
+  count.triangles = count.triangleUp + count.triangleDown +
+                    count.triangleLeft + count.triangleRight
+  count.points = 0
+  for a in pointIterate() do
+    if a.lines then count.points = count.points + 1 end
+  end
+  out = "<!-- Squares:   " .. count.squares .. linefeed ..
+        "     Triangles: " .. count.triangles .. linefeed ..
+        "     Shapes:    " .. (count.squares + count.triangles) .. linefeed ..
+        "     Points:    " .. count.points .. " -->" .. linefeed
+  return out
 end
   
 -- Put the shapes on the grid 
 point1 = point(2,0,2,0)
 px = 0
 py = 0
-gridX = 7
-gridY = 2
 for a=1,gridY do
   local x1
   local xrad3
@@ -442,6 +480,7 @@ end
 
 -- Now, convert the points in to SVG
 print(svgHeader(scale,xmax,ymax))
+print(svgTally())
 for point1 in pointIterate() do
   if point1.lines then
     for k,v in pairs(point1.lines) do
