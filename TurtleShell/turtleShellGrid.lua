@@ -153,9 +153,9 @@ pathdef = '<path fill="none" stroke="black" stroke-width="5" '
 linefeed = "\n"
 
 function svgHeader(scale, xmax, ymax) 
-  return '<svg viewBox="0 0 ' .. tostring((xmax + 1) * scale) 
+  return '<svg viewBox="0 0 ' .. tostring((xmax + 2) * scale) 
          .. ' ' ..
-            tostring((ymax + 1) * scale)
+            tostring((ymax + 2) * scale)
 	    .. '" xmlns="http://www.w3.org/2000/svg">'
 end
 function svgFooter(scale, xmax, ymax)
@@ -335,16 +335,16 @@ function triangleDown(point1) -- top left
   return true
 end
 
--- Draw a single “square” (can have multiple tiles) on the board
--- A square is one of:
+-- Draw a set of shapes (can have multiple tiles) on the board
+-- Shapes are one of:
 -- * A tilted square
 -- * Two straight sqares next to each other
 -- * Three triangles next to each other
--- point1: Upper left corner of square to draw
--- phaseX: What kind of “square” to draw (left to right) 0,1,2,or 3
+-- point1: Upper left corner of shapes to draw
+-- phaseX: What kind of shapes to draw (left to right) 0,1,2,or 3
 -- phaseY: Like phaseX, but vertical
 -- Return location one over right, location one down
-function drawSquare(point1, phaseX, phaseY)
+function drawShapes(point1, phaseX, phaseY)
   phaseX = phaseX % 4
   phaseY = phaseY % 4
   local x1 = point1.x1
@@ -375,29 +375,78 @@ function drawSquare(point1, phaseX, phaseY)
     triangleDown(point3)
     return x1+2,xrad3,y1,yrad3
   end
-  -- CODE HERE: PhaseY 1,2, and 3
+  if(phaseX == 0 and phaseY == 1) then
+    triangleRight(point1)
+    local point2 = point(x1,xrad3+1,y1+half,yrad3)
+    triangleLeft(point2)
+    local point3 = point(x1,xrad3,y1+1,yrad3)
+    triangleRight(point3)
+    return x1,xrad3+1,y1+half,yrad3, x1,xrad3,y1+2,yrad3
+  end
+  if(phaseX == 1 and phaseY == 1) then
+    squareStraight(point1)
+    local point2 = point(x1+1,xrad3,y1,yrad3)
+    squareStraight(point2)
+    return x1+2,xrad3,y1,yrad3
+  end
+  if(phaseX == 2 and phaseY == 1) then
+    local point2 = point(x1,xrad3+1,y1-half,yrad3)
+    triangleLeft(point2)
+    triangleRight(point1)
+    local point3 = point(x1,xrad3+1,y1+half,yrad3)
+    triangleLeft(point3)
+    return x1,xrad3+1,y1-half,yrad3
+  end
+  if(phaseX == 3 and phaseY == 1) then
+    squareStraight(point1)
+    local point2 = point(x1,xrad3,y1+1,yrad3)
+    squareStraight(point2)
+    return x1+1,xrad3,y1,yrad3 
+  end
+  -- CODE HERE: PhaseY 2 and 3
 end
-   
+  
+-- Put the shapes on the grid 
 point1 = point(2,0,2,0)
 px = 0
-for a=1,7 do
+py = 0
+gridX = 7
+gridY = 2
+for a=1,gridY do
   local x1
   local xrad3
   local y1
   local yrad3
-  local py = 0
-  x1, xrad3, y1, yrad3 = drawSquare(point1, px, py)
-  px = px + 1
-  px = px % 4
-  point1 = point(x1, xrad3, y1, yrad3) 
+  local x1d
+  local xr3d
+  local y1d
+  local yr3d
+  for b=1,gridX do
+    if(b == 1) then
+      x1, xrad3, y1, yrad3, x1d, xr3d, y1d, yr3d = drawShapes(point1, px, py)
+    else 
+      x1, xrad3, y1, yrad3 = drawShapes(point1, px, py)
+    end
+    px = px + 1
+    px = px % 4
+    if(b < gridX) then
+      point1 = point(x1, xrad3, y1, yrad3) 
+    else
+      point1 = point(x1d, xr3d, y1d, yr3d) 
+    end
+  end
+  px = 0
+  py = py + 1
+  py = py % 4
 end
 
-print(svgHeader(100,xmax,ymax))
+-- Now, convert the points in to SVG
+print(svgHeader(scale,xmax,ymax))
 for point1 in pointIterate() do
   if point1.lines then
     for k,v in pairs(point1.lines) do
-      print(drawLine(100,point1,k))
+      print(drawLine(scale,point1,k))
     end
   end
 end
-print(svgFooter(100, xmax, ymax))
+print(svgFooter(scale, xmax, ymax))
