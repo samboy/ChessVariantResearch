@@ -1,8 +1,5 @@
 #!/bin/sh
-doFill=false
 _rem=--[=[
-# Set doFill to true, and we round out the top and bottom of the grid
-# to have it look nicer
 # POSIX shell wrapper to call correct version of Lua or Lunacy
 
 LUNACY=""
@@ -87,7 +84,7 @@ gridX = 7
 gridY = 7
 if #arg >= 1 then
   if arg[1]:match("h") or arg[1]:match("-") or arg[1]:match("?") then
-    print("Usage: lunacy turtleShellGrid.lua {size x} {size y}\n")
+    print("Usage: lunacy turtleShellGrid.lua {size x} {size y} {fill}\n")
     os.exit(0)
   end
   gridX=tonumber(arg[1])
@@ -95,6 +92,9 @@ end
 if #arg >= 2 then
   gridY=tonumber(arg[1])
 end 
+if #arg >= 3 then
+  doFill=true
+end
 
 -- This will point to a given point if it exists, and add it if it
 -- doesn’t exist
@@ -489,6 +489,8 @@ for a=1,gridY do
     elseif px == 2 and a == 1 and doFill then
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 2)
     elseif px == 2 and a == gridY and doFill then
+      x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 4)
+    elseif px == 0 and b > 2 and a == gridY and doFill then
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 4)
     else 
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py)
