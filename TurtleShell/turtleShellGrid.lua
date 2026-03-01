@@ -123,7 +123,7 @@ function point(x1,xrad3,y1,yrad3)
   if x1 + rad3 * xrad3 > xmax then
     xmax = x1 + rad3 * xrad3
   end
-  if y1 + rad3 * yrad3 > xmax then
+  if y1 + rad3 * yrad3 > ymax then
     ymax = y1 + rad3 * yrad3
   end
   return points[x1][xrad3][y1][yrad3]
