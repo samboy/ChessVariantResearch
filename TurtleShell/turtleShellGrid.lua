@@ -507,7 +507,8 @@ for a=1,gridY do
       x1, xrad3, y1, yrad3, x1d, xr3d, y1d, yr3d = drawShapes(point1,px,py,1)
     elseif(b == 1) then
       x1, xrad3, y1, yrad3, x1d, xr3d, y1d, yr3d = drawShapes(point1, px, py)
-    elseif py == 2 and px == 0 and b == gridX and doFill >=2 then
+    elseif py % 2 == 0 and px % 2 == 0 and a > 2 and a < gridY and
+	   b == gridX and doFill >= 2 then
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 3)
     elseif px == 2 and a == 1 and doFill % 2 == 1 then
       x1, xrad3, y1, yrad3 = drawShapes(point1, px, py, 2)
