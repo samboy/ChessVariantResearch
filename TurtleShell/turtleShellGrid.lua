@@ -199,7 +199,7 @@ end
 -- Output: String with SVG of shape
 
 -- Straight square.  Point is top left
-function squareStraight(point1) 
+function squareStraight(point1) -- top left
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -220,7 +220,7 @@ function squareStraight(point1)
 end
 
 -- Square, turned to the right.  Point is top left
-function squareRight(point1)
+function squareRight(point1) -- top left
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -241,7 +241,7 @@ function squareRight(point1)
 end
 
 -- Square, turned to the left.  Point is top left
-function squareLeft(point1)
+function squareLeft(point1) -- top left
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -262,7 +262,7 @@ function squareLeft(point1)
 end
 
 -- Triangle, pointing right.  Point is top left
-function triangleRight(point1)
+function triangleRight(point1) -- top left
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -280,7 +280,7 @@ function triangleRight(point1)
   return true
 end
 -- Triangle, pointing left.  Point is top right
-function triangleLeft(point1)
+function triangleLeft(point1) -- top right
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -298,7 +298,7 @@ function triangleLeft(point1)
   return true
 end
 -- Triangle, pointing up.  Point is bottom left
-function triangleUp(point1)
+function triangleUp(point1) -- bottom left
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
@@ -316,7 +316,7 @@ function triangleUp(point1)
   return true
 end
 -- Triangle, pointing down. Point is is top left
-function triangleDown(point1)
+function triangleDown(point1) -- top left
   local x1 = point1.x1
   local xrad3 = point1.xrad3
   local y1 = point1.y1
