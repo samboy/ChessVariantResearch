@@ -90,10 +90,14 @@ if #arg >= 1 then
   gridX=tonumber(arg[1])
 end
 if #arg >= 2 then
-  gridY=tonumber(arg[1])
+  gridY=tonumber(arg[2])
+else
+  gridY = gridX
 end 
 if #arg >= 3 then
-  doFill=true
+  doFill = 3 
+else
+  doFill = false
 end
 
 -- This will point to a given point if it exists, and add it if it
