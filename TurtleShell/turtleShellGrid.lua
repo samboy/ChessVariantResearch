@@ -199,16 +199,20 @@ pathdef = '<path fill="none" stroke="black" stroke-width="5" '
 linefeed = "\n"
 
 function svgHeader(scale, xmax, ymax, rotate) 
+  local width = math.floor(xmax * scale + 1.0) 
+  local height = math.floor(ymax * scale + 1.0) 
   if not rotate then
     return '<svg viewBox="0 0 ' .. tostring((xmax + 2) * scale) 
            .. ' ' ..
-           tostring((ymax + 2) * scale)
-           .. '" xmlns="http://www.w3.org/2000/svg">'
+           tostring((ymax + 2) * scale) ..
+           '" width="' .. width .. '" height="' .. height .. '" '
+           .. 'xmlns="http://www.w3.org/2000/svg">'
   end
   return '<svg viewBox="0 0 ' .. tostring((ymax + 2) * scale) 
          .. ' ' ..
-         tostring((xmax + 2) * scale)
-         .. '" xmlns="http://www.w3.org/2000/svg">'
+         tostring((xmax + 2) * scale) ..
+         '" width="' .. width .. '" height="' .. height .. '" '
+         .. 'xmlns="http://www.w3.org/2000/svg">'
 end
 function svgFooter(scale, xmax, ymax, rotate)
   return '</svg>'
@@ -592,7 +596,10 @@ print(svgTally())
 for point1 in pointIterate() do
   if point1.lines then
     for k,v in pairs(point1.lines) do
-      print(drawLine(scale,point1,k,rotate))
+      local thisLine = drawLine(scale,point1,k,rotate)
+      if thisLine and thisLine:len() > 0 then
+        print(thisLine)
+      end
     end
   end
 end
