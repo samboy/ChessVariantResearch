@@ -47,6 +47,32 @@ exec $LUNACY $0 "$@"
 -- OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 -- Make a "turtle shell" grid with a defined size in SVG format
+-- Example usage
+--[[
+lunacy turtleShellGrid.lua 3 3 3 > TurtleShellGrid-03x03-f3.svg
+lunacy turtleShellGrid.lua 3 7 2 > TurtleShellGrid-03x07-f2.svg
+lunacy turtleShellGrid.lua 3 7 3 > TurtleShellGrid-03x07-f3.svg
+lunacy turtleShellGrid.lua 5 5 3 > TurtleShellGrid-05x05-f3.svg
+lunacy turtleShellGrid.lua 5 5 6 > TurtleShellGrid-05x05-f6.svg
+lunacy turtleShellGrid.lua 5 5 > TurtleShellGrid-05x05.svg
+lunacy turtleShellGrid.lua 5 7 4 > TurtleShellGrid-05x07-f4.svg 
+lunacy turtleShellGrid.lua 7 5 5 Y > TurtleShellGrid-07x05-f5-rotated.svg 
+lunacy turtleShellGrid.lua 7 5 5 > TurtleShellGrid-07x05-f5.svg 
+lunacy turtleShellGrid.lua 7 7 1 > TurtleShellGrid-07x07-f1.svg 
+lunacy turtleShellGrid.lua 7 7 2 > TurtleShellGrid-07x07-f2.svg 
+lunacy turtleShellGrid.lua 7 7 3 > TurtleShellGrid-07x07-f3.svg 
+lunacy turtleShellGrid.lua 7 7 > TurtleShellGrid-07x07.svg 
+lunacy turtleShellGrid.lua 9 7 > TurtleShellGrid-09x07-f4.svg 
+lunacy turtleShellGrid.lua 9 7 4 > TurtleShellGrid-09x07-f4.svg 
+lunacy turtleShellGrid.lua 9 9 6 > TurtleShellGrid-09x07-f6.svg 
+lunacy turtleShellGrid.lua 9 9 > TurtleShellGrid-09x09.svg 
+lunacy turtleShellGrid.lua 9 9 6 > TurtleShellGrid-09x09-f6.svg
+lunacy turtleShellGrid.lua 11 11 > TurtleShellGrid-11x11.svg 
+lunacy turtleShellGrid.lua 13 13 6 > TurtleShellGrid-13x13-f6.svg 
+lunacy turtleShellGrid.lua 13 13 > TurtleShellGrid-13x13.svg 
+lunacy turtleShellGrid.lua 14 15 6 > TurtleShellGrid-14x15-f6.svg 
+lunacy turtleShellGrid.lua 15 15 > TurtleShellGrid-15x15.svg
+]]
 
 -- Utility function: table iterator
 -- Like pairs() but sorted
