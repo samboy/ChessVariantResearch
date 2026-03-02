@@ -20,3 +20,6 @@ more complex than even 19x19 Go).
 turtleShellGrid.lua is a script for making SVG boards; it currently won’t
 make the 64-board used by TurtleShell64a, but will make the 80-square board
 used by TurtleShell80a, as well as the two Go boards in TurtleShellGo.
+
+The folder various-boards has a large number of possible boards to use 
+for verious kinds of games that could be played on this tessellation.
