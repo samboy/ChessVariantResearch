@@ -16,14 +16,14 @@ squares and triangles.  Pieces are placed and moved inside of the
 squares and triangles.  The places where pieces may go are called
 *cells*; there are 64 cells in Turtle Shell Chess.
 
-![Turtle shell board](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell.png)
+![Turtle shell board](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell.png)
 
 # Naming the cells
 
 A modified form of algebraic notation is using to give each cell on
 the board a unique designation, as follows:
 
-![Turtle shell board with notation](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-algebraic.png)
+![Turtle shell board with notation](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-algebraic.png)
 
 # Rows
 
@@ -31,7 +31,7 @@ The board has 10 rows in it.  Because of the nature of the tiling, some
 cells are in more than one row.  Rooks (see below) can move left and
 right along rows.
 
-![Turtle shell rows](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-sideMovePaths.png)
+![Turtle shell rows](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-sideMovePaths.png)
 
 # Files
 
@@ -39,7 +39,7 @@ The board has six files.  As with rows, some cells are in more than one
 file.  Rooks can move up and down files, and pawns can move as well as
 capture one square towards the opponent’s endzone on a given file.
 
-![Turtle shell files](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-lancePaths.png)
+![Turtle shell files](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-lancePaths.png)
 
 # Promotion zones
 
@@ -51,7 +51,7 @@ number of promoted pawns allowed on the board.
 In this image, white pawns may promote in the yellow cells, and black
 pawns may promote in the red cells.
 
-![Turtle shell promotion zone](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-promotionZone.png)
+![Turtle shell promotion zone](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-promotionZone.png)
 
 # End zones
 
@@ -64,7 +64,7 @@ white king on any of the yellow cells is victory for white.  Likewise,
 black pawns must promote on the red cells, and a black king on any
 of the red cells is victory for black.
 
-![Turtle shell end zone](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-endzone.png)
+![Turtle shell end zone](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-endzone.png)
 
 # Movement and capture
 
@@ -84,7 +84,7 @@ example, a rook on D0 may move to D3 (which is on the same file) but
 may *not* move to E3, because moving to E3 is only possible from D0 if
 the rook changes the file they are on during the move.
 
-![Turtle shell rook](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-rook.png)
+![Turtle shell rook](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-rook.png)
 
 # The guard
 
@@ -93,7 +93,7 @@ If a cell is a triangle, a guard may move or capture to any of the up
 to three adjacent cells.  If the cell is a square, a guard may move or
 capture to any of the up to four adjacent cells.
 
-![Turtle shell guard](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-guard.png)
+![Turtle shell guard](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-guard.png)
 
 # The knight
 
@@ -105,9 +105,9 @@ A knight, if in a triangle cell, may move to up to six different cells.
 If in a square cell, a kngith might be able to move to up to eight different
 cells.
 
-![Turtle shell knight moves 1](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-knight1.png)
+![Turtle shell knight moves 1](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-knight1.png)
 
-![Turtle shell knight moves 2](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-knight2.png)
+![Turtle shell knight moves 2](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-knight2.png)
 
 # The pawn
 
@@ -128,7 +128,7 @@ D3 cell or the E3 cell.  A black pawn on the E7 triangle cell may move
 or capture to either the D6 cell or E6 cell.  Otherwise, each pawn may
 only move to the cell immediately in front of it on the same file.
 
-![Turtle shell pawn](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-pawn.png)
+![Turtle shell pawn](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-pawn.png)
 
 # The king
 
@@ -179,7 +179,7 @@ being in check.
 In the initial setup, each side has seven pawns, two rooks, two knights,
 two guards, and one king.
 
-![Turtle shell setup](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell-setup.png)
+![Turtle shell setup](https://raw.githubusercontent.com/samboy/ChessVariantResearch/main/TurtleShell/TurtleShell64a/TurtleShell-setup.png)
 
 # Notes
 
