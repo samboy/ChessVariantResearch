@@ -211,3 +211,4 @@ end
 io.flush()
 print(vSetup .. " eval: " .. eval)
 print(out)
+w:write("quit\n") -- Let’s have a clean exit
