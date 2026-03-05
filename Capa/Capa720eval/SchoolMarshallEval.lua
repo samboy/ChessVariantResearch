@@ -159,3 +159,7 @@ while not string.match(lineFromEngine,'^bestmove') do
 end
 io.flush()
 print(vSetup .. " eval: " .. eval)
+
+w:write("quit\n") -- Let’s have a clean exit
+io.flush()
+

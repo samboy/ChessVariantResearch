@@ -207,6 +207,8 @@ function processFENline(hash, line)
     hash[line] = hash[line] + 1
     if hash[line] > 7 then
       print(game .. "{draw by repetition}\n")
+      w:write("quit\n") -- Let’s have a clean exit
+      io.flush()
       os.exit(0)
     end 
   end
@@ -306,6 +308,8 @@ while true do
     move = fields[2] -- Make sure we make some move
     if(move:match('none')) then
       print(game .. "{" .. pWinner .. " wins}\n")
+      w:write("quit\n") -- Let’s have a clean exit
+      io.flush()
       os.exit(0)
     end
     -- It’s better to play a random good looking move so each game differs
@@ -349,6 +353,8 @@ while true do
       game = game .. tostring(movenumber) .. '. '
       if(movenumber > 200) then
         print(game .. "{draw by over 200 moves}\n")
+        w:write("quit\n") -- Let’s have a clean exit
+        io.flush()
         os.exit(0)
       end
     end
@@ -359,3 +365,5 @@ while true do
   end
 end
 
+w:write("quit\n") -- Let’s have a clean exit
+io.flush()
