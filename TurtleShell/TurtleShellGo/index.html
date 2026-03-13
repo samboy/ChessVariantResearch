@@ -1,0 +1,83 @@
+<html><head><title>README meeting format</title>
+<style>
+@import url(../../fonts.css);
+body { font-family: Kilroy, Verdana, sans-serif;
+       font-size: 14pt; }
+@media (max-width: 640px) {
+pre {max-width: 90vw; overflow-x: scroll;}
+.blogPre {overflow-x:scroll;}
+}
+</style>
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+>
+</head><body>
+<center><table><tr><td width=640>
+<p>What would it be like to play Go on a Turtle Shell grid?
+<p>To find out, the <code>.json</code> files here work at <a href="https://www.govariants.com">govariants.com</a>.
+<p>To use them there:
+<ul>
+<li>
+<p>Go to <a href=https://govariants.com>govariants.com</a>
+</li>
+<li>
+<p>In “config”, choose a “custom” pattern
+</li>
+<li>
+<p>Copy and paste the suitable JSON file for the desired grid size
+</li>
+</ul>
+<p>Note that one can only play on the vertices. Experimentation by
+ others shows that a Komi of 6.5 is probably the best Komi to compensate
+ for the first move advantage, regardless of board size.
+<hr>
+<p>The best discussion about Go on other boards is probably on <a href="https://archive.ph/20260206013421/https://jpneto.github.io/world_abstract_games/boards.htm">this page</a>.
+<p>To summarize that page, a Go variant where we have either three or
+ four liberties per square is more tactical than normal square grid Go,
+ while a variant with five liberties per point is more strategic then
+ normal Go.
+<p>To play Go on a Turtle Shell board so each connection has three or
+ four liberties, play in the trangles and squares. To play Go on a
+ Turtle Shell board so each connection has five liberties, play on the
+ vertices (the corners of each square/<![if gt IE 6]>&#8203;<![endif]><wbr>triangle).
+<p>As it turns out, for grids large enough to make interesting Go
+ variants, a given Turtle Shell grid has a lot more squares/<![if gt IE 6]>&#8203;<![endif]><wbr>triangles
+ than vertices. That in mind, different grids should be used for a game
+ played inside the cells versus a game played at the vertices.
+<p>Let’s look at the number of squares in the three main Go variants:
+<pre class="blogPre">Size    Number of vertices
+9x9     81
+13x13   169
+19x19   361
+</pre>
+<p>And let’s compare that to the girds here in this directory:
+<pre class="blogPre">Size    Cells   Vertices    Edge type
+<a href=TurtleShellGrid-07x07.jason.txt>7x7</a>     106     88          Round
+<a href=TurtleShellGrid-09x09-f6.json.txt>9x9</a>     186     150         Square
+<a href=TurtleShellGrid-13x13-f6.json.txt>13x13</a>   386     294         Square
+<a href=TurtleShellGrid-15x15.json.txt>15x15</a>   498     368         Round
+<a href=TurtleShellGrid-17x13-f6.json.txt>17x13</a>   504     378         Square
+</pre>
+<p>(Clicking on the grid size is a hotlink to the JSON which govariants.com
+can parse)
+<p>Point being 7x7 is good for a quick game, rougly equivalent to 9x9
+ Go, either as a tactical game in the cells (triangles and squares) or a
+ strategic game on the vertices.
+<p>9x9 is good for something roughly equivalent to 13x13 Go, again as a
+ tactical game in the cells or a strategic game on the vertices.
+<p>13x13 is roughly equivalent to 19x19 Go when played as a tactical
+ game in the cells. If played on the vertices, it’s roughly equivalent
+ to 17x17 Go; this is the size used in Tibetan Go, which has 289
+ vertices, compared to the 294 vertices in this grid.
+<p>Both 15x15 and 17x13 make good games, roughly equivalent to full
+ sized Go, when played as a strategic game on the vertices. 15x15 has
+ different edge dynamics than the 9x9 or 13x13 board, so one can also
+ play the 17x13 board to get the same edges as the 9x9 and 13x13 boards.
+<p>The 7x7 board has the same edge dynamics as the 15x15 board.
+
+
+<p>
+
+</div>
+
+</td></tr></table></center></body></html>
