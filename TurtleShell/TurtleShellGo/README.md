@@ -1,5 +1,15 @@
 What would it be like to play Go on a Turtle Shell grid?
 
+To find out, the `.json` files here work at [govariants.com](https://www.govariants.com).
+
+To use them there:
+
+- Go to govariants.com
+- In “config”, choose a “custom” pattern
+- Copy and paste the suitable JSON file for the desired grid size
+
+---
+
 The best discussion about Go on other boards is probably
 on [this page](https://archive.ph/20260206013421/https://jpneto.github.io/world_abstract_games/boards.htm). 
 
