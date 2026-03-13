@@ -119,7 +119,7 @@ points = {}
 pointsCount = 0
 pointsArray = {}
 count = {} -- How many of each shape (square, triangle, etc.)
-scale = 100 -- How long each line will be in the pattern
+scale = 1 -- How long each line will be in the pattern
 rad3 = .5 * (3 ^ .5)
 half = 1/2
 
@@ -181,9 +181,9 @@ function point(x1,xrad3,y1,yrad3)
     out.y1 = y1
     out.yrad3 = yrad3
     -- Give each point a unique ID number for the govariants.com JSON
-    pointsCount = pointsCount + 1
     out.index = pointsCount
     pointsArray[pointsCount] = out
+    pointsCount = pointsCount + 1
   end
   if x1 + rad3 * xrad3 > xmax then
     xmax = x1 + rad3 * xrad3
@@ -247,6 +247,13 @@ function jsonFooter(scale, xmax, ymax, rotate)
   return '}'
 end
 
+-- Show the x,y for a given point
+function showCoordinates(scale, point1, rotate)
+  local x = point1.x1 * scale + point1.xrad3 * rad3 * scale
+  local y = point1.y1 * scale + point1.yrad3 * rad3 * scale
+  -- Ignore rotate for now (yes, I know)
+  return "[" .. tostring(x) .. "," .. tostring(y) .. "]"
+end
 -- Show which points a given point is adjacent to
 function showAdjacent(scale, point1, rotate)
   -- local x = point1.x1 * scale + point1.xrad3 * rad3 * scale
@@ -595,10 +602,22 @@ end
 -- Now, convert the points in to JSON
 print(jsonHeader(scale,xmax,ymax,rotate))
 -- print(jsonTally())
-for pointNum = 1,#pointsArray do
-  -- CODE HERE
+print('"coordinates": [')
+for pointNum = 0,#pointsArray do
+  if(pointNum < #pointsArray) then
+    print(showCoordinates(scale, pointsArray[pointNum], rotate)..",")
+  else
+    print(showCoordinates(scale, pointsArray[pointNum], rotate))
+  end
 end 
-for point1 in pointIterate() do
-  print(showAdjacent(scale, point1, rotate))
+print('],')
+print('"adjacencyList": [')
+for pointNum = 0,#pointsArray do
+  if(pointNum < #pointsArray) then
+    print(showAdjacent(scale, pointsArray[pointNum], rotate)..",")
+  else
+    print(showAdjacent(scale, pointsArray[pointNum], rotate))
+  end
 end
+print ']'
 print(jsonFooter(scale, xmax, ymax, rotate))
