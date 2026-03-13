@@ -40,12 +40,12 @@ Size    Number of vertices
 And let’s compare that to the girds here in this directory:
 
 ```
-Size    Cells   Vertices
-7x7     106     88
-9x9     186     150
-13x13   386     294
-15x15   498     368
-17x13   504     378
+Size    Cells   Vertices    Edge type
+7x7     106     88          Round
+9x9     186     150         Square
+13x13   386     294         Square
+15x15   498     368         Round
+17x13   504     378         Square
 ```
 
 Point being 7x7 is good for a quick game, rougly equivalent to 9x9 Go, 
@@ -65,3 +65,5 @@ sized Go, when played as a strategic game on the vertices.  15x15 has
 different edge dynamics than the 9x9 or 13x13 board, so one can also
 play the 17x13 board to get the same edges as the 9x9 and 13x13 
 boards.
+
+The 7x7 board has the same edge dynamics as the 15x15 board.
