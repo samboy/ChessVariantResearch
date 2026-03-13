@@ -8,6 +8,10 @@ To use them there:
 - In “config”, choose a “custom” pattern
 - Copy and paste the suitable JSON file for the desired grid size
 
+Note that one can only play on the vertices.  Experimentation by others
+shows that a Komi of 6.5 is probably the best Komi to compensate for
+the first move advantage, regardless of board size.
+
 ---
 
 The best discussion about Go on other boards is probably
