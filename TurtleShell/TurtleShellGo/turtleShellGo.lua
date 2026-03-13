@@ -252,6 +252,9 @@ function showCoordinates(scale, point1, rotate)
   local x = point1.x1 * scale + point1.xrad3 * rad3 * scale
   local y = point1.y1 * scale + point1.yrad3 * rad3 * scale
   -- Ignore rotate for now (yes, I know)
+  if rotate then
+    return "[" .. tostring(y) .. "," .. tostring(x) .. "]"
+  end
   return "[" .. tostring(x) .. "," .. tostring(y) .. "]"
 end
 -- Show which points a given point is adjacent to
