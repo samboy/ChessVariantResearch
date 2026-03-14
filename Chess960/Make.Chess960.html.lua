@@ -385,7 +385,7 @@ function grabEvals(filename)
     for a=1,#evals-1 do
       local fields = split(evals[a],",")
       eval = tonumber(fields[1])
-      move = fields[2]
+      move = moveConvert(fields[2])
       local moveTable = {eval=eval,move=move}
       table.insert(allMoves,moveTable)
       if eval > maxeval then
@@ -458,6 +458,29 @@ if(maxWidth < 480) {
   end
   for a=1,#v['bestMoves'] do
     print(v.bestMoves[a])
+  end
+  print(" (Eval: " .. v['maxEval'] .. ")")
+  local goodMoveCount = 0
+  local goodMoveThreshold = 5
+  for a=1,#v['allMoves'] do
+    if v['allMoves'][a]['eval'] < v['maxEval'] and
+       v['allMoves'][a]['eval'] >= v['maxEval'] - goodMoveThreshold then
+      goodMoveCount = goodMoveCount + 1
+    end
+  end
+  if goodMoveCount >= 1 then
+    if goodMoveCount == 1 then
+      print("<br>Good opening move: ")
+    else
+      print("<br>Good opening moves: ")
+    end
+    for a=1,#v['allMoves'] do
+      if v['allMoves'][a]['eval'] < v['maxEval'] and
+         v['allMoves'][a]['eval'] >= v['maxEval'] - goodMoveThreshold then
+        print(v['allMoves'][a]['move'])
+        print(" (Eval: " .. v['allMoves'][a]['eval'] .. ")")
+      end
+    end
   end
   print("<br>")
   if #v['pieRuleMoves'] == 1 then
