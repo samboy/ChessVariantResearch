@@ -355,7 +355,10 @@ end
 function moveConvert(move)
   if(move:len() ~= 4) then return move end
   if move:sub(4,4) == '1' then
-    return "Castle"
+    if move:sub(1,1) < move:sub(3,3) then -- If castling rook right of king
+      return "0-0"
+    end
+    return "0-0-0"
   end
   if move:sub(1,1) == move:sub(3,3) then
     return move:sub(3,4)
