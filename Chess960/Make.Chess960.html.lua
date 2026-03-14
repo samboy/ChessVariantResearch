@@ -276,6 +276,7 @@ body { font-family: Kilroy8, Kilroy, Verdana, sans-serif;
        font-size: 14pt; }
 @media (max-width: 640px) {
 pre {max-width: 90vw; overflow-x: scroll;}
+.c {max-width: 90vw;}
 .blogPre {overflow-x:scroll;}
 }
 .chessDiagram8 { font-family: ChessCancunColor; font-size: 32px;
@@ -452,6 +453,7 @@ if(maxWidth < 480) {
 }
 </script>
 ]])
+  print("<div class=c>")
   print("Setup: " .. k .. "<br>")
   print("Eval: " .. v['maxEval'])
   print('(i.e. White has a ' .. v['maxEval'] .. ' centipawn advantage)<br>')
@@ -502,6 +504,7 @@ if(maxWidth < 480) {
     end
   end
   print("<br>")
+  print("</div>")
   print("<hr>")
 end
 
