@@ -434,6 +434,7 @@ print(pageHeader("Stockfish18 21-ply Chess960"))
 
 for k,v in sPairs(setups,
       function(a,b) return setups[a]['maxEval'] < setups[b]['maxEval'] end) do
+  print('<a name="' .. k .. '"> </a>')
   print(FENtoDiagram(v['FEN']) .. "<br>")
   print([[<script>
 if(maxWidth < 480) {
