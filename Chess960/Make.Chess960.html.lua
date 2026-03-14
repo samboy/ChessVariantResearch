@@ -354,6 +354,9 @@ end
 -- This only works from the initial position!
 function moveConvert(move)
   if(move:len() ~= 4) then return move end
+  if move:sub(4,4) == '1' then
+    return "Castle"
+  end
   if move:sub(1,1) == move:sub(3,3) then
     return move:sub(3,4)
   end
