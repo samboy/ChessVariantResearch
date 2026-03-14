@@ -369,13 +369,11 @@ function moveConvert(move, setup)
   if setup:match("N.N") then
     local file = {a=1,b=2,c=3,d=4,e=5,f=6,g=7,h=8}
     local place = file[move:sub(1,1)] -- Location of moving knight
-    if tonumber(move:sub(2,2)) == 
-       tonumber(move:sub(4,4)) + 1 -- If N moves left
+    if file[move:sub(1,1)] == file[move:sub(3,3)] + 1 -- If N moves left
        and place > 2 and setup:sub(place-2,place-2) == 'N' then
       return "N" .. move:sub(1,1) .. move:sub(3,4)
     end
-    if tonumber(move:sub(2,2)) == 
-       tonumber(move:sub(4,4)) - 1 -- If N moves right
+    if file[move:sub(1,1)] == file[move:sub(3,3)] - 1 -- If N moves right
        and place < 7 and setup:sub(place+2,place+2) == 'N' then
       return "N" .. move:sub(1,1) .. move:sub(3,4)
     end
