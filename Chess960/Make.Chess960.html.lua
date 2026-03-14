@@ -353,7 +353,8 @@ end
 -- convert in to short algebracic
 -- E.g. make "e2e4" "e4" and make "g1f3" "Nf3"
 -- This only works from the initial position!
-function moveConvert(move)
+-- Setup is a string like 'RNBQKBNR'
+function moveConvert(move, setup)
   if(move:len() ~= 4) then return move end
   if move:sub(4,4) == '1' then
     if move:sub(1,1) < move:sub(3,3) then -- If castling rook right of king
@@ -361,9 +362,25 @@ function moveConvert(move)
     end
     return "0-0-0"
   end
-  if move:sub(1,1) == move:sub(3,3) then
+  if move:sub(1,1) == move:sub(3,3) then -- If pawn move (same file)
     return move:sub(3,4)
   end
+  -- In rare cases, the knight move needs four letters
+  if setup:match("N.N") then
+    local file = {a=1,b=2,c=3,d=4,e=5,f=6,g=7,h=8}
+    local place = file[move:sub(1,1)] -- Location of moving knight
+    if tonumber(move:sub(2,2)) == 
+       tonumber(move:sub(4,4)) + 1 -- If N moves left
+       and place > 2 and setup:sub(place-2,place-2) == 'N' then
+      return "N" .. move:sub(1,1) .. move:sub(3,4)
+    end
+    if tonumber(move:sub(2,2)) == 
+       tonumber(move:sub(4,4)) - 1 -- If N moves right
+       and place < 7 and setup:sub(place+2,place+2) == 'N' then
+      return "N" .. move:sub(1,1) .. move:sub(3,4)
+    end
+  end 
+  -- If not a castle, pawn move, or complex night move, simple knight move
   return "N" .. move:sub(3,4)
 end
 
@@ -392,22 +409,22 @@ function grabEvals(filename)
     for a=1,#evals-1 do
       local fields = split(evals[a],",")
       eval = tonumber(fields[1])
-      move = moveConvert(fields[2])
+      move = moveConvert(fields[2],position)
       local moveTable = {eval=eval,move=move}
       table.insert(allMoves,moveTable)
       if eval > maxeval then
         maxeval = eval
         bestMoves = {}
-        table.insert(bestMoves,moveConvert(move))
+        table.insert(bestMoves,moveConvert(move,position))
       elseif eval == maxeval then
-        table.insert(bestMoves,moveConvert(move))
+        table.insert(bestMoves,moveConvert(move,position))
       end
       if math.abs(eval) < mineval then
         mineval = math.abs(eval)
         pieRuleMoves = {}
-        table.insert(pieRuleMoves,moveConvert(move))
+        table.insert(pieRuleMoves,moveConvert(move,position))
       elseif math.abs(eval) == mineval then
-        table.insert(pieRuleMoves,moveConvert(move))
+        table.insert(pieRuleMoves,moveConvert(move,position))
       end
     end  
     if not setup[position] then
