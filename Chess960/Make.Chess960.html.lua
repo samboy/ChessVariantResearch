@@ -229,6 +229,9 @@ function FENtoDiagram(FEN)
   -- This is the top border of the Chess board
   for a=1,#FEN do
     local thisSquare = FEN:sub(a,a)
+    if thisSquare:match("%_") or thisSquare:match("%s") then
+      break
+    end
     if thisSquare:match("%d") and inNumber == false then
       number = tonumber(FEN:sub(a,a))
       inNumber = true
@@ -267,7 +270,7 @@ function pageHeader(title)
     print("Fatal can not open ../fonts.css")
     os.exit(1)
   end
-  out = out .. handle:read() .. "\n"
+  out = out .. handle:read("*a") .. "\n"
   out = out .. [[
 body { font-family: Kilroy8, Kilroy, Verdana, sans-serif;
        font-size: 14pt; }
@@ -276,7 +279,7 @@ pre {max-width: 90vw; overflow-x: scroll;}
 .blogPre {overflow-x:scroll;}
 }
 .chessDiagram8 { font-family: ChessCancunColor; font-size: 32px;
-display: grid;
+    display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
     width: 300px;
@@ -287,6 +290,7 @@ display: grid;
 .chessDiagram8 div {
     text-align: center;
     background-color: #fff; /* Light square */
+    min-height: 1em;
 }
 /* Alternating colors using nth-child */
 .chessDiagram8 div:nth-child(-n+8):nth-child(even),
@@ -345,10 +349,15 @@ if(maxWidth < 480) {
   return out
 end
 
--- Identity function for now, convert in to short algebracic
+-- convert in to short algebracic
 -- E.g. make "e2e4" "e4" and make "g1f3" "Nf3"
+-- This only works from the initial position!
 function moveConvert(move)
-  return move
+  if(move:len() ~= 4) then return move end
+  if move:sub(1,1) == move:sub(3,3) then
+    return move:sub(3,4)
+  end
+  return "N" .. move:sub(3,4)
 end
 
 function grabEvals(filename)
@@ -404,8 +413,68 @@ function grabEvals(filename)
     setup[position]['pieRuleMoves'] = pieRuleMoves
     setup[position]['allMoves'] = allMoves
   end
+  local rank = 1
+  local thisRank = 1
+  local thisEval = -999999
+  for k,v in sPairs(setup,
+      function(a,b) return setup[a]['maxEval'] < setup[b]['maxEval'] end) do
+    local eval = v['maxEval']
+    if eval > thisEval then
+      thisEval = eval
+      thisRank = rank
+    end
+    v['rank'] = thisRank
+    rank = rank + 1
+  end
   return setup
 end
 
-tableView(grabEvals("Chess960.setups.21ply.Stockfish18.txt"))
+setups = grabEvals("Chess960.setups.21ply.Stockfish18.txt")
+print(pageHeader("Stockfish18 21-ply Chess960"))
+
+for k,v in sPairs(setups,
+      function(a,b) return setups[a]['maxEval'] < setups[b]['maxEval'] end) do
+  print(FENtoDiagram(v['FEN']) .. "<br>")
+  print([[<script>
+if(maxWidth < 480) {
+  elements = document.querySelectorAll('.chessDiagram8');
+  i = elements.length - 1;
+  elements[i].style.width = boardSize + 'px';
+  elements[i].style.height = boardSize + 'px';
+  elements[i].style.fontSize = pieceWidth + 'px';
+}
+</script>
+]])
+  print("Setup: " .. k .. "<br>")
+  print("Eval: " .. v['maxEval'])
+  print('(i.e. White has a ' .. v['maxEval'] .. ' centipawn advantage)<br>')
+  print("Rank: " .. v['rank'] .. "<br>")
+  print("Setup number: " .. v['number'] .. "<br>")
+  if #v['bestMoves'] == 1 then
+    print("Best opening move: ")
+  else
+    print("Best opening moves: ")
+  end
+  for a=1,#v['bestMoves'] do
+    print(v.bestMoves[a])
+  end
+  print("<br>")
+  if #v['pieRuleMoves'] == 1 then
+    print("Pie rule (balanced) opening move: ")
+  else
+    print("Pie rule (balanced) opening moves: ")
+  end
+  for a=1,#v['pieRuleMoves'] do
+    if a < #v['pieRuleMoves'] then
+      print(v.pieRuleMoves[a])
+    else
+      print(v.pieRuleMoves[a] .. " (Eval: " .. v['pieRuleEval'] .. ") ")
+    end
+  end
+  print("<br>")
+  print("<hr>")
+end
+
+print("</td></tr></table></center></body></html>")
+-- tableView(setups)
 
