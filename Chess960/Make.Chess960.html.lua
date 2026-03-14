@@ -468,7 +468,7 @@ if(maxWidth < 480) {
     if a < #v['pieRuleMoves'] then
       print(v.pieRuleMoves[a])
     else
-      print(v.pieRuleMoves[a] .. " (Eval: " .. v['pieRuleEval'] .. ") ")
+      print(v.pieRuleMoves[a] .. " (Eval: &pm;" .. v['pieRuleEval'] .. ") ")
     end
   end
   print("<br>")
