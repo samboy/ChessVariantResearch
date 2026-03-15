@@ -1,4 +1,4 @@
-<html><head><title>Chess Variants</title>
+<html><head><title>100,000,000 Chess variant pieces</title>
 <style>
 @import url(../fonts.css);
 body { font-family: Kilroy8, Kilroy, Verdana, sans-serif;
@@ -22,8 +22,154 @@ content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
 </head><body>
 <center><table><tr><td width=640>
 
-<h1>Title</h1>
+<h1>100,000,000 possible Chess Variant pieces</h1>
 
-Content
+Let’s first look at all of the possible short range leapers on a
+square board.  Let’s look at pieces which can leap, at most, two
+squares away.  One possible leaper is the knight:
+
+<pre>
+- O - O -
+O - - - O
+- - X - -
+O - - - O
+- O - O -
+</pre>
+
+Other leapers also exist.  We include pieces like a piece which
+moves like a king (mann or commoner):
+
+<pre>
+- - - - -
+- O O O -
+- O X O -
+- O O O -
+- - - - -
+</pre>
+
+Given this, how many non-colorbound leapers do we have?  We know
+that we have 2^24 total possible pieces (24 possible squares to
+move to), but some of them are colorbound, i.e. a given piece
+can not reach every square on the board.  
+
+<p>
+
+Let’s look at the historical form of the Queen, the Ferz, which
+exists in Shatranj and some modern regional chess variants including
+Senterej, Makruk, Sittuyin, and Asean chess:
+
+<pre>
+- - - - -
+- O - O -
+- - X - -
+- O - O -
+- - - - -
+</pre>
+
+The piece moves like the modern bishop, but only one square.  Like
+this bishop, this piece is colorbound; it can only reach 32 of the
+64 squares on an 8x8 chess board.
+
+<p>
+
+Point being, some pieces are colorbound (there are other forms
+where a piece can not reach all 64 possible squares, such as the
+pawn, discussed in more detail below).  How many?
+
+<p>
+
+Of the 16,777,215 pieces that exist, only 325,135 are in any form
+colorbound.  Some 16,452,080 pieces are not colorbound.  
+
+<h2>What about riders</h2>
+
+I described the historical ferz above (Russian still uses the word
+“Ferz” for the Queen, but the piece now has the modern move);
+we can also have a “ferz-rider” where, after moving one square,
+if the following square in the same direction is empty or occupied by
+an enemy piece, we can move again.  This process continues as long as
+the square is empty (the move stops when capturing an enemy piece).
+
+<p>
+
+A “ferz-rider” is today’s bishop piece.  Other riders exist: The
+queen can be thought of as a king-move-rider, and the Rook is 
+the rider form of a piece called the “wazir”.
+
+<p>
+
+So, let’s look at that grid again:
+
+<pre>
+\ O | O /
+O \ | / O
+< - X - >
+O / | \ O
+/ O | O \
+</pre>
+
+Let’s have the following rules:
+
+<ul>
+<li>A piece can have any combination of the eight possible knight moves,
+    but knight moves are short-range leaps (no knightriders in this
+    variant)
+<li>A piece can have one of five possible moves for each of the eight
+    compass directions: It can go one square in the given direction,
+    or it can jump two squares in the direction, or it can either go
+    one square or jump two squares in the direction, or it is a rider
+    in the given direction, or finally it simply has no move in the
+    given direction.
+</ul>
+
+With these restructions, we have precisely 100,000,000 possible pieces.
+Of those pieces, 99,028,469 pieces are not colorbound (all of these
+pieces can go to any square on the board from any square).
+
+<p>
+
+<h2>Chess15,538,181,035,900,961,358,171,344</h2>
+
+If we have the knight, bishop, and queen be instead one of these
+99,028,469 possible pieces, and in turn have the King be a piece which
+moves like a wazir (like a rook but only one square), with all four
+possible ferz (one square like a bishop) moves possible (so the king
+could move like a king, like a wazir, like a gold general, or any other
+of the 16 combinations of possible subsets of ferz moves), we get some
+15,538,181,035,900,961,358,171,344 possible variants.
+
+<p>
+
+There aren’t any bishops in any of those variants, mind you, since the
+bishop is colorbound.
+
+<h1>Semi-pinwheel, not colorbound</h1>
+
+While looking for colorbound pieces, I found an interesting 
+non-colorbound piece:
+
+<pre>
+O - - - -
+- - - - O
+- - X - -
+O - - - -
+- - - O -
+</pre>
+
+(There is a mirror image form of this piece also)
+
+Here is the number of moves to get to a given square on an 8x8 board,
+starting at “0”.  We will use hex numbers (“A” is 10, etc.):
+
+<pre>
+2 D B 9 7 5 3 E
+A 8 6 4 2 D B 9
+5 3 1 C A 8 6 4
+2 B 9 7 5 3 1 C
+8 6 4 2 0 B 9 7
+5 3 1 A 8 6 4 2
+2 B 7 5 3 1 C A
+8 6 4 2 B 9 7 5
+</pre>
 
 </td></tr></table></center></body></html>
