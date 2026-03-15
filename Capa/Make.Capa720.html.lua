@@ -513,7 +513,7 @@ for k,v in sPairs(setups,
   print([[<script>
 if(maxWidth < 480) {
   capaElements = document.querySelectorAll('.chessDiagram10x8');
-  i = elements.length - 1;
+  i = capaElements.length - 1;
   capaElements[i].style.width = boardSize + 'px';
   capaElements[i].style.height = capaHeight + 'px';
   capaElements[i].style.fontSize = capaPieceWidth + 'px';
