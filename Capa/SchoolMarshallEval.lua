@@ -17,6 +17,10 @@ vSetup = "RQNBAKCNBR"
 if #arg >= 1 then
   vSetup = arg[1]
 end
+if vSetup:match("h") or vSetup:match("%-") or vSetup:match("%?") then
+  print("Usage: SchoolMarshalEval.lua {setup} {plies}")
+  os.exit(0)
+end
 plies = false
 if #arg >= 2 then
   plies = tonumber(arg[2])
