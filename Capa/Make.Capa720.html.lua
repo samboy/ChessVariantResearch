@@ -411,23 +411,24 @@ function moveConvert(move, setup)
   if move:sub(1,1) == move:sub(3,3) then -- If pawn move (same file)
     return move:sub(3,4)
   end
+  local file = {a=1,b=2,c=3,d=4,e=5,f=6,g=7,h=8,i=9,j=10}
+  local place = file[move:sub(1,1)] -- Location of moving knight
   -- In rare cases, the knight move needs four letters
-  if setup:match("N.N") then
-    local file = {a=1,b=2,c=3,d=4,e=5,f=6,g=7,h=8,i=9,j=10}
-    local place = file[move:sub(1,1)] -- Location of moving knight
-    if setup:sub(place,place) == 'N' then
-      if file[move:sub(1,1)] == file[move:sub(3,3)] + 1 -- If N moves left
-         and place > 2 and setup:sub(place-2,place-2) == 'N' then
-        return "N" .. move:sub(1,1) .. move:sub(3,4)
-      end
-      if file[move:sub(1,1)] == file[move:sub(3,3)] - 1 -- If N moves right
-         and place < 7 and setup:sub(place+2,place+2) == 'N' then
-        return "N" .. move:sub(1,1) .. move:sub(3,4)
-      end
+  if setup:match("N.N") and setup:sub(place,place) == 'N' then
+    if file[move:sub(1,1)] == file[move:sub(3,3)] + 1 -- If N moves left
+       and place > 2 and setup:sub(place-2,place-2) == 'N' then
+      return "N" .. move:sub(1,1) .. move:sub(3,4)
+    end
+    if file[move:sub(1,1)] == file[move:sub(3,3)] - 1 -- If N moves right
+       and place < 7 and setup:sub(place+2,place+2) == 'N' then
+      return "N" .. move:sub(1,1) .. move:sub(3,4)
     end
   end 
-  -- If not a castle, pawn move, or complex night move, simple knight move
-  return "N" .. move:sub(3,4)
+  -- If not a castle, pawn move, or complex night move, it’s a knight/fairy move
+  if setup:sub(place,place) == 'C' then
+    return 'M' .. move:sub(3,4)
+  end
+  return setup:sub(place,place) .. move:sub(3,4)
 end
 
 function grabEvals(filename)
@@ -506,7 +507,8 @@ print(pageHeader("Fairy-Stockfish14 21-ply LB w/NNUE Capa720"))
 
 for k,v in sPairs(setups,
       function(a,b) return setups[a]['maxEval'] < setups[b]['maxEval'] end) do
-  print('<a name="' .. k .. '"> </a>')
+  local thisSetup = k:gsub("C","M")
+  print('<a name="' .. thisSetup .. '"> </a>')
   print(FENtoDiagram10x8(v['FEN']) .. "<br>")
   print([[<script>
 if(maxWidth < 480) {
@@ -519,7 +521,7 @@ if(maxWidth < 480) {
 </script>
 ]])
   print("<div class=c>")
-  print("Setup: " .. k .. "<br>")
+  print("Setup: " .. thisSetup .. "<br>")
   print("Eval: " .. v['maxEval'])
   print('(i.e. White has a ' .. v['maxEval'] .. ' centipawn advantage)<br>')
   print("Rank: " .. v['rank'] .. "<br>")
