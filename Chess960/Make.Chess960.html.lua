@@ -413,16 +413,16 @@ function grabEvals(filename)
       if eval > maxeval then
         maxeval = eval
         bestMoves = {}
-        table.insert(bestMoves,moveConvert(move,position))
+        table.insert(bestMoves,move)
       elseif eval == maxeval then
-        table.insert(bestMoves,moveConvert(move,position))
+        table.insert(bestMoves,move)
       end
       if math.abs(eval) < mineval then
         mineval = math.abs(eval)
         pieRuleMoves = {}
-        table.insert(pieRuleMoves,moveConvert(move,position))
+        table.insert(pieRuleMoves,move)
       elseif math.abs(eval) == mineval then
-        table.insert(pieRuleMoves,moveConvert(move,position))
+        table.insert(pieRuleMoves,move)
       end
     end  
     if not setup[position] then
