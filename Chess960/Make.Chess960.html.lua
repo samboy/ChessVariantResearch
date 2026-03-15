@@ -202,7 +202,7 @@ end
 
 function FENtoDiagram(FEN)
   local line = ""
-  local out = "<div class=chessDiagram8>" -- Use 10x8 for Capablanca
+  local out = '<div class=chessDiagram8 translate="no">' -- 8x8 for FIDE Chess
   local width = 0
   local number = 0
   local inNumber = false
