@@ -1,5 +1,8 @@
 # Chess variant research
 
+To look at the HTML pages I have made based on this research,
+[click here](https://samboy.github.io/ChessVariantResearch).
+
 This is my attempt to find Chess variants which are balanced while not
 being drawish: Draws are rare, and white does not have a significant
 advantage.
