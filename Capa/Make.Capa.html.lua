@@ -447,13 +447,12 @@ end
 
 function grabEvals(filename)
   local setup = {}
+  local info = {}
   for a=0,719 do
     local position = board2ASCII(Capa720(a)):upper()
-    if isCapa36(position) then
-      setup[position] = {}
-      setup[position]['FEN'] = board2FEN(Capa720(a))
-      setup[position]['number'] = a
-    end
+    info[position] = {}
+    info[position]['FEN'] = board2FEN(Capa720(a))
+    info[position]['number'] = a
   end
   local handle = io.open(filename,"rb")
   if not handle then
@@ -491,8 +490,9 @@ function grabEvals(filename)
       end
     end  
     if not setup[position] then
-      -- print("Illegal position " .. position) os.exit(1)
       setup[position] = {}
+      setup[position]['FEN'] = info[position]['FEN']
+      setup[position]['number'] = info[position]['number']
     end
     setup[position]['maxEval'] = maxeval
     setup[position]['bestMoves'] = bestMoves
@@ -518,8 +518,16 @@ end
 
 -- It took me three days to calculate the 25-ply evals for 
 -- the Capa36 positions
-setups = grabEvals("Capa36.25ply.txt")
-print(pageHeader("Fairy-Stockfish14 25-ply LB w/NNUE Capa36"))
+filename = "Capa36.25ply.txt"
+if #arg >= 1 then
+  filename = arg[1]
+end
+if filename:match("^%-") then
+  print("Usage: Make.capa.html.lua {filename}")
+  os.exit(0)
+end
+setups = grabEvals(filename)
+print(pageHeader("Fairy-Stockfish14 LB w/NNUE"))
 
 for k,v in sPairs(setups,
       function(a,b) return setups[a]['maxEval'] < setups[b]['maxEval'] end) do
