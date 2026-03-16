@@ -330,6 +330,7 @@ function pageHeader(title)
   out = out .. [[
 body { font-family: Kilroy8, Kilroy, Verdana, sans-serif;
        font-size: 14pt; }
+a { color: #258723; }
 @media (max-width: 640px) {
 pre {max-width: 90vw; overflow-x: scroll;}
 .c {max-width: 90vw;}
