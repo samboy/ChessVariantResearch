@@ -66,6 +66,11 @@ if not searchDepth or searchDepth < 1 then
   searchDepth = 21
 end
 
+local tolerance = nil
+if #arg >= 4 then
+  tolerance = tonumber(arg[4])
+end
+
 -- Here be dragons below
 if rg32 == nil then
   print("I need the rg32 lib to continue!")
@@ -262,7 +267,9 @@ for z=1,iterations do
   end
   thisEval = math.abs(tonumber(lines[1]['eval']))
   if thisEval < minEval then
-    minEval=thisEval
+    if not tolerance or thisEval > tolerance then
+      minEval=thisEval
+    end
     out = tostring(thisseed) .. "," .. thisIteration .. "," .. thisFEN .. ":" 
     for a=1,#lines do
       if lines[a]['move'] then
@@ -273,7 +280,7 @@ for z=1,iterations do
   end
   thisIteration = thisIteration + 1
   io.flush()
-  if thisEval == 0 then
+  if thisEval == 0 and not tolerance then
     print("Eval 0 found, job done\n")
     os.exit(0)
   end
