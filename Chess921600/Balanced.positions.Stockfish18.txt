@@ -15,7 +15,6 @@
 10014,92,rnknrbbq/pppppppp/8/8/8/8/PPPPPPPP/BNRKQBRN w KQkq - 0 1:0,d2d4;
 10015,9,qnrnbbkr/pppppppp/8/8/8/8/PPPPPPPP/QRBKNBRN w KQkq - 0 1:0,g2g4;
 Steinitz,2,rkqnnrbb/pppppppp/8/8/8/8/PPPPPPPP/NRBBQKNR w KQkq - 0 1:0,b2b4;
-Steinitz,2,rkqnnrbb/pppppppp/8/8/8/8/PPPPPPPP/NRBBQKNR w KQkq - 0 1:0,b2b4;
 Steinitz,20,rknbbnrq/pppppppp/8/8/8/8/PPPPPPPP/QNRBBNKR w KQkq - 0 1:8,b2b4;
 Steinitz,22,rnkrnbbq/pppppppp/8/8/8/8/PPPPPPPP/RKNBBQNR w KQkq - 0 1:-2,e2e4;
 Steinitz,35,nqrbkrbn/pppppppp/8/8/8/8/PPPPPPPP/QNRNKBBR w KQkq - 0 1:0,h2h4;
