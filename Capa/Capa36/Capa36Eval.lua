@@ -347,6 +347,7 @@ for a=0,719 do
   local FEN =   board2FEN(Board)
   if isCapa36(Setup:upper()) then
     print(evalSetup(w,r,Setup:upper(),FEN,plies,false))
+    io.flush()
   end
 end
 
