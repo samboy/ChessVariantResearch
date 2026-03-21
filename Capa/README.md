@@ -7,3 +7,5 @@ Capablanca Chess (or “Capa”) here is a series of Chess variants where:
 
 This is some analysis which particular opening setup with those rules
 is best.
+
+[Here is a good summary of the analysis](index.html)
