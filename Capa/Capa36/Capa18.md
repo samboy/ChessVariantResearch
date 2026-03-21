@@ -18,7 +18,7 @@ though I also call it the Marshal (or “M” piece).
 
 I have analyzed all 18 setups at a depth of 18 plies, 19 plies, and so on
 up until 30 plies, then I weighted the setups, giving more plies more
-weight that fewer plies.  In addition, I look at the mean and median for
+weight than fewer plies.  In addition, I look at the mean and median for
 every evaluation between 18 and 30 plies.
 
 Here are the results:
@@ -27,7 +27,6 @@ Here are the results:
 Weighted avg    Mean    Median  Setup
 17.32           17.54   16      RNABCKBQNR      (Finesse)
 23.67           24.15   24      RNBAQKCBNR      (Capa1)
-25.11           23.54   20      RBANCKNQBR      (Grotesque)
 27.15           26.69   27      RNBQCKABNR      (Trice)
 27.37           29.85   30      RNQBCKBANR      (Blackbook)
 29.96           32.08   32      RNCBAKBQNR
@@ -106,7 +105,42 @@ make on his first move.
 If one has to use this setup, good Pie Rule moves are 1. c3 or 1. Nb3.
 Another option is to force White to move a pawn only one square
 forward on his first move; 1. f3, with a mere 2 centipawn advantage,
-is White’s best move when we impose that restriction.
+is White’s best move when we impose that restriction.  While the
+restriction to move a pawn one square forward on White’s first
+move doesn’t balance things with other setups (in Classic Chess,
+for example, White can simply play 1. g3! and maintain an edge), it
+balances things with this setup.
 
 I call this setup “Unbalanced Capa” because it is so unbalanced.
+
+## Finesse Chess
+
+Finesse Chess is the most balanced of Capa18 setups.  I originally
+proposed this setup as a joke back in 2008, but the name sticks
+and, if I were to promote a single setup for Capablanca Chess
+today, it would be this setup.
+
+## Capa’s first setup
+
+Capa’s first setup either is farily balanced or greatly favors
+White, depending on how deep we search.  Capa himself abandoned
+the setup, but it looks to be more balanced than his second
+attempt.
+
+## Trice’s Chess
+
+This used to be called “Gothic Chess”, but Trice came to prefer
+the name “Trice’s Chess”.  After seeing Capa’s second setup
+prefer Black too much, Trice came up with this setup and patented
+it.  The patent has long since expired, and, like almost all
+Chess Variants, the game never drew much interest.
+
+It’s one of the most balanced Capablanca 18 setups, but Finesse
+has an edge over it.
+
+## Blackbook
+
+Blackbook is another one of my joke proposals from 2008.  It’s
+remarkably balanced, but as balanced as Finesse Chess which I proposed
+around the same time.
 
