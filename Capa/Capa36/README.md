@@ -78,3 +78,5 @@ Individual files: [18 ply](18ply.txt) - [19 ply](19ply.txt) - [20](20ply.txt) -
 [25](25ply.txt) - [26](26ply.txt) - [27](27ply.txt) - [28](28ply.txt) -
 [29](29ply.txt) - [30](30ply.txt)
 
+[A deeper 25-ply analysis of Capa36 positions](Capa36.html)
+
