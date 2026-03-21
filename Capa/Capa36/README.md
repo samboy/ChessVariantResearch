@@ -73,6 +73,8 @@ Weighted avg    Mean    Median  Setup
 89.14           91.23   94      RQNBCKBNAR
 ```
 
+## Other files
+
 Individual files: [18 ply](18ply.txt) - [19 ply](19ply.txt) - [20](20ply.txt) -
 [21](21ply.txt) - [22](22ply.txt) - [23](23ply.txt) - [24](24ply.txt) -
 [25](25ply.txt) - [26](26ply.txt) - [27](27ply.txt) - [28](28ply.txt) -
@@ -80,3 +82,4 @@ Individual files: [18 ply](18ply.txt) - [19 ply](19ply.txt) - [20](20ply.txt) -
 
 [A deeper 25-ply analysis of Capa36 positions](Capa36.html)
 
+[The raw data showing possible first moves at 25 plies](Capa36.25ply.txt)
