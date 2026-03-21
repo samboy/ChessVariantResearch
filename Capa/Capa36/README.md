@@ -7,7 +7,7 @@ Capa36 is a variant of Capablanca Chess where:
 * The knights and bishops are symmetrical
 
 I listed [some Capa setups back in
-2008](archive.ph/20090923161739/https://maradns.blogspot.com/2008/12/capa-opening-setups.html)
+2008](https://archive.ph/20090923161739/https://maradns.blogspot.com/2008/12/capa-opening-setups.html)
 and I observed back then that all of the setups had the three above
 characteristics. [1]
 
@@ -72,4 +72,9 @@ Weighted avg    Mean    Median  Setup
 62.36           59.23   60      RNBCAKQBNR      (Consulate)
 89.14           91.23   94      RQNBCKBNAR
 ```
+
+Individual files: [18 ply](18ply.txt) [19 ply](19ply.txt) [20](20ply.txt)
+[21](21ply.txt) [22](22ply.txt) [23](23ply.txt) [24](24ply.txt)
+[25](25ply.txt) [26](26ply.txt) [27](27ply.txt) [28](28ply.txt)
+[29](29ply.txt) [30](30ply.txt)
 
