@@ -88,6 +88,22 @@ function sPairs(inputTable,sFunc)
   end
 end
 
+-- If the setup has a name, return it
+-- Source for names: https://archive.ph/20090923161739/https://maradns.blogspot.com/2008/12/capa-opening-setups.html
+function name(setup)
+  local d={RNABCKBQNR="Finesse", RNBAQKCBNR="Capa1", RBANCKNQBR="Grotesque",
+           RNBQCKABNR="Trice", RNQBCKBANR="Blackbook",
+           RNCBQKBANR="Nalls", RBCNAKNQBR="Landorian",
+           RNABQKBCNR="Capa2", RCNBQKBNAR="MurrayCarrera",
+	   RANBCKBNQR="Narcotic", RQNBAKBNCR="Schoolbook",
+	   RBNCQKANBR="Univers", RCNBAKBNQR="Notebook",
+	   RNBCQKABNR="Bird", RNBQAKCBNR="Teutonic",
+	   RNBACKQBNR="Embassy", RANBQKBNCR="Carrera",
+	   RNBCAKQBNR="Consulate"}
+  if d[setup] then return d[setup] end
+  return nil
+end
+
 local low = 20
 local high = 29
 if #arg >= 1 then
@@ -136,14 +152,40 @@ for ply=low,high do
   handle:close()
 end
 
+print("Weighted avg","Mean","Median","Setup")
 -- Tabulate that data  
 for setup,data in sPairs(eval) do
    local total = 0
    local tab = 0
+   local mean = 0
+   local count = 0
+   local median = {}
    for ply,eval in sPairs(data) do
      local mult = ply - low + 1
      total = total + mult
+     mean = mean + eval
+     count = count + 1
      tab = tab + (mult * eval)
+     table.insert(median,eval)
    end
-   print(string.format("%.2f",tab/total),setup)
+   table.sort(median)
+   local med = 0
+   if #median % 2 == 0 then
+     local left = #median
+     left = math.floor(left / 2)
+     local right = left + 1
+     med = (median[left] + median[right]) / 2
+   else
+     local element = #median
+     element = math.floor(element / 2)
+     element = element + 1
+     med = median[element]
+   end 
+   if name(setup) then
+     print(string.format("%.2f",tab/total),"",
+           string.format("%.2f",mean/count),med,setup,"(" ..name(setup).. ")")
+   else
+     print(string.format("%.2f",tab/total),"",
+           string.format("%.2f",mean/count),med,setup)
+   end
 end
