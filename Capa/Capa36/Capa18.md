@@ -68,7 +68,7 @@ gives Black a considerable lead.
 
 I call this the “Poisoned B Pawn” setup, so it finally has a name.
 
-## RNQBAKBCNR
+### RNQBAKBCNR
 
 [RNQBAKBCNR](Capa36.html#RNQBAKBMNR)
 
@@ -84,7 +84,7 @@ now hemmed in.
 
 I call this the “Poisoned I Pawn” setup, so it finally has a name.
 
-## RQNBCKBNAR
+### RQNBCKBNAR
 
 [RQNBCKBNAR](Capa36.html#RQNBMKBNAR) 
 
@@ -112,6 +112,11 @@ for example, White can simply play 1. g3! and maintain an edge), it
 balances things with this setup.
 
 I call this setup “Unbalanced Capa” because it is so unbalanced.
+
+# The previously named positions
+
+The other 15 positions have names (I came up with 6 names: Finesse,
+Blackbook, Narcotic, Notebook, Schoolbook, and Consulate)
 
 ## Finesse Chess
 
@@ -141,6 +146,88 @@ has an edge over it.
 ## Blackbook
 
 Blackbook is another one of my joke proposals from 2008.  It’s
-remarkably balanced, but as balanced as Finesse Chess which I proposed
-around the same time.
+remarkably balanced, but not as balanced as Finesse Chess which I proposed
+at the same time.
+
+## Nalls
+
+Nalls came up with this optimized setup for Capablanca Chess, and,
+indeed, it’s one of the most balanced Capa18 setups.
+
+## Capablanca’s Second Proposal
+
+Trice correctly noted that Capa’s second proposal favors white.  It’s
+still a good game, but we’re starting to reach the setups where we
+either play a double round robin or implement the “pie rule”, where
+player one chooses White’s first move and player two chooses whether
+to play White or Black.
+
+## Murray-Carrera
+
+Murray’s famous 1913 book on the history of Chess ended up misreading
+Carrera’s original 1617 proposal for an 8x10 variant, placing the
+Marshal on the left and the Archbishop on the right, instead of Carrera’s
+idea to place the archbishop on the left and the Marshal on the right.
+
+As it turns out, Murray’s misreading results in a game more balanced
+than Carrera’s original proposal.
+
+## Narcotic
+
+One of my joke proposals from 2008, and an unbalanced one at that.
+
+## Notebook
+
+Another 2008 joke proposal.
+
+## Bird’s Chess
+
+In the 19th century, Chessmaster Bird proposed a different setup than
+Carrera’s original setup.  It’s not the most balanced setup, but it’s
+the first setup to have the knights on the b and i files, and the bishops
+on the c and h files.
+
+## Schoolbook Chess
+
+My own proposal from 2006.  I did a lot of research on this setup and
+went to a lot of effort to make this setup as balanced as possible.
+Ultimately, it was not as balanced as I thought it was, and by 2010
+I began looking for a more balanced setup.
+
+## Teutonic Chess
+
+This proposal, which Mats Winther made and quickly withdrew once it
+was pointed out White has a first move mating threat, is rather
+unbalanced: Unprotected pawns, first move mating threat, and 
+modern Stockfish analysis also shows White has a considerable
+advantage.
+
+## Embassy Chess
+
+Once the admins of Brainking.com decided they didn’t want to allow people
+to play Trice’s setup on their server, they replaced it with Embassy Chess.
+To avoid any patent concerns, they used the 1984 Grand Chess opening setup,
+adapted to a 10x8 board.  Stockfish analysis shows it favors White, but
+White only has a 3.5% edge across the thousands of games played with this
+setup:
+
+```
+white	7801 (50.58%)
+black	7268 (47.12%)
+draw 	 354 (2.29%)
+```
+
+## Carrera Chess
+
+The original setup.  The reason for this placement is so that one’s
+Knights, Bishops, and Queen develop the same way they do in Classic
+Chess.  It results in a placement that favors White, though, although
+that advantage can be reduced by swapping the Marshal and Archbishop.
+
+## Consulate Chess
+
+Another joke proposal I made in 2008: Take Embassy Chess and swap the
+Marshal and Archbishop.  Stockfish finds this setup very unbalanced,
+although, strangely enough, my 2022 testing did not show White having
+an edge.
 
