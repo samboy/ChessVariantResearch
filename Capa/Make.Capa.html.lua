@@ -368,7 +368,7 @@ display: grid;
 body { background-color: #131516; color: #d8d4cf; }
 a { color: #78dc78; }
 .blog a { color: #78dc78; }
-.chessDiagram10x8 { border: 2px solid #ddd; }
+.chessDiagram10x8 { border: 2px solid #ddd; font-palette: --dark; }
 .chessDiagram10x8 div { background-color: #aaa; }
 .chessDiagram10x8 div:nth-child(-n+10):nth-child(even),
 .chessDiagram10x8 div:nth-child(n+11):nth-child(-n+20):nth-child(odd),
