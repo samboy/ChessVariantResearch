@@ -274,6 +274,9 @@ function pageHeader(title)
   out = out .. [[
 body { font-family: Kilroy8, Kilroy, Verdana, sans-serif;
        font-size: 14pt; }
+@font-palette-values --dark {
+ font-family: "ChessCancunColor";
+ override-colors: 0 rgb(0 0 0), 1 rgb(192 192 192); }
 @media (max-width: 640px) {
 pre {max-width: 90vw; overflow-x: scroll;}
 .c {max-width: 90vw;}
@@ -307,7 +310,7 @@ pre {max-width: 90vw; overflow-x: scroll;}
 @media (prefers-color-scheme: dark) {
 body { background-color: #131516; color: #d8d4cf; }
 a { color: #78dc78; }
-.chessDiagram8 { border: 2px solid #ddd; }
+.chessDiagram8 { border: 2px solid #ddd; font-palette: --dark; }
 .chessDiagram8 div { background-color: #aaa; }
 .chessDiagram8 div:nth-child(-n+8):nth-child(even),
 .chessDiagram8 div:nth-child(n+9):nth-child(-n+16):nth-child(odd),
