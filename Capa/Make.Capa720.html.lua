@@ -318,7 +318,7 @@ body { font-family: Kilroy8, Kilroy, Verdana, sans-serif;
        font-size: 14pt; }
 @font-palette-values --dark {
  font-family: "ChessCancunColor";
- override-colors: 0 rgb(0 0 0), 1 rgb(192 192 192); }
+ override-colors: 0 rgb(0 0 0), 1 rgb(205 192 180); }
 @media (max-width: 640px) {
 pre {max-width: 90vw; overflow-x: scroll;}
 .c {max-width: 90vw;}
