@@ -339,7 +339,7 @@ pre {max-width: 90vw; overflow-x: scroll;}
 .c {max-width: 90vw;}
 .blogPre {overflow-x:scroll;}
 }
-.chessDiagram10x8 { font-family: ChessCancunColor; font-size: 32px; 
+.chessDiagram10x8 { font-family: ChessCancunColor; font-size: 31.7px; 
 display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(8, 1fr);
