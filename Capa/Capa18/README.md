@@ -51,7 +51,7 @@ Let’s look at the three unnamed positions.
 
 ### RNCBAKBQNR
 
-[RNCBAKBQNR](Capa36.html#RNMBAKBQNR)  
+[RNCBAKBQNR](index.html#RNMBAKBQNR)  
 
 This setup was neglected back in the first 2000s decade because the B pawn
 is undefended, in an era when we felt all of the pawns had to be defended.
@@ -70,7 +70,7 @@ I call this the “Poisoned B Pawn” setup, so it finally has a name.
 
 ### RNQBAKBCNR
 
-[RNQBAKBCNR](Capa36.html#RNQBAKBMNR)
+[RNQBAKBCNR](index.html#RNQBAKBMNR)
 
 This is the same setup with the Queen and Marshal (“C”) swapped.  Like
 the previous setup, there is an unprotected pawn, which is why this
@@ -86,7 +86,7 @@ I call this the “Poisoned I Pawn” setup, so it finally has a name.
 
 ### RQNBCKBNAR
 
-[RQNBCKBNAR](Capa36.html#RQNBMKBNAR) 
+[RQNBCKBNAR](index.html#RQNBMKBNAR) 
 
 This is a really unbalanced setup really favoring White:
 
