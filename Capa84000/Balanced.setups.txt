@@ -38,3 +38,16 @@ Balance,1548,ncaqrkbrnb/pppppppppp/10/10/10/10/PPPPPPPPPP/NCAQRKBRNB w KQkq - 0 
 Balance,1552,bbrnkrcqna/pppppppppp/10/10/10/10/PPPPPPPPPP/BBRNKRCQNA w KQkq - 0 1:0,g2g4;
 Balance,1641,rbakcrbnnq/pppppppppp/10/10/10/10/PPPPPPPPPP/RBAKCRBNNQ w KQkq - 0 1:2,i1h3;
 Balance,1648,rqcnknbarb/pppppppppp/10/10/10/10/PPPPPPPPPP/RQCNKNBARB w KQkq - 0 1:10,g2g3;
+Balance,1680,qnnbbrkcra/pppppppppp/10/10/10/10/PPPPPPPPPP/QNNBBRKCRA w KQkq - 0 1:10,h2h4;
+Balance,1742,cbbrnkanrq/pppppppppp/10/10/10/10/PPPPPPPPPP/CBBRNKANRQ w KQkq - 0 1:10,d2d4;
+Balance,1772,brnqnbackr/pppppppppp/10/10/10/10/PPPPPPPPPP/BRNQNBACKR w KQkq - 0 1:7,g2g4;
+Balance,1796,cnqarkrbbn/pppppppppp/10/10/10/10/PPPPPPPPPP/CNQARKRBBN w KQkq - 0 1:3,j1i3;
+Balance,1879,ranknbqcbr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANKNBQCBR w KQkq - 0 1:0,a2a4;
+Balance,1924,nrbkarqbcn/pppppppppp/10/10/10/10/PPPPPPPPPP/NRBKARQBCN w KQkq - 0 1:9,a1b3;
+Balance,1932,rqckbnabnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RQCKBNABNR w KQkq - 0 1:10,g2g4;
+Balance,2030,bbarknqnrc/pppppppppp/10/10/10/10/PPPPPPPPPP/BBARKNQNRC w KQkq - 0 1:2,h1g3;
+Balance,2051,rnkacnrbbq/pppppppppp/10/10/10/10/PPPPPPPPPP/RNKACNRBBQ w KQkq - 0 1:1,b1c3;
+Balance,2063,brnbknqarc/pppppppppp/10/10/10/10/PPPPPPPPPP/BRNBKNQARC w KQkq - 0 1:4,e2e4;
+Balance,2070,bcqbraknrn/pppppppppp/10/10/10/10/PPPPPPPPPP/BCQBRAKNRN w KQkq - 0 1:7,h1i3;
+Balance,2108,aqrkcbbnnr/pppppppppp/10/10/10/10/PPPPPPPPPP/AQRKCBBNNR w KQkq - 0 1:6,c2c4;
+Balance,2124,bbrnaknrcq/pppppppppp/10/10/10/10/PPPPPPPPPP/BBRNAKNRCQ w KQkq - 0 1:10,d1e3;
