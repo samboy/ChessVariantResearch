@@ -170,6 +170,7 @@ display: grid;
 .chessDiagram10x8 div {
     text-align: center;
     background-color: #fff; /* Light square */
+    overflow: visible;
 }
 
 /* Alternating colors using nth-child */
@@ -203,7 +204,8 @@ a { color: #78dc78; }
 @media print {
 .chessDiagram10x8 { border: 2px solid #333; break-inside: avoid;
                     page-break-inside: avoid;}
-.chessDiagram10x8 div { background-color: #fff; }
+.chessDiagram10x8 div { background-color: #fff; 
+                    overflow: visible; }
 .chessDiagram10x8 div:nth-child(-n+10):nth-child(even),
 .chessDiagram10x8 div:nth-child(n+11):nth-child(-n+20):nth-child(odd),
 .chessDiagram10x8 div:nth-child(n+21):nth-child(-n+30):nth-child(even),
