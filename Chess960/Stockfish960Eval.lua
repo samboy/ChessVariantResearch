@@ -253,6 +253,7 @@ if variantName == "capablanca" then
 end
 w:write("setoption name Use NNUE value true\n")
 w:write("setoption name UCI_Chess960 value true\n")
+w:write("setoption name UCI_ShowWDL value true\n")
 w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
 w:write("ucinewgame\n")
 if not opening then
@@ -274,27 +275,57 @@ while not string.match(lineFromEngine,'^bestmove') do
   if x and tonumber(line) == 1 then
     eval = x
   end
+  local win, draw, loss = 
+       lineFromEngine:match(" wdl ([%d%-]+) ([%d%-]+) ([%d%-]+)")
   local move = lineFromEngine:match(" pv (%S+) ")
+  local sharp = 0
+  if win then
+    win = tonumber(win)
+    draw = tonumber(draw)
+    loss = tonumber(loss)
+    -- Sharp:
+    -- https://archive.ph/20260402040734/
+    -- https://www.chess-journal.com/evaluatingSharpness1.html
+    if win > loss and draw > 0 then
+      sharp = (loss / 50) * (333/draw) * (1/(1+math.exp(-((win+loss)/1000))))
+    elseif loss > win and draw > 0 then
+      sharp = (win / 50) * (333/draw) * (1/(1+math.exp(-((win+loss)/1000))))
+    elseif draw <= 0 then
+      sharp = 100000000 -- Infinity
+    else
+      sharp = -1 -- Error
+    end
+  end
   if line then
     lines[tonumber(line)] = {}
     lines[tonumber(line)]['eval'] = tonumber(x) 
     lines[tonumber(line)]['move'] = move
+    lines[tonumber(line)]['win'] = tonumber(win)
+    lines[tonumber(line)]['draw'] = tonumber(draw)
+    lines[tonumber(line)]['loss'] = tonumber(loss)
+    lines[tonumber(line)]['sharp'] = tonumber(sharp)
   end
   print(lineFromEngine)
   io.flush()
 end
 if opening then
-  out = vSetup .. " (" .. opening .. "): "
+  out = vSetup .. " (" .. opening .. ")"
 else
-  out = vSetup .. ":" 
+  out = vSetup  
 end
+wdl = out .. '@'
+out = out .. ':'
 for a=1,#lines do
   if lines[a]['move'] then
     out = out .. lines[a]['eval'] .. ',' .. lines[a]['move'] .. ';'
+    wdl = wdl .. lines[a]['eval'] .. ',' .. lines[a]['move'] .. ',' ..
+          lines[a]['win'] .. '/' .. lines[a]['draw'] .. '/' ..
+          lines[a]['loss'] .. ',' .. lines[a]['sharp'] .. ';'
   end
 end
 io.flush()
 print(vSetup .. " eval: " .. eval)
 print(out)
+print(wdl)
 w:write("quit\n") -- Let’s have a clean exit
 io.flush()
