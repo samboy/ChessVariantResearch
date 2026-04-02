@@ -95,15 +95,17 @@ end
 -- and available with the name fairy-stockfish-largeboard_x86-64
 -- (if it has another name, change "ChessEngine" below)
 
-vSetup = "RNBQKBNR"
+vSetup = "RQNBAKCNBR"
 if #arg >= 1 then
   vSetup = arg[1]
 end
 if vSetup:len() < 8 then 
   print(
-     "Usage: lunacy Stockfish960Eval.lua {setup} {plies} {multiPV} {opening}")
+     "Usage: lunacy StockfishEval.lua {setup} {plies} {multiPV} {opening}")
   print(
-     "Example: Stockfish960Eval.lua RBBQKNNR 21 7 'c2c4 c7c5'")
+     "Example: StockfishEval.lua RBBQKNNR 21 7 'c2c4 c7c5'")
+  print(
+     "Setup can be for an 8x8 or 10x8 game")
   os.exit(0)
 end
 
