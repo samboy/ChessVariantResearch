@@ -330,8 +330,8 @@ function evalPosition(variantFEN, opening)
   end
   io.flush()
   print(vSetup .. " eval: " .. eval)
-  print(out)
   print(wdl)
+  print(out)
 end
 evalPosition(variantFEN, opening)
 w:write("quit\n") -- Let’s have a clean exit
