@@ -244,88 +244,95 @@ if spawner == nil then
 end
 
 w,r = spawner.popen2(ChessEngine)
--- Load NNUE
-if variantName then
-  w:write("setoption name UCI_Variant value " .. variantName .. "\n")
-end
-if variantName == "capablanca" then
-  w:write("setoption name EvalFile value capablanca-bb644ef32758.nnue\n")
-end
-w:write("setoption name Use NNUE value true\n")
-w:write("setoption name UCI_Chess960 value true\n")
-w:write("setoption name UCI_ShowWDL value true\n")
-w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
-w:write("ucinewgame\n")
-if not opening then
-  w:write("position fen " .. variantFEN .. "\n")
-else
-  w:write("position fen " .. variantFEN .. " moves " .. opening .. "\n")
-end
-w:write("d\n")
-w:write("go depth " .. tostring(searchPly) .. "\n")
-w:flush()
-lineFromEngine = ""
-eval = -1
-lines = {}
-while not string.match(lineFromEngine,'^bestmove') do
-  local x = nil
-  local line = nil
-  lineFromEngine = r:read()
-  line, x = lineFromEngine:match("multipv (%d+) score cp ([%d%-]+)")
-  if x and tonumber(line) == 1 then
-    eval = x
+function evalPosition(variantFEN, opening) 
+  local out = ""
+  local wdl = ""
+  -- Load NNUE
+  if variantName then
+    w:write("setoption name UCI_Variant value " .. variantName .. "\n")
   end
-  local win, draw, loss = 
-       lineFromEngine:match(" wdl ([%d%-]+) ([%d%-]+) ([%d%-]+)")
-  local move = lineFromEngine:match(" pv (%S+) ")
-  local sharp = 0
-  if win then
-    win = tonumber(win)
-    draw = tonumber(draw)
-    loss = tonumber(loss)
-    -- Sharp:
-    -- https://archive.ph/20260402040734/
-    -- https://www.chess-journal.com/evaluatingSharpness1.html
-    if win > loss and draw > 0 then
-      sharp = (loss / 50) * (333/draw) * (1/(1+math.exp(-((win+loss)/1000))))
-    elseif loss > win and draw > 0 then
-      sharp = (win / 50) * (333/draw) * (1/(1+math.exp(-((win+loss)/1000))))
-    elseif draw <= 0 then
-      sharp = 100000000 -- Infinity
-    else
-      sharp = -1 -- Error
+  if variantName == "capablanca" or variantName == "caparandom" then
+    w:write("setoption name EvalFile value capablanca-bb644ef32758.nnue\n")
+  end
+  w:write("setoption name Use NNUE value true\n")
+  if variantName ~= "capablanca" and variantName ~= "caparandom" then
+    w:write("setoption name UCI_Chess960 value true\n")
+  end
+  w:write("setoption name UCI_ShowWDL value true\n")
+  w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
+  w:write("ucinewgame\n")
+  if not opening then
+    w:write("position fen " .. variantFEN .. "\n")
+  else
+    w:write("position fen " .. variantFEN .. " moves " .. opening .. "\n")
+  end
+  w:write("d\n")
+  w:write("go depth " .. tostring(searchPly) .. "\n")
+  w:flush()
+  local lineFromEngine = ""
+  local eval = -1
+  local lines = {}
+  while not string.match(lineFromEngine,'^bestmove') do
+    local x = nil
+    local line = nil
+    lineFromEngine = r:read()
+    line, x = lineFromEngine:match("multipv (%d+) score cp ([%d%-]+)")
+    if x and tonumber(line) == 1 then
+      eval = x
     end
+    local win, draw, loss = 
+       lineFromEngine:match(" wdl ([%d%-]+) ([%d%-]+) ([%d%-]+)")
+    local move = lineFromEngine:match(" pv (%S+) ")
+    local sharp = 0
+    if win then
+      win = tonumber(win)
+      draw = tonumber(draw)
+      loss = tonumber(loss)
+      -- Sharp:
+      -- https://archive.ph/20260402040734/
+      -- https://www.chess-journal.com/evaluatingSharpness1.html
+      if win > loss and draw > 0 then
+        sharp = (loss / 50) * (333/draw) * (1/(1+math.exp(-((win+loss)/1000))))
+      elseif loss > win and draw > 0 then
+        sharp = (win / 50) * (333/draw) * (1/(1+math.exp(-((win+loss)/1000))))
+      elseif draw <= 0 then
+        sharp = 100000000 -- Infinity
+      else
+        sharp = -1 -- Error
+      end
+    end
+    if line then
+      lines[tonumber(line)] = {}
+      lines[tonumber(line)]['eval'] = tonumber(x) 
+      lines[tonumber(line)]['move'] = move
+      lines[tonumber(line)]['win'] = tonumber(win)
+      lines[tonumber(line)]['draw'] = tonumber(draw)
+      lines[tonumber(line)]['loss'] = tonumber(loss)
+      lines[tonumber(line)]['sharp'] = tonumber(sharp)
+    end
+    print(lineFromEngine)
+    io.flush()
   end
-  if line then
-    lines[tonumber(line)] = {}
-    lines[tonumber(line)]['eval'] = tonumber(x) 
-    lines[tonumber(line)]['move'] = move
-    lines[tonumber(line)]['win'] = tonumber(win)
-    lines[tonumber(line)]['draw'] = tonumber(draw)
-    lines[tonumber(line)]['loss'] = tonumber(loss)
-    lines[tonumber(line)]['sharp'] = tonumber(sharp)
+  if opening then
+    out = vSetup .. " (" .. opening .. ")"
+  else
+    out = vSetup  
   end
-  print(lineFromEngine)
-  io.flush()
-end
-if opening then
-  out = vSetup .. " (" .. opening .. ")"
-else
-  out = vSetup  
-end
-wdl = out .. '@'
-out = out .. ':'
-for a=1,#lines do
-  if lines[a]['move'] then
-    out = out .. lines[a]['eval'] .. ',' .. lines[a]['move'] .. ';'
-    wdl = wdl .. lines[a]['eval'] .. ',' .. lines[a]['move'] .. ',' ..
+  wdl = out .. '@'
+  out = out .. ':'
+  for a=1,#lines do
+    if lines[a]['move'] then
+      out = out .. lines[a]['eval'] .. ',' .. lines[a]['move'] .. ';'
+      wdl = wdl .. lines[a]['eval'] .. ',' .. lines[a]['move'] .. ',' ..
           lines[a]['win'] .. '/' .. lines[a]['draw'] .. '/' ..
           lines[a]['loss'] .. ',' .. lines[a]['sharp'] .. ';'
+    end
   end
+  io.flush()
+  print(vSetup .. " eval: " .. eval)
+  print(out)
+  print(wdl)
 end
-io.flush()
-print(vSetup .. " eval: " .. eval)
-print(out)
-print(wdl)
+evalPosition(variantFEN, opening)
 w:write("quit\n") -- Let’s have a clean exit
 io.flush()
