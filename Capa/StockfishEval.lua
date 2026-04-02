@@ -95,7 +95,7 @@ end
 -- and available with the name fairy-stockfish-largeboard_x86-64
 -- (if it has another name, change "ChessEngine" below)
 
-vSetup = "RQNBAKCNBR"
+vSetup = "RNABCKBQBR"
 if #arg >= 1 then
   vSetup = arg[1]
 end
