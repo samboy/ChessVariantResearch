@@ -87,13 +87,8 @@ function sPairs(inputTable,sFunc)
     return rvalue, inputTable[rvalue]
   end
 end
--- This client is a “randomized” version of Fairy-Stockfish:  It looks
--- at the top MultiPV number of moves (default: 3), and chooses one within
--- 50 centipawns of what it thinks is the best move at random.
---
--- This client requires the Fairy-Stockfish program to be installed
--- and available with the name fairy-stockfish-largeboard_x86-64
--- (if it has another name, change "ChessEngine" below)
+-- This client needs "fairy-stockfish" and/or "stockfish" to be
+-- installed to run
 
 -- Create a new “board” (really, row) where we will place pieces
 function initBoard(size)
@@ -192,7 +187,7 @@ function dotLine2FEN(line)
   return out
 end
  
--- Given a board array, output the setup as PGN
+-- Given a board array, output the setup as FEN
 -- Input: board (array of a board, but can also be a string like “RBBQKNNR”)
 --        nocastle (false if castling allowed, otherwise no castling)
 --        mirror (Make Black pieces a mirror of White’s; point instead of
@@ -200,7 +195,7 @@ end
 --        freeling (Place pawns on 3rd rank, rooks on first rank, other pieces
 --                  on second rank, turn off castling.  Based on Rotary
 --                  and Grand Chess as invented by Christian Freeling)
-function board2PGN(board, nocastle, mirror, freeling)
+function board2FEN(board, nocastle, mirror, freeling)
   local out = ""
   if not board then board="RBBQKNNR" end -- Mongredian Chess, balanced
   local line = board2ASCII(board)
@@ -278,6 +273,7 @@ if vSetup:len() < 8 then
      "Usage: lunacy Stockfish960Eval.lua {setup} {plies} {multiPV} {opening}")
   print(
      "Example: Stockfish960Eval.lua RBBQKNNR 21 7 'c2c4 c7c5'")
+  print('Setup can be Chess960 to evaluate all 960 Chess960 positions')
   os.exit(0)
 end
 
@@ -418,7 +414,7 @@ if spawner == nil then
 end
 
 w,r = spawner.popen2(ChessEngine)
-function evalPosition(variantFEN, opening) 
+function evalPosition(position, variantFEN, opening) 
   local out = ""
   local wdl = ""
   -- Load NNUE
@@ -488,9 +484,9 @@ function evalPosition(variantFEN, opening)
     io.flush()
   end
   if opening then
-    out = vSetup .. " (" .. opening .. ")"
+    out = position .. " (" .. opening .. ")"
   else
-    out = vSetup  
+    out = position
   end
   wdl = out .. '@'
   out = out .. ':'
@@ -506,7 +502,17 @@ function evalPosition(variantFEN, opening)
   print(vSetup .. " eval: " .. eval)
   print(wdl)
   print(out)
+  return wdl, out
 end
-evalPosition(variantFEN, opening)
+if vSetup:lower() == "chess960" then
+  for a=0,959 do
+    local position = board2ASCII(Chess960(a))
+    local FEN = board2FEN(position)
+    FEN=FEN:gsub("_"," ")
+    evalPosition(position, FEN, opening)
+  end
+else
+  evalPosition(vSetup, variantFEN, opening)
+end
 w:write("quit\n") -- Let’s have a clean exit
 io.flush()
