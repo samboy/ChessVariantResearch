@@ -95,6 +95,93 @@ end
 -- and available with the name fairy-stockfish-largeboard_x86-64
 -- (if it has another name, change "ChessEngine" below)
 
+-- Create a new “board” (really, row) where we will place pieces
+function initBoard(size)
+  local out = {}
+  for a=1,size do
+    out[a] = " "
+  end
+  return out
+end
+
+-- Add a piece to the board, on the #place available empty square
+function addPiece(board, piece, place)
+  local count = 0
+  if type(board) ~= 'table' then return false end
+  if type(piece) ~= 'string' then piece = 'b' end 
+  if type(place) ~= 'number' then place = 1 end
+  for a=1,#board do
+    if board[a] == " " then
+      place = place - 1
+      if place < 1 then
+        board[a] = piece
+        return true
+      end
+    end
+  end
+  return false
+end
+
+-- Output a Chess960 setup, given a number from 0 to 959
+function Chess960(setup)
+  if type(setup) ~= 'number' then setup = 1 end
+  local set = setup
+  local board = initBoard(8)
+  local bishop1 = set % 4
+  set = math.floor(set / 4)
+  bishop1 = bishop1 + 1
+  bishop1 = bishop1 * 2
+  board[bishop1] = 'b'
+  local bishop2 = set % 4
+  set = math.floor(set / 4)     
+  bishop2 = bishop2 * 2
+  bishop2 = bishop2 + 1
+  board[bishop2] = 'b'
+  local queen = set % 6
+  queen = queen + 1
+  set = math.floor(set / 6)
+  addPiece(board,'q',queen)
+  -- Knights are tricky
+  local knights = set % 10
+  knights = knights + 1
+  -- This could be calculated, but since we only have to do this with
+  -- knights, just use a two dimensional array
+  local knightArray = {{1,1}, {1,2}, {1,3}, {1,4}, {2,2}, {2,3}, {2,4},
+                       {3,3}, {3,4}, {4,4}}
+  addPiece(board,'n',knightArray[knights][1])
+  addPiece(board,'n',knightArray[knights][2])
+  -- Once Bishops, Queen, Knights are placed, king is always between
+  -- the two rooks so there is only one possible setup at this point
+  addPiece(board,'r')
+  addPiece(board,'k')
+  addPiece(board,'r')
+  return board
+end
+
+-- Given a board array, output the setup as ASCII 
+function board2ASCII(board)
+  local out = ""
+  for a=1,#board do
+    out = out .. tostring(board[a])
+  end
+  return out
+end
+
+-- Given a board array, output the setup as PGN
+function board2PGN(board)
+  local out = ""
+  local line = board2ASCII(board)
+  local pawns = ""
+  for a=1,#board do
+    pawns = pawns .. "p"
+  end
+  local empty = tostring(#board)
+  out = line .. "/" .. pawns .. "/" 
+  out = out .. empty .. "/" .. empty .. "/" .. empty .. "/" .. empty .. "/" 
+  out = out .. pawns:upper() .. "/" .. line:upper()
+  out = out .. "_w_KQkq_-_0_1"
+  return out
+end
 vSetup = "RNBQKBNR"
 if #arg >= 1 then
   vSetup = arg[1]
