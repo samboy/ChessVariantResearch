@@ -160,6 +160,9 @@ end
 
 -- Given a board array, output the setup as ASCII 
 function board2ASCII(board)
+  if type(board) == 'string' then
+    return board
+  end
   local out = ""
   for a=1,#board do
     out = out .. tostring(board[a])
@@ -167,21 +170,105 @@ function board2ASCII(board)
   return out
 end
 
--- Given a board array, output the setup as PGN
-function board2PGN(board)
+-- Given a line like “r......r”, convert it to FEN like “r6r”
+function dotLine2FEN(line)
+  line = board2ASCII(line)
   local out = ""
+  local count = 0
+  for a=1,#line do
+    if line:sub(a,a) == "." or line:sub(a,a) == " " then
+      count = count + 1
+    else
+      if(count > 0) then 
+        out = out .. tostring(count)  
+        count = 0
+      end
+      out = out .. line:sub(a,a)
+    end
+  end
+  if(count > 0) then
+    out = out .. tostring(count)
+  end
+  return out
+end
+ 
+-- Given a board array, output the setup as PGN
+-- Input: board (array of a board, but can also be a string like “RBBQKNNR”)
+--        nocastle (false if castling allowed, otherwise no castling)
+--        mirror (Make Black pieces a mirror of White’s; point instead of
+--                line symmetry, so the setup would be “rnnkqbbr[...]RBBQKNNR”)
+--        freeling (Place pawns on 3rd rank, rooks on first rank, other pieces
+--                  on second rank, turn off castling.  Based on Rotary
+--                  and Grand Chess as invented by Christian Freeling)
+function board2PGN(board, nocastle, mirror, freeling)
+  local out = ""
+  if not board then board="RBBQKNNR" end -- Mongredian Chess, balanced
   local line = board2ASCII(board)
   local pawns = ""
   for a=1,#board do
     pawns = pawns .. "p"
   end
   local empty = tostring(#board)
-  out = line .. "/" .. pawns .. "/" 
-  out = out .. empty .. "/" .. empty .. "/" .. empty .. "/" .. empty .. "/" 
-  out = out .. pawns:upper() .. "/" .. line:upper()
-  out = out .. "_w_KQkq_-_0_1"
+  local Black = line:lower()
+  local White = line:upper()
+  if mirror then Black = Black:reverse() end
+  if freeling then
+    local BlackRooks = ""
+    local BlackPieces = ""
+    local WhiteRooks = ""
+    local WhitePieces = ""
+    for a=1,#Black do
+      if Black:sub(a,a) == 'r' then
+        BlackRooks = BlackRooks .. "r"
+        BlackPieces = BlackPieces .. "."
+      else
+        BlackRooks = BlackRooks .. "."
+        BlackPieces = BlackPieces .. Black:sub(a,a)
+      end
+    end
+    BlackRooks = dotLine2FEN(BlackRooks)
+    BlackPieces = dotLine2FEN(BlackPieces)
+    WhiteRooks = BlackRooks:upper()
+    WhitePieces = BlackPieces:upper()
+    out = BlackRooks .. "/" .. BlackPieces .. "/" .. pawns 
+    out = out .. "/" .. empty .. "/" .. empty .. "/"
+    out = out .. pawns:upper() .. "/" .. WhitePieces .. "/" .. WhiteRooks
+  else
+    out = Black .. "/" .. pawns .. "/" 
+    out = out .. empty .. "/" .. empty .. "/" .. empty .. "/" .. empty .. "/" 
+    out = out .. pawns:upper() .. "/" .. White
+  end
+  if nocastle or freeling then
+    out = out .. "_w_-_-_0_1"
+  else
+    out = out .. "_w_KQkq_-_0_1"
+  end
   return out
 end
+
+-- There are 18 setups where neither the king nor rooks have moved
+function isChess18(board)
+  board = board2ASCII(board)
+  board = board:upper()
+  if board:match("R...K..R") then return true end
+  return false
+end
+
+-- There are 204 setups where the king is on the E file, between the rooks
+-- These setups are nice because they are both Fischer’s Chess960 setups
+-- as well as John Kipling Lewis’s “Chess480” setups where the king always
+-- moves two squares when castling.  It’s **a lot** easier to explain
+-- the castling rules to Lewis’s take on shuffle chess than it is with
+-- Fischer’s take on it.
+function isChess204(board)
+  board = board2ASCII(board)
+  board = board:upper()
+  if board:match("....K...") then return true end
+  return false
+end
+
+-- END utility functions
+
 vSetup = "RNBQKBNR"
 if #arg >= 1 then
   vSetup = arg[1]
@@ -378,7 +465,7 @@ function evalPosition(variantFEN, opening)
       -- Sharp:
       -- https://archive.ph/20260402040734/
       -- https://www.chess-journal.com/evaluatingSharpness1.html
-      if win > loss and draw > 0 then
+      if win >= loss and draw > 0 then
         sharp = (loss / 50) * (333/draw) * (1/(1+math.exp(-((win+loss)/1000))))
       elseif loss > win and draw > 0 then
         sharp = (win / 50) * (333/draw) * (1/(1+math.exp(-((win+loss)/1000))))
@@ -395,7 +482,7 @@ function evalPosition(variantFEN, opening)
       lines[tonumber(line)]['win'] = tonumber(win)
       lines[tonumber(line)]['draw'] = tonumber(draw)
       lines[tonumber(line)]['loss'] = tonumber(loss)
-      lines[tonumber(line)]['sharp'] = tonumber(sharp)
+      lines[tonumber(line)]['sharp'] = string.format("%.4f%%",sharp*100)
     end
     print(lineFromEngine)
     io.flush()
