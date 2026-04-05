@@ -206,7 +206,6 @@ function board2FEN(board, nocastle, mirror, freeling)
   local empty = tostring(#board)
   local Black = line:lower()
   local White = line:upper()
-  if mirror then Black = Black:reverse() end
   if freeling then
     local BlackRooks = ""
     local BlackPieces = ""
@@ -225,10 +224,12 @@ function board2FEN(board, nocastle, mirror, freeling)
     BlackPieces = dotLine2FEN(BlackPieces)
     WhiteRooks = BlackRooks:upper()
     WhitePieces = BlackPieces:upper()
+    if mirror then BlackPieces = BlackPieces:reverse() end
     out = BlackRooks .. "/" .. BlackPieces .. "/" .. pawns 
     out = out .. "/" .. empty .. "/" .. empty .. "/"
     out = out .. pawns:upper() .. "/" .. WhitePieces .. "/" .. WhiteRooks
   else
+    if mirror then Black = Black:reverse() end
     out = Black .. "/" .. pawns .. "/" 
     out = out .. empty .. "/" .. empty .. "/" .. empty .. "/" .. empty .. "/" 
     out = out .. pawns:upper() .. "/" .. White
@@ -262,6 +263,22 @@ function isChess204(board)
   return false
 end
 
+-- Setups where the rooks are in the corners.  Works with 8x10 and 8x8
+function cornerRooks(board)
+  board = board2ASCII(board)
+  board = board:upper()
+  if board:match("^R.*R$") then return true end
+  return false
+end
+
+-- Setups where the king is to the right of the queen
+function kingRightOfQueen(board)
+  board = board2ASCII(board)
+  board = board:upper()
+  if board:match("Q.*K") then return true end
+  return false
+end
+
 -- END utility functions
 
 vSetup = "RNBQKBNR"
@@ -274,6 +291,10 @@ if vSetup:len() < 8 then
   print(
      "Example: Stockfish960Eval.lua RBBQKNNR 21 7 'c2c4 c7c5'")
   print('Setup can be Chess960 to evaluate all 960 Chess960 positions')
+  -- Christian Freeling has made a couple of Chess Variants with the idea
+  -- that the rooks are in the corners, the pawns are moved up one row, the
+  -- other pieces are on the second row, and there is no castling.
+  print('Setup can be Freeling to evaluate all 104 "Freeling" positions')
   os.exit(0)
 end
 
@@ -499,7 +520,7 @@ function evalPosition(position, variantFEN, opening)
     end
   end
   io.flush()
-  print(vSetup .. " eval: " .. eval)
+  print(position .. " eval: " .. eval)
   print(wdl)
   print(out)
   return wdl, out
@@ -509,8 +530,22 @@ if vSetup:lower() == "chess960" then
     local position = board2ASCII(Chess960(a))
     local FEN = board2FEN(position)
     FEN=FEN:gsub("_"," ")
-    evalPosition(position, FEN, opening)
+    evalPosition(position:upper(), FEN, opening)
   end
+elseif vSetup:lower() == "freeling" then
+  for a=0,959 do
+    local position = board2ASCII(Chess960(a))
+    if cornerRooks(position) and kingRightOfQueen(position) then
+      -- Line symmetry
+      local FEN = board2FEN(position, true, false, true)
+      FEN=FEN:gsub("_"," ")
+      evalPosition(position:upper() .. " (Freeling)", FEN, opening) 
+      -- Point symmetry (Black position mirrored relative to White)
+      local FEN = board2FEN(position, true, true, true)
+      FEN=FEN:gsub("_"," ")
+      evalPosition(position:upper() .. " (Freeling mirror)", FEN, opening) 
+    end
+  end 
 else
   evalPosition(vSetup, variantFEN, opening)
 end
