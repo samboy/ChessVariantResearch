@@ -9,7 +9,8 @@ this implements his idea to:
 For corner rooks and mirror symmetry, we only have 54 setups, but we
 can also flip only Black’s pieces left to right to get 108 setups.
 
-The “mirror” setups tend to be less balanced.
+The “mirror” setups (where Black’s pieces are flipped) tend to be less 
+balanced.
 
 Here is the most balanced “Freeling” setup:
 
