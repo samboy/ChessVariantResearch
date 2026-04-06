@@ -285,7 +285,7 @@ vSetup = "RNBQKBNR"
 if #arg >= 1 then
   vSetup = arg[1]
 end
-if vSetup:len() < 8 then 
+if #arg < 1 or vSetup:len() < 8 then 
   print(
      "Usage: lunacy Stockfish960Eval.lua {setup} {plies} {multiPV} {opening}")
   print(
@@ -358,29 +358,6 @@ end
 opening = false
 if #arg >= 4 then
   opening = arg[4]
-end
-
--- If they specify a variantSetup (e.g. RNBQKBNR or RANBQKBNCR), convert
--- that in to the appropriate 8x# FEN string
-if type(params["variantSetup"]) == "string" then
-  local setup = params["variantSetup"]
-  -- Black's pieces
-  variantFEN = setup:lower() .. "/"
-  -- Black's pawns
-  for a = 1,#setup do
-    variantFEN = variantFEN .. "p"
-  end
-  -- The 4-row blank area between setups
-  -- This code currently only works with 8x# setups
-  for a = 1, 4 do
-    variantFEN = variantFEN .. "/" .. tostring(#setup)
-  end
-  variantFEN = variantFEN .. "/"
-  -- White's pawns
-  for a = 1,#setup do
-    variantFEN = variantFEN .. "P"
-  end
-  variantFEN = variantFEN .. "/" .. setup:upper() .. " w KQkq - 0 1"
 end
 
 -- How many ply do we look ahead per move
@@ -547,7 +524,10 @@ elseif vSetup:lower() == "freeling" then
     end
   end 
 else
-  evalPosition(vSetup, variantFEN, opening)
+  local FEN = board2FEN(vSetup)
+  FEN=FEN:gsub("_"," ")
+  print(vSetup, FEN)
+  evalPosition(vSetup, FEN, opening)
 end
 w:write("quit\n") -- Let’s have a clean exit
 io.flush()
