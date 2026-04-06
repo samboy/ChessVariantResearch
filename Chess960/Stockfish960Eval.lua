@@ -198,6 +198,7 @@ end
 function board2FEN(board, nocastle, mirror, freeling)
   local out = ""
   if not board then board="RBBQKNNR" end -- Mongredian Chess, balanced
+  if freeling == true then freeling = 'r' end
   local line = board2ASCII(board)
   local pawns = ""
   for a=1,#board do
@@ -212,8 +213,8 @@ function board2FEN(board, nocastle, mirror, freeling)
     local WhiteRooks = ""
     local WhitePieces = ""
     for a=1,#Black do
-      if Black:sub(a,a) == 'r' then
-        BlackRooks = BlackRooks .. "r"
+      if Black:sub(a,a) == freeling then
+        BlackRooks = BlackRooks .. freeling
         BlackPieces = BlackPieces .. "."
       else
         BlackRooks = BlackRooks .. "."
