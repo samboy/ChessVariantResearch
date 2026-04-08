@@ -213,8 +213,8 @@ function board2FEN(board, nocastle, mirror, freeling)
     local WhiteRooks = ""
     local WhitePieces = ""
     for a=1,#Black do
-      if Black:sub(a,a) == freeling then
-        BlackRooks = BlackRooks .. freeling
+      if Black:sub(a,a):match(freeling) then
+        BlackRooks = BlackRooks .. Black:sub(a,a)
         BlackPieces = BlackPieces .. "."
       else
         BlackRooks = BlackRooks .. "."
