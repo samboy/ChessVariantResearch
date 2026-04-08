@@ -250,9 +250,9 @@ I listed <a href="https://archive.ph/20090923161739/https://maradns.blogspot.com
 <h2>Ranking the setups</h2>
 
 I have analyzed all 18 setups at a depth of 18 plies, 19 plies, and so on
-up until 30 plies, then I weighted the setups, giving more plies more
-weight than fewer plies.  In addition, I look at the mean and median for
-every evaluation between 18 and 30 plies.
+up until and including 30 plies, then I weighted the setups, giving more
+plies more weight than fewer plies.  In addition, I look at the mean
+and median for every evaluation between 18 and 30 plies (inclusive).
 
 <p>
 
@@ -330,10 +330,10 @@ Setup: RNABMKBQNR
 (i.e. White has a 20 centipawn advantage)<br>
 Rank: 1<br>
 Setup number: 403<br>
-Best opening move: 
+25-ply Best opening move: 
 d4
  (Eval: 20)
-<br>Good opening moves: 
+<br>25-ply Good opening moves: 
 e4
  (Eval: 19)
 h4
@@ -343,10 +343,33 @@ h3
 Nc3
  (Eval: 17)
 <br>
-Pie rule (balanced) opening moves: 
+25-ply Pie rule (balanced) opening moves: 
 f4
 e3
 j4 (Eval: &pm;0) 
+<br>
+30-ply Eval: 23
+(i.e. White has a 23 centipawn advantage)<br>
+30-ply Best opening move:
+g4
+ (Eval: 23)
+<br>30-ply Good opening moves:
+h3
+ (Eval: 21)
+Nc3
+ (Eval: 21)
+e4
+ (Eval: 20)
+h4
+ (Eval: 18)
+<br>
+30-ply Pie rule (balanced) opening move:
+e3 (Eval: &pm;0)
+<br>
+35-ply Best moves: h3 +27, e4 +25, d4 +23, Nc3 +18, g3 +18, g4 +18<br>
+35-ply Pie rule move: e3 0<br>
+35-ply Worst move: Ab3 -73<br>
+40-ply Best move: h4 +22
 <p>
 Finesse Chess is the most balanced of Capa18 setups.  I originally
 proposed this setup as a joke back in 2008, but the name sticks
@@ -1135,7 +1158,7 @@ if(maxWidth < 480) {
 Setup: RBANMKNQBR
 (Grotesque)
 <br>
-Eval: 31
+25-ply Eval: 31
 (i.e. White has a 31 centipawn advantage)<br>
 Rank: 5<br>
 Setup number: 177<br>
@@ -1190,7 +1213,7 @@ if(maxWidth < 480) {
 Setup: RBMNAKNQBR
 (Ladorean)
 <br>
-Eval: 32
+25-ply Eval: 32
 (i.e. White has a 32 centipawn advantage)<br>
 Rank: 7<br>
 Setup number: 297<br>
@@ -1224,7 +1247,7 @@ if(maxWidth < 480) {
 Setup: RBNMAKQNBR
 (Univers)
 <br>
-Eval: 36
+25-ply Eval: 36
 (i.e. White has a 36 centipawn advantage)<br>
 Rank: 14<br>
 Setup number: 345<br>
@@ -1244,4 +1267,78 @@ Me3 (Eval: &pm;0)
 in 1928.  Note that the evaluations here use a different castling rule
 than the one proposed on the linked page.
 </div>
+<h1>Other interesting setups</h1>
+I will briefly look at other possible Capablanca setups which computer
+testing show to be balanced.
+<hr>
+
+<a name="RABNNKMBQR"> </a>
+<div class=chessDiagram10x8 translate="no"><div>r</div> <div>a</div> <div>b</div> <div>n</div> <div>n</div> <div>k</div> <div>m</div> <div>b</div> <div>q</div> <div>r</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>R</div> <div>A</div> <div>B</div> <div>N</div> <div>N</div> <div>K</div> <div>M</div> <div>B</div> <div>Q</div> <div>R</div> </div><br>
+<script>
+if(maxWidth < 480) {
+  capaElements = document.querySelectorAll('.chessDiagram10x8');
+  i = capaElements.length - 1;
+  capaElements[i].style.width = boardSize + 'px';
+  capaElements[i].style.height = capaHeight + 'px';
+  capaElements[i].style.fontSize = capaPieceWidth + 'px';
+}
+</script>
+
+<div class=c>
+Setup: <a href="https://www.pychess.org/analysis/capablanca?fen=rabnnkcbqr/pppppppppp/10/10/10/10/PPPPPPPPPP/RABNNKCBQR_w_KQkq_-_0_1">RABNNKMBQR</a><br>
+30-ply Eval: 14
+(i.e. White has a 14 centipawn advantage)<br>
+Rank: 1<br>
+Setup number: 230<br>
+Best opening move:
+Ne3
+ (Eval: 14)
+<br>Good opening moves:
+g4
+ (Eval: 11)
+c3
+ (Eval: 10)
+d4
+ (Eval: 9)
+<br>
+Pie rule (balanced) opening moves:
+Nf3
+j4
+f3 (Eval: &pm;0)
+<br>
+</div>
+<hr>
+<a name="RBBQNKNMAR"> </a>
+<div class=chessDiagram10x8 translate="no"><div>r</div> <div>b</div> <div>b</div> <div>q</div> <div>n</div> <div>k</div> <div>n</div> <div>m</div> <div>a</div> <div>r</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>R</div> <div>B</div> <div>B</div> <div>Q</div> <div>N</div> <div>K</div> <div>N</div> <div>M</div> <div>A</div> <div>R</div> </div><br>
+<script>
+if(maxWidth < 480) {
+  capaElements = document.querySelectorAll('.chessDiagram10x8');
+  i = capaElements.length - 1;
+  capaElements[i].style.width = boardSize + 'px';
+  capaElements[i].style.height = capaHeight + 'px';
+  capaElements[i].style.fontSize = capaPieceWidth + 'px';
+}
+</script>
+
+<div class=c>
+Setup: <a href="https://www.pychess.org/analysis/capablanca?fen=rbbqnkncar/pppppppppp/10/10/10/10/PPPPPPPPPP/RBBQNKNCAR_w_KQkq_-_0_1">RBBQNKNMAR</a><br>
+30-ply Eval: 21
+(i.e. White has a 21 centipawn advantage)<br>
+Rank: 2<br>
+Setup number: 600<br>
+Best opening move:
+c3
+ (Eval: 21)
+<br>Good opening moves:
+d4
+ (Eval: 20)
+Nef3
+ (Eval: 18)
+<br>
+Pie rule (balanced) opening moves:
+j3
+f3 (Eval: &pm;0)
+<br>
+</div>
+
 </td></tr></table></center></body></html>
