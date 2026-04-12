@@ -286,15 +286,16 @@ rg32.randomseed(gSeed)
 
 -- END utility functions
 
-vSetup = "RNBQKBNR"
+action="--help"
 if #arg >= 1 then
-  vSetup = arg[1]
+  action = arg[1]
 end
-if #arg < 1 or vSetup:len() < 8 then 
+if #arg < 1 or action:match("[Hh%?]") then 
   print(
-     "Usage: lunacy Stockfish960Eval.lua {setup} {plies} {multiPV} {opening}")
+     "Usage: lunacy EvalOrPlay.lua {action} {setup} {plies} {multiPV}")
   print(
-     "Example: Stockfish960Eval.lua RBBQKNNR 21 7 'c2c4 c7c5'")
+     "Example: EvalOrPlay.lua --eval RBBQKNNR 21 7")
+  print('action" is "--help", "--play", or "--eval"')
   print('Setup can be Chess960 to evaluate all 960 Chess960 positions')
   -- Christian Freeling has made a couple of Chess Variants with the idea
   -- that the rooks are in the corners, the pawns are moved up one row, the
@@ -302,48 +303,24 @@ if #arg < 1 or vSetup:len() < 8 then
   print('Setup can be Freeling to evaluate all 104 "Freeling" positions')
   os.exit(0)
 end
-
--- params is a table with the "user tunable" parameters
--- They are also tuned with arguments, which overrides these
--- params.
-params = {
-  -- See https://github.com/ianfab/Fairy-Stockfish for the Chess engine
-  -- This is the name of the chess engine, as it appears in one's $PATH
-  ChessEngine = "fairy-stockfish",
-  -- This is the number of lines we look at and consider for our next move
-  MultiPV = 3,
-  -- The name of the variant we will look at.  This needs to be a variant
-  -- Fairy-Stockfish supports
-  variantName = "capablanca",
-  -- variantName = "chess",
-  -- The opening setup (or position) we will play from in the game
-  -- Note: This currently only works with 8xN games (8x8, 8x10, 8x12, etc.)
-  variantSetup = vSetup,
-  -- It's also possible to set up any arbitrary FEN, not just a mirrored
-  -- 8x# backrank opening setup
-  -- This is an argument given to the Fairy-Stockfish "setboard" command
-  -- variantFEN = "ranbqkbncr/pppppppppp/10/10/10/10/PPPPPPPPPP/RANBQKBNCR " ..
-  --          "w KQkq - 0 1",
-  -- variantFEN = false, -- Use default opening setup for variant
-  -- After this many plies are searched, decide on a move to make
-  searchPly = 21,
-  -- Opening to play.  Format is like this: "f2f4 f7f5", where each move has
-  -- four letters (from, to) or five letters (for pawn promotions: b7b8q)
-  -- King move for castling (e.g. e1g1 with normal RNBQKBNR chess).  Spaces
-  -- between openings
-  opening = false,
-}
-ChessEngine = params["ChessEngine"]
-MultiPV = tonumber(params["MultiPV"])
-variantName = params["variantName"]
-if type(params["variantFEN"]) == "string" then
-  variantFEN = params["variantFEN"]
+actionType = "eval"
+if action == "--eval" then
+  actionType = "eval"
+elseif action == "--play" then
+  actionType = "play"
 else
-  variantFEN = false
+  print("EvalOrPlay.lua version 0.1.0")
+  print("Type: lunay EvalOrPlay.lua --help for usage guide")
+  os.exit(0)
+end
+
+vSetup = "RNBQKBNR"
+if #arg >= 2 then
+  vSetup = arg[2]
 end
 
 -- Here be dragons below
-math.randomseed(os.time())
+--math.randomseed(os.time())
 
 if vSetup:len() == 10 then
   ChessEngine = "fairy-stockfish"
@@ -354,19 +331,17 @@ if vSetup:len() == 8 then
   variantName = nil
 end   
 plies = false
-if #arg >= 2 then
-  plies = tonumber(arg[2])
-end
 if #arg >= 3 then
-  MultiPV = tonumber(arg[3])
+  plies = tonumber(arg[3])
+end
+if #arg >= 4 then
+  MultiPV = tonumber(arg[4])
 end
 opening = false
-if #arg >= 4 then
-  opening = arg[4]
-end
 
--- How many ply do we look ahead per move
-searchPly = tonumber(params["searchPly"])
+if plies then
+  searchPly = plies
+end
 
 -- Sanity for numeric vaues
 if not MultiPV or MultiPV < 1 then
@@ -378,9 +353,6 @@ if not searchPly or searchPly < 7 then
   searchPly = 21
 end
 
-if plies then
-  searchPly = plies
-end
 
 ----------------------- rStrSplit() -----------------------
 -- This does a simple split for a given string, useful for simple CSV
@@ -391,6 +363,7 @@ function rStrSplit(s, splitOn)
   local place = 1
   local out = {}
   local last = 1
+  if not s then return nil end
   while place do
     place = string.find(s, splitOn, place, true)
     if place then
@@ -405,10 +378,6 @@ end
 
 openmove = {}
 thismove = 0
-if type(params["opening"]) == "string" then
-  thismove = 1
-  openmove = rStrSplit(params["opening"]," ")
-end 
 
 if spawner == nil then
   print("I need Steve Donovan's spawner lib to continue!")
@@ -511,9 +480,13 @@ end
 function runGame(MultiPV, variantFEN) 
   w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
   -- Load NNUE
-  w:write("setoption name EvalFile value capablanca-bb644ef32758.nnue\n")
-  w:write("setoption name Use NNUE value true\n")
-  w:write("setoption name UCI_Variant value " .. variantName .. "\n")
+  if variantName then
+    w:write("setoption name EvalFile value capablanca-bb644ef32758.nnue\n")
+    w:write("setoption name Use NNUE value true\n")
+    w:write("setoption name UCI_Variant value " .. variantName .. "\n")
+  else
+    w:write("setoption name UCI_Chess960 value true\n")
+  end
   w:write("ucinewgame\n")
   if variantFEN then
     w:write("position fen " .. variantFEN .. "\n")
@@ -566,10 +539,6 @@ function runGame(MultiPV, variantFEN)
   w:flush()
   local game = ""
   local movenumber = 1
-  -- Note setup, if specified as VariantSetup
-  if type(params["variantSetup"]) == "string" then
-    game = game .. "(Setup: " .. params["variantSetup"] .. ") "
-  end
   game = game .. "(Seed: " .. gSeed .. ") "
 
   pWinner = "Black"
@@ -577,6 +546,7 @@ function runGame(MultiPV, variantFEN)
   infoS = false
   while true do
     lineFromEngine = r:read()
+    IsVerbose = true -- DEBUG
     if IsVerbose then print(lineFromEngine) end
     local fields = rStrSplit(lineFromEngine,' ')
     -- Note how we evaluate
@@ -710,8 +680,13 @@ function doGame(vSetup)
   runGame(MultiPV, FEN)
 end
 
-doEval(vSetup)
---doGame(vSetup)
+if actionType == "eval" then
+  doEval(vSetup)
+elseif actionType == "play" then
+  doGame(vSetup)
+else
+  print("Unknown action, type EvalOrPlay --help for help")
+end
 
 w:write("quit\n") -- Let’s have a clean exit
 io.flush()
