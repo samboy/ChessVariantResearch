@@ -496,8 +496,8 @@ function runGame(MultiPV, variantFEN)
       "position fen rnabckbqnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABCKBQNR "
       .. "w KQkq - 0 1")
   end
-  local FENseen = {}
-  local thisFEN = ""
+  FENseen = {}
+  thisFEN = ""
   function processFENline(hash, line)
     if not hash then hash = {} end
     line = line:gsub('[\r\n]','')
@@ -525,6 +525,7 @@ function runGame(MultiPV, variantFEN)
       end
       --print(lineFromEngine)
     end
+    if not out then return nil end
     print(out)
     return out
   end
@@ -533,12 +534,13 @@ function runGame(MultiPV, variantFEN)
   w:flush()
   lineFromEngine = ""
   thisFEN = grabFEN(r)
+  if not thisFEN then return nil end
   io.flush()
 
   w:write("go depth " .. searchPly .. "\n")
   w:flush()
-  local game = ""
-  local movenumber = 1
+  game = ""
+  movenumber = 1
   game = game .. "(Seed: " .. gSeed .. ") "
 
   pWinner = "Black"
@@ -546,7 +548,6 @@ function runGame(MultiPV, variantFEN)
   infoS = false
   while true do
     lineFromEngine = r:read()
-    IsVerbose = true -- DEBUG
     if IsVerbose then print(lineFromEngine) end
     local fields = rStrSplit(lineFromEngine,' ')
     -- Note how we evaluate
@@ -615,6 +616,7 @@ function runGame(MultiPV, variantFEN)
       game = game .. move .. ' '
       io.flush()
       -- Now, tell the engine the move we made
+      if not thisFEN then return nil end
       w:write('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
       -- print('position fen ' .. thisFEN .. ' moves ' .. move .. "\n")
       w:write("d\n")
@@ -674,16 +676,29 @@ function doEval(vSetup)
   end
 end
 
+lastSeed = gSeed
 function doGame(vSetup)
   local FEN = board2FEN(vSetup)
   FEN=FEN:gsub("_"," ")
   runGame(MultiPV, FEN)
+  gSeed = os.time()
+  if gSeed == lastSeed then 
+    if not workSeed then workSeed = tostring(gSeed) end
+    gSeed = workSeed .. "Q"
+    workSeed = gSeed
+  else
+    workSeed = nil
+    lastSeed = gSeed
+  end
+  rg32.randomseed(gSeed)
 end
 
 if actionType == "eval" then
   doEval(vSetup)
 elseif actionType == "play" then
-  doGame(vSetup)
+  for a=1,100 do
+    doGame(vSetup)
+  end
 else
   print("Unknown action, type EvalOrPlay --help for help")
 end
