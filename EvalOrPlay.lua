@@ -477,7 +477,10 @@ function evalPosition(position, variantFEN, opening)
   return wdl, out
 end
 
-function runGame(MultiPV, variantFEN) 
+function runGame(MultiPV, variantFEN, threshold, taper) 
+  if not threshold then threshold = 15 end -- Higher means we’ll play
+                                           -- worse moves (or more openings!)
+  local ply = 0
   w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
   -- Load NNUE
   if variantName then
@@ -538,6 +541,7 @@ function runGame(MultiPV, variantFEN)
   io.flush()
 
   w:write("go depth " .. searchPly .. "\n")
+  ply = ply + 1
   w:flush()
   game = ""
   movenumber = 1
@@ -605,7 +609,7 @@ function runGame(MultiPV, variantFEN)
         if type(v) == 'table' and v.v and v.m then
           showMoves = showMoves .. tostring(v.m) .. " " .. 
                       tostring(v.v) .. " "
-          if tonumber(v.v) >= maxV - 15 then
+          if tonumber(v.v) >= maxV - threshold then
             table.insert(consider,v.m)
           end
         end
@@ -635,11 +639,12 @@ function runGame(MultiPV, variantFEN)
         end
       end
       r:flush()
-      if MultiPV > 2 then 
+      if MultiPV > 2 and taper and ply % taper == 0 then 
         MultiPV = MultiPV - 1
         w:write("setoption name MultiPV value " .. tostring(MultiPV) .. "\n")
       end
       w:write("go depth " .. searchPly .. "\n")
+      ply = ply + 1
       w:flush()
       multiMoves = {}
     end
@@ -680,7 +685,7 @@ lastSeed = gSeed
 function doGame(vSetup)
   local FEN = board2FEN(vSetup)
   FEN=FEN:gsub("_"," ")
-  runGame(MultiPV, FEN)
+  runGame(MultiPV, FEN, 15, 2)
   gSeed = os.time()
   if gSeed == lastSeed then 
     if not workSeed then workSeed = tostring(gSeed) end
