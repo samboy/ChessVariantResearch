@@ -673,32 +673,45 @@ function runGame(MultiPV, variantFEN)
     end
   end
 end
-if vSetup:lower() == "chess960" then
-  for a=0,959 do
-    local position = board2ASCII(Chess960(a))
-    local FEN = board2FEN(position)
-    FEN=FEN:gsub("_"," ")
-    evalPosition(position:upper(), FEN, opening)
-  end
-elseif vSetup:lower() == "freeling" then
-  for a=0,959 do
-    local position = board2ASCII(Chess960(a))
-    if cornerRooks(position) and kingRightOfQueen(position) then
-      -- Line symmetry
-      local FEN = board2FEN(position, true, false, true)
+
+function doEval(vSetup)
+  if vSetup:lower() == "chess960" then
+    for a=0,959 do
+      local position = board2ASCII(Chess960(a))
+      local FEN = board2FEN(position)
       FEN=FEN:gsub("_"," ")
-      evalPosition(position:upper() .. " (Freeling)", FEN, opening) 
-      -- Point symmetry (Black position mirrored relative to White)
-      local FEN = board2FEN(position, true, true, true)
-      FEN=FEN:gsub("_"," ")
-      evalPosition(position:upper() .. " (Freeling mirror)", FEN, opening) 
+      evalPosition(position:upper(), FEN, opening)
     end
-  end 
-else
+  elseif vSetup:lower() == "freeling" then
+    for a=0,959 do
+      local position = board2ASCII(Chess960(a))
+      if cornerRooks(position) and kingRightOfQueen(position) then
+        -- Line symmetry
+        local FEN = board2FEN(position, true, false, true)
+        FEN=FEN:gsub("_"," ")
+        evalPosition(position:upper() .. " (Freeling)", FEN, opening) 
+        -- Point symmetry (Black position mirrored relative to White)
+        local FEN = board2FEN(position, true, true, true)
+        FEN=FEN:gsub("_"," ")
+        evalPosition(position:upper() .. " (Freeling mirror)", FEN, opening) 
+      end
+    end 
+  else
+    local FEN = board2FEN(vSetup)
+    FEN=FEN:gsub("_"," ")
+    print(vSetup, FEN)
+    evalPosition(vSetup, FEN, opening)
+  end
+end
+
+function doGame(vSetup)
   local FEN = board2FEN(vSetup)
   FEN=FEN:gsub("_"," ")
-  print(vSetup, FEN)
-  evalPosition(vSetup, FEN, opening)
+  runGame(MultiPV, FEN)
 end
+
+doEval(vSetup)
+--doGame(vSetup)
+
 w:write("quit\n") -- Let’s have a clean exit
 io.flush()
