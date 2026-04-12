@@ -8,4 +8,4 @@
 [FEN "rnabckbqnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABCKBQNR w KQkq - 0 1"]
 [SetUp "1"]
 
-1.e4 Nh6 2.Nc3 Nc6 3.h4 Ad6 4.f3 Ag3# 0-1
+1.e4 Nh6 2.Nc3 Nc6 3.h4 Ad6 4.f3?? Ag3# 0-1
