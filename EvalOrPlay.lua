@@ -323,8 +323,6 @@ end
 -- Here be dragons below
 --math.randomseed(os.time())
 
-print("vSetup length",vSetup:len())
-
 if vSetup:len() == 10 then
   ChessEngine = "fairy-stockfish"
   variantName = "capablanca"
