@@ -1,4 +1,5 @@
 #!/bin/sh
+verbose=false
 _rem=--[=[
 
 LUNACY=""
@@ -322,6 +323,8 @@ end
 -- Here be dragons below
 --math.randomseed(os.time())
 
+print("vSetup length",vSetup:len())
+
 if vSetup:len() == 10 then
   ChessEngine = "fairy-stockfish"
   variantName = "capablanca"
@@ -418,6 +421,7 @@ function evalPosition(position, variantFEN, opening)
     local x = nil
     local line = nil
     lineFromEngine = r:read()
+    if verbose then print(lineFromEngine) end
     line, x = lineFromEngine:match("multipv (%d+) score cp ([%d%-]+)")
     if x and tonumber(line) == 1 then
       eval = x
@@ -522,7 +526,7 @@ function runGame(MultiPV, variantFEN, threshold, taper)
     local out = ""
     while not string.match(lineFromEngine,'^Key') do
       lineFromEngine = handle:read()
-      if IsVerbose then print(lineFromEngine) end
+      if verbose then print(lineFromEngine) end
       if lineFromEngine:match('^Fen: ') then
         out = processFENline(FENseen, lineFromEngine)
       end
@@ -552,7 +556,7 @@ function runGame(MultiPV, variantFEN, threshold, taper)
   infoS = false
   while true do
     lineFromEngine = r:read()
-    if IsVerbose then print(lineFromEngine) end
+    if verbose then print(lineFromEngine) end
     local fields = rStrSplit(lineFromEngine,' ')
     -- Note how we evaluate
     if not infoS and fields[2] == "string" then 
