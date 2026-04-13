@@ -348,9 +348,9 @@ if not MultiPV or MultiPV < 1 then
   print("MultiPV too small/not set, using 3")
   MultiPV = 3
 end
-if not searchPly or searchPly < 7 then 
-  print("searchPly too small/not set, using 21") 
-  searchPly = 21
+if not searchPly or searchPly < 1 then 
+  print("searchPly too small/not set, using 12") 
+  searchPly = 12
 end
 
 
