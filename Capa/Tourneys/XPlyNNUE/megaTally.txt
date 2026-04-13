@@ -1,0 +1,16 @@
+Ply - Results (Format: WhiteWin/Draw/BlackWin)
+01    100 games - 42/8/50 45.6522% White decisive wins
+02    100 games - 50/2/48 51.0204% White decisive wins
+03    100 games - 44/4/52 45.8333% White decisive wins
+04    100 games - 44/5/51 46.3158% White decisive wins
+05    100 games - 54/2/44 55.102% White decisive wins
+06    100 games - 50/4/46 52.0833% White decisive wins
+07    100 games - 54/2/44 55.102% White decisive wins
+08    100 games - 48/4/48 50% White decisive wins
+09    100 games - 54/6/40 57.4468% White decisive wins
+10    100 games - 50/8/42 54.3478% White decisive wins
+11    100 games - 44/10/46 48.8889% White decisive wins
+12    100 games - 42/13/45 48.2759% White decisive wins
+13    100 games - 41/15/44 48.2353% White decisive wins
+14    100 games - 42/20/38 52.5% White decisive wins
+15    100 games - 37/27/36 50.6849% White decisive wins
