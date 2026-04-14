@@ -1,6 +1,12 @@
 Murray - Carrera tourney
 
 Ply - Results (Format: WhiteWin/Draw/BlackWin)
+01    100 games - 57/3/40  58.7629% White decisive wins
+02    100 games - 67/4/29  69.7917% White decisive wins
+03    100 games - 53/3/44  54.6392% White decisive wins
+04    100 games - 52/4/44  54.1667% White decisive wins
+05    100 games - 55/3/42  56.701% White decisive wins
+06    100 games - 51/3/46  52.5773% White decisive wins
 07    100 games - 27/2/71  27.551% White decisive wins
 08    100 games - 47/8/45  51.087% White decisive wins
 09    100 games - 50/5/45  52.6316% White decisive wins
