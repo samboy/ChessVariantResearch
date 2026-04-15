@@ -1,0 +1,94 @@
+{
+	"extends":"mgl/ChessFamily/Chess/FaerieBase.mgi",
+	"detail":
+	{
+		"name":"Finesse Chess",
+		"author":"Sam Trenholme",
+		"description":"Standard chess rules on a 10x8 board; with the addition of two new pieces",
+		"instructions":"Standard chess, with additional pieces the Marshall (Rook+knight) and Cardinal (bishop+Knight) on a wide (10x8 board).",
+		"history":"Originally proposed in 2008 by Sam Trenholme, based on a game from 1619",
+		"url":"https:\/\/samboy.github.io\/blog\/Capa.html"
+		"bgg_url":"https:\/\/www.boardgamegeek.com\/boardgame\/35575\/capablanca-chess",
+	},
+	"world":
+	{
+		"board":
+		{
+			"topology": { "rows":8, "cols":10, "class":"world.topology.SquareAll" },
+			"skin": { "class":"skin.ChessBoard" }
+		}
+	},
+	"start":
+	{
+		"onboard":
+		[
+			{ "who":"White", "what":"Rook",   "where": ["a1", "j1"] },
+			{ "who":"White", "what":"Knight", "where": ["b1", "i1"] }, 
+			{ "who":"White", "what":"Cardinal","where": ["c1"] }, 
+			{ "who":"White", "what":"Bishop", "where": ["d1", "g1"] }, 
+			{ "who":"White", "what":"Queen",  "where": ["h1"] }, 
+			{ "who":"White", "what":"King",   "where": ["f1"] }, 
+			{ "who":"White", "what":"Marshal","where": ["e1"] }, 
+			{ "who":"White", "what":"Pawn",   "where": [ "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2", "i2", "j2" ] },
+
+			{ "who":"Black", "what":"Rook",   "where": [ "a8", "j8" ] }, 
+			{ "who":"Black", "what":"Knight", "where": [ "b8", "i8" ] }, 
+			{ "who":"Black", "what":"Cardinal","where": [ "c8" ] }, 
+			{ "who":"Black", "what":"Bishop", "where": [ "d8", "g8" ] }, 
+			{ "who":"Black", "what":"Queen",  "where": [ "h8" ] }, 
+			{ "who":"Black", "what":"King",   "where": [ "f8" ] }, 
+			{ "who":"Black", "what":"Marshal","where": [ "e8" ] }, 
+			{ "who":"Black", "what":"Pawn",   "where": [ "a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7", "i7", "j7" ] },
+		]
+	},
+	
+	"rules":
+	{
+		// castling: cells marked "via" must be empty and safe, as must the king's start and end space
+		// Do not include the king's start  or end space in "via"
+		"castle": 
+		[
+			{ "who":"White", "label":"O-O-O", "king": { "from":"f1", "to":"b1" }, "rook": { "from":"a1", "to":"c1" }, "via": [ "c1", "d1", "e1" ] },
+			{ "who":"Black", "label":"O-O-O", "king": { "from":"f8", "to":"b8" }, "rook": { "from":"a8", "to":"c8" }, "via": [ "c8", "d8", "e8" ] },
+			{ "who":"White", "label":"O-O",   "king": { "from":"f1", "to":"i1" }, "rook": { "from":"j1", "to":"h1" }, "via": [ "g1", "h1" ] },
+			{ "who":"Black", "label":"O-O",   "king": { "from":"f8", "to":"i8" }, "rook": { "from":"j8", "to":"h8" }, "via": [ "g8", "h8" ] },
+		],
+		"doubleMoves": 
+		[
+			{ 
+				"who":"White", 
+				"what":"Pawn", 
+				"zone" : [ "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2", "i2", "j2" ],
+			},
+			{ 
+				"who":"Black", 
+				"what":"Pawn", 
+				"zone" : [ "a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7", "i7", "j7" ],
+			},		
+		],
+		"promotions" : 
+		[
+			{ 
+				"who":"White", 
+				"what":"Pawn", 
+				"must":[ "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8", "i8", "j8" ], 
+				"may":[], 
+				"targets": [ "Queen", "Marshal", "Cardinal", "Rook", "Bishop", "Knight"  ]
+			},
+			{ 
+				"who":"Black", 
+				"what":"Pawn", 
+				"must":[ "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1", "i1", "j1" ], 
+				"may":[], 
+				"targets": [ "Queen", "Marshal", "Cardinal", "Rook", "Bishop", "Knight"  ]
+			},
+		],
+		"endCondition":
+		[
+			{ "condition":"checkmated", "who":"all", "result":"loss" },
+			{ "condition":"stalemated", "who":"all", "result":"draw" },
+			{ "condition":"repetition", "who":"all", "result":"draw" },
+			{ "condition":"boredom", "who":"all", "result":"draw", "moves":50 },
+		]
+	},
+}
