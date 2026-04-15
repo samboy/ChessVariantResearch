@@ -15,3 +15,4 @@ Ply - Results (Format: WhiteWin/Draw/BlackWin)
 14    100 games - 42/20/38 52.5% White decisive wins
 15    100 games - 37/27/36 50.6849% White decisive wins
 16    100 games - 40/30/30 57.1429% White decisive wins
+17    100 games - 51/20/29 63.75% White decisive wins
