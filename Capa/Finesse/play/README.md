@@ -30,7 +30,6 @@ To use the .zrf file, do this:
 * Get a license (donationware, pay what you can)
 * Extract the FinesseChessZ.7z file
 * In the extracted FinesseChessZ folder, open up FinesseChess.zrf
-* A Classic Chess board will open.  To play Finesse instead, go to 
-  Variant → Finesse.
-
+* A Classic Chess board will open.  
+* To play Finesse instead, go to Variant → Finesse.
 
