@@ -67,7 +67,7 @@ To use the .zrf file, do this:
 
 ## Finesse.sgf
 
-[Finesse.sgf](finesse.sgf) is a data file for ChessV 0.94 (probably 0.95).
+[Finesse.sgf](Finesse.sgf) is a data file for ChessV 0.94 (probably 0.95).
 
 ChessV is an open source (GPL licensed) Chess variant engine for 
 Windows.  It is restricted to playing a limited number of Chess 
