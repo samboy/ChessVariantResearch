@@ -1,0 +1,6 @@
+Finesse:Capablanca Chess
+$array = "rnabckbqnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABCKBQNR"
+?use-opening-book = false
+$inventor = "Sam Trenholme"
+$invented = "2008"
+{ }

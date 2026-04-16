@@ -33,3 +33,15 @@ To use the .zrf file, do this:
 * A Classic Chess board will open.  
 * To play Finesse instead, go to Variant → Finesse.
 
+## Finesse.sgf
+
+`Finesse.sgf` is a data file for ChessV 0.94 (probably 0.95).
+
+ChessV is an open source (GPL licensed) Chess variant engine for 
+Windows.
+
+To use the `Finesse.sgf` file, download [ChessV 
+0.94](https://samiam.org/chessv/) and place
+`Finesse.sgf` in the `include/` directory, then choose
+“Load game” after starting up ChessV 0.94.
+
