@@ -1,4 +1,4 @@
-# Files here
+# Playing Finesse Chess
 
 These are data files to play Finesse Chess with three different Chess
 Variant/abstract game engines, as well as a link to play it online.
