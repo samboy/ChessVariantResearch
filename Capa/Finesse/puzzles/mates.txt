@@ -1,3 +1,22 @@
+These lines come from the 18-ply MultiPV 3 tourney, located at
+`../../Tourneys/Finesse/18PlyProperMateBugFix/`
+
+These are blunder mates: If the player makes a blunder, they will get 
+mated.
+
+-99999 is mate in 1
+-99998 is mate in 2
+-99997 is mate in 3
+
+and so on.
+
+The format is: Player’s advantage if they don’t blunder.
+(move1 score move2 score move3 score) move made
+FEN of position where move was made (and where a blunder would lead to mate)
+
+This way, I can get a bunch of interesting blunder mates from real
+Finesse games.
+
 13 (g5e7 13 g8g7 -99989 g8f7 -99990 ) g5e7 6kr2/R3A4p/4b1p3/6ap2/8p1/6PP2/PPP2K2PP/10 b - - 1 41
 13 (h3g3 13 i5i6 -99996 h5h6 -99996 ) h3g3 4r3k1/pp7p/2p2b4/7PP1/8P1/2P3cR1p/PP8/7B1K w - - 0 61
 16 (a7a1 16 a7d7 -99988 a7f7 -99990 ) a7a1 3k6/R9/2K7/1p1P6/10/2P7/2r7/q9 w - - 0 112
