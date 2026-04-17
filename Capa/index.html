@@ -230,7 +230,7 @@ if(maxWidth < 480) {
 <meta name=viewport content=width=device-width,initial-scale=1.0,minimum-scale=0.8 >
 </head><body>
 <center><table><tr><td width=640>
-
+<a name="top"> </a>
 <div class=chessDiagram10x8 translate="no"><div>r</div> <div>n</div> <div>a</div>
 <div>b</div> <div>m</div> <div>k</div> <div>b</div> <div>q</div>
 <div>n</div> <div>r</div> <div>p</div> <div>p</div> <div>p</div>
@@ -267,6 +267,9 @@ is one of the most balanced Capablanca opening setups</i>
 <li><a href="#capa18">Capa18</a>
 <li><a href="#ranking">Ranking the setups</a>
 <li><a href="#setups">The setups</a>
+<li><a href="#play">Playing Finesse Chess</a>
+<li><a href="#notCapa18">Not Capa18; still notable</a>
+<li><a href="#other">Other interesting setups</a>
 <li><a href="#boards">Other boards</a>
 <li><a href="#further">Further reading</a>
 </ul>
@@ -381,6 +384,40 @@ Note that the pieces are flipped left-to-right in some of
 the original proposals, and various proposals have different 
 castling rules.
 
+<h2>Capa: Win or draw?</h2>
+<p>  It’s an open question whether,
+with perfect play,
+these Capablanca Chess setups are a draw or a win for White.  There 
+are strong arguments
+to be made for both positions. 
+
+<ul>
+<li>As I increase Fairy Stockfish’s strength, the number of draws  
+tends to increase.  This points to, given perfect play, Capablanca
+Chess setups will ultimately become a draw.
+<li>Even with very strong play, White has a lot more wins than he
+does in Classic Chess.  This points to, given perfect play, Capablanca
+Chess being a win for White.
+<li>It’s also possible that some setups (e.g. <a href="#RNABMKBQNR"
+>Finesse</a>, the most balanced)
+are a draw with perfect play, and other setups (e.g. “<a href=
+"#RQNBMKBNAR">Unbalanced Capa Chess</a>”, the most unbalanced) are a
+win for White.
+<li>Regardless, Capablanca has much more game complexity
+depth than Classic Chess (which we have known for well over a century
+is a draw given perfect play); the number of wins for White in
+decisive games (at least with the Finesse Chess setup) is lower than 
+the number of White wins in Classic Chess, and the number of draws is
+much smaller.
+</ul>
+While, with the strongest of grandmasters, it’s possible to hit the point
+where Chess becomes a draw (e.g. <a href=
+"https://en.wikipedia.org/wiki/World_Chess_Championship_2018"
+>2018 World Chess championship</a>, where all 12 classical time
+control games were a draw), it’s probably not possible to hit the
+point where Capablanca Chess is a draw/White win with human play; 
+this is an open question that superhuman AI will have to answer for us.
+
 <a name="values"> </a>
 <h1>Value of the pieces</h1>
 
@@ -404,6 +441,7 @@ readily online anymore.  <a href=
 "https://archive.ph/20260409231406/https://www.chessvariants.com/invention/schoolbook"
 >See my proposal for Schoolbook</a> for more discussion on the sources.
 
+<p><i>→ <a href="#top">Back to top of page</a></i><p><hr>
 <a name="capa18"> </a><h1>Capa18</h1>
 
 With three exceptions, the above 10x8 setups have the following
@@ -618,14 +656,42 @@ As a point of comparison
 "https://samboy.github.io/ChessVariantResearch/Chess960/RNBQKBNR-tourney-Stockfish17/"
 >here are the results running the same tourney for Classic Chess</a>.
 
-<h2>Further analysis</h2>
+<h2>Miniature game</h2>
+<div class=chessDiagram10x8 translate="no"><div>R</div> <div>N</div> <div>Q</div> <div>B</div> <div>K</div> <div>M</div> <div>B</div> <div>A</div> <div></div> <div>R</div> <div>P</div> <div>P</div> <div></div> <div>P</div> <div></div> <div></div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div></div> <div></div> <div></div> <div></div> <div>P</div> <div></div> <div></div> <div>N</div> <div></div> <div></div> <div></div> <div></div> <div>P</div> <div></div> <div></div> <div>P</div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div>n</div> <div></div> <div></div> <div></div> <div>a</div> <div>n</div> <div></div> <div></div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>r</div> <div></div> <div>q</div> <div>b</div> <div>k</div> <div>m</div> <div>b</div> <div></div> <div></div> <div>r</div> </div>
+<script>
+if(maxWidth < 480) {
+  capaElements = document.querySelectorAll('.chessDiagram10x8');
+  i = capaElements.length - 1;
+  capaElements[i].style.width = boardSize + 'px';
+  capaElements[i].style.height = capaHeight + 'px';
+  capaElements[i].style.fontSize = capaPieceWidth + 'px';
+}
+</script>
+<!-- FEN: r2bckbq1r/pppppppppp/2na3n2/10/4P2P2/2N2P4/PPPP2P1PP/R1ABCKBQNR -->
+<i>Black to move and deliver checkmate</i><p>
+
+Here’s a four move miniature showing how dangerous the game can be.<p>
+
+<b>1.e4 Nh6 2.Nc3 Nc6 3.h4 Ad6 4.f3?? Ag3# 0-1</b>
+
+<a name="play"> </a>
+<h2>Playing Finesse Chess</h2>
 <p>
-It is possible to 
+It is possible to play Finesse Chess, using any of a number of different
+generalized Chess/abstract game engines.  I provide multiple ways
+to play Finesse Chess over at <a href=
+"https://samboy.github.io/ChessVariantResearch/Capa/Finesse/play/"
+>my page on how to play Finesse Chess</a>.
+
+<p>
+
+It is also possible to 
 <a href=
 "https://www.pychess.org/analysis/capablanca?fen=rnabckbqnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABCKBQNR_w_KQkq_-_0_1"
 >analyze this setup on Pychess</a> as I type these words.
+
 </div>
-<hr>
+<i>→ <a href="#top">Back to top of page</a></i><p><hr>
 <a name="RNMBQKBANR"> </a>
 <h2>Nalls’ setup</h2>
 <div class=chessDiagram10x8 translate="no"><div>r</div> <div>n</div> <div>m</div> <div>b</div> <div>q</div> <div>k</div> <div>b</div> <div>a</div> <div>n</div> <div>r</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>R</div> <div>N</div> <div>M</div> <div>B</div> <div>Q</div> <div>K</div> <div>B</div> <div>A</div> <div>N</div> <div>R</div> </div><br>
@@ -1011,13 +1077,10 @@ the first setup to have the knights on the b and i files, and the bishops
 on the c and h files.
 <p>
 Bird ultimately felt that adding both a Rook + Bishop piece and a
-Knight + Bishop piece were too powerful.  Indeed, even with a setup
-optimized to minimize White’s advantage (<A href="#RNABMKBQNR">Finesse
-Chess</A>), all Capablanca 18 setups look to be, with perfect play, a
-win for White—but, extensive computer testing shows that, with decisive
-games, White wins <i>less</i> than he does with Classic Chess. Bird then
-proposed other boards and other fairy pieces, but for the purposes
-of Capablanca 18, we will look only at his original proposal.
+Knight + Bishop piece were too powerful, and moved on to propose
+setups with other weaker pieces.<p>
+Even though Bird subsequently made other Chess Variant proposals, for
+the purposes of Capablanca 18, we will look only at his original proposal.
 
 </div>
 
@@ -1361,7 +1424,8 @@ This setup was <a href=
 >noted but not named back in 2008</a> as a weak setup because there
 is a first move mating threat.
 </div>
-<hr>
+<i>→ <a href="#top">Back to top of page</a></i><p><hr>
+<a name="notCapa18"> </a>
 <h1>Not Capa18; still notable</h1>
 Some setups which are not Capa18 setups have a known history.
 <p>
@@ -1371,9 +1435,8 @@ There were three setups which <a href=
 bishops.  Unlike Capa18, where 15 of the 18 setups had names in 2008,
 only three of these 18 possible setups had names.  I will go over the three 
 setups.
-<hr>
 <a name="RBANMKNQBR"> </a>
-<h2>Grotesque Chess</h2>
+<h2>Neo-Grotesque Chess</h2>
 <div class=chessDiagram10x8 translate="no"><div>r</div> <div>b</div> <div>a</div> <div>n</div> <div>m</div> <div>k</div> <div>n</div> <div>q</div> <div>b</div> <div>r</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>R</div> <div>B</div> <div>A</div> <div>N</div> <div>M</div> <div>K</div> <div>N</div> <div>Q</div> <div>B</div> <div>R</div> </div><br>
 <script>
 if(maxWidth < 480) {
@@ -1418,8 +1481,8 @@ of Capablanca’s first setup, this is the most balanced setup which
 existed in 2008.
 
 <p>
-There are two differences between Grotesque Chess and the setup
-shown here:
+There are two differences between Grotesque Chess and the 
+Neo-Grotesque setup shown here:
 <ul>
 <li>The pieces are flipped left-to-right to have the King on the F file
 <li>Castling is different: The king always moves three squares when 
@@ -1507,12 +1570,14 @@ in 1928.  Note that the evaluations here use a different castling rule
 than the one proposed on the linked page; here the king always moves
 three squares when castling.
 </div>
+<a name="other"> </a>
+<i>→ <a href="#top">Back to top of page</a></i><p><hr>
 <h1>Other interesting setups</h1>
 I will briefly look at other possible Capablanca setups which computer
 testing show to be balanced.
-<hr>
 
 <a name="RABNNKMBQR"> </a>
+<h2>Cali Chess</h2>
 <div class=chessDiagram10x8 translate="no"><div>r</div> <div>a</div> <div>b</div> <div>n</div> <div>n</div> <div>k</div> <div>m</div> <div>b</div> <div>q</div> <div>r</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>R</div> <div>A</div> <div>B</div> <div>N</div> <div>N</div> <div>K</div> <div>M</div> <div>B</div> <div>Q</div> <div>R</div> </div><br>
 <script>
 if(maxWidth < 480) {
@@ -1545,9 +1610,12 @@ Pie rule (balanced) opening moves:
 Nf3
 j4
 f3 (Eval: &pm;0)
-<br>
+<p>
+In the interests of giving this a name, I call this setup
+“Cali Chess”.
 </div>
 <hr>
+<h2>Canelo Chess</h2>
 <a name="RBBQNKNMAR"> </a>
 <div class=chessDiagram10x8 translate="no"><div>r</div> <div>b</div> <div>b</div> <div>q</div> <div>n</div> <div>k</div> <div>n</div> <div>m</div> <div>a</div> <div>r</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div>p</div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>P</div> <div>R</div> <div>B</div> <div>B</div> <div>Q</div> <div>N</div> <div>K</div> <div>N</div> <div>M</div> <div>A</div> <div>R</div> </div><br>
 <script>
@@ -1578,7 +1646,8 @@ Nef3
 Pie rule (balanced) opening moves:
 j3
 f3 (Eval: &pm;0)
-<br>
+<p>
+Since this setup could use a name, I call this “Canelo Chess”.
 </div>
 <hr>
 <a name="RNQMNABKRB"> </a>
@@ -1608,7 +1677,8 @@ or castle in to check, and the corresponding rook ends up next
 to the king after castling.
 <li>The best first move for White appears to be 1. e4.
 </ul>
-
+<i>→ <a href="#top">Back to top of page</a></i><p>
+<hr>
 <a name="boards"> </a><h1>Other boards</h1>
 
 While this article focuses on 10x8 versions of Capablanca Chess,
@@ -1617,8 +1687,17 @@ the idea of placing pawns on the third rank of a 10x10 board, placing
 the rooks on the first rank, and the other pieces on the second rank,
 naming his 10x10 Capablanca Chess variant <a href=
 "https://archive.ph/20211008033125/https://en.wikipedia.org/wiki/Grand_chess"
->Grand Chess</a>.  There have also been proposals to place
-these pieces on an 8x8 board, such as 
+>Grand Chess</a>.  
+For people like <a href=
+"https://archive.ph/20260414074816/https://drericsilverman.com/games/"
+>Dr. Eric Silverman</a> who prefer more pieces on a 10x10 board,
+Greg Strong’s excellent <a href=
+"https://archive.ph/20210210232521/https://www.chessvariants.com/rules/opulent-chess"
+>Opulent Chess</a> adds two new pieces and makes the knights significantly
+stronger on a 10x10 board.  
+<p>
+There have also been proposals to place
+the two Capablanca Chess fairy pieces on an 8x8 board, such as 
 <a href=
 "https://archive.ph/20250502131426/https://www.chessvariants.com/large.dir/legler.html"
 >Neo-Chess</a> (1923) by Hugo Legler, <A href=
@@ -1638,5 +1717,6 @@ Chess variants, and has written a
 discussion about 
 <a href="#RQNBAKBNMR">my own Schoolbook Chess</a>—although, these days,
 I have come to prefer the Finesse setup.
-
+<p>
+<i>→ <a href="#top">Back to top of page</a></i><p><hr>
 </td></tr></table></center></body></html>
