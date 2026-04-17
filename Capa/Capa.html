@@ -557,10 +557,16 @@ proposed this setup as a joke back in 2008, but the name sticks
 and, if I were to promote a single setup for Capablanca Chess
 today, it would be this setup.
 <p>
-Extensive computer testing shows that the setup looks to be, with
-perfect play, a win for White.  <i>However</i>, the same testing
+This setup was flipped left-to-right back in 2008.  The 
+original proposal didn’t specify castling rules; this proposal has
+the king always move three squares when castling.
+<p>
+<h2>Measuring Balance</h2>
+Extensive computer testing shows that the setup might be, with
+perfect play, a draw.  <i>However</i>, the same testing
 shows that finding the perfect moves is harder than it is in Classic
-Chess.  To wit, I had Stockfish 17 play 1,000 games of Classic Chess
+Chess, and that White has much less of an edge.
+<p>To wit, I had Stockfish 17 play 1,000 games of Classic Chess
 at 18-ply depth and choosing randomly any one of the three best moves,
 as long as the chosen move was within 30 centipawns of the best possible
 move.  The results for Classic Chess were 300 White wins, 509 draws, and
@@ -576,9 +582,55 @@ edge than White has in Classic Chess.
 Point being, it looks like Finesse Chess both greatly reduces draws,
 as well as significantly reducing White’s advantage.
 <p>
-This setup was flipped left-to-right back in 2008.  The 
-original proposal didn’t specify castling rules; this proposal has
-the king always move three squares when castling.
+In another test, I had Finesse Chess play 100 games each from 1-ply
+to 19-ply.  Here, on the first move, White and Black considered
+five different moves, and randomly chose a move within 15 centipawns
+in value compared to the best move.  On the second move, four moves
+were considered by both White and Black.  On the third move, three
+moves considered.  On the fourth and subsequent moves, only two moves
+were considered.  In all cases, only moves within 15 centipawns of
+the best move were played.
+<p>
+The results of this second test are, in plies white wins/draws/black wins
+and White’s edge in dicisive games (since 100 games were played at each
+search depth, the number of white/draw/black wins is the same as the 
+percent of wins/draws):
+<ol>
+<li>42/08/50/45.7% 
+<li>50/02/48/51.0% <!-- 2ply -->
+<li>44/04/52/45.8%
+<li>44/05/51/46.3% <!-- 4ply -->
+<li>54/02/44/55.1% 
+<li>50/04/46/52.1% <!-- 6ply -->
+<li>54/02/44/55.1% 
+<li>48/04/48/50.0% <!-- 8ply -->
+<li>54/06/40/57.4% 
+<li>50/08/42/54.3% <!-- 10ply -->
+<li>44/10/46/48.9% 
+<li>42/13/45/48.3% <!-- 12ply -->
+<li>41/15/44/48.2%
+<li>42/20/38/52.5% <!-- 14ply -->
+<li>37/27/36/50.7% 
+<li>40/30/30/57.1% <!-- 16ply -->
+<li>51/20/29/63.8%
+<li>41/25/34/54.7% <!-- 18ply -->
+<li>36/28/36/50.0%
+</ol>
+Again, the format is plies then 
+White wins/draws/Black wins/% White decisive wins.
+A decisive game is a game where either White or Black wins.
+<p>
+Some key takeaways:
+<ul>
+<li>The number of decisive wins for White hovers slightly above 50%;
+i.e. if the game is not a draw, White is <i>slightly</i> more likely to
+win the game than Black.  
+<li>The number of White wins does <i>not</i> significantly increase when we 
+make the engine stronger by searching more deeply.  There looks to be, on
+average, a slight increase.
+<li>The number of draws steadily increases.
+</ul>
+
 <h2>The opening</h2>
 Personally, I think these days it’s best to randomize the opening
 setup, using computer analysis to choose a setup which doesn’t
