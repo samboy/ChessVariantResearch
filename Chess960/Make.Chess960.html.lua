@@ -387,11 +387,12 @@ end
 
 function grabEvals(filename)
   local setup = {}
+  local allSetups = {}
   for a=0,959 do
     local position = board2ASCII(Chess960(a)):upper()
-    setup[position] = {}
-    setup[position]['FEN'] = board2FEN(Chess960(a))
-    setup[position]['number'] = a
+    allSetups[position] = {}
+    allSetups[position]['FEN'] = board2FEN(Chess960(a))
+    allSetups[position]['number'] = a
   end
   local handle = io.open(filename,"rb")
   if not handle then
@@ -401,6 +402,7 @@ function grabEvals(filename)
   for line in handle:lines() do
     local fields = split(line,':')
     local position = fields[1]
+    setup[position] = allSetups[position]
     local evals = split(fields[2],';')
     local bestMoves = {}
     local pieRuleMoves = {}
@@ -454,8 +456,17 @@ function grabEvals(filename)
   return setup
 end
 
-setups = grabEvals("Chess960.setups.21ply.Stockfish18.txt")
-print(pageHeader("Stockfish18 21-ply Chess960"))
+if #arg == 0 or arg[1]=="--help" or arg[1]=="help" or arg[1]=="?" then
+  print("Usage: Make.Chess960.html.lua {filename} {title}")
+  os.exit(0)
+end
+setups = grabEvals(arg[1])
+if #arg == 1 then
+  title="Evaluating Chess"
+else 
+  title = arg[2]
+end
+print(pageHeader(title))
 
 for k,v in sPairs(setups,
       function(a,b) return setups[a]['maxEval'] < setups[b]['maxEval'] end) do
