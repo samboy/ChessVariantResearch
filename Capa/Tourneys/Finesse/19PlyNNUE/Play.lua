@@ -562,6 +562,11 @@ function runGame(MultiPV, variantFEN, threshold, taper)
       infoS = infoS:gsub('[\r\n]','')
       game = game .. "(" .. infoS .. ") 1. "
     end 
+    if not fields then
+      print("Unable to play game with Stockfish")
+      print("Make sure capablanca-bb644ef32758.nnue is here")
+      os.exit(1)
+    end
     if fields[6] == "multipv" then
       -- One day, we will check that "depth" is as high as possible
       multiMoves[fields[7]] = {}
