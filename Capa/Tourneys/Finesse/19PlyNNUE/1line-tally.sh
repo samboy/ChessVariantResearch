@@ -6,9 +6,9 @@ FILENAME="$1"
 if [ -z "$FILENAME" ] ; then
   FILENAME=Finesse12PlyHCE.txt.xz
 fi
-COMMAND=grep
+COMMAND=cat
 if echo $FILENAME | grep -F .xz > /dev/null ; then
-  COMMAND=xzgrep
+  COMMAND=xzcat
 fi
 COUNT="$2"
 if [ -n "$COUNT" ] ; then
@@ -16,7 +16,8 @@ if [ -n "$COUNT" ] ; then
   FILENAME="foo-$$"
 fi
 
-LINE=$( $COMMAND '{' $FILENAME | cut -f2 -d{ | tr -d '\015' | tr -d } | awk '
+LINE=$( $COMMAND $FILENAME | fgrep '{' | cut -f2 -d{ | \
+	tr -d '\015' | tr -d } | awk '
 {a[$1]++;n++}END{
 print n " games - "
 print a["White"] / n * 100 "/" a["draw"] / n * 100 "/" a["Black"] / n * 100
