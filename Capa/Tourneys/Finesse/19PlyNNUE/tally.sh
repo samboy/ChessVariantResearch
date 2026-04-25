@@ -12,7 +12,7 @@ if echo $FILENAME | grep -F .xz ; then
 fi
 COUNT="$2"
 if [ -n "$COUNT" ] ; then
-  $COMMAND '{' $FILENAME | head -$COUNT > foo-$$
+  $COMMAND $FILENAME | fgrep '{' | head -$COUNT > foo-$$
   FILENAME="foo-$$"
 fi
 
