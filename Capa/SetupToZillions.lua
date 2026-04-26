@@ -1,5 +1,8 @@
 #!/bin/sh
 _rem=--[=[
+# This converts a Capa720 setup in to a snippet to put in a
+# Zillions rule file.  The base Zillions files this snippet will
+# work with are in the file d20Capa/d20Capa.7z
 
 LUNACY=""
 if command -v lunacy64 >/dev/null 2>&1 ; then
