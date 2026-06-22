@@ -291,7 +291,7 @@ action="--help"
 if #arg >= 1 then
   action = arg[1]
 end
-if #arg < 1 or action:match("[Hh%?]") then 
+if #arg < 1 or action:match("^[Hh%?]") or action:match("^%-%-[Hh?]") then 
   print(
      "Usage: lunacy EvalOrPlay.lua {action} {setup} {plies} {multiPV}")
   print(
@@ -305,10 +305,15 @@ if #arg < 1 or action:match("[Hh%?]") then
   os.exit(0)
 end
 actionType = "eval"
+thread = ""
 if action == "--eval" then
   actionType = "eval"
 elseif action == "--play" then
   actionType = "play"
+elseif action:match("^%-%-thread%w%w%w$") then
+  actionType = "play"
+  thread = "-" .. action:sub(9,12)
+  rg32.randomseed(gSeed .. thread)
 else
   print("EvalOrPlay.lua version 0.1.0")
   print("Type: lunay EvalOrPlay.lua --help for usage guide")
@@ -702,7 +707,7 @@ function doGame(vSetup)
     workSeed = nil
     lastSeed = gSeed
   end
-  rg32.randomseed(gSeed)
+  rg32.randomseed(gSeed .. thread)
 end
 
 if actionType == "eval" then
