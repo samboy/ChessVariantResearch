@@ -318,8 +318,8 @@ elseif action:match("^%-%-thread%w%w%w$") then
   thread = "-" .. action:sub(9,12)
   rg32.randomseed(gSeed .. thread)
 else
-  print("EvalOrPlay.lua version 0.1.0")
-  print("Type: lunay EvalOrPlay.lua --help for usage guide")
+  print("Play.lua version 0.2.0")
+  print("Type: lunacy EvalOrPlay.lua --help for usage guide")
   os.exit(0)
 end
 
