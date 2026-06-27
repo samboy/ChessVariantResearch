@@ -16,7 +16,7 @@ while : ; do
 	GROUP=$( echo $COUNTER | awk '{print sprintf("%03d",$0)}' )
 	lunacy64 ./Play.lua \
 		--thread${THREAD} ${SETUP} \
-		$PLY 5 > ${SETUP}-${GROUP}-${PLY}ply.txt
+		$PLY 5 > ${SETUP}-${GROUP}-${THREAD}-${PLY}ply.txt
 	if [ "$?" == "1" ] ; then
 	  echo Warning: Exit with non 0 exit code
 	  echo Is capablanca-bb644ef32758.nnue here?
