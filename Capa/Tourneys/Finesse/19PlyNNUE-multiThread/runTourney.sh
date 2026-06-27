@@ -6,7 +6,7 @@ if [ -z "$THREAD" ] ; then
   echo 'Usage: $0 {thread}'
   echo '{thread} is a three digit alphanumeric unique thread number'
   exit 1
-exit
+fi
 
 COUNTER=1
 GROUP=$( echo $COUNTER | awk '{print sprintf("%03d",$0)}' )
