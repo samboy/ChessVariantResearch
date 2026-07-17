@@ -281,10 +281,6 @@ function kingRightOfQueen(board)
   return false
 end
 
--- Init RNG
-gSeed = os.time()
-rg32.randomseed(gSeed)
-
 -- END utility functions
 
 action="--help"
@@ -309,6 +305,7 @@ if #arg < 1 or action:match("^[Hh%?]") or action:match("^%-%-[Hh?]") then
 end
 actionType = "eval"
 thread = ""
+gSeed = nil
 if action == "--eval" then
   actionType = "eval"
 elseif action == "--play" then
@@ -316,11 +313,18 @@ elseif action == "--play" then
 elseif action:match("^%-%-thread%w%w%w$") then
   actionType = "play"
   thread = "-" .. action:sub(9,12)
+  gSeed = os.time()
+  gSeed = gSeed .. thread
   rg32.randomseed(gSeed .. thread)
 else
   print("Play.lua version 0.2.0")
   print("Type: lunacy EvalOrPlay.lua --help for usage guide")
   os.exit(0)
+end
+
+if not gSeed then
+  gSeed = os.time() .. "-NonThreaded"
+  rg32.randomseed(gSeed)
 end
 
 vSetup = "RNBQKBNR"
