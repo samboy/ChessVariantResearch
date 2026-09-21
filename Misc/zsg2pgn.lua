@@ -65,33 +65,37 @@ function split(s, splitOn)
 end
 
 seen = {}
+out = ""
 for line in io.stdin:lines() do
-  fields = split(line,"%s+")
-  if #fields >= 5 then
-    moveNumber = fields[1]
-    show = moveNumber
-    if seen[moveNumber] then show = "" end
-    seen[moveNumber] = true
-    piece = fields[2]
-    from = fields[3]
-    to = fields[5]
-    pieceName = ""
-    if piece == "Rook" then pieceName="R" 
-    elseif piece == "King" then pieceName = "K"
-    elseif piece == "Queen" then pieceName = "Q"
-    elseif piece == "Knight" then pieceName = "N"
-    elseif piece == "Bishop" then pieceName = "B"
-    elseif piece == "Archbishop" then pieceName = "A"
-    elseif piece == "Marshal" then pieceName = "C"
-    end
-    if line:match("King") and line:match("Rook") then
-      if to:match("g") then
-        print(show .. " O-O")
-      else
-        print(show .. " O-O-O")
+  if(line:match("^%d")) then
+    fields = split(line,"%s+")
+    if #fields >= 5 then
+      moveNumber = fields[1]
+      show = moveNumber
+      if seen[moveNumber] then show = "" end
+      seen[moveNumber] = true
+      piece = fields[2]
+      from = fields[3]
+      to = fields[5]
+      pieceName = ""
+      if piece == "Rook" then pieceName="R" 
+      elseif piece == "King" then pieceName = "K"
+      elseif piece == "Queen" then pieceName = "Q"
+      elseif piece == "Knight" then pieceName = "N"
+      elseif piece == "Bishop" then pieceName = "B"
+      elseif piece == "Archbishop" then pieceName = "A"
+      elseif piece == "Marshal" then pieceName = "C"
       end
-    else
-      print(show .. " " .. pieceName .. from .. to)
+      if line:match("King") and line:match("Rook") then
+        if to:match("g") then
+          out = out .. show .. " O-O "
+        else
+          out = out .. show .. " O-O-O "
+        end
+      else
+        out = out .. show .. " " .. pieceName .. from .. to .. " "
+      end
     end
   end
 end
+print(out)
