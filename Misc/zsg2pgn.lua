@@ -64,6 +64,20 @@ function split(s, splitOn)
   return out
 end
 
+-- Convert a piece name in to a single letter (English algebraic notation)
+function pieceLetter(piece)
+  local pieceName = ""
+  if piece == "Rook" then pieceName="R" 
+  elseif piece == "King" then pieceName = "K"
+  elseif piece == "Queen" then pieceName = "Q"
+  elseif piece == "Knight" then pieceName = "N"
+  elseif piece == "Bishop" then pieceName = "B"
+  elseif piece == "Archbishop" then pieceName = "A"
+  elseif piece == "Marshal" then pieceName = "C"
+  end
+  return pieceName
+end
+
 seen = {}
 out = ""
 for line in io.stdin:lines() do
@@ -78,14 +92,10 @@ for line in io.stdin:lines() do
       from = fields[3]
       to = fields[5]
       pieceName = ""
-      if piece == "Rook" then pieceName="R" 
-      elseif piece == "King" then pieceName = "K"
-      elseif piece == "Queen" then pieceName = "Q"
-      elseif piece == "Knight" then pieceName = "N"
-      elseif piece == "Bishop" then pieceName = "B"
-      elseif piece == "Archbishop" then pieceName = "A"
-      elseif piece == "Marshal" then pieceName = "C"
-      end
+      pieceName = pieceLetter(piece)
+      if fields[6] == "=" and fields[7] then
+        to = to .. "=" .. pieceLetter(fields[7])
+      end 
       if line:match("King") and line:match("Rook") then
         if to:match("g") then
           out = out .. show .. " O-O "
